@@ -2,9 +2,9 @@ Source: plinth
 Section: python
 Priority: extra
 Maintainer: Tzafrir Cohen <tzafrir@debian.org>
-Uploaders: Jonas Smedegaard <dr@jones.dk>,
- Piotr Ożarowski <piotr@debian.org>,
- Petter Reinholdtsen <pere@debian.org>
+Uploaders: Piotr Ożarowski <piotr@debian.org>,
+ Petter Reinholdtsen <pere@debian.org>,
+ Bdale Garbee <bdale@gag.com>
 Build-Depends: debhelper (>= 9), python-all, python-cheetah, pandoc
 Standards-Version: 3.9.4
 Homepage: https://github.com/NickDaly/Plinth/
