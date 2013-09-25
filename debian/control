@@ -7,9 +7,9 @@ Uploaders: Jonas Smedegaard <dr@jones.dk>,
  Petter Reinholdtsen <pere@debian.org>
 Build-Depends: debhelper (>= 9), python-all, python-cheetah, pandoc
 Standards-Version: 3.9.4
-Homepage: http://wiki.debian.org/Freedombox
-#Vcs-Git: 
-#Vcs-Browser: 
+Homepage: https://github.com/NickDaly/Plinth/
+Vcs-Git: git://anonscm.debian.org/freedombox/plinth.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary
 
 Package: plinth
 Section: python
