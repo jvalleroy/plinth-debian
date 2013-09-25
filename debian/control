@@ -12,7 +12,6 @@ Vcs-Git: git://anonscm.debian.org/freedombox/plinth.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary
 
 Package: plinth
-Section: python
 Architecture: all
 Depends: ${python:Depends}, ${misc:Depends},
  adduser,
