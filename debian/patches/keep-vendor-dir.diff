@@ -5,7 +5,7 @@ Description: Avoid removing vendor and $(DESTDIR)
 Author: Petter Reinholdtsen <pere@hungry.com>
 
 ---
-Forwarded: no
+Forwarded: https://github.com/NickDaly/Plinth/pull/30
 Reviewed-By: Petter Reinholdtsen
 Last-Update: 2013-09-25
 
