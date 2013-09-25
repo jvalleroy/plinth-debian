@@ -1,0 +1,294 @@
+Description: Replace exmachina with sudo calls and action scripts
+ The exmachina daemon exist to provide privileged access for the plinth
+ web frontend.  action scripts behind sudo can provide the same mechanism.
+ This patch replaces the use of exmachina with sudo.
+Author: Petter Reinholdtsen <pere@hungry.com>
+
+---
+Forwarded: https://github.com/NickDaly/Plinth/pull/29
+Reviewed-By: Petter Reinholdtsen
+Last-Update: 2013-09-25
+
+diff --git a/Makefile b/Makefile
+index c9a6b4c..99c0535 100644
+--- a/Makefile
++++ b/Makefile
+@@ -29,9 +29,9 @@ install: default
+ 	mkdir -p $(DESTDIR)$(PYDIR) $(DESTDIR)$(DATADIR) $(DESTDIR)/usr/bin \
+ 		$(DESTDIR)/usr/share/doc/plinth $(DESTDIR)/usr/share/man/man1
+ 	cp -a static themes $(DESTDIR)$(DATADIR)/
++	cp -a actions $(DESTDIR)$(DATADIR)/
++	cp -a sudoers.d $(DESTDIR)/etc/sudoers.d
+ 	cp -a *.py modules templates $(DESTDIR)$(PYDIR)/
+-	mkdir -p $(DESTDIR)$(PYDIR)/exmachina
+-	cp -a vendor/exmachina/exmachina.py $(DESTDIR)$(PYDIR)/exmachina/.
+ 	cp share/init.d/plinth $(DESTDIR)/etc/init.d
+ 	install plinth $(DESTDIR)/usr/bin/
+ 	mkdir -p $(DESTDIR)/var/lib/plinth/cherrypy_sessions $(DESTDIR)/var/log/plinth $(DESTDIR)/var/run
+diff --git a/README b/README
+index a5e4bf9..6c8382b 100644
+--- a/README
++++ b/README
+@@ -43,9 +43,6 @@ get down into the details and configure things the average user never
+ thinks about.  For example, experts can turn off ntp or switch ntp
+ servers.  Basic users should never even know those options exist.
+ 
+-See comments in exmachina/exmachina.py for more details about the
+-configuration management process seperation scheme.
+-
+ ## Getting Started
+ 
+ See the INSTALL file for additional details.  Run:
+diff --git a/actions/hostname-change b/actions/hostname-change
+new file mode 100755
+index 0000000..ad71edc
+--- /dev/null
++++ b/actions/hostname-change
+@@ -0,0 +1,10 @@
++#!/bin/sh
++
++hostname="$1"
++
++echo "$hostname" > /etc/hostname
++if [ -x /etc/init.d/hostname.sh ] ; then
++    service hostname.sh start
++else
++    service hostname start
++fi
+diff --git a/actions/timezone-change b/actions/timezone-change
+new file mode 100755
+index 0000000..6a5ed13
+--- /dev/null
++++ b/actions/timezone-change
+@@ -0,0 +1,14 @@
++#!/bin/sh
++
++zonename="$1"
++
++tzpath="/usr/share/zoneinfo/$zonename"
++
++if [ -e "$tzpath" ] ; then
++    cp "$tzpath" /etc/localtime
++    echo "$zonename" > /etc/timezone
++    exit 0
++else
++    echo "timezone not valid" 1>&2
++    exit 1
++fi
+diff --git a/modules/installed/system/config.py b/modules/installed/system/config.py
+index 89d878a..6863b22 100644
+--- a/modules/installed/system/config.py
++++ b/modules/installed/system/config.py
+@@ -9,6 +9,7 @@ from gettext import gettext as _
+ from filedict import FileDict
+ from modules.auth import require
+ from plugin_mount import PagePlugin, FormPlugin
++from privilegedactions import privilegedaction_run
+ import cfg
+ from forms import Form
+ from model import User
+@@ -48,20 +49,14 @@ def get_hostname():
+ 
+ def set_hostname(hostname):
+     "Sets machine hostname to hostname"
+-    cfg.log.info("Writing '%s' to /etc/hostname with exmachina" % hostname)
+-
++    cfg.log.info("Changing hostname to '%s'" % hostname)
+     try:
+-        cfg.exmachina.augeas.set("/files/etc/hostname/*", hostname)
+-        cfg.exmachina.augeas.save()
++        privilegedaction_run("hostname-change", [hostname])
+         # don't persist/cache change unless it was saved successfuly
+         sys_store = filedict_con(cfg.store_file, 'sys')
+         sys_store['hostname'] = hostname
+-        if platform.linux_distribution()[0]=="Ubuntu" :
+-            cfg.exmachina.service.start("hostname")
+-        else:
+-            cfg.exmachina.initd.start("hostname.sh") # is hostname.sh debian-only?
+     except OSError, e:
+-        raise cherrypy.HTTPError(500, "Hostname restart failed: %s" % e)
++        raise cherrypy.HTTPError(500, "Updating hostname failed: %s" % e)
+ 
+ class general(FormPlugin, PagePlugin):
+     url = ["/sys/config"]
+@@ -79,7 +74,7 @@ class general(FormPlugin, PagePlugin):
+             return '<p>' + _('Only members of the expert group are allowed to see and modify the system setup.') + '</p>'
+ 
+         sys_store = filedict_con(cfg.store_file, 'sys')
+-        hostname = cfg.exmachina.augeas.get("/files/etc/hostname/*")
++        hostname = get_hostname()
+         # this layer of persisting configuration in sys_store could/should be
+         # removed -BLN
+         defaults = {'time_zone': "slurp('/etc/timezone').rstrip()",
+@@ -139,10 +134,10 @@ class general(FormPlugin, PagePlugin):
+                     raise
+             else:
+                 message += msg
++        time_zone = time_zone.strip()
+         if time_zone != sys_store['time_zone']:
+-            src = os.path.join("/usr/share/zoneinfo", time_zone)
+             cfg.log.info("Setting timezone to %s" % time_zone)
+-            cfg.exmachina.misc.set_timezone(time_zone)
++            privilegedaction_run("timezone-change", [time_zone])
+             sys_store['time_zone'] = time_zone
+         return message or "Settings updated."
+ 
+diff --git a/plinth.py b/plinth.py
+index e2bd808..5ebac5e 100755
+--- a/plinth.py
++++ b/plinth.py
+@@ -18,7 +18,6 @@ from logger import Logger
+ #from modules.auth import AuthController, require, member_of, name_is
+ 
+ from withsqlite.withsqlite import sqlite_db
+-from exmachina.exmachina import ExMachinaClient
+ import socket
+ 
+ __version__ = "0.2.14"
+@@ -84,8 +83,6 @@ def parse_arguments():
+    parser = argparse.ArgumentParser(description='Plinth web interface for the FreedomBox.')
+    parser.add_argument('--pidfile', default="",
+                        help='specify a file in which the server may write its pid')
+-   parser.add_argument('--listen-exmachina-key', default=False, action='store_true',
+-                       help='listen for JSON-RPC shared secret key on stdin at startup')
+    args=parser.parse_args()
+    if args.pidfile:
+       cfg.pidfile = args.pidfile
+@@ -96,13 +93,6 @@ def parse_arguments():
+       except AttributeError:
+             cfg.pidfile = "plinth.pid"
+ 
+-   if args.listen_exmachina_key:
+-      # this is where we optionally try to read in a shared secret key to
+-      # authenticate connections to exmachina
+-      cfg.exmachina_secret_key = sys.stdin.readline().strip()
+-   else:
+-      cfg.exmachina_secret_key = None
+-
+ def setup():
+    parse_arguments()
+ 
+@@ -113,19 +103,6 @@ def setup():
+    except AttributeError:
+       pass
+ 
+-   try:
+-      from vendor.exmachina.exmachina import ExMachinaClient
+-   except ImportError:
+-      cfg.exmachina = None
+-      print "unable to import exmachina client library, but continuing anyways..."
+-   else:
+-      try:
+-         cfg.exmachina = ExMachinaClient(
+-            secret_key=cfg.exmachina_secret_key or None)
+-      except socket.error:
+-         cfg.exmachina = None
+-         print "couldn't connect to exmachina daemon, but continuing anyways..."
+-
+    os.chdir(cfg.python_root)
+    cherrypy.config.update({'error_page.404': error_page_404})
+    cherrypy.config.update({'error_page.500': error_page_500})
+diff --git a/privilegedactions.py b/privilegedactions.py
+new file mode 100644
+index 0000000..37ac238
+--- /dev/null
++++ b/privilegedactions.py
+@@ -0,0 +1,15 @@
++import sys
++import subprocess
++import cfg
++
++def privilegedaction_run(action, options):
++    cmd = ['sudo', '-n', "/usr/share/plinth/actions/%s" % action]
++    if options:
++        cmd.extend(options)
++    cfg.log.info('running: %s ' % ' '.join(cmd))
++
++    output, error = \
++        subprocess.Popen(cmd,
++                         stdout = subprocess.PIPE,
++                         stderr= subprocess.PIPE).communicate()
++    return output, error
+diff --git a/share/init.d/plinth b/share/init.d/plinth
+index 8bc056e..cea43f5 100755
+--- a/share/init.d/plinth
++++ b/share/init.d/plinth
+@@ -7,21 +7,17 @@
+ # Default-Stop:      0 1 6
+ # Short-Description: plinth web frontend
+ # Description:
+-#   Control the exmachina privileged execution daemon and the plinth
+-#   web frontend.
++#   Control the plinth web frontend.
+ ### END INIT INFO
+ 
+ # This file is /etc/init.d/plinth
+ DAEMON=/usr/local/bin/plinth.py
+-EXMACHINA_DAEMON=/usr/local/bin/exmachina.py
+ PID_FILE=/var/run/plinth.pid
+-EXMACHINA_PID_FILE=/var/run/exmachina.pid
+ 
+ PLINTH_USER=www-data
+ PLINTH_GROUP=www-data
+ 
+ test -x $DAEMON || exit 0
+-test -x $EXMACHINA_DAEMON || exit 0
+ 
+ set -e
+ 
+@@ -31,17 +27,9 @@ start_plinth (){
+     if [ -f $PID_FILE ]; then
+         echo Already running with a pid of `cat $PID_FILE`.
+     else
+-        if [ -f $EXMACHINA_PID_FILE ]; then
+-            echo exmachina was already running with a pid of `cat $EXMACHINA_PID_FILE`.
+-            kill -15 `cat $EXMACHINA_PID_FILE`
+-            rm -rf $EXMACHINA_PID_FILE
+-        fi
+-        SHAREDKEY=`$EXMACHINA_DAEMON --random-key`
+         touch $PID_FILE
+         chown $PLINTH_USER:$PLINTH_GROUP $PID_FILE
+-        echo $SHAREDKEY | $EXMACHINA_DAEMON --pidfile=$EXMACHINA_PID_FILE --group=$PLINTH_GROUP || rm $PID_FILE
+-        sleep 0.5
+-        echo $SHAREDKEY | sudo -u $PLINTH_USER -g $PLINTH_GROUP $DAEMON --pidfile=$PID_FILE
++        sudo -u $PLINTH_USER -g $PLINTH_GROUP $DAEMON --pidfile=$PID_FILE
+     fi
+ }
+ 
+@@ -53,13 +41,6 @@ stop_plinth () {
+     else
+         echo "No pid file at $PID_FILE suggests plinth is not running."
+     fi
+-    if [ -f $EXMACHINA_PID_FILE ]; then
+-        kill -15 `cat $EXMACHINA_PID_FILE` || true
+-        rm -rf $EXMACHINA_PID_FILE
+-        echo "killed exmachina"
+-    else
+-        echo "No pid file at $EXMACHINA_PID_FILE suggests exmachina is not running."
+-    fi
+ }
+ 
+ test -x $DAEMON || exit 0
+diff --git a/start.sh b/start.sh
+index 8b97c0b..0ee1c53 100755
+--- a/start.sh
++++ b/start.sh
+@@ -1,10 +1,7 @@
+ #! /bin/sh
+ 
+-#PYTHONPATH=vendor/exmachina:$PYTHONPATH
++#PYTHONPATH=$PYTHONPATH
+ 
+ export PYTHONPATH
+ 
+-sudo killall exmachina.py
+-sudo vendor/exmachina/exmachina.py -v &
+ python plinth.py
+-sudo killall exmachina.py
+diff --git a/sudoers.d/plinth b/sudoers.d/plinth
+new file mode 100644
+index 0000000..aaefc5e
+--- /dev/null
++++ b/sudoers.d/plinth
+@@ -0,0 +1 @@
++plinth    ALL=(ALL:ALL) NOPASSWD:/usr/share/plinth/actions/*

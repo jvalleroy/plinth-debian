@@ -6,5 +6,8 @@ plinth (0.0.0~git.20130925) UNRELEASED; urgency=low
   [ Petter Reinholdtsen ]
   * New patch keep-vendor-dir.diff to avoid removing directories that
     should survive the clean Makefile target.
+  * New patch sudo-not-exmachina.diff to drop the exmachina dependency,
+    and adjust binary dependencies and the debpathes patch to cope with
+    this.
 
  -- Tzafrir Cohen <tzafrir@debian.org>  Tue, 27 Aug 2013 15:38:50 +0300

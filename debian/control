@@ -16,7 +16,7 @@ Section: python
 Architecture: all
 Depends: ${python:Depends}, ${misc:Depends},
  adduser,
- python-withsqlite, python-exmachina,
+ python-withsqlite,
  augeas-tools,
 # FIXME: isn't python-simplejson now part of python?
  python-simplejson,

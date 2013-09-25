@@ -1,2 +1,3 @@
-debpathes
+sudo-not-exmachina.diff
 keep-vendor-dir.diff
+debpathes
