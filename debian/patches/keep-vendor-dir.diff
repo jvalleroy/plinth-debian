@@ -1,0 +1,29 @@
+Description: Avoid removing vendor and $(DESTDIR)
+ The vendor/ directory contain source used during build, and
+ $(DESTDIR) might point to /usr/.  Neither should be removed
+ in the clean target.
+Author: Petter Reinholdtsen <pere@hungry.com>
+
+---
+Forwarded: no
+Reviewed-By: Petter Reinholdtsen
+Last-Update: 2013-09-25
+
+--- plinth-0.0.0~git.20130925.orig/Makefile
++++ plinth-0.0.0~git.20130925/Makefile
+@@ -4,7 +4,6 @@ CSS=$(wildcard *.css)
+ CSS=$(subst .tiny,,$(shell find themes -type f -name '*.css'))
+ COMPRESSED_CSS := $(patsubst %.css,%.tiny.css,$(CSS))
+ PWD=`pwd`
+-BUILDDIR=vendor
+ 
+ # hosting variables
+ SLEEP_TIME=300
+@@ -81,7 +80,6 @@ clean:
+ 	@find . -name "*.bak" -exec rm {} \;
+ 	@$(MAKE) -s -C doc clean
+ 	@$(MAKE) -s -C templates clean
+-	rm -rf $(BUILDDIR) $(DESTDIR)
+ 	rm -f predepend
+ 
+ hosting:

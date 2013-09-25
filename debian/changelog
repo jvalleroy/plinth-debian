@@ -1,5 +1,10 @@
 plinth (0.0.0~git.20130925) UNRELEASED; urgency=low
 
+  [ Tzafrir Cohen ]
   * Initial release. (Closes: #722093)
+
+  [ Petter Reinholdtsen ]
+  * New patch keep-vendor-dir.diff to avoid removing directories that
+    should survive the clean Makefile target.
 
  -- Tzafrir Cohen <tzafrir@debian.org>  Tue, 27 Aug 2013 15:38:50 +0300
