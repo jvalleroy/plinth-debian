@@ -8,7 +8,8 @@ plinth (0.0.0~git.20130925) UNRELEASED; urgency=low
     should survive the clean Makefile target.
   * New patch sudo-not-exmachina.diff to drop the exmachina dependency,
     and adjust binary dependencies and the debpathes patch to cope with
-    this.
+    this.  Drop dependency on augeas-tools, no longer used with this
+    patch.
   * Set priority to optional, as the package do not conflict with anything.
 
  -- Tzafrir Cohen <tzafrir@debian.org>  Tue, 27 Aug 2013 15:38:50 +0300
