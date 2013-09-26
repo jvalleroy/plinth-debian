@@ -9,3 +9,9 @@ override_dh_auto_install:
 
 override_dh_installinit:
 	dh_installinit --onlyscripts
+
+# Workaround for Makefile removing vendor/ directory in clean target,
+# also fixed in keep-vendor-dir.diff patch, which is removed before
+# 'make clean' is executed and thus do not work as a patch.
+override_dh_auto_clean:
+	dh_auto_clean -- BUILDDIR=build
