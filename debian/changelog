@@ -1,3 +1,11 @@
+plinth (0.0.0~git.20130925-2) UNRELEASED; urgency=low
+
+  * Depend on python-withsqlite (>= 0.0.0~git.20130915-2) to make sure a
+    version with support for the check_same_thread constructor option is
+    available.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Thu, 26 Sep 2013 12:54:06 +0200
+
 plinth (0.0.0~git.20130925-1) unstable; urgency=low
 
   [ Tzafrir Cohen ]
