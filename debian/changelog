@@ -1,4 +1,4 @@
-plinth (0.0.0~git.20130925) UNRELEASED; urgency=low
+plinth (0.0.0~git.20130925) unstable; urgency=low
 
   [ Tzafrir Cohen ]
   * Initial release. (Closes: #722093)
@@ -14,4 +14,4 @@ plinth (0.0.0~git.20130925) UNRELEASED; urgency=low
     patch.
   * Set priority to optional, as the package do not conflict with anything.
 
- -- Tzafrir Cohen <tzafrir@debian.org>  Tue, 27 Aug 2013 15:38:50 +0300
+ -- Petter Reinholdtsen <pere@debian.org>  Thu, 26 Sep 2013 09:13:47 +0200
