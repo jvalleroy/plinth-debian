@@ -1,6 +1,6 @@
 Source: plinth
 Section: python
-Priority: extra
+Priority: optional
 Maintainer: Tzafrir Cohen <tzafrir@debian.org>
 Uploaders: Piotr Ożarowski <piotr@debian.org>,
  Petter Reinholdtsen <pere@debian.org>,
