@@ -1,3 +1,4 @@
 sudo-not-exmachina.diff
 keep-vendor-dir.diff
+handle-unknown-users.diff
 debpathes
