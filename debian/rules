@@ -4,6 +4,7 @@
 
 DATADIR=$(CURDIR)/debian/plinth/usr/share/plinth
 override_dh_auto_install:
+	chmod a+rx actions/*
 	dh_auto_install
 	find $(DATADIR) -name \*.png -o -name \*.svg | xargs chmod -x
 
