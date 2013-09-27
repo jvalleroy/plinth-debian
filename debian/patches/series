@@ -1,4 +1,5 @@
 sudo-not-exmachina.diff
 keep-vendor-dir.diff
 handle-unknown-users.diff
+app-owncloud.diff
 debpathes

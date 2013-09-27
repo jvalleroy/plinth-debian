@@ -5,6 +5,7 @@ plinth (0.0.0~git.20130925-2) UNRELEASED; urgency=low
     available.
   * New patch handle-unknown-users.diff to make sure unknown users
     are handled exactly like incorrect passwords when login fail.
+  * New patch app-owncloud.diff to add owncloud support to Plinth.
 
  -- Petter Reinholdtsen <pere@debian.org>  Thu, 26 Sep 2013 12:54:06 +0200
 
