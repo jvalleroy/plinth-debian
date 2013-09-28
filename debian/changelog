@@ -1,11 +1,11 @@
-plinth (0.0.0~git.20130928-1) UNRELEASED; urgency=low
+plinth (0.0.0~git.20130928-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly.
   * Drop patches keep-vendor-dir.diff, handle-unknown-users.diff,
     sudo-not-exmachina.diff and app-owncloud.diff now merged upstream.
   * Drop workaround for keep-vendor-dir.diff from rules file.
 
- -- Petter Reinholdtsen <pere@debian.org>  Sat, 28 Sep 2013 21:41:18 +0200
+ -- Petter Reinholdtsen <pere@debian.org>  Sat, 28 Sep 2013 22:55:36 +0200
 
 plinth (0.0.0~git.20130925-2) unstable; urgency=low
 
