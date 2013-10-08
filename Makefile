@@ -22,7 +22,7 @@ predepend:
 	git submodule update
 	touch predepend
 
-install: default
+install: default apache-install
 	mkdir -p $(DESTDIR)/etc/init.d $(DESTDIR)/etc/plinth
 	cp plinth.sample.fhs.config $(DESTDIR)/etc/plinth/plinth.config
 	mkdir -p $(DESTDIR)$(PYDIR) $(DESTDIR)$(DATADIR) $(DESTDIR)/usr/bin \
@@ -80,6 +80,7 @@ clean:
 	@find . -name "*.bak" -exec rm {} \;
 	@$(MAKE) -s -C doc clean
 	@$(MAKE) -s -C templates clean
+	rm -f plinth.config
 	rm -f predepend
 
 hosting:
@@ -91,3 +92,12 @@ current-checkout.tar.gz: $(ALL_BUT_GZ)
 
 current-repository.tar.gz: $(ALL_BUT_GZ)
 	tar cz $(EXCLUDE) * .git > current-repository.tar.gz
+
+apache-install:
+	install -D -m644 share/apache2/plinth.conf $(DESTDIR)/etc/apache2/sites-available/plinth.conf
+apache-config: apache-install apache-ssl
+	a2ensite plinth
+
+apache-ssl:
+	make-ssl-cert generate-default-snakeoil
+	a2enmod ssl

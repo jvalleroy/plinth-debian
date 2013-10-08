@@ -28,6 +28,8 @@ __maintainer__ = "James Vasile"
 __email__ = "james@jamesvasile.com"
 __status__ = "Development"
 
+import urlparse
+
 def error_page(status, dynamic_msg, stock_msg):
    return u.page_template(template="err", title=status, main="<p>%s</p>%s" % (dynamic_msg, stock_msg))
 
@@ -55,14 +57,14 @@ class Root(plugin_mount.PagePlugin):
       ## TODO: firstboot hijacking root should probably be in the firstboot module with a hook in plinth.py
       with sqlite_db(cfg.store_file, table="firstboot") as db:
          if not 'state' in db:
-            raise cherrypy.InternalRedirect('/firstboot')
+            raise cherrypy.InternalRedirect('firstboot')
          elif db['state'] < 5:
             cfg.log("First Boot state = %d" % db['state'])
-            raise cherrypy.InternalRedirect('/firstboot/state%d' % db['state'])
+            raise cherrypy.InternalRedirect('firstboot/state%d' % db['state'])
       if cherrypy.session.get(cfg.session_key, None):
-         raise cherrypy.InternalRedirect('/router')
+         raise cherrypy.InternalRedirect('router')
       else:
-         raise cherrypy.InternalRedirect('/help/about')
+         raise cherrypy.InternalRedirect('help/about')
 
 def load_modules():
    """Import all the symlinked .py files in the modules directory and
@@ -83,6 +85,9 @@ def parse_arguments():
    parser = argparse.ArgumentParser(description='Plinth web interface for the FreedomBox.')
    parser.add_argument('--pidfile', default="",
                        help='specify a file in which the server may write its pid')
+   parser.add_argument('--directory', default="/",
+                       help='specify a subdirectory to host the server.')
+
    args=parser.parse_args()
    if args.pidfile:
       cfg.pidfile = args.pidfile
@@ -92,9 +97,10 @@ def parse_arguments():
             cfg.pidfile = "plinth.pid"
       except AttributeError:
             cfg.pidfile = "plinth.pid"
+   return args
 
 def setup():
-   parse_arguments()
+   args = parse_arguments()
 
    try:
       if cfg.pidfile:
@@ -140,9 +146,8 @@ def setup():
       '/favicon.ico':{'tools.staticfile.on': True,
                       'tools.staticfile.filename':
                          "%s/static/theme/favicon.ico" % cfg.file_root}}
-   cherrypy.tree.mount(cfg.html_root, '/', config=config)
+   cherrypy.tree.mount(cfg.html_root, args.directory, config=config)
    cherrypy.engine.signal_handler.subscribe()
-
 
 def main():
    setup()
