@@ -1,3 +1,10 @@
+plinth (0.0.0~git.20131007-1) UNRELEASED; urgency=low
+
+  * Updated to new git version from Nick Daly.
+  * Dropped patch debpathes now merged upstream.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Tue, 08 Oct 2013 02:16:14 +0200
+
 plinth (0.0.0~git.20130928-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly.
