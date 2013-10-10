@@ -1,12 +1,13 @@
-plinth (0.0.0~git.20131007-1) UNRELEASED; urgency=low
+plinth (0.0.0~git.20131010-1) unstable; urgency=low
 
-  * Updated to new git version from Nick Daly.
+  * Updated to new git version from Nick Daly based on
+    commit 5ec749af8e5cb2480556e6926e239972ac890b4c
   * Dropped patch debpathes now merged upstream.
   * Changed depend on python-withsqlite to (>= 0.0.0~git.20130929-1),
     making sure a version with support for more than one table in
     one sqlite file is available.
 
- -- Petter Reinholdtsen <pere@debian.org>  Tue, 08 Oct 2013 02:16:14 +0200
+ -- Petter Reinholdtsen <pere@debian.org>  Thu, 10 Oct 2013 22:51:34 +0200
 
 plinth (0.0.0~git.20130928-1) unstable; urgency=low
 
