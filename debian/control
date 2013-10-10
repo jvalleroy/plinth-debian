@@ -15,7 +15,7 @@ Package: plinth
 Architecture: all
 Depends: ${python:Depends}, ${misc:Depends},
  adduser,
- python-withsqlite (>= 0.0.0~git.20130929-1),
+ python-withsqlite (>= 0.0.0~git.20130929),
 # FIXME: isn't python-simplejson now part of python?
  python-simplejson,
  python-cheetah,
