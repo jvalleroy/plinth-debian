@@ -1,5 +1,7 @@
-plinth (0.3.0.0.git.20131010-2) UNRELEASED; urgency=low
+plinth (0.3.0.0.git.20131019-1) UNRELEASED; urgency=low
 
+  * Updated to new git version from Nick Daly based on
+    commit 025c2aebc1d1a065396fce87bcf9292404efad92.
   * Reduce the versioned python-withsqlite dependency from
     0.0.0~git.20130929-1 to 0.0.0~git.20130929, to also accept the
     0.0.0~git.20130929-1~pere.0 version currently available from the
