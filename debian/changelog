@@ -4,6 +4,7 @@ plinth (0.3.0.0.git.20131028-1) UNRELEASED; urgency=low
     0296a1a99cb1ad0a21729ea37fd53e171ee60614.
     - Drops local copies of javascript libraries also available from
       Debian packages.
+  * Add new dependency python-contract needed by new upstream version.
   * Reduce the versioned python-withsqlite dependency from
     0.0.0~git.20130929-1 to 0.0.0~git.20130929, to also accept the
     0.0.0~git.20130929-1~pere.0 version currently available from the
