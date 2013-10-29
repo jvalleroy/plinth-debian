@@ -1,0 +1,23 @@
+Description: Install actions python code to correct path
+ Bad patch, as it duplicate code in two places in the 
+ file system.  But it fixes the problem blocking plinth
+ from starting.
+Author: Petter Reinholdtsen <pere@debian.org>
+
+---
+Bug: https://github.com/NickDaly/Plinth/issues/41
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: Petter Reinholdtsen
+Last-Update: 2013-10-29
+
+--- plinth-0.3.0.0.git.20131028.orig/Makefile
++++ plinth-0.3.0.0.git.20131028/Makefile
+@@ -29,6 +29,8 @@ install: default apache-install freedomb
+ 		$(DESTDIR)/usr/share/doc/plinth $(DESTDIR)/usr/share/man/man1
+ 	cp -a static themes $(DESTDIR)$(DATADIR)/
+ 	cp -a actions $(DESTDIR)$(DATADIR)/
++	mkdir -p $(DESTDIR)$(PYDIR)/actions
++	cp -a actions/*.py $(DESTDIR)$(PYDIR)/actions/
+ 	cp -a sudoers.d $(DESTDIR)/etc/sudoers.d
+ 	cp -a *.py modules templates $(DESTDIR)$(PYDIR)/
+ 	cp share/init.d/plinth $(DESTDIR)/etc/init.d

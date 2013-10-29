@@ -9,6 +9,8 @@ plinth (0.3.0.0.git.20131028-1) UNRELEASED; urgency=low
     0.0.0~git.20130929-1 to 0.0.0~git.20130929, to also accept the
     0.0.0~git.20130929-1~pere.0 version currently available from the
     non-debian repo.
+  * New patch install-actions-lib to fix install target (Upstream
+    issue #41).
 
  -- Petter Reinholdtsen <pere@debian.org>  Thu, 10 Oct 2013 23:47:40 +0200
 
