@@ -10,12 +10,15 @@ Forwarded: <no|not-needed|url proving that it has been forwarded>
 Reviewed-By: Petter Reinholdtsen
 Last-Update: 2013-10-29
 
---- plinth-0.3.0.0.git.20131028.orig/Makefile
-+++ plinth-0.3.0.0.git.20131028/Makefile
-@@ -29,6 +29,8 @@ install: default apache-install freedomb
+Index: plinth-alioth/Makefile
+===================================================================
+--- plinth-alioth.orig/Makefile	2013-10-29 12:31:48.848319056 +0100
++++ plinth-alioth/Makefile	2013-10-30 22:23:41.093024789 +0100
+@@ -29,6 +29,9 @@
  		$(DESTDIR)/usr/share/doc/plinth $(DESTDIR)/usr/share/man/man1
  	cp -a static themes $(DESTDIR)$(DATADIR)/
  	cp -a actions $(DESTDIR)$(DATADIR)/
++	rm $(DESTDIR)$(DATADIR)/actions/*.py
 +	mkdir -p $(DESTDIR)$(PYDIR)/actions
 +	cp -a actions/*.py $(DESTDIR)$(PYDIR)/actions/
  	cp -a sudoers.d $(DESTDIR)/etc/sudoers.d
