@@ -1,4 +1,4 @@
-plinth (0.3.0.0.git.20131028-1) UNRELEASED; urgency=low
+plinth (0.3.0.0.git.20131028-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
     0296a1a99cb1ad0a21729ea37fd53e171ee60614.
@@ -12,7 +12,7 @@ plinth (0.3.0.0.git.20131028-1) UNRELEASED; urgency=low
   * New patch install-actions-lib to fix install target (Upstream
     issue #41).
 
- -- Petter Reinholdtsen <pere@debian.org>  Thu, 10 Oct 2013 23:47:40 +0200
+ -- Petter Reinholdtsen <pere@debian.org>  Wed, 30 Oct 2013 22:25:25 +0100
 
 plinth (0.3.0.0.git.20131010-1) unstable; urgency=low
 
