@@ -8,7 +8,7 @@ plinth (0.3.0.0.git.20131101-1) unstable; urgency=low
     documentation can be built with the latest pandoc package in
     unstable.
 
- -- Petter Reinholdtsen <pere@debian.org>  Fri, 01 Nov 2013 12:57:26 +0100
+ -- Petter Reinholdtsen <pere@debian.org>  Fri, 01 Nov 2013 13:14:41 +0100
 
 plinth (0.3.0.0.git.20131028-1) unstable; urgency=low
 
