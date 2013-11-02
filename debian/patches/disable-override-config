@@ -5,9 +5,11 @@ Forwarded: no
 Reviewed-By: Petter Reinholdtsen <pere@debian.org>
 Last-Update: 2013-11-02
 
---- plinth-0.3.0.0.git.20131101.orig/plinth.sample.config
-+++ plinth-0.3.0.0.git.20131101/plinth.sample.config
-@@ -3,16 +3,6 @@ product_name = Plinth
+Index: plinth-alioth/plinth.sample.config
+===================================================================
+--- plinth-alioth.orig/plinth.sample.config	2013-11-02 07:48:31.723380379 +0100
++++ plinth-alioth/plinth.sample.config	2013-11-02 08:16:56.963517268 +0100
+@@ -3,15 +3,6 @@
  box_name = FreedomBox
  
  [Path]
@@ -20,7 +22,6 @@ Last-Update: 2013-11-02
 -access_log_file = %(data_dir)s/access.log
 -users_dir = %(data_dir)s/users
 -pidfile = %(data_dir)s/pidfile.pid
--server_dir = plinth/
+ server_dir = plinth/
  
  [Network]
- host = 127.0.0.1
