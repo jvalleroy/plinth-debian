@@ -21,6 +21,8 @@ Depends: ${python:Depends}, ${misc:Depends},
  python-cheetah,
  python-cherrypy3
  , python-contract
+ , libjs-jquery
+ , libjs-modernizr
 Description: web front end for administering every aspect of a Freedom Box
  The Freedom Box is a net appliance conceived by Eben Moglen.  It
  contains free software and is designed to allow you to interface with
