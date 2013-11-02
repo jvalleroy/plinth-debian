@@ -1,3 +1,10 @@
+plinth (0.3.0.0.git.20131101-2) UNRELEASED; urgency=low
+
+  * Rewrite config to get plinth starting out of the box.  New patches
+    program-paths and disable-override-config.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Sat, 02 Nov 2013 07:49:32 +0100
+
 plinth (0.3.0.0.git.20131101-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
