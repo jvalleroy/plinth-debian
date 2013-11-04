@@ -6,6 +6,8 @@ plinth (0.3.0.0.git.20131102-1) UNRELEASED; urgency=low
     setting.
   * Add new dependencies libjs-jquery and libjs-modernizr to plinth.
     Patch from James Valleroy.
+  * New patch hostname-parameter based on upstream pull request #49 to fix
+    hostname argument in set_hostname().
 
  -- Petter Reinholdtsen <pere@debian.org>  Sat, 02 Nov 2013 07:54:37 +0100
 
