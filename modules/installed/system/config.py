@@ -49,9 +49,13 @@ def get_hostname():
 
 def set_hostname(hostname):
     "Sets machine hostname to hostname"
+
+    # Hostname should be ASCII. If it's unicode but passed our valid_hostname check, convert to ASCII.
+    hostname = str(hostname)
+
     cfg.log.info("Changing hostname to '%s'" % hostname)
     try:
-        privilegedaction_run("hostname-change", [hostname])
+        privilegedaction_run("hostname-change", hostname)
         # don't persist/cache change unless it was saved successfuly
         sys_store = filedict_con(cfg.store_file, 'sys')
         sys_store['hostname'] = hostname
@@ -108,7 +112,7 @@ class general(FormPlugin, PagePlugin):
 
         ## And now, the form.
         form = Form(title=_("General Config"),
-                        action="/sys/config/general/index",
+                        action=cfg.server_dir + "/sys/config/general/index",
                         name="config_general_form",
                         message=message )
         form.html(self.help())
