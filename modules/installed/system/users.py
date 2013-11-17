@@ -1,6 +1,6 @@
 import os, cherrypy
 from gettext import gettext as _
-from auth import require
+from auth import require, add_user
 from plugin_mount import PagePlugin, FormPlugin
 import cfg
 from forms import Form
@@ -32,38 +32,26 @@ class add(FormPlugin, PagePlugin):
         don't worry about it.</p>""")
 
     def main(self, username='', name='', email='', message=None, *args, **kwargs):
-        form = Form(title="Add User", 
-                        action="/sys/users/add/index", 
-                        onsubmit="return md5ify('add_user_form', 'password')", 
+        form = Form(title="Add User",
+                        action=cfg.server_dir + "/sys/users/add/index",
                         name="add_user_form",
                         message=message)
-        form.text = '<script type="text/javascript" src="/static/js/md5.js"></script>\n'+form.text
         form.text_input(_("Username"), name="username", value=username)
         form.text_input(_("Full name"), name="name", value=name)
         form.text_input(_("Email"), name="email", value=email)
         form.text_input(_("Password"), name="password", type="password")
-        form.text_input(name="md5_password", type="hidden")
         form.submit(label=_("Create User"), name="create")
         return form.render()
 
-    def process_form(self, username=None, name=None, email=None, md5_password=None, **kwargs):
+    def process_form(self, username=None, name=None, email=None, password=None, **kwargs):
         msg = Message()
 
-        if not username: msg.add = _("Must specify a username!")
-        if not md5_password: msg.add = _("Must specify a password!")
-        
-        if username in cfg.users.get_all():
-            msg.add = _("User already exists!")
+        error = add_user(username, password, name, email, False)
+        if error:
+            msg.text = error
         else:
-            try:
-                di = {'username':username, 'name':name, 'email':email, 'passphrase':md5_password}
-                new_user = User(di)
-                cfg.users.set(username,new_user)
-            except:
-                msg.add = _("Error storing user!")
-
-        if not msg:
             msg.add = _("%s saved." % username)
+
         cfg.log(msg.text)
         main = self.main(username, name, email, msg=msg.text)
         return self.fill_template(title="Manage Users and Groups", main=main, sidebar_left=self.sidebar_left, sidebar_right=self.sidebar_right)
@@ -71,7 +59,7 @@ class add(FormPlugin, PagePlugin):
 class edit(FormPlugin, PagePlugin):
     url = ["/sys/users/edit"]
     order = 35
-    
+
     sidebar_left = ''
     sidebar_right = _("""<strong>Edit Users</strong><p>Click on a user's name to
     go to a screen for editing that user's account.</p><strong>Delete
@@ -81,13 +69,13 @@ class edit(FormPlugin, PagePlugin):
 
     def main(self, msg=''):
         users = cfg.users.get_all()
-        add_form = Form(title=_("Edit or Delete User"), action="/sys/users/edit", message=msg)
+        add_form = Form(title=_("Edit or Delete User"), action=cfg.server_dir + "/sys/users/edit", message=msg)
         add_form.html('<span class="indent"><strong>Delete</strong><br /></span>')
         for uname in users:
             user = User(uname[1])
-            add_form.html('<span class="indent">&nbsp;&nbsp;%s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' % 
+            add_form.html('<span class="indent">&nbsp;&nbsp;%s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' %
                           add_form.get_checkbox(name=user['username']) +
-                          '<a href="/sys/users/edit?username=%s">%s (%s)</a><br /></span>' % 
+                          '<a href="/sys/users/edit?username=%s">%s (%s)</a><br /></span>' %
                           (user['username'], user['name'], user['username']))
         add_form.submit(label=_("Delete User"), name="delete")
         return add_form.render()
@@ -124,9 +112,9 @@ class edit(FormPlugin, PagePlugin):
         u = cfg.users[kwargs['username']]
         if not u:
             main = _("<p>Could not find a user with username of %s!</p>" % kwargs['username'])
-            return self.fill_template(template="err", title=_("Unnown User"), main=main, 
+            return self.fill_template(template="err", title=_("Unknown User"), main=main,
                              sidebar_left=self.sidebar_left, sidebar_right=sidebar_right)
-            
+
         main = _("""<strong>Edit User '%s'</strong>""" % u['username'])
         sidebar_right = ''
         return self.fill_template(title="Manage Users and Groups", main=main, sidebar_left=self.sidebar_left, sidebar_right=sidebar_right)

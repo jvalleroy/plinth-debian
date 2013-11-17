@@ -6,34 +6,71 @@
 # http://tools.cherrypy.org/wiki/AuthenticationAndAccessRestrictions
 # on 1 February 2011.
 
-# TODO: DeprecationWarning: the md5 module is deprecated; use hashlib instead import md5
-
 import cherrypy
-import urllib, hashlib
+import urllib
+from passlib.hash import bcrypt
+from passlib.exc import PasswordSizeError
 import cfg
 import random
-import time
+from model import User
 
 cfg.session_key = '_cp_username'
+
+def add_user(username, passphrase, name='', email='', expert=False):
+    """Add a new user with specified username and passphrase.
+    """
+    error = None
+    if not username: error = "Must specify a username!"
+    if not passphrase: error = "Must specify a passphrase!"
+
+    if error is None:
+        if username in map(lambda x: x[0], cfg.users.get_all()):
+            error = "User already exists!"
+        else:
+            try:
+                pass_hash = bcrypt.encrypt(passphrase)
+            except PasswordSizeError:
+                error = "Password is too long."
+
+    if error is None:
+        di = {
+            'username':username,
+            'name':name,
+            'email':email,
+            'expert':'on' if expert else 'off',
+            'groups':['expert'] if expert else [],
+            'passphrase':pass_hash,
+            'salt':pass_hash[7:29], # for bcrypt
+        }
+        new_user = User(di)
+        cfg.users.set(username,new_user)
+
+    if error:
+        cfg.log(error)
+    return error
 
 def check_credentials(username, passphrase):
     """Verifies credentials for username and passphrase.
     Returns None on success or a string describing the error on failure"""
-
-    start = time.clock()
 
     if not username or not passphrase:
         error = "No username or password."
         cfg.log(error)
         return error
 
-    if username in cfg.users:
-        u = cfg.users[username]
-    else:
-        u = None
     # hash the password whether the user exists, to foil timing
     # side-channel attacks
-    pass_hash = hashlib.md5(passphrase).hexdigest()
+    try:
+        if username in cfg.users:
+            u = cfg.users[username]
+            pass_hash = bcrypt.encrypt(passphrase, salt=u['salt'])
+        else:
+            u = None
+            pass_hash = bcrypt.encrypt(passphrase)
+    except PasswordSizeError:
+        error = "Password is too long."
+        cfg.log(error)
+        return error
 
     if u is None or u['passphrase'] != pass_hash:
         error = "Bad user-name or password."
@@ -59,10 +96,10 @@ def check_auth(*args, **kwargs):
                 # A condition is just a callable that returns true or false
                 if not condition():
                     # Send old page as from_page parameter
-                    raise cherrypy.HTTPRedirect("/auth/login?from_page=%s" % get_params)
+                    raise cherrypy.HTTPRedirect(cfg.server_dir + "/auth/login?from_page=%s" % get_params)
         else:
             # Send old page as from_page parameter
-            raise cherrypy.HTTPRedirect("/auth/login?from_page=%s" % get_params)
+            raise cherrypy.HTTPRedirect(cfg.server_dir + "/auth/login?from_page=%s" % get_params)
 
 cherrypy.tools.auth = cherrypy.Tool('before_handler', check_auth)
 
