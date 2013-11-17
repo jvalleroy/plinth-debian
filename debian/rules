@@ -9,3 +9,11 @@ override_dh_auto_install:
 
 override_dh_installinit:
 	dh_installinit --onlyscripts
+
+new-upstream:
+	date=$$(date +%Y%m%d); \
+	tgz=../plinth_0.3.0.0.git.$$date.orig.tar.gz; \
+	wget -O $$tgz https://github.com/NickDaly/Plinth/archive/master.tar.gz; \
+	git fetch https://github.com/NickDaly/Plinth.git ; \
+	vcstag=7f3b1a62c81f760da465497030b68d77139406d7 ; \
+	echo git-import-orig --upstream-vcs-tag=$$vcstag $$tgz
