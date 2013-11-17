@@ -2,13 +2,14 @@ plinth (0.3.0.0.git.20131117-1) UNRELEASED; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
     7f3b1a62c81f760da465497030b68d77139406d7.
+    - Add new dependencies libjs-jquery and libjs-modernizr to plinth.
+      Patch from James Valleroy.
     - Add new dependencies on python-passlib (>= 1.6.1) and python-bcrypt.
-  * Correct disable-override-config patch to keep the required server_dir
-    setting.
-  * Add new dependencies libjs-jquery and libjs-modernizr to plinth.
-    Patch from James Valleroy.
-  * New patch hostname-parameter based on upstream pull request #49 to fix
-    hostname argument in set_hostname().
+  * Remove now obsolete disable-override-config patch
+  * Updated program-paths.diff patch to match new upstream source.
+  * Add new patch actions-path.diff to use correct path to actions scripts.
+  * Add new patch correct-issue-tracker.diff to use correct URL to current
+    upstream github repository.
 
  -- Petter Reinholdtsen <pere@debian.org>  Sat, 02 Nov 2013 07:54:37 +0100
 

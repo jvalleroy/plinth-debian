@@ -1,0 +1,27 @@
+Description: Correct paths used by program
+Author: Nick Daly
+
+Bug: <url in upstream bugtracker>
+Forwarded: no
+Reviewed-By: Petter Reinholdtsen <pere@hungry.com>
+Last-Update: 2013-11-02
+
+--- a/plinth.sample.config
++++ b/plinth.sample.config
+@@ -4,11 +4,11 @@ box_name = FreedomBox
+ 
+ [Path]
+ # directory locations
+-file_root = %(root)s
+-data_dir = %(file_root)s/data
+-log_dir = %(data_dir)s
+-pid_dir = %(data_dir)s
+-python_root = %(file_root)s
++file_root = /usr/share/plinth/static
++data_dir = /var/lib/plinth
++log_dir = /var/log/plinth
++pid_dir = /var/run
++python_root = /usr/share/plinth/python/plinth
+ users_dir = %(data_dir)s/users
+ server_dir = plinth/
+ 

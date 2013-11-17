@@ -1,2 +1,3 @@
-#program-paths
-#disable-override-config
+program-paths.diff
+actions-path.diff
+correct-issue-tracker.diff
