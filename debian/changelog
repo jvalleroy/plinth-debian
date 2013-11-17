@@ -1,4 +1,4 @@
-plinth (0.3.0.0.git.20131117-1) UNRELEASED; urgency=low
+plinth (0.3.0.0.git.20131117-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
     7f3b1a62c81f760da465497030b68d77139406d7.
@@ -11,7 +11,7 @@ plinth (0.3.0.0.git.20131117-1) UNRELEASED; urgency=low
   * Add new patch correct-issue-tracker.diff to use correct URL to current
     upstream github repository.
 
- -- Petter Reinholdtsen <pere@debian.org>  Sat, 02 Nov 2013 07:54:37 +0100
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 17 Nov 2013 13:07:21 +0100
 
 plinth (0.3.0.0.git.20131101-2) unstable; urgency=low
 
