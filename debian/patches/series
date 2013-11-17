@@ -1,3 +1,2 @@
-program-paths
-disable-override-config
-hostname-parameter
+#program-paths
+#disable-override-config

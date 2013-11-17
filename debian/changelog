@@ -1,7 +1,8 @@
-plinth (0.3.0.0.git.20131102-1) UNRELEASED; urgency=low
+plinth (0.3.0.0.git.20131117-1) UNRELEASED; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
-    49ce1b938950a7f45b225693ec75b38a5aedad7e.
+    7f3b1a62c81f760da465497030b68d77139406d7.
+    - Add new dependencies on python-passlib (>= 1.6.1) and python-bcrypt.
   * Correct disable-override-config patch to keep the required server_dir
     setting.
   * Add new dependencies libjs-jquery and libjs-modernizr to plinth.
