@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, sys, argparse
+import os, stat, sys, argparse
 from gettext import gettext as _
 import cfg
 if not os.path.join(cfg.file_root, "vendor") in sys.path:
@@ -36,7 +36,7 @@ def error_page(status, dynamic_msg, stock_msg):
 def error_page_404(status, message, traceback, version):
    return error_page(status, message, """<p>If you believe this
    missing page should exist, please file a bug with either the Plinth
-   project (<a href="https://github.com/jvasile/plinth/issues">it has
+   project (<a href="https://github.com/NickDaly/Plinth/issues">it has
    an issue tracker</a>) or the people responsible for the module you
    are trying to access.</p>
 
@@ -57,6 +57,9 @@ class Root(plugin_mount.PagePlugin):
       ## TODO: firstboot hijacking root should probably be in the firstboot module with a hook in plinth.py
       with sqlite_db(cfg.store_file, table="firstboot") as db:
          if not 'state' in db:
+            # if we created a new user db, make sure it can't be read by everyone
+            userdb_fname = '{}.sqlite3'.format(cfg.user_db)
+            os.chmod(userdb_fname, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP)
             raise cherrypy.InternalRedirect('firstboot')
          elif db['state'] < 5:
             cfg.log("First Boot state = %d" % db['state'])
@@ -135,6 +138,7 @@ def setup():
    cfg.log = Logger()
    load_modules()
    cfg.html_root = Root()
+
    cfg.users = plugin_mount.UserStoreModule.get_plugins()[0]
    cfg.page_plugins = plugin_mount.PagePlugin.get_plugins()
    cfg.log("Loaded %d page plugins" % len(cfg.page_plugins))
