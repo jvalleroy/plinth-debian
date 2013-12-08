@@ -4,7 +4,7 @@ from modules.auth import require
 from plugin_mount import PagePlugin, FormPlugin
 import cfg
 from forms import Form
-from privilegedactions import privilegedaction_run
+import actions
 from util import Message
 
 class xmpp(PagePlugin):
@@ -30,7 +30,7 @@ class configure(FormPlugin, PagePlugin):
     sidebar_right = _("<strong>Configure XMPP Server</strong>")
 
     def main(self, xmpp_inband_enable=False, message=None, *args, **kwargs):
-        output, error = privilegedaction_run("xmpp-setup", 'status')
+        output, error = actions.superuser_run("xmpp-setup", 'status')
         if error:
             raise Exception("something is wrong: " + error)
         if "inband_enable" in output.split():
@@ -40,7 +40,7 @@ class configure(FormPlugin, PagePlugin):
                     action=cfg.server_dir + "/services/xmpp/configure/index",
                     name="configure_xmpp_form",
                     message=message)
-        form.checkbox(_("Allow In-Band Registration"), name="xmpp_inband_enable", 
+        form.checkbox(_("Allow In-Band Registration"), name="xmpp_inband_enable",
                         id="xmpp_inband_enable", checked=xmpp_inband_enable)
         # hidden field is needed because checkbox doesn't post if not checked
         form.hidden(name="submitted", value="True")
@@ -64,7 +64,7 @@ class configure(FormPlugin, PagePlugin):
                     opts.append(key)
                 else:
                     opts.append('no'+key)
-            privilegedaction_run("xmpp-setup", " ".join(opts))
+        actions.run("xmpp-setup", opts)
 
         main = self.main(checkedinfo['inband_enable'])
         return self.fill_template(title="XMPP Server Configuration", main=main, sidebar_left=self.sidebar_left, sidebar_right=self.sidebar_right)
@@ -92,7 +92,8 @@ class register(FormPlugin, PagePlugin):
         if not password: msg.add = _("Must specify a password!")
 
         if username and password:
-            output, error = privilegedaction_run("xmpp-register", [username, password])
+            output, error = actions.superuser_run(
+                "xmpp-register", [username, password])
             if error:
                 raise Exception("something is wrong: " + error)
 
@@ -103,5 +104,8 @@ class register(FormPlugin, PagePlugin):
 
         cfg.log(msg.text)
         main = self.main(username, msg=msg.text)
-        return self.fill_template(title="XMPP Server Configuration", main=main, sidebar_left=self.sidebar_left, sidebar_right=self.sidebar_right)
-
+        return self.fill_template(
+            title="XMPP Server Configuration",
+            main=main,
+            sidebar_left=self.sidebar_left,
+            sidebar_right=self.sidebar_right)
