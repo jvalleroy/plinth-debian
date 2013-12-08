@@ -6,14 +6,16 @@ Forwarded: <no|not-needed|url proving that it has been forwarded>
 Reviewed-By: Petter Reinholdtsen <pere@hungry.com>
 Last-Update: 2013-11-17
 
---- plinth-0.3.0.0.git.20131117.orig/privilegedactions.py
-+++ plinth-0.3.0.0.git.20131117/privilegedactions.py
-@@ -81,7 +81,7 @@ def privilegedaction_run(action, options
+Index: plinth-alioth/actions.py
+===================================================================
+--- plinth-alioth.orig/actions.py	2013-12-08 19:26:50.570897183 +0100
++++ plinth-alioth/actions.py	2013-12-08 19:45:37.640247133 +0100
+@@ -111,7 +111,7 @@
          True # Actions directory hasn't changed.  It's hardcoded :)
  
      """
 -    DIRECTORY = "actions"
 +    DIRECTORY = "/usr/share/plinth/actions"
  
-     # contract 3A and 3B: don't call anything outside of the actions directory.
-     if os.sep in action:
+     if options == None:
+         options = []

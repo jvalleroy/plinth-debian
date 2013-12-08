@@ -22,6 +22,6 @@ Last-Update: 2013-11-02
 +log_dir = /var/log/plinth
 +pid_dir = /var/run
 +python_root = /usr/share/plinth/python/plinth
- users_dir = %(data_dir)s/users
  server_dir = plinth/
  
+ # file locations
