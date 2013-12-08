@@ -1,7 +1,7 @@
-plinth (0.3.0.0.git.20131119-1) UNRELEASED; urgency=low
+plinth (0.3.0.0.git.20131208-1) UNRELEASED; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
-    83b4425a5ac6a874798b437f4f60e858c3b81410 .
+    68e186deff9eeb2a8ccffdb0e4b4704b229f7478 .
     - Remove patch correct-issue-tracker.diff now included upstream.
 
  -- Petter Reinholdtsen <pere@debian.org>  Sun, 17 Nov 2013 13:07:21 +0100
