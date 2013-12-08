@@ -1,3 +1,11 @@
+plinth (0.3.0.0.git.20131119-1) UNRELEASED; urgency=low
+
+  * Updated to new git version from Nick Daly based on commit
+    83b4425a5ac6a874798b437f4f60e858c3b81410 .
+    - Remove patch correct-issue-tracker.diff now included upstream.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 17 Nov 2013 13:07:21 +0100
+
 plinth (0.3.0.0.git.20131117-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
