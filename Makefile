@@ -12,12 +12,12 @@ ALL_BUT_GZ=$(subst $(wildcard *.tar.gz),,$(wildcard *))
 DATADIR=/usr/share/plinth
 PYDIR=$(DATADIR)/python/plinth
 
-## Catch-all tagets
-default: config dirs template css docs dbs
+## Catch-all targets
+default: config dirs template css docs
 all: default
 
 predepend:
-	sudo sh -c "apt-get install augeas-tools libpython2.7 pandoc psmisc python2.7 python-augeas python-bjsonrpc python-cheetah python-cherrypy3 python-simplejson sudo"
+	sudo sh -c "apt-get install augeas-tools libpython2.7 pandoc psmisc python2.7 python-augeas python-bcrypt python-bjsonrpc python-cheetah python-cherrypy3 python-simplejson sudo"
 	git submodule init
 	git submodule update
 	touch predepend
@@ -34,7 +34,7 @@ install: default apache-install freedombox-setup-install
 	cp share/init.d/plinth $(DESTDIR)/etc/init.d
 	install plinth $(DESTDIR)/usr/bin/
 	mkdir -p $(DESTDIR)/var/lib/plinth/cherrypy_sessions $(DESTDIR)/var/log/plinth $(DESTDIR)/var/run
-	cp -r data/* $(DESTDIR)/var/lib/plinth
+	mkdir -p $(DESTDIR)/var/lib/plinth/data
 	rm -f $(DESTDIR)/var/lib/plinth/users/sqlite3.distrib
 
 freedombox-setup-install:
@@ -46,11 +46,6 @@ uninstall:
 		$(DESTDIR)/var/log/plinth
 	rm -f $(DESTDIR)/usr/bin/plinth $(DESTDIR)/etc/init.d/plinth \
 		$(DESTDIR)/usr/share/man/man1/plinth.1.gz $(DESTDIR)/var/run/plinth.pid
-
-dbs: data/users.sqlite3
-
-data/users.sqlite3: data/users.sqlite3.distrib
-	cp data/users.sqlite3.distrib data/users.sqlite3
 
 dirs:
 	@mkdir -p data/cherrypy_sessions
@@ -98,14 +93,11 @@ current-repository.tar.gz: $(ALL_BUT_GZ)
 
 apache-install:
 	install -D -m644 share/apache2/plinth.conf $(DESTDIR)/etc/apache2/sites-available/plinth.conf
-apache-config: apache-install apache-ssl
+apache-config: apache-install apache-modules
 	a2ensite plinth
 	service apache2 reload
 
-apache-ssl:
-	make-ssl-cert generate-default-snakeoil
-	a2enmod ssl
-	a2enmod rewrite
-	a2enmod proxy
-	a2enmod proxy_http
+apache-modules:
+# enable all required modules, create snakeoil cert.
+	./setup.d/86_plinth
 	service apache2 restart
