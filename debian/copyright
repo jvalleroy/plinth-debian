@@ -2,12 +2,6 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://github.com/NickDaly/Plinth
 Upstream-Name: Plinth
 
-Files: *
-Copyright: 2011-2013 James Vasile
-License: AGPL-3+
- Released under the GNU Affero General Public License, version 3 or later.
- See https://www.gnu.org/licenses/agpl.html for terms.
-
 Files: themes/default/js/libs/bootstrap/* themes/default/css/bootstrap*
 Copyright: 2012 Twitter, Inc.
 License: Apache
@@ -28,6 +22,24 @@ Copyright: 2009 Paul Irish
 License: CC0
  Paul Irish doesn't care about attribution, bro. — It's all yours under
  Creative Commons CC0.
+
+Files: plugin_mount.py
+Copyright: 2007-2011 Marty Alchin
+License: CC-BY-SA
+
+Files: filedict.py
+Copyright: 2009 Erez Shinan
+License: CC-BY-SA
+
+Files: themes/default/FreedomBox-Logo.7z
+Copyright: 2012 Robert Martinez
+License: GPL, CC-BY-SA
+
+Files: *
+Copyright: 2011-2013 James Vasile
+License: AGPL-3+
+ Released under the GNU Affero General Public License, version 3 or later.
+ See https://www.gnu.org/licenses/agpl.html for terms.
 
 Files: debian/*
 Copyright: 2013 Tzafrir Cohen
