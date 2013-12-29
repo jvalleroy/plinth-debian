@@ -23,6 +23,12 @@ License: Apache
  See the License for the specific language governing permissions and
  limitations under the License.
 
+Files: themes/default/js/plugins.js
+Copyright: 2009 Paul Irish
+License: CC0
+ Paul Irish doesn't care about attribution, bro. — It's all yours under
+ Creative Commons CC0.
+
 Files: debian/*
 Copyright: 2013 Tzafrir Cohen
 License: GPL-2+
