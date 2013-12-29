@@ -5,6 +5,7 @@ plinth (0.3.0.0.git.20131229-1) UNRELEASED; urgency=low
     - Remove patch correct-issue-tracker.diff now included upstream.
     - Updated patches actions-path.diff and program-paths.diff to match
       changes done upstream.
+  * Updated copyright file with more details.
 
  -- Petter Reinholdtsen <pere@debian.org>  Sun, 17 Nov 2013 13:07:21 +0100
 
