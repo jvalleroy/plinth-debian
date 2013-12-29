@@ -26,14 +26,17 @@ License: CC0
 Files: plugin_mount.py
 Copyright: 2007-2011 Marty Alchin
 License: CC-BY-SA
+  Some rights reserved.
 
 Files: filedict.py
 Copyright: 2009 Erez Shinan
 License: CC-BY-SA
+  Some rights reserved.
 
 Files: themes/default/FreedomBox-Logo.7z
 Copyright: 2012 Robert Martinez
 License: GPL, CC-BY-SA
+  Some rights reserved.
 
 Files: *
 Copyright: 2011-2013 James Vasile
