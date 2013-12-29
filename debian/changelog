@@ -1,4 +1,4 @@
-plinth (0.3.0.0.git.20131229-1) UNRELEASED; urgency=low
+plinth (0.3.0.0.git.20131229-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
     cb9ca1b86c7b7440e87b6d5b65ab6ccf51f760cf .
@@ -8,7 +8,7 @@ plinth (0.3.0.0.git.20131229-1) UNRELEASED; urgency=low
   * Updated copyright file with more details using the new upstream
     LICENSES file.
 
- -- Petter Reinholdtsen <pere@debian.org>  Sun, 17 Nov 2013 13:07:21 +0100
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 29 Dec 2013 16:06:53 +0100
 
 plinth (0.3.0.0.git.20131117-1) unstable; urgency=low
 
