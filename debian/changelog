@@ -1,3 +1,10 @@
+plinth (0.3.0.0.git.20131229-2) UNRELEASED; urgency=low
+
+  * Add sudo as a run time dependency, to make sure the privileged
+    commands work.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 29 Dec 2013 16:06:53 +0100
+
 plinth (0.3.0.0.git.20131229-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly based on commit

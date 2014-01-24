@@ -25,6 +25,7 @@ Depends: ${python:Depends}, ${misc:Depends},
  , libjs-modernizr
  , python-passlib (>= 1.6.1)
  , python-bcrypt
+ , sudo
 Description: web front end for administering every aspect of a Freedom Box
  The Freedom Box is a net appliance conceived by Eben Moglen.  It
  contains free software and is designed to allow you to interface with
