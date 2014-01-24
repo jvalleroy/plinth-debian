@@ -13,13 +13,13 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary
 
 Package: plinth
 Architecture: all
-Depends: ${python:Depends}, ${misc:Depends},
- adduser,
- python-withsqlite (>= 0.0.0~git.20130929),
+Depends: ${python:Depends}, ${misc:Depends}
+ , adduser
+ , python-withsqlite (>= 0.0.0~git.20130929)
 # FIXME: isn't python-simplejson now part of python?
- python-simplejson,
- python-cheetah,
- python-cherrypy3
+ , python-simplejson
+ , python-cheetah
+ , python-cherrypy3
  , python-contract
  , libjs-jquery
  , libjs-modernizr
