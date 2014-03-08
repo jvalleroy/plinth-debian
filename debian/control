@@ -6,7 +6,7 @@ Uploaders: Piotr Ożarowski <piotr@debian.org>,
  Petter Reinholdtsen <pere@debian.org>,
  Bdale Garbee <bdale@gag.com>
 Build-Depends: debhelper (>= 9), python-all, python-cheetah, pandoc, pandoc-data | pandoc (<= 1.11.1-3)
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: https://github.com/NickDaly/Plinth/
 Vcs-Git: git://anonscm.debian.org/freedombox/plinth.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary
