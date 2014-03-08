@@ -8,7 +8,7 @@ daemongroup=plinth
 case "$1" in
 configure)
 	addgroup --system --quiet plinth
-	adduser --system --quiet --ingroup plinth --no-create-home plinth
+	adduser --system --quiet --ingroup plinth --no-create-home --home /var/lib/plinth plinth
 	chown -R plinth: /var/lib/plinth /var/log/plinth
 	;;
 esac
