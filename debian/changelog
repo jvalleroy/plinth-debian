@@ -1,4 +1,4 @@
-plinth (0.3.1.git.20140304-1) UNRELEASED; urgency=low
+plinth (0.3.1.git.20140304-1) unstable; urgency=low
 
   * Add sudo as a run time dependency, to make sure the privileged
     commands work.
@@ -6,7 +6,7 @@ plinth (0.3.1.git.20140304-1) UNRELEASED; urgency=low
   * Create plinth user with /var/lib/plinth as home directory, to keep
     lintian happy.
 
- -- Petter Reinholdtsen <pere@debian.org>  Sun, 29 Dec 2013 16:06:53 +0100
+ -- Petter Reinholdtsen <pere@debian.org>  Sat, 08 Mar 2014 22:25:32 +0100
 
 plinth (0.3.0.0.git.20131229-1) unstable; urgency=low
 
