@@ -17,7 +17,7 @@ default: config dirs template css docs
 all: default
 
 predepend:
-	sudo sh -c "apt-get install augeas-tools libpython2.7 pandoc psmisc python2.7 python-augeas python-bcrypt python-bjsonrpc python-cheetah python-cherrypy3 python-simplejson sudo"
+	sudo sh -c "apt-get install augeas-tools libpython2.7 pandoc psmisc python2.7 python-augeas python-passlib python-bcrypt python-bjsonrpc python-cheetah python-cherrypy3 python-simplejson python-contract sudo"
 	git submodule init
 	git submodule update
 	touch predepend
@@ -93,8 +93,10 @@ current-repository.tar.gz: $(ALL_BUT_GZ)
 
 apache-install:
 	install -D -m644 share/apache2/plinth.conf $(DESTDIR)/etc/apache2/sites-available/plinth.conf
+	install -D -m644 share/apache2/plinth-ssl.conf $(DESTDIR)/etc/apache2/sites-available/plinth-ssl.conf
 apache-config: apache-install apache-modules
 	a2ensite plinth
+	a2ensite plinth-ssl
 	service apache2 reload
 
 apache-modules:
