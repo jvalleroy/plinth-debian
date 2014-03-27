@@ -1,3 +1,9 @@
+plinth (0.3.1.git.20140327-1) unstable; urgency=low
+
+  * New upstream version 0.3.1.git.20140327.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Thu, 27 Mar 2014 10:29:36 +0100
+
 plinth (0.3.1.git.20140304-1) unstable; urgency=low
 
   * Add sudo as a run time dependency, to make sure the privileged
