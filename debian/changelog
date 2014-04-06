@@ -1,3 +1,9 @@
+plinth (0.3.1.git.20140327-2) UNRELEASED; urgency=low
+
+  * Add Sunil and Nick as uploaders.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 06 Apr 2014 09:41:37 +0200
+
 plinth (0.3.1.git.20140327-1) unstable; urgency=low
 
   * New upstream version 0.3.1.git.20140327.
