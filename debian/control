@@ -23,7 +23,6 @@ Depends: ${python:Depends}, ${misc:Depends}
  , python-bcrypt
  , python-cheetah
  , python-cherrypy3
- , python-contract
  , python-passlib (>= 1.6.1)
 # FIXME: isn't python-simplejson now part of python?
  , python-simplejson
