@@ -1,10 +1,11 @@
-plinth (0.3.2.0.git.20140504-1) UNRELEASED; urgency=low
+plinth (0.3.2.0.git.20140504-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
     d7a323512073cea9e4ee5a1cd91870a9f04959a6.
+    - Move firewall setup from freedombox-setup to plinth.
   * Add Sunil and Nick as uploaders.
 
- -- Petter Reinholdtsen <pere@debian.org>  Sun, 06 Apr 2014 09:41:37 +0200
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 04 May 2014 09:53:25 +0200
 
 plinth (0.3.1.git.20140327-1) unstable; urgency=low
 
