@@ -5,6 +5,7 @@ from plugin_mount import PagePlugin, FormPlugin
 import cfg
 from forms import Form
 import actions
+import service
 from util import Message
 
 class xmpp(PagePlugin):
@@ -14,6 +15,16 @@ class xmpp(PagePlugin):
         self.register_page("services.xmpp.configure")
         self.register_page("services.xmpp.register")
         cfg.html_root.services.menu.add_item("XMPP", "icon-comment", "/services/xmpp", 40)
+
+        self.client_service = service.Service(
+            'xmpp-client', _('Chat Server - client connections'),
+            is_external=True, enabled=True)
+        self.server_service = service.Service(
+            'xmpp-server', _('Chat Server - server connections'),
+            is_external=True, enabled=True)
+        self.bosh_service = service.Service(
+            'xmpp-bosh', _('Chat Server - web interface'), is_external=True,
+            enabled=True)
 
     @cherrypy.expose
     @require()
