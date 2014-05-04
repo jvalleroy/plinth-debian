@@ -5,6 +5,7 @@ from plugin_mount import PagePlugin, FormPlugin
 from forms import Form
 import actions
 import cfg
+import service
 from util import Message
 
 class Owncloud(PagePlugin, FormPlugin):
@@ -15,13 +16,22 @@ class Owncloud(PagePlugin, FormPlugin):
         self.register_page("apps.owncloud")
         cfg.html_root.apps.menu.add_item("Owncloud", "icon-picture", "/apps/owncloud", 35)
 
+        self.service = service.Service('owncloud', _('ownCloud'),
+                                       ['http', 'https'], is_external=True,
+                                       enabled=self.is_enabled)
+
+    def is_enabled(self):
+        """Return whether ownCloud is enabled"""
+        output, error = actions.run('owncloud-setup', 'status')
+        if error:
+            raise Exception('Error getting ownCloud status: %s' % error)
+
+        return 'enable' in output.split()
+
     @cherrypy.expose
     @require()
     def index(self, **kwargs):
-        output, error = actions.run("owncloud-setup", 'status')
-        if error:
-            raise Exception("something is wrong: " + error)
-        owncloud_enable = "enable" in output.split()
+        owncloud_enable = self.is_enabled()
 
         if 'submitted' in kwargs:
             owncloud_enable = self.process_form(kwargs)
@@ -42,7 +52,8 @@ class Owncloud(PagePlugin, FormPlugin):
         form.checkbox(_("Enable Owncloud"), name="owncloud_enable", id="owncloud_enable", checked=owncloud_enable)
         # hidden field is needed because checkbox doesn't post if not checked
         form.hidden(name="submitted", value="True")
-        form.html(_("""<p>When enabled, the owncloud installation will be available from <a href="/owncloud">owncloud</a> on the web server.</p>"""))
+        form.html(_("""<p>When enabled, the owncloud installation will be available from <a href="/owncloud">owncloud</a> on the web server.   Visit this URL to set up the initial administration account for owncloud.</p>"""))
+        form.html(_("""<p><strong>Note: Setting up owncloud for the first time might take 5 minutes or more, depending on download bandwidth from the Debian APT sources.</p>"""))
         form.submit(_("Update setup"))
         return form.render()
 
@@ -63,5 +74,9 @@ class Owncloud(PagePlugin, FormPlugin):
                 else:
                     opts.append('no'+key)
         actions.superuser_run("owncloud-setup", opts, async=True)
+
+        # Send a signal to other modules that the service is
+        # enabled/disabled
+        self.service.notify_enabled(self, checkedinfo['enable'])
 
         return checkedinfo['enable']
