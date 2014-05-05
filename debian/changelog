@@ -1,9 +1,9 @@
-plinth (0.3.2.0.git.20140504-2) UNRELEASED; urgency=low
+plinth (0.3.2.0.git.20140504-2) unstable; urgency=low
 
-  * Drop python-contract dependency.  It is not  used any more.
+  * Drop python-contract dependency.  It is not used any more.
   * Add python-django as binary dependency on request from Nick Daly.
 
- -- Petter Reinholdtsen <pere@debian.org>  Sun, 04 May 2014 15:02:24 +0200
+ -- Petter Reinholdtsen <pere@debian.org>  Mon, 05 May 2014 13:27:27 +0200
 
 plinth (0.3.2.0.git.20140504-1) unstable; urgency=low
 
