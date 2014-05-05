@@ -1,6 +1,7 @@
 plinth (0.3.2.0.git.20140504-2) UNRELEASED; urgency=low
 
   * Drop python-contract dependency.  It is not  used any more.
+  * Add python-django as binary dependency on request from Nick Daly.
 
  -- Petter Reinholdtsen <pere@debian.org>  Sun, 04 May 2014 15:02:24 +0200
 
