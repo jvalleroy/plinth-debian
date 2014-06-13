@@ -1,10 +1,12 @@
 plinth (0.3.2.0.git.20140614-1) UNRELEASED; urgency=low
 
-  * New upstream version.
+  * Updated to new git version from Nick Daly based on commit
+    a01ef055beab017fcd77ca9da7cab6fe01eeffbe.
   * Add build-depend on libjs-twitter-bootstrap, now needed to
     build documentation.
   * Add new patch drop-firewalld-services.diff to remove firewalld
-    service definitions now available in firewalld version 0.3.10-1.
+    service definitions now available in firewalld version 0.3.10-1
+    (Closes: #750927).
 
  -- Petter Reinholdtsen <pere@debian.org>  Sat, 14 Jun 2014 00:09:44 +0200
 
