@@ -1,0 +1,60 @@
+diff --git a/lib/firewalld/services/privoxy.xml b/lib/firewalld/services/privoxy.xml
+deleted file mode 100644
+index e456a8f..0000000
+--- a/lib/firewalld/services/privoxy.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<service>
+-  <short>Privoxy - A Privacy Enhancing Proxy Server</short>
+-  <description>Privoxy is a web proxy for enhancing privacy by filtering web page content, managing cookies, controlling access, removing ads, banners, pop-ups and other obnoxious Internet junk. It does not cache web content. Enable this if you run Privoxy and would like to configure your web browser to browse the Internet via Privoxy.</description>
+-  <port protocol="tcp" port="8118"/>
+-</service>
+diff --git a/lib/firewalld/services/tor-socks.xml b/lib/firewalld/services/tor-socks.xml
+deleted file mode 100644
+index b6f7cad..0000000
+--- a/lib/firewalld/services/tor-socks.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<service>
+-  <short>Tor - SOCKS Proxy</short>
+-  <description>Tor enables online anonymity and censorship resistance by directing Internet traffic through a network of relays. It conceals user's location from anyone conducting network surveillance and traffic analysis. A user wishing to use Tor for anonymity can configure a program such as a web browser to direct traffic to a Tor client using its SOCKS proxy port. Enable this if you run Tor and would like to configure your web browser or other programs to channel their traffic through the Tor SOCKS proxy port. It is recommended that you make this service available only for your computer or your internal networks.</description>
+-  <port protocol="tcp" port="9050"/>
+-</service>
+diff --git a/lib/firewalld/services/xmpp-bosh.xml b/lib/firewalld/services/xmpp-bosh.xml
+deleted file mode 100644
+index 039f9cc..0000000
+--- a/lib/firewalld/services/xmpp-bosh.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<service>
+-  <short>XMPP (Jabber) web client</short>
+-  <description>Extensible Messaging and Presence Protocol (XMPP) web client protocol allows web based chat clients such as JWChat to connect to the XMPP (Jabber) server. This is also know as the Bidirectional-streams Over Synchronous HTTP (BOSH) protocol. Enable this if you run an XMPP (Jabber) server and you wish web clients to connect to your server.</description>
+-  <port protocol="tcp" port="5280"/>
+-</service>
+diff --git a/lib/firewalld/services/xmpp-client.xml b/lib/firewalld/services/xmpp-client.xml
+deleted file mode 100644
+index d31bd53..0000000
+--- a/lib/firewalld/services/xmpp-client.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<service>
+-  <short>XMPP (Jabber) client</short>
+-  <description>Extensible Messaging and Presence Protocol (XMPP) client connection protocol allows XMPP (Jabber) clients such as Empathy, Pidgin, Kopete and Jitsi to connect to an XMPP (Jabber) server. Enable this if you run an XMPP (Jabber) server and you wish clients to be able to connect to the server and communicate with each other.</description>
+-  <port protocol="tcp" port="5222"/>
+-</service>
+diff --git a/lib/firewalld/services/xmpp-server.xml b/lib/firewalld/services/xmpp-server.xml
+deleted file mode 100644
+index bf8a2ea..0000000
+--- a/lib/firewalld/services/xmpp-server.xml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<service>
+-  <short>XMPP (Jabber) server</short>
+-  <description>Extensible Messaging and Presence Protocol (XMPP) server connection protocols allows multiple XMPP (Jabber) servers to work in a federated fashion. Users on one server will be able to see the presence of and communicate with users on another servers. Enable this if you run an XMPP (Jabber) server and you wish users on your server to communicate with users on other XMPP servers.</description>
+-  <port protocol="tcp" port="5269"/>
+-</service>
