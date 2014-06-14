@@ -1,3 +1,11 @@
+plinth (0.3.2.0.git.20140614-2) UNRELEASED; urgency=low
+
+  * Update dependencies, drop python-cheetah and python-simplejson,
+    which are no longer used, and add python-bootstrapform needed to
+    show the first page.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Sat, 14 Jun 2014 08:49:50 +0200
+
 plinth (0.3.2.0.git.20140614-1) unstable; urgency=low
 
   * Updated to new git version from Nick Daly based on commit
