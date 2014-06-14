@@ -21,6 +21,7 @@ Depends: ${python:Depends}, ${misc:Depends}
  , adduser
  , libjs-jquery
  , libjs-modernizr
+ , libjs-twitter-bootstrap
  , python-bcrypt
  , python-bootstrapform
  , python-cherrypy3
