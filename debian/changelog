@@ -1,9 +1,9 @@
-plinth (0.3.2.0.git.20140614-3) UNRELEASED; urgency=low
+plinth (0.3.2.0.git.20140614-3) unstable; urgency=medium
 
   * Add libjs-twitter-bootstrap as binary dependency in addition to
     being a build dependency.
 
- -- Petter Reinholdtsen <pere@debian.org>  Sat, 14 Jun 2014 14:46:12 +0200
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 15 Jun 2014 23:38:57 +0200
 
 plinth (0.3.2.0.git.20140614-2) unstable; urgency=low
 
