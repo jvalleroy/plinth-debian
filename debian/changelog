@@ -1,3 +1,11 @@
+plinth (0.3.2.0.git.20140614-4) UNRELEASED; urgency=low
+
+  * Updated to new git version from Nick Daly based on commit
+    af08066cafefb5d10304b7d8b22ed1f18c4df6d0.
+    - Drop now obsolete patch drop-firewalld-services.diff.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Sat, 21 Jun 2014 20:34:56 +0200
+
 plinth (0.3.2.0.git.20140614-3) unstable; urgency=medium
 
   * Add libjs-twitter-bootstrap as binary dependency in addition to

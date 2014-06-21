@@ -15,5 +15,5 @@ new-upstream:
 	tgz=../plinth_0.3.2.0.git.$$date.orig.tar.gz; \
 	wget -O $$tgz https://github.com/NickDaly/Plinth/archive/master.tar.gz; \
 	git fetch https://github.com/NickDaly/Plinth.git ; \
-	vcstag=a01ef055beab017fcd77ca9da7cab6fe01eeffbe ; \
+	vcstag=af08066cafefb5d10304b7d8b22ed1f18c4df6d0 ; \
 	echo git-import-orig --pristine-tar --upstream-vcs-tag=$$vcstag $$tgz
