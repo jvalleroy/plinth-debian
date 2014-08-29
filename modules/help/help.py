@@ -1,46 +1,47 @@
 import os
-import cherrypy
 from gettext import gettext as _
-from plugin_mount import PagePlugin
+from django.http import Http404
+from django.template.response import TemplateResponse
+
 import cfg
-import util
 
 
-class Help(PagePlugin):
-    order = 20 # order of running init in PagePlugins
-    def __init__(self, *args, **kwargs):
-        PagePlugin.__init__(self, *args, **kwargs)
-        self.register_page("help")
-        self.menu = cfg.main_menu.add_item(_("Documentation"), "icon-book", "/help", 101)
-        self.menu.add_item(_("Where to Get Help"), "icon-search", "/help/index", 5)
-        self.menu.add_item(_("Developer's Manual"), "icon-info-sign", "/help/view/plinth", 10)
-        self.menu.add_item(_("FAQ"), "icon-question-sign", "/help/view/faq", 20)
-        self.menu.add_item(_("%s Wiki" % cfg.box_name), "icon-pencil", "http://wiki.debian.org/FreedomBox", 30)
-	self.menu.add_item(_("About"), "icon-star", "/help/about", 100)
-
-    @cherrypy.expose
-    def index(self):
-        return util.render_template(template='help',
-                                    title=_('Documentation and FAQ'))
-
-    @cherrypy.expose
-    def about(self):
-        return util.render_template(
-            template='about',
-            title=_('About the {box_name}').format(box_name=cfg.box_name))
+def init():
+    """Initialize the Help module"""
+    menu = cfg.main_menu.add_urlname(_('Documentation'), 'icon-book',
+                                     'help:index', 101)
+    menu.add_urlname(_('Where to Get Help'), 'icon-search',
+                     'help:index_explicit', 5)
+    menu.add_urlname(_('Developer\'s Manual'), 'icon-info-sign',
+                     'help:helppage', 10, url_args=('plinth',))
+    menu.add_urlname(_('FAQ'), 'icon-question-sign', 'help:helppage', 20,
+                     url_args=('faq',))
+    menu.add_item(_('%s Wiki' % cfg.box_name), 'icon-pencil',
+                  'http://wiki.debian.org/FreedomBox', 30)
+    menu.add_urlname(_('About'), 'icon-star', 'help:about', 100)
 
 
-class View(PagePlugin):
-    def __init__(self, *args, **kwargs):
-        PagePlugin.__init__(self, *args, **kwargs)
-        self.register_page("help.view")
+def index(request):
+    """Serve the index page"""
+    return TemplateResponse(request, 'help.html',
+                            {'title': _('Documentation and FAQ')})
 
-    @cherrypy.expose
-    def default(self, page=''):
-        if page not in ['design', 'plinth', 'hacking', 'faq']:
-            raise cherrypy.HTTPError(404, "The path '/help/view/%s' was not found." % page)
 
-        with open(os.path.join("doc", "%s.part.html" % page), 'r') as IF:
-            main = IF.read()
-        return util.render_template(title=_("%s Documentation" %
-                                            cfg.product_name), main=main)
+def about(request):
+    """Serve the about page"""
+    title = _('About the {box_name}').format(box_name=cfg.box_name)
+    return TemplateResponse(request, 'about.html', {'title': title})
+
+
+def helppage(request, page):
+    """Serve a help page from the 'doc' directory"""
+    try:
+        with open(os.path.join('doc', '%s.part.html' % page), 'r') \
+                as input_file:
+            main = input_file.read()
+    except IOError:
+        raise Http404
+
+    title = _('%s Documentation') % cfg.product_name
+    return TemplateResponse(request, 'base.html',
+                            {'title': title, 'main': main})

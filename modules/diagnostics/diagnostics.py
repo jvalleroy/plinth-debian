@@ -19,39 +19,41 @@
 Plinth module for running diagnostics
 """
 
-import cherrypy
+from django.contrib.auth.decorators import login_required
+from django.template.response import TemplateResponse
 from gettext import gettext as _
-from ..lib.auth import require
-from plugin_mount import PagePlugin
+
 import actions
 import cfg
-import util
+from errors import ActionError
 
 
-class diagnostics(PagePlugin):
-    order = 30
-    def __init__(self, *args, **kwargs):
-        PagePlugin.__init__(self, *args, **kwargs)
-        self.register_page("sys.diagnostics")
-        cfg.html_root.sys.menu.add_item("Diagnostics", "icon-screenshot", "/sys/diagnostics", 30)
+def init():
+    """Initialize the module"""
+    menu = cfg.main_menu.get('system:index')
+    menu.add_urlname("Diagnostics", "icon-screenshot", "diagnostics:index", 30)
 
-    @cherrypy.expose
-    @require()
-    def index(self):
-        return util.render_template(template='diagnostics',
-                                    title=_('System Diagnostics'))
 
-class test(PagePlugin):
-    order = 31
-    def __init__(self, *args, **kwargs):
-        PagePlugin.__init__(self, *args, **kwargs)
-        self.register_page("sys.diagnostics.test")
+@login_required
+def index(request):
+    """Serve the index page"""
+    return TemplateResponse(request, 'diagnostics.html',
+                            {'title': _('System Diagnostics')})
 
-    @cherrypy.expose
-    @require()
-    def index(self):
-        output, error = actions.superuser_run("diagnostic-test")
-        return util.render_template(template='diagnostics_test',
-                                    title=_('Diagnostic Test'),
-                                    diagnostics_output=output,
-                                    diagnostics_error=error)
+
+@login_required
+def test(request):
+    """Run diagnostics and the output page"""
+    output = ''
+    error = ''
+    try:
+        output = actions.superuser_run("diagnostic-test")
+    except ActionError as exception:
+        output, error = exception.args[1:]
+    except Exception as exception:
+        error = str(exception)
+
+    return TemplateResponse(request, 'diagnostics_test.html',
+                            {'title': _('Diagnostic Test'),
+                             'diagnostics_output': output,
+                             'diagnostics_error': error})

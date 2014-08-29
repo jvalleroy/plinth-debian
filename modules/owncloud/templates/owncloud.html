@@ -1,4 +1,4 @@
-{% extends "login_nav.html" %}
+{% extends "base.html" %}
 {% comment %}
 #
 # This file is part of Plinth.
@@ -22,15 +22,13 @@
 
 {% block main_block %}
 
-  {% include 'messages.html' %}
-
   <form class="form" method="post">
     {% csrf_token %}
 
     {{ form|bootstrap }}
 
     <p>When enabled, the owncloud installation will be available
-      from <a href="/owncloud">owncloud</a> on the web server.  Visit
+    from <a href="/owncloud">owncloud</a> on the web server.  Visit
       this URL to set up the initial administration account for
       owncloud.</p>
 

@@ -1,53 +1,64 @@
-import cherrypy
 from django import forms
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
+from django.template import RequestContext
+from django.template.loader import render_to_string
+from django.template.response import TemplateResponse
 from gettext import gettext as _
-from ..lib.auth import require
-from plugin_mount import PagePlugin
-import cfg
+import logging
+
 import actions
+import cfg
 import service
-import util
 
 
-SIDE_MENU = {'title': _('XMPP'),
-             'items': [{'url': '/apps/xmpp/configure',
-                        'text': 'Configure XMPP Server'},
-                       {'url': '/apps/xmpp/register',
-                        'text': 'Register XMPP Account'}]}
+LOGGER = logging.getLogger(__name__)
+
+SIDE_MENU = {
+    'title': _('XMPP'),
+    'items': [
+        {
+            'url': reverse_lazy('xmpp:configure'),
+            'text': _('Configure XMPP Server'),
+        },
+        {
+            'url': reverse_lazy('xmpp:register'),
+            'text': _('Register XMPP Account'),
+        }
+    ]
+}
 
 
-class XMPP(PagePlugin):
-    """XMPP Page"""
-    order = 60
+def init():
+    """Initialize the XMPP module"""
+    menu = cfg.main_menu.get('apps:index')
+    menu.add_item('Chat', 'icon-comment', '/../jwchat', 20)
+    menu.add_urlname('XMPP', 'icon-comment', 'xmpp:index', 40)
 
-    def __init__(self, *args, **kwargs):
-        PagePlugin.__init__(self, *args, **kwargs)
-        self.register_page('apps.xmpp')
-        cfg.html_root.apps.menu.add_item('XMPP', 'icon-comment',
-                                             '/apps/xmpp', 40)
+    service.Service(
+        'xmpp-client', _('Chat Server - client connections'),
+        is_external=True, enabled=True)
+    service.Service(
+        'xmpp-server', _('Chat Server - server connections'),
+        is_external=True, enabled=True)
+    service.Service(
+        'xmpp-bosh', _('Chat Server - web interface'), is_external=True,
+        enabled=True)
 
-        self.client_service = service.Service(
-            'xmpp-client', _('Chat Server - client connections'),
-            is_external=True, enabled=True)
-        self.server_service = service.Service(
-            'xmpp-server', _('Chat Server - server connections'),
-            is_external=True, enabled=True)
-        self.bosh_service = service.Service(
-            'xmpp-bosh', _('Chat Server - web interface'), is_external=True,
-            enabled=True)
 
-    @staticmethod
-    @cherrypy.expose
-    @require()
-    def index(**kwargs):
-        """Serve XMPP page"""
-        del kwargs  # Unused
-        main = "<p>XMPP Server Accounts and Configuration</p>"
+@login_required
+def index(request):
+    """Serve XMPP page"""
+    main = "<p>XMPP Server Accounts and Configuration</p>"
 
-        sidebar_right = util.render_template(template='menu_block',
-                                             menu=SIDE_MENU)
-        return util.render_template(title="XMPP Server", main=main,
-                                    sidebar_right=sidebar_right)
+    sidebar_right = render_to_string('menu_block.html', {'menu': SIDE_MENU},
+                                     RequestContext(request))
+
+    return TemplateResponse(request, 'base.html',
+                            {'title': _('XMPP Server'),
+                             'main': main,
+                             'sidebar_right': sidebar_right})
 
 
 class ConfigureForm(forms.Form):  # pylint: disable-msg=W0232
@@ -57,83 +68,56 @@ class ConfigureForm(forms.Form):  # pylint: disable-msg=W0232
         help_text=_('When enabled, anyone who can reach this server will be \
 allowed to register an account through an XMPP client'))
 
-    # XXX: Only present due to issue with submitting empty form
-    dummy = forms.CharField(label='Dummy', initial='dummy',
-                            widget=forms.HiddenInput())
 
+@login_required
+def configure(request):
+    """Serve the configuration form"""
+    status = get_status()
 
-class Configure(PagePlugin):
-    """Configuration page"""
-    order = 65
+    form = None
 
-    def __init__(self, *args, **kwargs):
-        PagePlugin.__init__(self, *args, **kwargs)
-        self.register_page("apps.xmpp.configure")
-
-    @cherrypy.expose
-    @require()
-    def index(self, **kwargs):
-        """Serve the configuration form"""
-        status = self.get_status()
-
-        form = None
-        messages = []
-
-        if kwargs:
-            form = ConfigureForm(kwargs, prefix='xmpp')
-            # pylint: disable-msg=E1101
-            if form.is_valid():
-                self._apply_changes(status, form.cleaned_data, messages)
-                status = self.get_status()
-                form = ConfigureForm(initial=status, prefix='xmpp')
-        else:
+    if request.method == 'POST':
+        form = ConfigureForm(request.POST, prefix='xmpp')
+        # pylint: disable-msg=E1101
+        if form.is_valid():
+            _apply_changes(request, status, form.cleaned_data)
+            status = get_status()
             form = ConfigureForm(initial=status, prefix='xmpp')
+    else:
+        form = ConfigureForm(initial=status, prefix='xmpp')
 
-        sidebar_right = util.render_template(template='menu_block',
-                                             menu=SIDE_MENU)
-        return util.render_template(template='xmpp_configure',
-                                    title=_('Configure XMPP Server'),
-                                    form=form, messages=messages,
-                                    sidebar_right=sidebar_right)
+    sidebar_right = render_to_string('menu_block.html', {'menu': SIDE_MENU},
+                                     RequestContext(request))
 
-    @staticmethod
-    def get_status():
-        """Return the current status"""
-        output, error = actions.run('xmpp-setup', 'status')
-        if error:
-            raise Exception('Error getting status: %s' % error)
+    return TemplateResponse(request, 'xmpp_configure.html',
+                            {'title': _('Configure XMPP Server'),
+                             'form': form,
+                             'sidebar_right': sidebar_right})
 
-        return {'inband_enabled': 'inband_enable' in output.split()}
 
-    @staticmethod
-    def sidebar_right(**kwargs):
-        """Return rendered string for sidebar on the right"""
-        del kwargs  # Unused
+def get_status():
+    """Return the current status"""
+    output = actions.run('xmpp-setup', 'status')
+    return {'inband_enabled': 'inband_enable' in output.split()}
 
-        return util.render_template(template='menu_block', menu=SIDE_MENU)
 
-    @staticmethod
-    def _apply_changes(old_status, new_status, messages):
-        """Apply the form changes"""
-        cfg.log.info('Status - %s, %s' % (old_status, new_status))
+def _apply_changes(request, old_status, new_status):
+    """Apply the form changes"""
+    LOGGER.info('Status - %s, %s', old_status, new_status)
 
-        if old_status['inband_enabled'] == new_status['inband_enabled']:
-            messages.append(('info', _('Setting unchanged')))
-            return
+    if old_status['inband_enabled'] == new_status['inband_enabled']:
+        messages.info(request, _('Setting unchanged'))
+        return
 
-        if new_status['inband_enabled']:
-            messages.append(('success', _('Inband registration enabled')))
-            option = 'inband_enable'
-        else:
-            messages.append(('success', _('Inband registration disabled')))
-            option = 'noinband_enable'
+    if new_status['inband_enabled']:
+        messages.success(request, _('Inband registration enabled'))
+        option = 'inband_enable'
+    else:
+        messages.success(request, _('Inband registration disabled'))
+        option = 'noinband_enable'
 
-        cfg.log.info('Option - %s' % option)
-
-        _output, error = actions.superuser_run('xmpp-setup', [option])
-        del _output
-        if error:
-            raise Exception('Error running command - %s' % error)
+    LOGGER.info('Option - %s', option)
+    actions.superuser_run('xmpp-setup', [option])
 
 
 class RegisterForm(forms.Form):  # pylint: disable-msg=W0232
@@ -144,50 +128,38 @@ class RegisterForm(forms.Form):  # pylint: disable-msg=W0232
         label=_('Password'), widget=forms.PasswordInput())
 
 
-class Register(PagePlugin):
-    """User registration page"""
-    order = 65
+@login_required
+def register(request):
+    """Serve the registration form"""
+    form = None
 
-    def __init__(self, *args, **kwargs):
-        PagePlugin.__init__(self, *args, **kwargs)
-        self.register_page('apps.xmpp.register')
-
-    @cherrypy.expose
-    @require()
-    def index(self, **kwargs):
-        """Serve the registration form"""
-        form = None
-        messages = []
-
-        if kwargs:
-            form = RegisterForm(kwargs, prefix='xmpp')
-            # pylint: disable-msg=E1101
-            if form.is_valid():
-                self._register_user(form.cleaned_data, messages)
-                form = RegisterForm(prefix='xmpp')
-        else:
+    if request.method == 'POST':
+        form = RegisterForm(request.POST, prefix='xmpp')
+        # pylint: disable-msg=E1101
+        if form.is_valid():
+            _register_user(request, form.cleaned_data)
             form = RegisterForm(prefix='xmpp')
+    else:
+        form = RegisterForm(prefix='xmpp')
 
-        sidebar_right = util.render_template(template='menu_block',
-                                             menu=SIDE_MENU)
-        return util.render_template(template='xmpp_register',
-                                    title=_('Register XMPP Account'),
-                                    form=form, messages=messages,
-                                    sidebar_right=sidebar_right)
+    sidebar_right = render_to_string('menu_block.html', {'menu': SIDE_MENU},
+                                     RequestContext(request))
 
-    @staticmethod
-    def _register_user(data, messages):
-        """Register a new XMPP user"""
-        output, error = actions.superuser_run(
-            'xmpp-register', [data['username'], data['password']])
-        if error:
-            raise Exception('Error registering user - %s' % error)
+    return TemplateResponse(request, 'xmpp_register.html',
+                            {'title': _('Register XMPP Account'),
+                             'form': form,
+                             'sidebar_right': sidebar_right})
 
-        if 'successfully registered' in output:
-            messages.append(('success',
-                             _('Registered account for %s' %
-                               data['username'])))
-        else:
-            messages.append(('error',
-                             _('Failed to register account for %s: %s') %
-                             (data['username'], output)))
+
+def _register_user(request, data):
+    """Register a new XMPP user"""
+    output = actions.superuser_run(
+        'xmpp-register', [data['username'], data['password']])
+
+    if 'successfully registered' in output:
+        messages.success(request, _('Registered account for %s') %
+                         data['username'])
+    else:
+        messages.error(request,
+                       _('Failed to register account for %s: %s') %
+                       (data['username'], output))
