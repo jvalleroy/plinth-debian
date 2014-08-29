@@ -1,3 +1,10 @@
+plinth (0.3.2.0.git.20140829-1) UNRELEASED; urgency=low
+
+  * Updated to new git version from Nick Daly based on commit
+    250b0100aab236fcf9dfa65eccf656fe037f9422.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Fri, 29 Aug 2014 23:32:07 +0200
+
 plinth (0.3.2.0.git.20140621-1) unstable; urgency=medium
 
   * Updated to new git version from Nick Daly based on commit
