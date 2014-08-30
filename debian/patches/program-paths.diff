@@ -6,9 +6,11 @@ Forwarded: no
 Reviewed-By: Petter Reinholdtsen <pere@hungry.com>
 Last-Update: 2013-11-02
 
---- a/plinth.sample.config
-+++ b/plinth.sample.config
-@@ -4,11 +4,11 @@ box_name = FreedomBox
+Index: plinth-alioth/plinth.sample.config
+===================================================================
+--- plinth-alioth.orig/plinth.sample.config	2014-08-30 08:21:41.379897118 +0200
++++ plinth-alioth/plinth.sample.config	2014-08-30 08:21:55.168003431 +0200
+@@ -4,13 +4,13 @@
  
  [Path]
  # directory locations
@@ -23,5 +25,8 @@ Last-Update: 2013-11-02
 +pid_dir = /var/run
 +python_root = /usr/share/plinth/python/plinth
  server_dir = plinth/
+-actions_dir = %(file_root)s/actions
++actions_dir = /usr/share/plinth/actions
  
  # file locations
+ store_file = %(data_dir)s/store.sqlite3
