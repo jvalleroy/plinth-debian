@@ -7,6 +7,8 @@ plinth (0.4.1-1) UNRELEASED; urgency=medium
   * Change upstream URLs to point to github.com/freedombox.
   * Update license information. Remove information about files no
     longer present in upstream.
+  * Remove link to configuration file no longer necessary due to
+    upstream changes.
 
  -- Sunil Mohan Adapa <sunil@medhas.org>  Tue, 21 Oct 2014 11:47:41 +0530
 
