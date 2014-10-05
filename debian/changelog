@@ -3,6 +3,7 @@ plinth (0.4.1-1) UNRELEASED; urgency=medium
   * New upstream version 0.4.1.
   * Remove install override which is no longer required. Upstream
     does not contain images with executable permissions anymore.
+  * Remove patch for changing paths which is no longer necessary.
 
  -- Sunil Mohan Adapa <sunil@medhas.org>  Tue, 21 Oct 2014 11:47:41 +0530
 
