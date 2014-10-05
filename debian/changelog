@@ -9,6 +9,7 @@ plinth (0.4.1-1) UNRELEASED; urgency=medium
     longer present in upstream.
   * Remove link to configuration file no longer necessary due to
     upstream changes.
+  * Remove debian/clean no longer necessary.
 
  -- Sunil Mohan Adapa <sunil@medhas.org>  Tue, 21 Oct 2014 11:47:41 +0530
 
