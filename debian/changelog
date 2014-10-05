@@ -1,3 +1,11 @@
+plinth (0.4.1-1) UNRELEASED; urgency=medium
+
+  * New upstream version 0.4.1.
+  * Remove install override which is no longer required. Upstream
+    does not contain images with executable permissions anymore.
+
+ -- Sunil Mohan Adapa <sunil@medhas.org>  Tue, 21 Oct 2014 11:47:41 +0530
+
 plinth (0.3.2.0.git.20140829-1) unstable; urgency=high
 
   * Updated to new git version from Nick Daly based on commit
