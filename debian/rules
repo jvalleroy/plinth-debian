@@ -1,8 +1,9 @@
 #!/usr/bin/make -f
-%:
-	dh $@ --with python2
 
-DATADIR=$(CURDIR)/debian/plinth/usr/share/plinth
+export PYBUILD_NAME=plinth
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
 
 override_dh_installinit:
 	dh_installinit --onlyscripts
