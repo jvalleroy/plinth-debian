@@ -5,6 +5,8 @@ plinth (0.4.1-1) UNRELEASED; urgency=medium
     does not contain images with executable permissions anymore.
   * Remove patch for changing paths which is no longer necessary.
   * Change upstream URLs to point to github.com/freedombox.
+  * Update license information. Remove information about files no
+    longer present in upstream.
 
  -- Sunil Mohan Adapa <sunil@medhas.org>  Tue, 21 Oct 2014 11:47:41 +0530
 
