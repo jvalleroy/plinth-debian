@@ -4,7 +4,7 @@ Upstream-Name: Plinth
 
 Files: themes/default/FreedomBox-Logo.7z
 Copyright: 2012 Robert Martinez
-License: GPL, CC-BY-SA
+License: GPL-3+ or CC-BY-SA
   Some rights reserved.
 
 Files: *
