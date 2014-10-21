@@ -1,5 +1,5 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: https://github.com/NickDaly/Plinth
+Source: https://github.com/freedombox/Plinth
 Upstream-Name: Plinth
 
 Files: themes/default/js/libs/bootstrap/* themes/default/css/bootstrap*
