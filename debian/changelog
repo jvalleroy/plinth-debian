@@ -1,5 +1,6 @@
-plinth (0.4.1-1) unstable; urgency=medium
+plinth (0.4.1-1) unstable; urgency=low
 
+  [ Sunil Mohan Adapa ]
   * New upstream version 0.4.1.
   * Remove install override which is no longer required. Upstream
     does not contain images with executable permissions anymore.
@@ -13,7 +14,7 @@ plinth (0.4.1-1) unstable; urgency=medium
   * Build package as Python 3 package. Upstream migrated to Python 3.
   * Fix issue with cleaning the package after build.
 
- -- Sunil Mohan Adapa <sunil@medhas.org>  Tue, 21 Oct 2014 11:47:41 +0530
+ -- Petter Reinholdtsen <pere@debian.org>  Sun, 02 Nov 2014 17:20:26 +0000
 
 plinth (0.3.2.0.git.20140829-1) unstable; urgency=high
 
