@@ -1,0 +1,34 @@
+--- a/setup.py
++++ b/setup.py
+@@ -21,6 +21,7 @@
+ """
+ 
+ from distutils import log
++from distutils.command.clean import clean
+ from distutils.command.install_data import install_data
+ from distutils.util import change_root
+ import glob
+@@ -44,6 +45,15 @@
+ ]
+ 
+ 
++class CustomClean(clean):
++    """Override clean command to clean documentation directory"""
++    def run(self):
++        """Execute clean command"""
++        subprocess.check_call(['make', '-C', 'doc', 'clean'])
++
++        clean.run(self)
++
++
+ class CustomInstallData(install_data):
+     """Override install command to allow directory creation and copy"""
+     def run(self):
+@@ -121,5 +131,6 @@
+                 ('/etc/plinth/modules-enabled',
+                  glob.glob(os.path.join('data/etc/plinth/modules-enabled',
+                                         '*')))],
+-    cmdclass={'install_data': CustomInstallData},
++    cmdclass={'clean': CustomClean,
++              'install_data': CustomInstallData},
+ )

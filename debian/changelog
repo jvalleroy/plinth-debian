@@ -11,6 +11,7 @@ plinth (0.4.1-1) UNRELEASED; urgency=medium
     upstream changes.
   * Remove debian/clean no longer necessary.
   * Build package as Python 3 package. Upstream migrated to Python 3.
+  * Fix issue with cleaning the package after build.
 
  -- Sunil Mohan Adapa <sunil@medhas.org>  Tue, 21 Oct 2014 11:47:41 +0530
 
