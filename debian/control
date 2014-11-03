@@ -16,7 +16,7 @@ Build-Depends: debhelper (>= 9)
  , python3-all
  , python3-bootstrapform
  , python3-cherrypy3
- , python3-django
+ , python3-django (>= 1.7)
  , python3-setuptools
  , python3-setuptools-git
 Standards-Version: 3.9.5
@@ -34,7 +34,7 @@ Depends: ${python3:Depends}
  , libjs-twitter-bootstrap
  , python3-bootstrapform
  , python3-cherrypy3
- , python3-django
+ , python3-django (>= 1.7)
  , sudo
 Description: web front end for administering every aspect of a Freedom Box
  The Freedom Box is a net appliance conceived by Eben Moglen.  It
