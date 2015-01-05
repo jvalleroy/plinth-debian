@@ -1,8 +1,10 @@
-plinth (0.4.1-2) UNRELEASED; urgency=low
+plinth (0.4.3-1) UNRELEASED; urgency=low
 
+  * New upstream version 0.4.3.  Closes: #769328, #755619, #765916,
+    #768666, #737456, #741919.
   * Require Django 1.7 reflecting upstream changes.
 
- -- Sunil Mohan Adapa <sunil@medhas.org>  Mon, 03 Nov 2014 20:00:17 +0530
+ -- Sunil Mohan Adapa <sunil@medhas.org>  Mon, 05 Jan 2015 21:20:24 +0530
 
 plinth (0.4.1-1) unstable; urgency=low
 
