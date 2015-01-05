@@ -21,7 +21,7 @@ Build-Depends: debhelper (>= 9)
  , python3-gi
  , python3-setuptools
  , python3-setuptools-git
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Homepage: https://github.com/freedombox/Plinth/
 Vcs-Git: git://anonscm.debian.org/freedombox/plinth.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary
