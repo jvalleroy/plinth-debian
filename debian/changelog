@@ -4,6 +4,7 @@ plinth (0.4.3-1) UNRELEASED; urgency=low
     #768666, #737456, #741919.
   * Update dependencies as per upstream changes.
   * Require Django 1.7 reflecting upstream changes.
+  * Remove patches that have been upstreamed.
 
  -- Sunil Mohan Adapa <sunil@medhas.org>  Mon, 05 Jan 2015 21:20:24 +0530
 
