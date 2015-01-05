@@ -20,24 +20,15 @@
 
 {% load bootstrap %}
 
-{% block main_block %}
-
-{% if is_expert %}
+{% block content %}
 
   <form class="form" method="post">
     {% csrf_token %}
 
     {{ form|bootstrap }}
 
-    <input type="submit" class="btn-primary" value="Submit"/>
+    <input type="submit" class="btn btn-primary" value="Submit"/>
 
   </form>
-
-{% else %}
-
-  <p>Only members of the expert group are allowed to see and modify
-    the system setup.</p>
-
-{% endif %}
 
 {% endblock %}

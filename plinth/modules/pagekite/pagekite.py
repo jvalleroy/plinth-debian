@@ -24,39 +24,36 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core import validators
 from django.core.urlresolvers import reverse_lazy
-from django.template import RequestContext
-from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from gettext import gettext as _
 import logging
 
 from plinth import actions
 from plinth import cfg
+from plinth import package
 
 
 LOGGER = logging.getLogger(__name__)
+
+subsubmenu = [{'url': reverse_lazy('pagekite:index'),
+               'text': _('About PageKite')},
+              {'url': reverse_lazy('pagekite:configure'),
+               'text': _('Configure PageKite')}]
 
 
 def init():
     """Intialize the PageKite module"""
     menu = cfg.main_menu.get('apps:index')
-    menu.add_urlname(_('Public Visibility (PageKite)'), 'icon-flag',
-                     'pagekite:index', 50)
+    menu.add_urlname(_('Public Visibility (PageKite)'),
+                     'glyphicon-flag', 'pagekite:index', 50)
 
 
 @login_required
 def index(request):
-    """Serve introdution page"""
-    menu = {'title': _('PageKite'),
-            'items': [{'url': reverse_lazy('pagekite:configure'),
-                       'text': _('Configure PageKite')}]}
-
-    sidebar_right = render_to_string('menu_block.html', {'menu': menu},
-                                     RequestContext(request))
-
+    """Serve introduction page"""
     return TemplateResponse(request, 'pagekite_introduction.html',
                             {'title': _('Public Visibility (PageKite)'),
-                             'sidebar_right': sidebar_right})
+                             'subsubmenu': subsubmenu})
 
 
 class TrimmedCharField(forms.CharField):
@@ -105,6 +102,7 @@ https://pagekite.net/wiki/Howto/SshOverPageKite/">instructions</a>'))
 
 
 @login_required
+@package.required('pagekite')
 def configure(request):
     """Serve the configuration form"""
     status = get_status()
@@ -123,7 +121,9 @@ def configure(request):
 
     return TemplateResponse(request, 'pagekite_configure.html',
                             {'title': _('Configure PageKite'),
-                             'form': form})
+                             'status': status,
+                             'form': form,
+                             'subsubmenu': subsubmenu})
 
 
 def get_status():
@@ -132,11 +132,6 @@ def get_status():
     executing various actions.
     """
     status = {}
-
-    # Check if PageKite is installed
-    output = _run(['get-installed'])
-    if output.split()[0] != 'installed':
-        return None
 
     # PageKite service enabled/disabled
     output = _run(['get-status'])
@@ -195,7 +190,7 @@ def _apply_changes(request, old_status, new_status):
 
 
 def _run(arguments, superuser=True):
-    """Run an given command and raise exception if there was an error"""
+    """Run a given command and raise exception if there was an error"""
     command = 'pagekite-configure'
 
     if superuser:

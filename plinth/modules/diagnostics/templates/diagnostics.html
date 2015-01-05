@@ -18,13 +18,15 @@
 #
 {% endcomment %}
 
-{% block main_block %}
+{% block content %}
+
+<h2>{{ title }}</h2>
 
 <p>The system diagnostic test will run a number of checks on your
 system to confirm that network services are running and configured
 properly. It may take a minute to complete.</p>
 
-<p><a class="btn btn-primary btn-large" href="{% url 'diagnostics:test' %}">
+<p><a class="btn btn-primary btn-lg" href="{% url 'diagnostics:test' %}">
   Run diagnostic test &raquo;
 </a></p>
 

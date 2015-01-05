@@ -20,31 +20,25 @@
 
 {% load bootstrap %}
 
-{% block main_block %}
+{% block content %}
 
-  <form class="form" method="post">
-    {% csrf_token %}
+  <div class="row">
+    <div class="col-sm-8">
+      <form class="form" method="post">
+        {% csrf_token %}
 
-    {{ form|bootstrap }}
+        {{ form|bootstrap }}
 
-    <input type="submit" class="btn-primary" value="Add User"/>
+        <input type="submit" class="btn btn-primary" value="Create User"/>
 
-  </form>
+      </form>
+    </div>
+  </div>
 
 {% endblock %}
 
-{% block sidebar_right_block %}
-
-  <div class="well sidebar-nav">
-
-    <h3>Add User</h3>
-
-    <p>Adding a user via this administrative
-      interface <strong>might</strong> create a system user. For
-      example, if you provide a user with ssh access, she will need a
-      system account.  If you don't know what that means, don't worry
-      about it.</p>
-
-  </div>
-
+{% block page_js %}
+  <script>
+    $('#id_username').focus();
+  </script>
 {% endblock %}

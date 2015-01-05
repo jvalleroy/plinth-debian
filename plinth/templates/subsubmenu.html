@@ -1,4 +1,3 @@
-{% extends "base.html" %}
 {% comment %}
 #
 # This file is part of Plinth.
@@ -18,18 +17,11 @@
 #
 {% endcomment %}
 
-{% load bootstrap %}
-
-{% block main_block %}
-
-  <form class="form" method="post">
-    {% csrf_token %}
-
-    {{ form|bootstrap }}
-
-    <input type="submit" class="btn-primary"
-           value="{{ submit_text|default:"Submit" }}"/>
-
-  </form>
-
-{% endblock %}
+<ul class="nav nav-tabs">
+  {% for urlitem in subsubmenu %}
+    <li {% if urlitem.active %} class="active"{% endif %}
+        role="presentation">
+      <a href="{{ urlitem.url }}">{{ urlitem.text }}</a>
+    </li>
+  {% endfor %}
+</ul>

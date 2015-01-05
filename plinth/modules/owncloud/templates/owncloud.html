@@ -20,31 +20,28 @@
 
 {% load bootstrap %}
 
-{% block main_block %}
+{% block content %}
 
   <form class="form" method="post">
     {% csrf_token %}
 
+    <h2>ownCloud</h2>
+
+    <p>When enabled, the ownCloud installation will be available
+      from <a href="/owncloud">/owncloud</a> path on the web server.
+      Visit this URL to set up the initial administration account for
+      ownCloud.</p>
+
     {{ form|bootstrap }}
-
-    <p>When enabled, the owncloud installation will be available
-    from <a href="/owncloud">owncloud</a> on the web server.  Visit
-      this URL to set up the initial administration account for
-      owncloud.</p>
-
-    <p><strong>Note: Setting up owncloud for the first time might take
-      5 minutes or more, depending on download bandwidth from the
-      Debian APT sources.</strong></p>
-
-    <input type="submit" class="btn-primary" value="Update setup"/>
+    <input type="submit" class="btn btn-primary btn-md" value="Update setup"/>
 
   </form>
 
 {% endblock %}
 
-{% block sidebar_right_block %}
+{% block sidebar %}
 
-  <div class="well sidebar-nav">
+  <div class="well sidebar">
 
     <h3>ownCloud</h3>
 

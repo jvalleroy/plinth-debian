@@ -1,3 +1,4 @@
+{% comment %}
 #
 # This file is part of Plinth.
 #
@@ -14,19 +15,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+{% endcomment %}
 
-"""
-URLs for the Lib module
-"""
+<ul class="nav nav-pills nav-stacked">
+  {% for item in menu.items %}
 
-from django.conf.urls import patterns, url
-from django.core.urlresolvers import reverse_lazy
+    {% if item.url in active_menu_urls %}
+      <li class="active">
+        <a href="{{ item.url }}" class="active">
+          <span class="{{ item.icon }} glyphicon"></span>
+    {% else %}
+      <li>
+        <a href="{{ item.url }}">
+          <span class="{{ item.icon }} glyphicon"></span>
+    {% endif %}
+          {{ item.label }}
+        </a>
+      </li>
 
-
-urlpatterns = patterns(  # pylint: disable-msg=C0103
-    '',
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login',
-        {'template_name': 'login.html'}, name='login'),
-    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
-        {'next_page': reverse_lazy('index')}, name='logout')
-    )
+  {% endfor %}
+</ul>

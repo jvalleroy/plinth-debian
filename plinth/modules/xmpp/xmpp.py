@@ -1,40 +1,50 @@
+#
+# This file is part of Plinth.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
 from django import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
-from django.template import RequestContext
-from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from gettext import gettext as _
 import logging
 
 from plinth import actions
 from plinth import cfg
+from plinth import package
 from plinth import service
+from plinth.signals import pre_hostname_change, post_hostname_change
+from plinth.signals import domainname_change
 
 
 LOGGER = logging.getLogger(__name__)
 
-SIDE_MENU = {
-    'title': _('XMPP'),
-    'items': [
-        {
-            'url': reverse_lazy('xmpp:configure'),
-            'text': _('Configure XMPP Server'),
-        },
-        {
-            'url': reverse_lazy('xmpp:register'),
-            'text': _('Register XMPP Account'),
-        }
-    ]
-}
+subsubmenu = [{'url': reverse_lazy('xmpp:index'),
+               'text': _('About')},
+              {'url': reverse_lazy('xmpp:configure'),
+               'text': _('Configure XMPP Server')},
+              {'url': reverse_lazy('xmpp:register'),
+               'text': _('Register XMPP Account')}]
 
 
 def init():
     """Initialize the XMPP module"""
     menu = cfg.main_menu.get('apps:index')
-    menu.add_item('Chat', 'icon-comment', '/../jwchat', 20)
-    menu.add_urlname('XMPP', 'icon-comment', 'xmpp:index', 40)
+    menu.add_urlname('XMPP', 'glyphicon-comment', 'xmpp:index', 40)
 
     service.Service(
         'xmpp-client', _('Chat Server - client connections'),
@@ -46,19 +56,18 @@ def init():
         'xmpp-bosh', _('Chat Server - web interface'), is_external=True,
         enabled=True)
 
+    pre_hostname_change.connect(on_pre_hostname_change)
+    post_hostname_change.connect(on_post_hostname_change)
+    domainname_change.connect(on_domainname_change)
+
 
 @login_required
+@package.required('jwchat', 'ejabberd')
 def index(request):
     """Serve XMPP page"""
-    main = "<p>XMPP Server Accounts and Configuration</p>"
-
-    sidebar_right = render_to_string('menu_block.html', {'menu': SIDE_MENU},
-                                     RequestContext(request))
-
-    return TemplateResponse(request, 'base.html',
+    return TemplateResponse(request, 'xmpp.html',
                             {'title': _('XMPP Server'),
-                             'main': main,
-                             'sidebar_right': sidebar_right})
+                             'subsubmenu': subsubmenu})
 
 
 class ConfigureForm(forms.Form):  # pylint: disable-msg=W0232
@@ -86,13 +95,10 @@ def configure(request):
     else:
         form = ConfigureForm(initial=status, prefix='xmpp')
 
-    sidebar_right = render_to_string('menu_block.html', {'menu': SIDE_MENU},
-                                     RequestContext(request))
-
     return TemplateResponse(request, 'xmpp_configure.html',
                             {'title': _('Configure XMPP Server'),
                              'form': form,
-                             'sidebar_right': sidebar_right})
+                             'subsubmenu': subsubmenu})
 
 
 def get_status():
@@ -110,14 +116,21 @@ def _apply_changes(request, old_status, new_status):
         return
 
     if new_status['inband_enabled']:
-        messages.success(request, _('Inband registration enabled'))
         option = 'inband_enable'
     else:
-        messages.success(request, _('Inband registration disabled'))
         option = 'noinband_enable'
 
     LOGGER.info('Option - %s', option)
-    actions.superuser_run('xmpp-setup', [option])
+    output = actions.superuser_run('xmpp-setup', [option])
+
+    if 'Failed' in output:
+        messages.error(request,
+                       _('Error when configuring XMPP server: %s') %
+                       output)
+    elif option == 'inband_enable':
+        messages.success(request, _('Inband registration enabled'))
+    else:
+        messages.success(request, _('Inband registration disabled'))
 
 
 class RegisterForm(forms.Form):  # pylint: disable-msg=W0232
@@ -142,19 +155,19 @@ def register(request):
     else:
         form = RegisterForm(prefix='xmpp')
 
-    sidebar_right = render_to_string('menu_block.html', {'menu': SIDE_MENU},
-                                     RequestContext(request))
-
     return TemplateResponse(request, 'xmpp_register.html',
                             {'title': _('Register XMPP Account'),
                              'form': form,
-                             'sidebar_right': sidebar_right})
+                             'subsubmenu': subsubmenu})
 
 
 def _register_user(request, data):
     """Register a new XMPP user"""
     output = actions.superuser_run(
-        'xmpp-register', [data['username'], data['password']])
+        'xmpp',
+        ['register',
+         '--username', data['username'],
+         '--password', data['password']])
 
     if 'successfully registered' in output:
         messages.success(request, _('Registered account for %s') %
@@ -163,3 +176,44 @@ def _register_user(request, data):
         messages.error(request,
                        _('Failed to register account for %s: %s') %
                        (data['username'], output))
+
+
+def on_pre_hostname_change(sender, old_hostname, new_hostname, **kwargs):
+    """
+    Backup ejabberd database before hostname is changed.
+    """
+    del sender  # Unused
+    del kwargs  # Unused
+
+    actions.superuser_run('xmpp',
+                          ['pre-change-hostname',
+                           '--old-hostname', old_hostname,
+                           '--new-hostname', new_hostname])
+
+
+def on_post_hostname_change(sender, old_hostname, new_hostname, **kwargs):
+    """
+    Update ejabberd and jwchat config after hostname is changed.
+    """
+    del sender  # Unused
+    del kwargs  # Unused
+
+    actions.superuser_run('xmpp',
+                          ['change-hostname',
+                           '--old-hostname', old_hostname,
+                           '--new-hostname', new_hostname],
+                          async=True)
+
+
+def on_domainname_change(sender, old_domainname, new_domainname, **kwargs):
+    """
+    Update ejabberd and jwchat config after domain name is changed.
+    """
+    del sender  # Unused
+    del old_domainname  # Unused
+    del kwargs  # Unused
+
+    actions.superuser_run('xmpp',
+                          ['change-domainname',
+                           '--domainname', new_domainname],
+                          async=True)

@@ -20,11 +20,28 @@ URLs for the Users module
 """
 
 from django.conf.urls import patterns, url
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
+
+from . import views
 
 
-urlpatterns = patterns(  # pylint: disable-msg=C0103
-    'plinth.modules.users.users',
-    url(r'^sys/users/$', 'index', name='index'),
-    url(r'^sys/users/add/$', 'add', name='add'),
-    url(r'^sys/users/edit/$', 'edit', name='edit')
+urlpatterns = patterns(
+    '',
+    url(r'^sys/users/$', login_required(views.UserList.as_view()),
+        name='index'),
+    url(r'^sys/users/create/$', login_required(views.UserCreate.as_view()),
+        name='create'),
+    url(r'^sys/users/(?P<slug>[\w.@+-]+)/edit/$',
+        login_required(views.UserUpdate.as_view()), name='edit'),
+    url(r'^sys/users/(?P<slug>[\w.@+-]+)/delete/$',
+        login_required(views.UserDelete.as_view()), name='delete'),
+    url(r'^sys/users/(?P<slug>[\w.@+-]+)/change_password/$',
+        login_required(views.UserChangePassword.as_view()),
+        name='change_password'),
+    # Add Django's login/logout urls
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login',
+        {'template_name': 'login.html'}, name='login'),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+        {'next_page': reverse_lazy('index')}, name='logout'),
 )
