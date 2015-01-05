@@ -2,6 +2,7 @@ plinth (0.4.3-1) UNRELEASED; urgency=low
 
   * New upstream version 0.4.3.  Closes: #769328, #755619, #765916,
     #768666, #737456, #741919.
+  * Update dependencies as per upstream changes.
   * Require Django 1.7 reflecting upstream changes.
 
  -- Sunil Mohan Adapa <sunil@medhas.org>  Mon, 05 Jan 2015 21:20:24 +0530
