@@ -27,6 +27,7 @@ from gettext import gettext as _
 
 from plinth import actions
 from plinth import cfg
+from plinth import package
 
 
 class TorForm(forms.Form):  # pylint: disable=W0232
@@ -39,10 +40,11 @@ class TorForm(forms.Form):  # pylint: disable=W0232
 def init():
     """Initialize the Tor module"""
     menu = cfg.main_menu.get('apps:index')
-    menu.add_urlname('Tor', 'icon-eye-close', 'tor:index', 30)
+    menu.add_urlname('Tor', 'glyphicon-eye-close', 'tor:index', 30)
 
 
 @login_required
+@package.required('tor')
 def index(request):
     """Service the index page"""
     status = get_status()
@@ -88,6 +90,10 @@ def get_status():
     if output == '':
         hs_enabled = False
         hs_hostname = 'Not Configured'
+        hs_ports = ''
+    elif output == 'error':
+        hs_enabled = False
+        hs_hostname = 'Not available (Run Tor at least once)'
         hs_ports = ''
     else:
         hs_enabled = True

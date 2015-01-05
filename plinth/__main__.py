@@ -1,4 +1,20 @@
-#!/usr/bin/python
+#!/usr/bin/python3
+#
+# This file is part of Plinth.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import argparse
 import django.conf
@@ -16,13 +32,6 @@ from cherrypy.process.plugins import Daemonizer
 from plinth import cfg
 from plinth import module_loader
 from plinth import service
-
-__author__ = "James Vasile"
-__copyright__ = "Copyright 2011-2013, James Vasile"
-__license__ = "GPLv3 or later"
-__maintainer__ = "James Vasile"
-__email__ = "james@jamesvasile.com"
-__status__ = "Development"
 
 LOGGER = logging.getLogger(__name__)
 
@@ -135,6 +144,7 @@ def configure_django():
         'django.core.context_processors.debug',
         'django.core.context_processors.i18n',
         'django.core.context_processors.media',
+        'django.core.context_processors.request',
         'django.core.context_processors.static',
         'django.core.context_processors.tz',
         'django.contrib.messages.context_processors.messages',
@@ -173,8 +183,13 @@ def configure_django():
                     'plinth']
     applications += module_loader.get_modules_to_load()
     sessions_directory = os.path.join(cfg.data_dir, 'sessions')
+
+    secure_proxy_ssl_header = None
+    if cfg.secure_proxy_ssl_header:
+        secure_proxy_ssl_header = (cfg.secure_proxy_ssl_header, 'https')
+
     django.conf.settings.configure(
-        ALLOWED_HOSTS=['127.0.0.1', 'localhost'],
+        ALLOWED_HOSTS=['*'],
         CACHES={'default':
                 {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}},
         DATABASES={'default':
@@ -183,9 +198,9 @@ def configure_django():
         DEBUG=cfg.debug,
         INSTALLED_APPS=applications,
         LOGGING=logging_configuration,
-        LOGIN_URL='lib:login',
+        LOGIN_URL='users:login',
         LOGIN_REDIRECT_URL='apps:index',
-        LOGOUT_URL='lib:logout',
+        LOGOUT_URL='users:logout',
         MIDDLEWARE_CLASSES=(
             'django.contrib.sessions.middleware.SessionMiddleware',
             'django.middleware.common.CommonMiddleware',
@@ -196,10 +211,12 @@ def configure_django():
             'plinth.modules.first_boot.middleware.FirstBootMiddleware',
         ),
         ROOT_URLCONF='plinth.urls',
+        SECURE_PROXY_SSL_HEADER=secure_proxy_ssl_header,
         SESSION_ENGINE='django.contrib.sessions.backends.file',
         SESSION_FILE_PATH=sessions_directory,
         STATIC_URL='/'.join([cfg.server_dir, 'static/']).replace('//', '/'),
-        TEMPLATE_CONTEXT_PROCESSORS=context_processors)
+        TEMPLATE_CONTEXT_PROCESSORS=context_processors,
+        USE_X_FORWARDED_HOST=bool(cfg.use_x_forwarded_host))
     django.setup()
 
     LOGGER.info('Configured Django with applications - %s', applications)

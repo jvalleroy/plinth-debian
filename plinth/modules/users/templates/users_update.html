@@ -20,36 +20,42 @@
 
 {% load bootstrap %}
 
-{% block main_block %}
+{% block page_head %}
+  <style type="text/css">
+    .multiple-checkbox li {
+      list-style-type: none;
+    }
+  </style>
+{% endblock %}
 
-  <form class="form" method="post">
-    {% csrf_token %}
+{% block content %}
 
-    {{ form|bootstrap }}
+  <h3>Edit User <em>{{ object.username }}</em></h3>
 
-    <input type="submit" class="btn-primary" value="Delete User"/>
+  <p>
+    Use the
+    <a href='{% url 'users:change_password' object.username %}'>
+      change password form
+    </a> to change the password.
+  </p>
 
-  </form>
+  <div class="row">
+    <div class="col-sm-8">
+      <form class="form" method="post">
+        {% csrf_token %}
+
+        {{ form|bootstrap }}
+
+        <input type="submit" class="btn btn-primary" value="Save Changes"/>
+
+      </form>
+    </div>
+  </div>
 
 {% endblock %}
 
-{% block sidebar_right_block %}
-
-  <div class="well sidebar-nav">
-
-    <h3>Edit Users</h3>
-
-    <p>Click on a user's name to go to a screen for editing that
-      user's account.</p>
-
-    <h3>Delete Users</h3>
-
-    <p>Check the box next to a users' names and then click "Delete
-      User" to remove users from {{ cfg.product_name }} and the
-      {{ cfg.box_name }} system.</p>
-
-    <p>Deleting users is permanent!</p>
-
-  </div>
-
+{% block page_js %}
+  <script>
+    $('#id_username').focus();
+  </script>
 {% endblock %}

@@ -20,16 +20,7 @@
 
 {% load bootstrap %}
 
-{% block main_block %}
-
-{% if pagekite_status = 'not_installed' %}
-
-  <p>PageKite is not installed, please install it. PageKite comes
-  pre-installed with {{ cfg.box_name }}. On any Debian based system
-  (such as {{ cfg.box_name }}) you may install it using the command
-  'aptitude install pagekite'</p>
-
-{% else %}
+{% block content %}
 
   <form class="form" method="post">
     {% csrf_token %}
@@ -48,16 +39,13 @@
       {% include 'bootstrapform/field.html' with field=form.ssh_enabled %}
     </div>
 
-    <input type="submit" class="btn-primary" value="Update setup"/>
+    <input type="submit" class="btn btn-primary" value="Update setup"/>
 
   </form>
 
-{% endif %}
-
 {% endblock %}
 
-{% block js_block %}
-  {{ js|safe }}
+{% block page_js %}
 
   <script type="text/javascript">
     (function($) {

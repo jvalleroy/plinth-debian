@@ -22,13 +22,18 @@
 
 {% block content %}
 
+  <h3>Delete User <em>{{ object.username }}</em></h3>
+
+  <p>Delete user permanently?</p>
+
   <form class="form" method="post">
     {% csrf_token %}
 
-    {{ form|bootstrap }}
+    <input type="submit" class="btn btn-md btn-primary"
+           value="Delete {{ object.username }}"/>
 
-    <input type="submit" class="btn btn-primary btn-md" value="Update setup"/>
-
+    <a href="{% url 'users:index' %}" role="button"
+       class="btn btn-md btn-primary">Cancel</a>
   </form>
 
 {% endblock %}

@@ -20,71 +20,78 @@
 
 {% load bootstrap %}
 
-{% block main_block %}
+{% block content %}
+
+<h2>Tor</h2>
 
 <h3>Status</h3>
 
-<br style='clear:both'>
+<p>
 {% if is_running %}
   <div class='running-status active'></div> Tor is running
 {% else %}
   <div class='running-status inactive'></div> Tor is not running
 {% endif %}
-<br style='clear:both'>
+</p>
 
-<p><h3>Hidden Service</h3>
-A hidden service will allow your FreedomBox to provide selected
+<h3>Hidden Service</h3>
+
+<p>A hidden service will allow your {{ cfg.box_name }} to provide selected
 services (such as OwnCloud or Chat) without revealing its location.
-Here is the current configuration:
+Here is the current configuration:</p>
+
 <ul>
   <li>Hostname: {{ tor_hs_hostname }}</li>
   <li>Ports: {{ tor_hs_ports }}</li>
 </ul>
 
-<form class="form" method="post">
+<form class="form form-inline" method="post">
   {% csrf_token %}
 
   {{ form|bootstrap }}
 
-  <input type="submit" class="btn-primary" value="Update setup"/>
+  <input type="submit" class="btn btn-primary btn-sm" value="Update setup"/>
 </form>
 
-</p>
+<h3>Bridge</h3>
 
-<p><h3>Bridge</h3>
-Your FreedomBox is configured as a Tor bridge with obfsproxy, so it
-can help circumvent censorship. If your FreedomBox is behind a router
+<p>Your {{ cfg.box_name }} is configured as a Tor bridge with obfsproxy, so it
+can help circumvent censorship. If your {{ cfg.box_name }} is behind a router
 or firewall, you should make sure the following ports are open, and
 port-forwarded, if necessary:</p>
 
-<table class="table table-bordered table-condensed span2">
-  {% for name, port in tor_ports.items %}
-    <tr>
-      <td>{{ name }}</td>
-      <td>{{ port }}</td>
-    </tr>
-  {% endfor %}
-</table>
-<br style='clear:both'>
+<div class="row">
+  <div class="col-sm-3">
+    <table class="table table-bordered table-condensed">
+      {% for name, port in tor_ports.items %}
+        <tr>
+          <td>{{ name }}</td>
+          <td>{{ port }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
 
-<p><h3>SOCKS</h3>
-A Tor SOCKS port is available on your FreedomBox on TCP port
+<h3>SOCKS</h3>
+
+<p>A Tor SOCKS port is available on your {{ cfg.box_name }} on TCP port
 9050.</p>
 
 {% endblock %}
 
-{% block sidebar_right_block %}
+{% block sidebar %}
 
-  <div class="well sidebar-nav">
+  <div class="well sidebar">
 
     <h3>Tor</h3>
 
     <p>Tor is an anonymous communication system. You can learn more about
-      it from the <a href="https://www.torproject.org/">Tor Project</a>
-      website. For best protection when web surfing, the Tor Project
-      recommends that you use
-      the <a href="https://www.torproject.org/download/download-easy.html.en">Tor
-       Browser Bundle</a>.</p>
+    it from the <a href="https://www.torproject.org/">Tor Project</a>
+    website. For best protection when web surfing, the Tor Project
+    recommends that you use the
+    <a href="https://www.torproject.org/download/download-easy.html.en">
+    Tor Browser</a>.</p>
 
   </div>
 
