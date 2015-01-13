@@ -7,8 +7,9 @@ plinth (0.4.3-1) UNRELEASED; urgency=low
   * Remove patches that have been upstreamed.
   * Update standards version to 3.9.6.
   * Properly remove obsolete module configuration.
+  * Remove upstream install documentation.
 
- -- Sunil Mohan Adapa <sunil@medhas.org>  Mon, 05 Jan 2015 21:20:24 +0530
+ -- Sunil Mohan Adapa <sunil@medhas.org>  Tue, 13 Jan 2015 13:16:45 +0530
 
 plinth (0.4.1-1) unstable; urgency=low
 
