@@ -10,8 +10,8 @@ override_dh_installinit:
 
 new-upstream:
 	date=$$(date +%Y%m%d); \
-	tgz=../plinth_0.4.3.orig.tar.gz; \
-	wget -O $$tgz https://github.com/freedombox/Plinth/archive/v0.4.3.tar.gz; \
+	tgz=../plinth_0.4.4.orig.tar.gz; \
+	wget -O $$tgz https://github.com/freedombox/Plinth/archive/v0.4.4.tar.gz; \
 	git fetch https://github.com/freedombox/Plinth.git ; \
-	vcstag=v0.4.3 ; \
+	vcstag=v0.4.4 ; \
 	echo git-import-orig --pristine-tar --upstream-vcs-tag=$$vcstag $$tgz
