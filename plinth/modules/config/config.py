@@ -81,6 +81,7 @@ and must not be greater than 63 characters in length.'),
         help_text=_('Your domain name is the global name by which other \
 machines on the Internet can reach you. It must consist of alphanumeric words \
 separated by dots.'),
+        required=False,
         validators=[
             validators.RegexValidator(r'^[a-zA-Z][a-zA-Z0-9.]*$',
                                       _('Invalid domain name'))])
@@ -194,7 +195,7 @@ def set_hostname(hostname):
                                     new_hostname=hostname)
 
     LOGGER.info('Changing hostname to - %s', hostname)
-    actions.superuser_run('hostname-change', hostname)
+    actions.superuser_run('hostname-change', [hostname])
 
     post_hostname_change.send_robust(sender='config',
                                      old_hostname=old_hostname,
@@ -209,7 +210,7 @@ def set_domainname(domainname):
     domainname = str(domainname)
 
     LOGGER.info('Changing domain name to - %s', domainname)
-    actions.superuser_run('domainname-change', domainname)
+    actions.superuser_run('domainname-change', [domainname])
 
     domainname_change.send_robust(sender='config',
                                   old_domainname=old_domainname,

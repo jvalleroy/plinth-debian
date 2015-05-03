@@ -48,7 +48,7 @@ def init():
 
 
 @login_required
-@package.required('postgresql', 'php5-pgsql', 'owncloud')
+@package.required(['postgresql', 'php5-pgsql', 'owncloud'])
 def index(request):
     """Serve the ownCloud configuration page"""
     status = get_status()
@@ -72,7 +72,7 @@ def index(request):
 
 def get_status():
     """Return the current status"""
-    output = actions.run('owncloud-setup', 'status')
+    output = actions.run('owncloud-setup', ['status'])
     return {'enabled': 'enable' in output.split()}
 
 

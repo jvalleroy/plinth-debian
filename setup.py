@@ -31,7 +31,7 @@ import shutil
 import subprocess
 
 from plinth import __version__
-from plinth.tests.coverage import test_coverage
+from plinth.tests.coverage import coverage
 
 
 DIRECTORIES_TO_CREATE = [
@@ -115,21 +115,27 @@ setuptools.setup(
         'cherrypy >= 3.0',
         'django >= 1.7.0',
         'django-bootstrap-form',
-        'pygobject'
+        'python-networkmanager',
+        'pyyaml',
     ],
     tests_require=['coverage >= 3.7'],
     include_package_data=True,
     package_data={'plinth': ['templates/*',
                              'modules/*/templates/*']},
     data_files=[('/etc/init.d', ['data/etc/init.d/plinth']),
+                ('/usr/lib/firewalld/services/',
+                 glob.glob('data/usr/lib/firewalld/services/*.xml')),
                 ('/usr/lib/freedombox/setup.d/',
                  ['data/usr/lib/freedombox/setup.d/86_plinth']),
                 ('/usr/lib/freedombox/first-run.d',
                  ['data/usr/lib/freedombox/first-run.d/90_firewall']),
+                ('/etc/apache2/conf-available',
+                 glob.glob('data/etc/apache2/conf-available/*.conf')),
                 ('/etc/apache2/sites-available',
-                 ['data/etc/apache2/sites-available/plinth.conf',
-                  'data/etc/apache2/sites-available/plinth-ssl.conf']),
+                 glob.glob('data/etc/apache2/sites-available/*.conf')),
                 ('/etc/sudoers.d', ['data/etc/sudoers.d/plinth']),
+                ('/lib/systemd/system',
+                 ['data/lib/systemd/system/plinth.service']),
                 ('/usr/share/plinth/actions',
                  glob.glob(os.path.join('actions', '*'))),
                 ('/usr/share/man/man1', ['doc/plinth.1']),
@@ -140,6 +146,6 @@ setuptools.setup(
     cmdclass={
         'clean': CustomClean,
         'install_data': CustomInstallData,
-        'test_coverage': test_coverage.TestCoverageCommand
+        'test_coverage': coverage.CoverageCommand
     },
 )
