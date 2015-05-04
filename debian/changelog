@@ -6,8 +6,9 @@ plinth (0.4.5-1) UNRELEASED; urgency=low
     python3-networkmanager package is not available in Debian yet. The networks
     module is disabled for now.
   * Enable systemd service file.
+  * Add new patch to enable javascript-common apache conf in plinth setup.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sun, 03 May 2015 22:37:24 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Mon, 04 May 2015 19:42:39 -0400
 
 plinth (0.4.4-1) unstable; urgency=low
 
