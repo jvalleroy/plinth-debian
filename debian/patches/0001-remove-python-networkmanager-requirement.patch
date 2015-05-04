@@ -1,0 +1,18 @@
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,5 +1,4 @@
+ cherrypy >= 3.0
+ coverage >= 3.7
+ django >= 1.7.0
+-python-networkmanager
+ pyyaml
+--- a/setup.py
++++ b/setup.py
+@@ -115,7 +115,6 @@
+         'cherrypy >= 3.0',
+         'django >= 1.7.0',
+         'django-bootstrap-form',
+-        'python-networkmanager',
+         'pyyaml',
+     ],
+     tests_require=['coverage >= 3.7'],

@@ -2,8 +2,11 @@ plinth (0.4.5-1) UNRELEASED; urgency=low
 
   * New upstream version 0.4.5.
   * Remove patch that has been upstreamed.
+  * Add new patch to remove python-networkmanager dependency, because
+    python3-networkmanager package is not available in Debian yet. The networks
+    module is disabled for now.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sun, 03 May 2015 19:42:30 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Sun, 03 May 2015 20:52:21 -0400
 
 plinth (0.4.4-1) unstable; urgency=low
 
