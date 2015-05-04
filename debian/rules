@@ -3,7 +3,7 @@
 export PYBUILD_NAME=plinth
 
 %:
-	dh $@ --with python3 --buildsystem=pybuild
+	dh $@ --with python3 --with systemd --buildsystem=pybuild
 
 override_dh_installinit:
 	dh_installinit --onlyscripts

@@ -5,8 +5,9 @@ plinth (0.4.5-1) UNRELEASED; urgency=low
   * Add new patch to remove python-networkmanager dependency, because
     python3-networkmanager package is not available in Debian yet. The networks
     module is disabled for now.
+  * Enable systemd service file.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sun, 03 May 2015 20:52:21 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Sun, 03 May 2015 22:37:24 -0400
 
 plinth (0.4.4-1) unstable; urgency=low
 
