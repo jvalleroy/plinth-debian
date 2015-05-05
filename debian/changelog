@@ -8,13 +8,15 @@ plinth (0.4.5-1) UNRELEASED; urgency=low
     module is disabled for now.
   * Enable systemd service file.
   * Add new patch to enable javascript-common apache conf in plinth setup.
+  * Add new patch to add libdatetime-format-dateparse-perl to required packages
+    for ikiwiki module.
 
   [ Sunil Mohan Adapa ]
   * Add python3-yaml as dependency.
   * Add lintian override for extra apache configuration.
   * Update Debian copyright file.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Mon, 04 May 2015 19:42:39 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Tue, 05 May 2015 18:47:46 -0400
 
 plinth (0.4.4-1) unstable; urgency=low
 
