@@ -12,6 +12,7 @@ plinth (0.4.5-1) UNRELEASED; urgency=low
   [ Sunil Mohan Adapa ]
   * Add python3-yaml as dependency.
   * Add lintian override for extra apache configuration.
+  * Update Debian copyright file.
 
  -- James Valleroy <jvalleroy@mailbox.org>  Mon, 04 May 2015 19:42:39 -0400
 
