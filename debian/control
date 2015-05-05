@@ -22,6 +22,7 @@ Build-Depends: debhelper (>= 9)
  , python3-gi
  , python3-setuptools
  , python3-setuptools-git
+ , python3-yaml
 Standards-Version: 3.9.6
 Homepage: https://github.com/freedombox/Plinth/
 Vcs-Git: git://anonscm.debian.org/freedombox/plinth.git
@@ -40,6 +41,7 @@ Depends: ${python3:Depends}
  , python3-cherrypy3
  , python3-django (>= 1.7)
  , python3-gi
+ , python3-yaml
  , sudo
 Description: web front end for administering every aspect of a Freedom Box
  The Freedom Box is a net appliance conceived by Eben Moglen.  It
