@@ -1,0 +1,12 @@
+--- a/plinth/modules/ikiwiki/views.py
++++ b/plinth/modules/ikiwiki/views.py
+@@ -46,6 +46,9 @@
+ 
+ @login_required
+ @package.required(['ikiwiki',
++                   'gcc',
++                   'libc6-dev',
++                   'libtimedate-perl',
+                    'libcgi-formbuilder-perl',
+                    'libcgi-session-perl'],
+                   on_install=on_install)

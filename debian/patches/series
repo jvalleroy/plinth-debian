@@ -1,3 +1,4 @@
 0002-remove-upstream-install-doc.patch
 0001-remove-python-networkmanager-requirement.patch
 0003-enable-javascript-common-conf.patch
+0004-ikiwiki-required-packages.patch
