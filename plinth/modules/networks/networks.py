@@ -16,17 +16,19 @@
 #
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from gettext import gettext as _
+from logging import Logger
 
 from .forms import ConnectionTypeSelectForm, AddEthernetForm, AddWifiForm
 from plinth import cfg
 from plinth import network
 from plinth import package
 
+
+logger = Logger(__name__)
 
 subsubmenu = [{'url': reverse_lazy('networks:index'),
                'text': _('Network Connections')},
@@ -42,7 +44,6 @@ def init():
     menu.add_urlname(_('Networks'), 'glyphicon-signal', 'networks:index', 18)
 
 
-@login_required
 @package.required(['network-manager'])
 def index(request):
     """Show connection list."""
@@ -54,7 +55,6 @@ def index(request):
                              'connections': connections})
 
 
-@login_required
 def edit(request, uuid):
     """Serve connection editing form."""
     try:
@@ -65,36 +65,34 @@ def edit(request, uuid):
         return redirect(reverse_lazy('networks:index'))
 
     form = None
-    settings = connection.GetSettings()
-    form_data = {'name': settings['connection']['id']}
+    form_data = {'name': connection.get_id()}
 
     if request.method == 'POST':
-        if settings['connection']['type'] == '802-11-wireless':
+        if connection.get_connection_type() == '802-11-wireless':
             form = AddWifiForm(request.POST)
         else:
             form = AddEthernetForm(request.POST)
 
         if form.is_valid():
             name = form.cleaned_data['name']
+            interface = form.cleaned_data['interface']
             zone = form.cleaned_data['zone']
             ipv4_method = form.cleaned_data['ipv4_method']
             ipv4_address = form.cleaned_data['ipv4_address']
 
-            if settings['connection']['type'] == '802-3-ethernet':
+            if connection.get_connection_type() == '802-3-ethernet':
                 network.edit_ethernet_connection(
-                    connection,
-                    name, zone,
-                    ipv4_method, ipv4_address)
-            elif settings['connection']['type'] == '802-11-wireless':
+                    connection, name, interface, zone, ipv4_method,
+                    ipv4_address)
+            elif connection.get_connection_type() == '802-11-wireless':
                 ssid = form.cleaned_data['ssid']
                 mode = form.cleaned_data['mode']
                 auth_mode = form.cleaned_data['auth_mode']
                 passphrase = form.cleaned_data['passphrase']
 
                 network.edit_wifi_connection(
-                    connection, name, zone,
-                    ssid, mode, auth_mode, passphrase,
-                    ipv4_method, ipv4_address)
+                    connection, name, interface, zone, ssid, mode, auth_mode,
+                    passphrase, ipv4_method, ipv4_address)
 
             return redirect(reverse_lazy('networks:index'))
         else:
@@ -103,27 +101,34 @@ def edit(request, uuid):
                                      'subsubmenu': subsubmenu,
                                      'form': form})
     else:
+        settings_connection = connection.get_setting_connection()
+        settings_ipv4 = connection.get_setting_ip4_config()
+        form_data['interface'] = connection.get_interface_name()
         try:
-            form_data['zone'] = settings['connection']['zone']
+            form_data['zone'] = settings_connection.get_zone()
         except KeyError:
             form_data['zone'] = 'external'
 
-        form_data['ipv4_method'] = settings['ipv4']['method']
+        form_data['ipv4_method'] = settings_ipv4.get_method()
 
-        if settings['ipv4']['addresses']:
-            form_data['ipv4_address'] = settings['ipv4']['addresses'][0][0]
+        if settings_ipv4.get_num_addresses():
+            # XXX: Plinth crashes here. Possibly because a double free bug
+            # address = settings_ipv4.get_address(0)
+            # form_data['ipv4_address'] = address.get_address()
+            pass
 
-        if settings['connection']['type'] == '802-11-wireless':
-            settings_wifi = settings['802-11-wireless']
-            form_data['ssid'] = settings_wifi['ssid']
-            form_data['mode'] = settings_wifi['mode']
+        if settings_connection.get_connection_type() == '802-11-wireless':
+            settings_wireless = connection.get_setting_wireless()
+            form_data['ssid'] = settings_wireless.get_ssid().get_data()
+            form_data['mode'] = settings_wireless.get_mode()
             try:
-                if settings_wifi['security'] == '802-11-wireless-security':
-                    wifi_sec = settings['802-11-wireless-security']
-                    if wifi_sec['key-mgmt'] == 'wpa-psk':
+                wifi_sec = connection.get_setting_wireless_security()
+                if wifi_sec:
+                    if wifi_sec.get_key_mgmt() == 'wpa-psk':
                         form_data['auth_mode'] = 'wpa'
-                        secret = connection.GetSecrets()
-                        psk = secret['802-11-wireless-security']['psk']
+                        secrets = connection.get_secrets(
+                            '802-11-wireless-security')
+                        psk = secrets['802-11-wireless-security']['psk']
                         form_data['passphrase'] = psk
                 else:
                     form_data['auth_mode'] = 'open'
@@ -140,30 +145,28 @@ def edit(request, uuid):
                                  'form': form})
 
 
-@login_required
 def activate(request, uuid):
     """Activate the connection."""
     try:
         connection = network.activate_connection(uuid)
-        name = connection.GetSettings()['connection']['id']
+        name = connection.get_id()
         messages.success(request, _('Activated connection %s.') % name)
     except network.ConnectionNotFound:
         messages.error(request, _('Failed to activate connection: '
                                   'Connection not found.'))
     except network.DeviceNotFound as exception:
-        name = exception.args[0].GetSettings()['connection']['id']
+        name = exception.args[0].get_id()
         messages.error(request, _('Failed to activate connection %s: '
                                   'No suitable device is available.') % name)
 
     return redirect(reverse_lazy('networks:index'))
 
 
-@login_required
 def deactivate(request, uuid):
     """Deactivate the connection."""
     try:
         active_connection = network.deactivate_connection(uuid)
-        name = active_connection.Connection.GetSettings()['connection']['id']
+        name = active_connection.get_id()
         messages.success(request, _('Deactivated connection %s.') % name)
     except network.ConnectionNotFound:
         messages.error(request, _('Failed to de-activate connection: '
@@ -172,7 +175,6 @@ def deactivate(request, uuid):
     return redirect(reverse_lazy('networks:index'))
 
 
-@login_required
 def scan(request):
     """Show a list of nearby visible Wi-Fi access points."""
     access_points = network.wifi_scan()
@@ -182,7 +184,6 @@ def scan(request):
                              'access_points': access_points})
 
 
-@login_required
 def add(request):
     """Serve the connection type selection form."""
     form = None
@@ -203,7 +204,6 @@ def add(request):
                                  'form': form})
 
 
-@login_required
 def add_ethernet(request):
     """Serve ethernet connection create form."""
     form = None
@@ -212,13 +212,13 @@ def add_ethernet(request):
         form = AddEthernetForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
+            interface = form.cleaned_data['interface']
             zone = form.cleaned_data['zone']
             ipv4_method = form.cleaned_data['ipv4_method']
             ipv4_address = form.cleaned_data['ipv4_address']
 
             network.add_ethernet_connection(
-                name, zone,
-                ipv4_method, ipv4_address)
+                name, interface, zone, ipv4_method, ipv4_address)
             return redirect(reverse_lazy('networks:index'))
     else:
         form = AddEthernetForm()
@@ -229,7 +229,6 @@ def add_ethernet(request):
                              'form': form})
 
 
-@login_required
 def add_wifi(request, ssid=None):
     """Serve wifi connection create form."""
     form = None
@@ -247,6 +246,7 @@ def add_wifi(request, ssid=None):
         form = AddWifiForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
+            interface = form.cleaned_data['interface']
             zone = form.cleaned_data['zone']
             ssid = form.cleaned_data['ssid']
             mode = form.cleaned_data['mode']
@@ -256,8 +256,7 @@ def add_wifi(request, ssid=None):
             ipv4_address = form.cleaned_data['ipv4_address']
 
             network.add_wifi_connection(
-                name, zone,
-                ssid, mode, auth_mode, passphrase,
+                name, interface, zone, ssid, mode, auth_mode, passphrase,
                 ipv4_method, ipv4_address)
             return redirect(reverse_lazy('networks:index'))
     else:
@@ -272,7 +271,6 @@ def add_wifi(request, ssid=None):
                              'form': form})
 
 
-@login_required
 def delete(request, uuid):
     """Handle deleting connections, showing a confirmation dialog first.
 
@@ -291,7 +289,7 @@ def delete(request, uuid):
 
     try:
         connection = network.get_connection(uuid)
-        name = connection.GetSettings()['connection']['id']
+        name = connection.get_id()
     except network.ConnectionNotFound:
         messages.error(request, _('Failed to delete connection: '
                                   'Connection not found.'))

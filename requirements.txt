@@ -1,5 +1,6 @@
 cherrypy >= 3.0
 coverage >= 3.7
 django >= 1.7.0
-python-networkmanager
+django-stronghold
+python-augeas
 pyyaml

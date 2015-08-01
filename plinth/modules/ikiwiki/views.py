@@ -20,7 +20,6 @@ Plinth module for configuring ikiwiki
 """
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
@@ -28,7 +27,9 @@ from gettext import gettext as _
 
 from .forms import IkiwikiForm, IkiwikiCreateForm
 from plinth import actions
+from plinth import action_utils
 from plinth import package
+from plinth.modules import ikiwiki
 
 
 subsubmenu = [{'url': reverse_lazy('ikiwiki:index'),
@@ -44,10 +45,13 @@ def on_install():
     actions.superuser_run('ikiwiki', ['setup'])
 
 
-@login_required
 @package.required(['ikiwiki',
+                   'gcc',
+                   'libc6-dev',
+                   'libtimedate-perl',
                    'libcgi-formbuilder-perl',
-                   'libcgi-session-perl'],
+                   'libcgi-session-perl',
+                   'libxml-writer-perl'],
                   on_install=on_install)
 def index(request):
     """Serve configuration page."""
@@ -73,9 +77,7 @@ def index(request):
 
 def get_status():
     """Get the current setting."""
-    output = actions.run('ikiwiki', ['get-enabled'])
-    enabled = (output.strip() == 'yes')
-    return {'enabled': enabled}
+    return {'enabled': ikiwiki.is_enabled()}
 
 
 def _apply_changes(request, old_status, new_status):
@@ -85,6 +87,7 @@ def _apply_changes(request, old_status, new_status):
     if old_status['enabled'] != new_status['enabled']:
         sub_command = 'enable' if new_status['enabled'] else 'disable'
         actions.superuser_run('ikiwiki', [sub_command])
+        ikiwiki.service.notify_enabled(None, new_status['enabled'])
         modified = True
 
     if modified:
@@ -93,7 +96,6 @@ def _apply_changes(request, old_status, new_status):
         messages.info(request, _('Setting unchanged'))
 
 
-@login_required
 def manage(request):
     """Manage existing wikis and blogs."""
     sites = actions.run('ikiwiki', ['get-sites']).split('\n')
@@ -105,7 +107,6 @@ def manage(request):
                              'sites': sites})
 
 
-@login_required
 def create(request):
     """Form to create a wiki or blog."""
     form = None
@@ -113,11 +114,11 @@ def create(request):
     if request.method == 'POST':
         form = IkiwikiCreateForm(request.POST, prefix='ikiwiki')
         if form.is_valid():
-            if form.cleaned_data['type'] == 'wiki':
+            if form.cleaned_data['site_type'] == 'wiki':
                 _create_wiki(request, form.cleaned_data['name'],
                              form.cleaned_data['admin_name'],
                              form.cleaned_data['admin_password'])
-            elif form.cleaned_data['type'] == 'blog':
+            elif form.cleaned_data['site_type'] == 'blog':
                 _create_blog(request, form.cleaned_data['name'],
                              form.cleaned_data['admin_name'],
                              form.cleaned_data['admin_password'])
@@ -156,7 +157,6 @@ def _create_blog(request, name, admin_name, admin_password):
         messages.error(request, _('Could not create blog: %s') % err)
 
 
-@login_required
 def delete(request, name):
     """Handle deleting wikis/blogs, showing a confirmation dialog first.
 

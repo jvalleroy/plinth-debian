@@ -86,17 +86,14 @@ def setup_server():
     except AttributeError:
         pass
 
-    # Add an extra server
-    server = _cpserver.Server()
-    server.socket_host = '127.0.0.1'
-    server.socket_port = 52854
-    server.subscribe()
-
     # Configure default server
     cherrypy.config.update(
         {'server.socket_host': cfg.host,
          'server.socket_port': cfg.port,
-         'server.thread_pool': 10})
+         'server.thread_pool': 10,
+         # Avoid stating files once per second in production
+         'engine.autoreload.on': cfg.debug,
+        })
 
     application = django.core.wsgi.get_wsgi_application()
     cherrypy.tree.graft(application, cfg.server_dir)
@@ -191,6 +188,7 @@ def configure_django():
                     'django.contrib.auth',
                     'django.contrib.contenttypes',
                     'django.contrib.messages',
+                    'stronghold',
                     'plinth']
     applications += module_loader.get_modules_to_load()
     sessions_directory = os.path.join(cfg.data_dir, 'sessions')
@@ -220,6 +218,7 @@ def configure_django():
             'django.contrib.auth.middleware.AuthenticationMiddleware',
             'django.contrib.messages.middleware.MessageMiddleware',
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
+            'stronghold.middleware.LoginRequiredMiddleware',
             'plinth.modules.first_boot.middleware.FirstBootMiddleware',
         ),
         ROOT_URLCONF='plinth.urls',
@@ -227,6 +226,7 @@ def configure_django():
         SESSION_ENGINE='django.contrib.sessions.backends.file',
         SESSION_FILE_PATH=sessions_directory,
         STATIC_URL='/'.join([cfg.server_dir, 'static/']).replace('//', '/'),
+        STRONGHOLD_PUBLIC_NAMED_URLS=('users:login', 'users:logout'),
         TEMPLATE_CONTEXT_PROCESSORS=context_processors,
         USE_X_FORWARDED_HOST=bool(cfg.use_x_forwarded_host))
     django.setup()
