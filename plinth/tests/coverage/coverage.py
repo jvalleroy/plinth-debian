@@ -26,20 +26,21 @@
 Support for integration of code test coverage analysis with setuptools.
 """
 
+import coverage
 import glob
 import setuptools
 import shutil
 import time
-import unittest
-
-from plinth import tests
 
 
 # Project directories with testable source code
 SOURCE_DIRS = ['plinth'] + glob.glob('plinth/modules/*')
 
 # Files to exclude from coverage analysis and reporting
-FILES_TO_OMIT = ['plinth/tests/*.py']
+FILES_TO_OMIT = [
+    'plinth/tests/*.py',
+    'plinth/modules/*/tests/*.py'
+]
 
 # Location of coverage HTML report files
 COVERAGE_REPORT_DIR = 'plinth/tests/coverage/report'
@@ -75,25 +76,17 @@ class CoverageCommand(setuptools.Command):
         # Erase any existing HTML report files
         try:
             shutil.rmtree(COVERAGE_REPORT_DIR, True)
-        except:
+        except Exception:
             pass
 
-        # Initialize a test suite for one or all modules
-        if self.test_module is None:
-            test_suite = tests.TEST_SUITE
-        else:
-            test = unittest.defaultTestLoader.loadTestsFromNames(
-                [self.test_module])
-            test_suite = unittest.TestSuite(test)
-
         # Run the coverage analysis
-        runner = unittest.TextTestRunner()
-        import coverage
         cov = coverage.coverage(auto_data=True, config_file=True,
                                 source=SOURCE_DIRS, omit=FILES_TO_OMIT)
         cov.erase()     # Erase existing coverage data file
         cov.start()
-        runner.run(test_suite)
+        # Invoke the Django test setup and test runner logic
+        from plinth.tests.runtests import run_tests
+        run_tests(pattern=self.test_module, return_to_caller=True)
         cov.stop()
 
         # Generate an HTML report

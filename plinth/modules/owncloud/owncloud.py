@@ -15,9 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+"""
+Plinth module for configuring ownCloud.
+"""
+
 from django import forms
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from gettext import gettext as _
 
@@ -38,7 +41,8 @@ class OwnCloudForm(forms.Form):  # pylint: disable-msg=W0232
 def init():
     """Initialize the ownCloud module"""
     menu = cfg.main_menu.get('apps:index')
-    menu.add_urlname('ownCloud', 'glyphicon-picture', 'owncloud:index', 35)
+    menu.add_urlname(_('File Hosting (ownCloud)'), 'glyphicon-picture',
+                     'owncloud:index', 700)
 
     status = get_status()
 
@@ -47,7 +51,6 @@ def init():
                               is_external=True, enabled=status['enabled'])
 
 
-@login_required
 @package.required(['postgresql', 'php5-pgsql', 'owncloud'])
 def index(request):
     """Serve the ownCloud configuration page"""

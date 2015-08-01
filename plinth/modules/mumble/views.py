@@ -20,7 +20,6 @@ Plinth module for configuring Mumble Server
 """
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from gettext import gettext as _
 import logging
@@ -38,7 +37,6 @@ def on_install():
     mumble.service.notify_enabled(None, True)
 
 
-@login_required
 @package.required(['mumble-server'], on_install=on_install)
 def index(request):
     """Serve configuration page."""
@@ -64,16 +62,8 @@ def index(request):
 
 def get_status():
     """Get the current settings from server."""
-    output = actions.run('mumble', ['get-enabled'])
-    enabled = (output.strip() == 'yes')
-
-    output = actions.superuser_run('mumble', ['is-running'])
-    is_running = (output.strip() == 'yes')
-
-    status = {'enabled': enabled,
-              'is_running': is_running}
-
-    return status
+    return {'enabled': mumble.is_enabled(),
+            'is_running': mumble.is_running()}
 
 
 def _apply_changes(request, old_status, new_status):

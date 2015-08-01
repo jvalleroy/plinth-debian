@@ -22,6 +22,7 @@ Plinth module to configure Mumble server
 from gettext import gettext as _
 
 from plinth import actions
+from plinth import action_utils
 from plinth import cfg
 from plinth import service as service_module
 
@@ -35,12 +36,19 @@ def init():
     """Intialize the Mumble module."""
     menu = cfg.main_menu.get('apps:index')
     menu.add_urlname(_('Voice Chat (Mumble)'), 'glyphicon-headphones',
-                     'mumble:index', 50)
-
-    output = actions.run('mumble', ['get-enabled'])
-    enabled = (output.strip() == 'yes')
+                     'mumble:index', 900)
 
     global service
     service = service_module.Service(
         'mumble-plinth', _('Mumble Voice Chat Server'),
-        is_external=True, enabled=enabled)
+        is_external=True, enabled=is_enabled())
+
+
+def is_enabled():
+    """Return whether the module is enabled."""
+    return action_utils.service_is_enabled('mumble-server')
+
+
+def is_running():
+    """Return whether the service is running."""
+    return action_utils.service_is_running('mumble-server')

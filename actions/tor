@@ -22,11 +22,16 @@ Configuration helper for the Tor service
 """
 
 import argparse
+import codecs
 import os
-import subprocess
+import re
+import socket
 
-SERVICE_CONFIG = '/etc/default/tor'
+from plinth import action_utils
+
 TOR_CONFIG = '/etc/tor/torrc'
+TOR_STATE_FILE = '/var/lib/tor/state'
+TOR_AUTH_COOKIE = '/var/run/tor/control.authcookie'
 
 
 def parse_arguments():
@@ -34,55 +39,24 @@ def parse_arguments():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest='subcommand', help='Sub command')
 
-    # Get whether Tor is running
-    subparsers.add_parser('is-running', help='Get whether Tor is running')
-
-    # Start Tor and enable service
-    subparsers.add_parser('start', help='Start Tor service')
-
-    # Stop Tor and disable service
-    subparsers.add_parser('stop', help='Stop Tor service')
-
-    # Get currently configured Tor hidden service information
+    subparsers.add_parser('enable', help='Enable and start Tor service')
+    subparsers.add_parser('disable', help='Disable and stop Tor service')
     subparsers.add_parser('get-hs', help='Get hidden service')
-
-    # Enable Tor hidden service
     subparsers.add_parser('enable-hs', help='Enable hidden service')
-
-    # Disable Tor hidden service
     subparsers.add_parser('disable-hs', help='Disable hidden service')
+    subparsers.add_parser('get-ports', help='Get list of Tor ports')
 
     return parser.parse_args()
 
 
-def subcommand_is_running(_):
-    """Get whether Tor is running"""
-    try:
-        output = subprocess.check_output(['service', 'tor', 'status'])
-    except subprocess.CalledProcessError:
-        # If Tor is not running we get a status code != 0 and a
-        # CalledProcessError
-        print('no')
-    else:
-        running = False
-        for line in output.decode().split('\n'):
-            if 'Active' in line and 'running' in line:
-                running = True
-                break
-
-        print('yes' if running else 'no')
+def subcommand_enable(_):
+    """Enable and start the service."""
+    action_utils.service_enable('tor')
 
 
-def subcommand_start(_):
-    """Start Tor and enable it as service"""
-    set_tor_service(enable=True)
-    subprocess.call(['service', 'tor', 'start'])
-
-
-def subcommand_stop(_):
-    """Stop Tor and disable it as service"""
-    set_tor_service(enable=False)
-    subprocess.call(['service', 'tor', 'stop'])
+def subcommand_disable(_):
+    """Disable and stop the service."""
+    action_utils.service_disable('tor')
 
 
 def subcommand_get_hs(_):
@@ -107,7 +81,7 @@ def subcommand_enable_hs(_):
     with open(TOR_CONFIG, 'w') as conffile:
         conffile.writelines(lines)
 
-    subprocess.call(['service', 'tor', 'restart'])
+    action_utils.service_restart('tor')
 
 
 def subcommand_disable_hs(_):
@@ -142,22 +116,7 @@ def subcommand_disable_hs(_):
     with open(TOR_CONFIG, 'w') as conffile:
         conffile.writelines(filtered_lines)
 
-    subprocess.call(['service', 'tor', 'restart'])
-
-
-def set_tor_service(enable):
-    """Enable/disable Tor service; enable: boolean"""
-    newline = 'RUN_DAEMON="yes"\n' if enable else 'RUN_DAEMON="no"\n'
-
-    with open(SERVICE_CONFIG, 'r') as file:
-        lines = file.readlines()
-        for index, line in enumerate(lines):
-            if line.startswith('RUN_DAEMON'):
-                lines[index] = newline
-                break
-
-    with open(SERVICE_CONFIG, 'w') as file:
-        file.writelines(lines)
+    action_utils.service_restart('tor')
 
 
 def get_hidden_service():
@@ -182,6 +141,42 @@ def get_hidden_service():
         return 'error'
 
     return hs_hostname + ' ' + ','.join(hs_ports)
+
+
+def subcommand_get_ports(_):
+    """Return a list of running Tor ports."""
+    try:
+        print('orport', _get_orport())
+    except Exception:
+        pass
+
+    with open(TOR_STATE_FILE, 'r') as state_file:
+        for line in state_file:
+            matches = re.match(r'^\s*TransportProxy\s+(\S*)\s+\S+:(\d+)\s*$',
+                               line)
+            if matches:
+                print('{0} {1}'.format(matches.group(1), matches.group(2)))
+
+
+def _get_orport():
+    """Return the ORPort by querying running instance."""
+    cookie = open(TOR_AUTH_COOKIE, 'rb').read()
+    cookie = codecs.encode(cookie, 'hex').decode()
+
+    commands = '''AUTHENTICATE {cookie}
+GETINFO net/listeners/or
+QUIT
+'''.format(cookie=cookie)
+
+    tor_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    tor_socket.connect(('localhost', 9051))
+    tor_socket.send(commands.encode())
+    response = tor_socket.recv(1024)
+    tor_socket.close()
+
+    line = response.split(b'\r\n')[1].decode()
+    matches = re.match(r'.*="[^:]+:(\d+)"', line)
+    return matches.group(1)
 
 
 def main():

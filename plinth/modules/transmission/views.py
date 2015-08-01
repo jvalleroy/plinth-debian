@@ -20,7 +20,6 @@ Plinth module for configuring Transmission Server
 """
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.template.response import TemplateResponse
 from gettext import gettext as _
 import json
@@ -42,7 +41,6 @@ def on_install():
     actions.superuser_run('transmission', ['enable'])
 
 
-@login_required
 @package.required(['transmission-daemon'], on_install=on_install)
 def index(request):
     """Serve configuration page."""
@@ -68,18 +66,12 @@ def index(request):
 
 def get_status():
     """Get the current settings from Transmission server."""
-    output = actions.run('transmission', ['get-enabled'])
-    enabled = (output.strip() == 'yes')
-
-    output = actions.superuser_run('transmission', ['is-running'])
-    is_running = (output.strip() == 'yes')
-
     configuration = open(TRANSMISSION_CONFIG, 'r').read()
     status = json.loads(configuration)
     status = {key.translate(str.maketrans({'-': '_'})): value
               for key, value in status.items()}
-    status['enabled'] = enabled
-    status['is_running'] = is_running
+    status['enabled'] = transmission.is_enabled()
+    status['is_running'] = transmission.is_running()
     status['hostname'] = socket.gethostname()
 
     return status

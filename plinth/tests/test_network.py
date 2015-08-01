@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 #
 # This file is part of Plinth.
 #
@@ -15,6 +14,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
+"""
+Test module for network configuration utilities.
+"""
 
 import os
 import unittest
@@ -33,15 +36,13 @@ class TestNetwork(unittest.TestCase):
 
     @classmethod
     def setUp(cls):
-        connection = network.add_ethernet_connection(
-            'plinth_test_eth', 'internal',
+        cls.ethernet_uuid = network.add_ethernet_connection(
+            'plinth_test_eth', 'eth0', 'internal',
             'auto', '')
-        cls.ethernet_uuid = connection['connection']['uuid']
-        connection = network.add_wifi_connection(
-            'plinth_test_wifi', 'external',
+        cls.wifi_uuid = network.add_wifi_connection(
+            'plinth_test_wifi', 'wlan0', 'external',
             'plinthtestwifi', 'adhoc', 'open', '',
             'auto', '')
-        cls.wifi_uuid = connection['connection']['uuid']
 
     @classmethod
     def tearDown(cls):
@@ -61,11 +62,11 @@ class TestNetwork(unittest.TestCase):
         """Check that we can get a connection by name."""
         connection = network.get_connection(self.ethernet_uuid)
         self.assertEqual(
-            connection.GetSettings()['connection']['id'], 'plinth_test_eth')
+            connection.get_id(), 'plinth_test_eth')
 
         connection = network.get_connection(self.wifi_uuid)
         self.assertEqual(
-            connection.GetSettings()['connection']['id'], 'plinth_test_wifi')
+            connection.get_id(), 'plinth_test_wifi')
 
         self.assertRaises(network.ConnectionNotFound, network.get_connection,
                           'x-invalid-network-id')
@@ -75,39 +76,73 @@ class TestNetwork(unittest.TestCase):
         """Check that we can update an ethernet connection."""
         connection = network.get_connection(self.ethernet_uuid)
         network.edit_ethernet_connection(
-            connection, 'plinth_test_eth_new', 'external', 'manual',
-            '169.254.0.1')
+            connection, 'plinth_test_eth_new', 'eth0', 'external', 'auto', '')
 
         connection = network.get_connection(self.ethernet_uuid)
-        settings = connection.GetSettings()
-        self.assertEqual(settings['connection']['id'], 'plinth_test_eth_new')
-        self.assertEqual(settings['connection']['zone'], 'external')
-        self.assertEqual(settings['ipv4']['method'], 'manual')
-        self.assertEqual(settings['ipv4']['addresses'],
-                         [['169.254.0.1', 24, '0.0.0.0']])
+        self.assertEqual(connection.get_id(), 'plinth_test_eth_new')
+
+        settings_connection = connection.get_setting_connection()
+        self.assertEqual(settings_connection.get_zone(), 'external')
+
+        settings_ipv4 = connection.get_setting_ip4_config()
+        self.assertEqual(settings_ipv4.get_method(), 'auto')
 
     @unittest.skipUnless(euid == 0, 'Needs to be root')
     def test_edit_wifi_connection(self):
         """Check that we can update a wifi connection."""
         connection = network.get_connection(self.wifi_uuid)
         network.edit_wifi_connection(
-            connection, 'plinth_test_wifi_new', 'external',
+            connection, 'plinth_test_wifi_new', 'wlan0', 'external',
             'plinthtestwifi2', 'infrastructure', 'wpa', 'secretpassword',
             'auto', '')
 
         connection = network.get_connection(self.wifi_uuid)
-        settings = connection.GetSettings()
-        self.assertEqual(settings['connection']['id'], 'plinth_test_wifi_new')
-        self.assertEqual(settings['connection']['zone'], 'external')
-        self.assertEqual(settings['802-11-wireless']['ssid'],
-                         'plinthtestwifi2')
-        self.assertEqual(settings['802-11-wireless']['mode'], 'infrastructure')
-        self.assertEqual(settings['802-11-wireless-security']['key-mgmt'],
-                         'wpa-psk')
+
+        self.assertEqual(connection.get_id(), 'plinth_test_wifi_new')
+
+        settings_connection = connection.get_setting_connection()
+        self.assertEqual(settings_connection.get_zone(), 'external')
+
+        settings_wireless = connection.get_setting_wireless()
+        self.assertEqual(settings_wireless.get_ssid().get_data(),
+                         b'plinthtestwifi2')
+        self.assertEqual(settings_wireless.get_mode(), 'infrastructure')
+
+        wifi_sec = connection.get_setting_wireless_security()
+        self.assertEqual(wifi_sec.get_key_mgmt(), 'wpa-psk')
+
+        secrets = connection.get_secrets('802-11-wireless-security')
         self.assertEqual(
-            connection.GetSecrets()['802-11-wireless-security']['psk'],
+            secrets['802-11-wireless-security']['psk'],
             'secretpassword')
 
+    @unittest.skipUnless(euid == 0, 'Needs to be root')
+    def test_ethernet_manual_ipv4_address(self):
+        """Check that we can manually set IPv4 address on ethernet."""
+        connection = network.get_connection(self.ethernet_uuid)
+        network.edit_ethernet_connection(
+            connection, 'plinth_test_eth_new', 'eth0', 'external', 'manual',
+            '169.254.0.1')
 
-if __name__ == "__main__":
-    unittest.main()
+        connection = network.get_connection(self.ethernet_uuid)
+        settings_ipv4 = connection.get_setting_ip4_config()
+        self.assertEqual(settings_ipv4.get_method(), 'manual')
+
+        address = settings_ipv4.get_address(0)
+        self.assertEqual(address.get_address(), '169.254.0.1')
+
+    @unittest.skipUnless(euid == 0, 'Needs to be root')
+    def test_wifi_manual_ipv4_address(self):
+        """Check that we can manually set IPv4 address on wifi."""
+        connection = network.get_connection(self.wifi_uuid)
+        network.edit_wifi_connection(
+            connection, 'plinth_test_wifi_new', 'wlan0', 'external',
+            'plinthtestwifi', 'adhoc', 'open', '',
+            'manual', '169.254.0.2')
+
+        connection = network.get_connection(self.wifi_uuid)
+        settings_ipv4 = connection.get_setting_ip4_config()
+        self.assertEqual(settings_ipv4.get_method(), 'manual')
+
+        address = settings_ipv4.get_address(0)
+        self.assertEqual(address.get_address(), '169.254.0.2')
