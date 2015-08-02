@@ -8,8 +8,9 @@ plinth (0.5-1) UNRELEASED; urgency=low
   * Remove patches for python-networkmanager (obsolete) and ikiwiki
     (upstreamed).
   * Add patch to skip privileged actions test while building.
+  * Add some build-depends needed for tests.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sun, 02 Aug 2015 11:23:39 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Sun, 02 Aug 2015 13:11:34 -0400
 
 plinth (0.4.5-1) UNRELEASED; urgency=low
 

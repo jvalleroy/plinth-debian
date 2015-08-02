@@ -11,14 +11,17 @@ Uploaders:
 Build-Depends: debhelper (>= 9)
  , dh-python
  , dh-systemd
+ , gir1.2-packagekitglib-1.0
  , libjs-bootstrap
  , pandoc
  , pandoc-data | pandoc (<= 1.11.1-3)
  , python3-all
+ , python3-augeas
  , python3-bootstrapform
  , python3-cherrypy3
  , python3-coverage
  , python3-django (>= 1.7)
+ , python3-django-stronghold
  , python3-gi
  , python3-setuptools
  , python3-setuptools-git
