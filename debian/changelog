@@ -4,8 +4,9 @@ plinth (0.5-1) UNRELEASED; urgency=low
   * New upstream version 0.5.
   * Add augeas-tools, gir1.2-glib-2.0, gir1.2-networkmanager-1.0, ldapscripts,
     python3-augeas, and python3-django-stronghold as dependencies.
+  * Disable "packages" module when upgrading.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sun, 02 Aug 2015 09:21:18 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Sun, 02 Aug 2015 10:32:41 -0400
 
 plinth (0.4.5-1) UNRELEASED; urgency=low
 
