@@ -1,2 +1,3 @@
 0002-remove-upstream-install-doc.patch
 0003-enable-javascript-common-conf.patch
+0004-disable-privileged-actions-test.patch

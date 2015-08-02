@@ -1,0 +1,12 @@
+Index: plinth/plinth/tests/test_actions.py
+===================================================================
+--- plinth.orig/plinth/tests/test_actions.py
++++ plinth/plinth/tests/test_actions.py
+@@ -33,6 +33,7 @@ root_dir = os.path.abspath(os.path.join(
+ cfg.actions_dir = os.path.join(root_dir, 'actions')
+ 
+ 
++@unittest.skip('Skipping privileged actions tests')
+ class TestPrivileged(unittest.TestCase):
+     """Verify that privileged actions perform as expected.
+ 
