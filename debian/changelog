@@ -1,3 +1,10 @@
+plinth (0.6-1) UNRELEASED; urgency=low
+
+  * New upstream version 0.6.
+  * Drop obsolete documentation patch.
+
+ -- James Valleroy <jvalleroy@mailbox.org>  Wed, 07 Oct 2015 18:58:33 -0400
+
 plinth (0.5-1) unstable; urgency=low
 
   [ Nick Daly ]
