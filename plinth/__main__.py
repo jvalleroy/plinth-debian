@@ -25,16 +25,18 @@ import importlib
 import logging
 import os
 import stat
+import sys
 
 import cherrypy
-from cherrypy import _cpserver
 from cherrypy.process.plugins import Daemonizer
 
 from plinth import cfg
 from plinth import module_loader
 from plinth import service
 
-LOGGER = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
+
+arguments = None
 
 
 def parse_arguments():
@@ -55,12 +57,16 @@ def parse_arguments():
     parser.add_argument(
         '--no-daemon', action='store_true', default=cfg.no_daemon,
         help='do not start as a daemon')
+    parser.add_argument(
+        '--diagnose', action='store_true', default=False,
+        help='run diagnostic tests and exit')
 
-    args = parser.parse_args()
-    cfg.pidfile = args.pidfile
-    cfg.server_dir = args.server_dir
-    cfg.debug = args.debug
-    cfg.no_daemon = args.no_daemon
+    global arguments
+    arguments = parser.parse_args()
+    cfg.pidfile = arguments.pidfile
+    cfg.server_dir = arguments.server_dir
+    cfg.debug = arguments.debug
+    cfg.no_daemon = arguments.no_daemon
 
 
 def setup_logging():
@@ -76,7 +82,7 @@ def setup_logging():
 
 def setup_server():
     """Setup CherryPy server"""
-    LOGGER.info('Setting up CherryPy server')
+    logger.info('Setting up CherryPy server')
 
     # Set the PID file path
     try:
@@ -104,7 +110,7 @@ def setup_server():
               'tools.staticdir.on': True,
               'tools.staticdir.dir': '.'}}
     cherrypy.tree.mount(None, django.conf.settings.STATIC_URL, config)
-    LOGGER.debug('Serving static directory %s on %s', static_dir,
+    logger.debug('Serving static directory %s on %s', static_dir,
                  django.conf.settings.STATIC_URL)
 
     js_dir = '/usr/share/javascript'
@@ -114,7 +120,17 @@ def setup_server():
               'tools.staticdir.on': True,
               'tools.staticdir.dir': '.'}}
     cherrypy.tree.mount(None, js_url, config)
-    LOGGER.debug('Serving javascript directory %s on %s', js_dir, js_url)
+    logger.debug('Serving javascript directory %s on %s', js_dir, js_url)
+
+    manual_dir = os.path.join(cfg.doc_dir, 'images')
+    manual_url = '/'.join([cfg.server_dir, 'help/manual/images']) \
+        .replace('//', '/')
+    config = {
+        '/': {'tools.staticdir.root': manual_dir,
+              'tools.staticdir.on': True,
+              'tools.staticdir.dir': '.'}}
+    cherrypy.tree.mount(None, manual_url, config)
+    logger.debug('Serving manual images %s on %s', manual_dir, manual_url)
 
     for module_import_path in module_loader.loaded_modules:
         module = importlib.import_module(module_import_path)
@@ -130,7 +146,7 @@ def setup_server():
                   'tools.staticdir.dir': '.'}}
         urlprefix = "%s%s" % (django.conf.settings.STATIC_URL, module_name)
         cherrypy.tree.mount(None, urlprefix, config)
-        LOGGER.debug('Serving static directory %s on %s', static_dir,
+        logger.debug('Serving static directory %s on %s', static_dir,
                      urlprefix)
 
     if not cfg.no_daemon:
@@ -228,14 +244,34 @@ def configure_django():
         STATIC_URL='/'.join([cfg.server_dir, 'static/']).replace('//', '/'),
         STRONGHOLD_PUBLIC_NAMED_URLS=('users:login', 'users:logout'),
         TEMPLATE_CONTEXT_PROCESSORS=context_processors,
-        USE_X_FORWARDED_HOST=bool(cfg.use_x_forwarded_host))
+        USE_X_FORWARDED_HOST=cfg.use_x_forwarded_host)
     django.setup()
 
-    LOGGER.info('Configured Django with applications - %s', applications)
+    logger.info('Configured Django with applications - %s', applications)
 
-    LOGGER.info('Creating or adding new tables to data file')
+    logger.info('Creating or adding new tables to data file')
     django.core.management.call_command('syncdb', interactive=False)
     os.chmod(cfg.store_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP)
+
+
+def run_diagnostics_and_exit():
+    """Run diagostics on all modules and exit."""
+    module = importlib.import_module('plinth.modules.diagnostics.diagnostics')
+    error_code = 0
+    try:
+        module.run_on_all_modules()
+    except Exception as exception:
+        logger.exception('Error running diagnostics - %s', exception)
+        error_code = 2
+
+    for module, results in module.current_results['results'].items():
+        for test, result_value in results:
+            print('{result_value}: {module}: {test}'.format(
+                result_value=result_value, test=test, module=module))
+            if result_value != 'passed':
+                error_code = 1
+
+    sys.exit(error_code)
 
 
 def main():
@@ -250,10 +286,13 @@ def main():
 
     configure_django()
 
-    LOGGER.info('Configuration loaded from file - %s', cfg.CONFIG_FILE)
-    LOGGER.info('Script prefix - %s', cfg.server_dir)
+    logger.info('Configuration loaded from file - %s', cfg.CONFIG_FILE)
+    logger.info('Script prefix - %s', cfg.server_dir)
 
     module_loader.load_modules()
+
+    if arguments.diagnose:
+        run_diagnostics_and_exit()
 
     setup_server()
 

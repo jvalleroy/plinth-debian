@@ -28,6 +28,8 @@ import re
 import socket
 
 from plinth import action_utils
+from plinth.modules.tor.tor import get_augeas, get_real_apt_uri_path, \
+    iter_apt_uris, APT_TOR_PREFIX
 
 TOR_CONFIG = '/etc/tor/torrc'
 TOR_STATE_FILE = '/var/lib/tor/state'
@@ -39,14 +41,54 @@ def parse_arguments():
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest='subcommand', help='Sub command')
 
+    subparsers.add_parser('setup', help='Setup Tor configuration')
     subparsers.add_parser('enable', help='Enable and start Tor service')
     subparsers.add_parser('disable', help='Disable and stop Tor service')
     subparsers.add_parser('get-hs', help='Get hidden service')
     subparsers.add_parser('enable-hs', help='Enable hidden service')
     subparsers.add_parser('disable-hs', help='Disable hidden service')
     subparsers.add_parser('get-ports', help='Get list of Tor ports')
+    subparsers.add_parser('enable-apt-transport-tor',
+                          help='Enable package download over Tor')
+    subparsers.add_parser('disable-apt-transport-tor',
+                          help='Disable package download over Tor')
 
     return parser.parse_args()
+
+
+def subcommand_setup(_):
+    """Setup Tor configuration after installing it."""
+    # XXX: Performing this as a post-install step instead of
+    # pre-install setup for now.  Creating a configuration before hand
+    # leads dpkg to ask question about configuration overwrite which
+    # makes aptcc backend of packagekit to wait forever even with
+    # interactive=False.
+    lines = """
+# Run as non-exit bridge relay
+SocksPort [::]:9050
+SocksPort 0.0.0.0:9050
+ORPort auto
+ControlPort 9051
+BridgeRelay 1
+Exitpolicy reject *:*
+Exitpolicy reject6 *:*
+
+# Enable obfsproxy
+ServerTransportPlugin obfs3,scramblesuit exec /usr/bin/obfsproxy managed
+ExtORPort auto
+
+# Enable transparent proxy
+VirtualAddrNetworkIPv4 10.192.0.0/10
+AutomapHostsOnResolve 1
+TransPort 127.0.0.1:9040
+TransPort [::1]:9040
+DNSPort 127.0.0.1:9053
+DNSPort [::1]:9053
+"""
+    with open(TOR_CONFIG, 'w') as conffile:
+        conffile.writelines(lines)
+
+    action_utils.service_restart('tor')
 
 
 def subcommand_enable(_):
@@ -56,6 +98,7 @@ def subcommand_enable(_):
 
 def subcommand_disable(_):
     """Disable and stop the service."""
+    subcommand_disable_apt_transport_tor(_)
     action_utils.service_disable('tor')
 
 
@@ -156,6 +199,41 @@ def subcommand_get_ports(_):
                                line)
             if matches:
                 print('{0} {1}'.format(matches.group(1), matches.group(2)))
+
+
+def subcommand_enable_apt_transport_tor(_):
+    """Enable package download over Tor."""
+    try:
+        aug = get_augeas()
+    except Exception:
+        # If there was an error, don't proceed
+        print('Error: Unable to understand sources format.')
+        exit(1)
+
+    for uri_path in iter_apt_uris(aug):
+        uri_path = get_real_apt_uri_path(aug, uri_path)
+        uri = aug.get(uri_path)
+        if uri.startswith('http://') or uri.startswith('https://'):
+            aug.set(uri_path, APT_TOR_PREFIX + uri)
+
+    aug.save()
+
+
+def subcommand_disable_apt_transport_tor(_):
+    """Disable package download over Tor."""
+    try:
+        aug = get_augeas()
+    except Exception:
+        # Disable what we can, so APT is not unusable.
+        pass
+
+    for uri_path in iter_apt_uris(aug):
+        uri_path = get_real_apt_uri_path(aug, uri_path)
+        uri = aug.get(uri_path)
+        if uri.startswith(APT_TOR_PREFIX):
+            aug.set(uri_path, uri[len(APT_TOR_PREFIX):])
+
+    aug.save()
 
 
 def _get_orport():
