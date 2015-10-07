@@ -2,8 +2,10 @@ plinth (0.6-1) UNRELEASED; urgency=low
 
   * New upstream version 0.6.
   * Drop obsolete documentation patch.
+  * Add dblatex and xmlto as build dependencies, for manual. Drop pandoc.
+  * Add network-manager, ppp, pppoe, and python3-psutil as dependencies.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Wed, 07 Oct 2015 18:58:33 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Wed, 07 Oct 2015 19:04:38 -0400
 
 plinth (0.5-1) unstable; urgency=low
 
