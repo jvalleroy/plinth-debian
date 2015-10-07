@@ -34,10 +34,15 @@ from plinth.modules import xmpp
 logger = logging.getLogger(__name__)
 
 
+def get_domainname():
+    """Return the domainname"""
+    fqdn = socket.getfqdn()
+    return '.'.join(fqdn.split('.')[1:])
+
+
 def before_install():
     """Preseed debconf values before the packages are installed."""
-    fqdn = socket.getfqdn()
-    domainname = '.'.join(fqdn.split('.')[1:])
+    domainname = get_domainname()
     logger.info('XMPP service domainname - %s', domainname)
     actions.superuser_run('xmpp', ['pre-install', '--domainname', domainname])
 
@@ -45,6 +50,7 @@ def before_install():
 def on_install():
     """Setup jwchat apache conf"""
     actions.superuser_run('xmpp', ['setup'])
+    xmpp.service.notify_enabled(None, True)
 
 
 @package.required(['jwchat', 'ejabberd'],
@@ -74,7 +80,8 @@ def index(request):
 def get_status():
     """Get the current settings."""
     status = {'enabled': xmpp.is_enabled(),
-              'is_running': xmpp.is_running()}
+              'is_running': xmpp.is_running(),
+              'domainname': get_domainname()}
 
     return status
 

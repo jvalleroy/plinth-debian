@@ -39,6 +39,7 @@ TRANSMISSION_CONFIG = '/etc/transmission-daemon/settings.json'
 def on_install():
     """Enable transmission as soon as it is installed."""
     actions.superuser_run('transmission', ['enable'])
+    transmission.service.notify_enabled(None, True)
 
 
 @package.required(['transmission-daemon'], on_install=on_install)
@@ -96,8 +97,8 @@ def _apply_changes(request, old_status, new_status):
             'rpc-password': new_status['rpc_password'],
         }
 
-        actions.superuser_run('transmission', ['merge-configuration',
-                                               json.dumps(new_configuration)])
+        actions.superuser_run('transmission', ['merge-configuration'],
+                              input=json.dumps(new_configuration).encode())
         modified = True
 
     if modified:

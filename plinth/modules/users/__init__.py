@@ -20,10 +20,12 @@ Plinth module to manage users
 """
 
 from gettext import gettext as _
+import json
+import subprocess
 
 from plinth import cfg
-
-__all__ = ['init']
+from plinth import actions
+from plinth import action_utils
 
 depends = ['plinth.modules.system']
 
@@ -33,3 +35,34 @@ def init():
     menu = cfg.main_menu.get('system:index')
     menu.add_urlname(_('Users and Groups'), 'glyphicon-user', 'users:index',
                      15)
+
+
+def diagnose():
+    """Run diagnostics and return the results."""
+    results = []
+
+    results.append(action_utils.diagnose_port_listening(389, 'tcp4'))
+    results.append(action_utils.diagnose_port_listening(389, 'tcp6'))
+
+    results.append(_diagnose_ldap_entry('dc=thisbox'))
+    results.append(_diagnose_ldap_entry('ou=people'))
+    results.append(_diagnose_ldap_entry('ou=groups'))
+
+    return results
+
+
+def _diagnose_ldap_entry(search_item):
+    """Diagnose that an LDAP entry exists."""
+    result = 'failed'
+
+    try:
+        subprocess.check_output(['ldapsearch', '-x', '-b', 'dc=thisbox',
+                                 search_item])
+        result = 'passed'
+    except subprocess.CalledProcessError:
+        pass
+
+    return [_('Check LDAP entry "{search_item}"')
+            .format(search_item=search_item), result]
+
+

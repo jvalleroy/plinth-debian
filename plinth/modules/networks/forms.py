@@ -73,8 +73,34 @@ available over this interfaces. Select Internal only for trusted networks.'),
         self.fields['interface'].choices = choices
 
 
+class AddPPPoEForm(forms.Form):
+    """Form to create a new PPPoE connection."""
+    name = forms.CharField(label=_('Connection Name'))
+    interface = forms.ChoiceField(
+        label=_('Physical Interface'),
+        choices=(),
+        help_text=_('The network device that this connection should be bound '
+                    'to.'))
+    zone = forms.ChoiceField(
+        label=_('Firewall Zone'),
+        help_text=_('The firewall zone will control which services are \
+available over this interfaces. Select Internal only for trusted networks.'),
+        choices=[('external', 'External'), ('internal', 'Internal')])
+    username = forms.CharField(label=_('Username'))
+    password = forms.CharField(label=_('Password'),
+                               widget=forms.PasswordInput(render_value=True))
+    show_password = forms.BooleanField(label=_('Show password'),
+                                       required=False)
+
+    def __init__(self, *args, **kwargs):
+        """Initialize the form, populate interface choices."""
+        super(AddPPPoEForm, self).__init__(*args, **kwargs)
+        choices = _get_interface_choices(nm.DeviceType.ETHERNET)
+        self.fields['interface'].choices = choices
+
+
 class AddWifiForm(forms.Form):
-    """Form to create a new wifi connection."""
+    """Form to create a new Wi-Fi connection."""
     name = forms.CharField(label=_('Connection Name'))
     interface = forms.ChoiceField(
         label=_('Physical interface'),
