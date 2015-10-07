@@ -9,9 +9,9 @@ override_dh_installinit:
 	dh_installinit --onlyscripts
 
 new-upstream:
-	date=$$(date +%Y%m%d); \
-	tgz=../plinth_0.5.orig.tar.gz; \
-	wget -O $$tgz https://github.com/freedombox/Plinth/archive/v0.5.tar.gz; \
+	version=0.6; \
+	tgz=../plinth_$$version.orig.tar.gz; \
+	vcstag=v$$version ; \
+	wget -O $$tgz https://github.com/freedombox/Plinth/archive/$$vcstag.tar.gz; \
 	git fetch https://github.com/freedombox/Plinth.git ; \
-	vcstag=v0.5 ; \
 	echo gbp import-orig --pristine-tar --upstream-vcs-tag=$$vcstag $$tgz
