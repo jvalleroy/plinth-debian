@@ -7,8 +7,9 @@ plinth (0.6-1) UNRELEASED; urgency=low
   * Remove old TODO from docs.
   * Add patch to workaround django 1.7 issue with python 3.5.
   * Add patch to fix failing plinth config test.
+  * Add gir1.2-networkmanager-1.0 and python3-psutil also as build-depends.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Thu, 08 Oct 2015 17:35:44 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Thu, 08 Oct 2015 18:47:17 -0400
 
 plinth (0.5-1) unstable; urgency=low
 

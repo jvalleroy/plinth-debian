@@ -12,6 +12,7 @@ Build-Depends: debhelper (>= 9)
  , dblatex
  , dh-python
  , dh-systemd
+ , gir1.2-networkmanager-1.0
  , gir1.2-packagekitglib-1.0
  , libjs-bootstrap
  , python3-all
@@ -22,6 +23,7 @@ Build-Depends: debhelper (>= 9)
  , python3-django (>= 1.7)
  , python3-django-stronghold
  , python3-gi
+ , python3-psutil
  , python3-setuptools
  , python3-setuptools-git
  , python3-yaml
