@@ -5,8 +5,9 @@ plinth (0.6-1) UNRELEASED; urgency=low
   * Add dblatex and xmlto as build dependencies, for manual. Drop pandoc.
   * Add network-manager, ppp, pppoe, and python3-psutil as dependencies.
   * Remove old TODO from docs.
+  * Add patch to workaround django 1.7 issue with python 3.5.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Wed, 07 Oct 2015 21:38:35 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Thu, 08 Oct 2015 17:34:14 -0400
 
 plinth (0.5-1) unstable; urgency=low
 

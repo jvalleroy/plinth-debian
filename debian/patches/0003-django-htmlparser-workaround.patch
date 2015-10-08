@@ -1,0 +1,16 @@
+--- a/plinth/tests/runtests.py
++++ b/plinth/tests/runtests.py
+@@ -23,6 +23,13 @@
+ import os
+ import sys
+ 
++# Workaround for django/python issue
++class HTMLParseError(Exception):
++    pass
++
++import html.parser
++html.parser.HTMLParseError = HTMLParseError
++
+ import django
+ from django.conf import settings
+ from django.test.utils import get_runner
