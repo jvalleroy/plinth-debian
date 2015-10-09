@@ -14,3 +14,19 @@
  import django
  from django.conf import settings
  from django.test.utils import get_runner
+--- a/plinth/__main__.py
++++ b/plinth/__main__.py
+@@ -16,6 +16,13 @@
+ # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #
+ 
++# Workaround for django/python issue
++class HTMLParseError(Exception):
++    pass
++
++import html.parser
++html.parser.HTMLParseError = HTMLParseError
++
+ import argparse
+ import django.conf
+ from django.contrib.messages import constants as message_constants
