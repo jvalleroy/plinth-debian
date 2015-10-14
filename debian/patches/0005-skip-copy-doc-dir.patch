@@ -1,0 +1,11 @@
+--- a/setup.py
++++ b/setup.py
+@@ -42,7 +42,7 @@
+ 
+ DIRECTORIES_TO_COPY = [
+     ('/usr/share/plinth/static', 'static'),
+-    ('/usr/share/doc/plinth', 'doc'),
++    #('/usr/share/doc/plinth', 'doc'),
+ ]
+ 
+ 
