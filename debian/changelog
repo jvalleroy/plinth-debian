@@ -1,5 +1,9 @@
-plinth (0.6-1) UNRELEASED; urgency=low
+plinth (0.6-1) unstable; urgency=low
 
+  [ Nick Daly ]
+  * Uploaded new version.
+
+  [ James Valleroy ]
   * New upstream version 0.6.
   * Drop obsolete documentation patch.
   * Add dblatex and xmlto as build dependencies, for manual. Drop pandoc.
@@ -10,7 +14,7 @@ plinth (0.6-1) UNRELEASED; urgency=low
   * Add gir1.2-networkmanager-1.0 and python3-psutil also as build-depends.
   * Cleanup installation documenation.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Thu, 08 Oct 2015 18:47:17 -0400
+ -- Nick Daly <Nick.M.Daly@gmail.com>  Fri, 16 Oct 2015 22:57:10 -0500
 
 plinth (0.5-1) unstable; urgency=low
 
