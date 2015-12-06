@@ -2,3 +2,4 @@
 0002-disable-privileged-actions-test.patch
 0003-django-htmlparser-workaround.patch
 0005-skip-copy-doc-dir.patch
+0006-disable-restore-module
