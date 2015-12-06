@@ -15,13 +15,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from gettext import gettext as _
+from django.utils.translation import ugettext_lazy as _
 import json
 import logging
 import os
 
 from plinth import actions
 from plinth import action_utils
+from plinth.signals import domain_added, domain_removed
 
 LOGGER = logging.getLogger(__name__)
 
@@ -49,9 +50,9 @@ PREDEFINED_SERVICES = {
                    'backend_port': '80',
                    'backend_host': BACKEND_HOST,
                    'secret': KITE_SECRET},
-        'label': _("Web Server (HTTP)"),
-        'help_text': _("Site will be available at "
-                       "<a href=\"http://{0}\">http://{0}</a>"),
+        'label': _('Web Server (HTTP)'),
+        'help_text': _('Site will be available at '
+                       '<a href=\"http://{0}\">http://{0}</a>'),
     },
     'https': {
         'params': {'protocol': 'https',
@@ -59,9 +60,9 @@ PREDEFINED_SERVICES = {
                    'backend_port': '443',
                    'backend_host': BACKEND_HOST,
                    'secret': KITE_SECRET},
-        'label': _("Web Server (HTTPS)"),
-        'help_text': _("Site will be available at "
-                       "<a href=\"https://{0}\">https://{0}</a>"),
+        'label': _('Web Server (HTTPS)'),
+        'help_text': _('Site will be available at '
+                       '<a href=\"https://{0}\">https://{0}</a>'),
     },
     'ssh': {
         'params': {'protocol': 'raw/22',
@@ -69,10 +70,10 @@ PREDEFINED_SERVICES = {
                    'backend_port': '22',
                    'backend_host': BACKEND_HOST,
                    'secret': KITE_SECRET},
-        'label': _("Secure Shell (SSH)"),
-        'help_text': _("See SSH client setup <a href=\""
-                       "https://pagekite.net/wiki/Howto/SshOverPageKite/\">"
-                       "instructions</a>")
+        'label': _('Secure Shell (SSH)'),
+        'help_text': _('See SSH client setup <a href="'
+                       'https://pagekite.net/wiki/Howto/SshOverPageKite/">'
+                       'instructions</a>')
     },
 }
 
@@ -91,15 +92,31 @@ def get_pagekite_config():
     status = {}
 
     # PageKite service enabled/disabled
-    # This assumes that if pagekite is running it's also enabled as a service
-    status['enabled'] = action_utils.service_is_running('pagekite')
+    # To enable PageKite two things are necessary:
+    # 1) pagekite not being disabled in /etc/pagekite.d/10_account.rc
+    # 2) the pagekite service running
+    is_disabled = (run(['is-disabled']).strip() == 'true')
+    service_running = action_utils.service_is_running('pagekite')
+    status['enabled'] = service_running and not is_disabled
 
     # PageKite kite details
     status.update(get_kite_details())
 
     # PageKite frontend server
-    server = run(['get-frontend'])
-    status['server'] = server.replace('\n', '')
+    server = run(['get-frontend']).strip()
+
+    # Frontend entries are only considered valid if there's a ':' in
+    # them otherwise, pagekite refuses to work, and we only set values
+    # with ':'.
+    if ':' in server:
+        server_domain, server_port = server.split(':')
+        status['server_domain'] = server_domain
+        status['server_port'] = int(server_port)
+    else:
+        status['server_domain'] = server
+        # No valid entry exists, default to port 80.  Hack: Return
+        # string instead of int to force setting port on save
+        status['server_port'] = '80'
 
     return status
 
@@ -220,6 +237,43 @@ def get_augeas_servicefile_path(protocol):
         relpath = '%s_%s.rc' % (port, _protocol)
 
     return os.path.join(CONF_PATH, relpath, 'service_on')
+
+
+def update_names_module(initial_registration=False, enabled=None,
+                        kite_name=None):
+    """
+    Update the PageKite domain and services of the 'names' module.
+
+    - initial_registration: Boolean (optional): Register also if not enabled
+    - enabled: Boolean (optional) whether PageKite is enabled
+    - kite_name: String (optional)
+    """
+    domain_removed.send_robust(sender='pagekite', domain_type='pagekite')
+
+    if enabled is None:
+        try:
+            enabled = get_pagekite_config()['enabled']
+        except IndexError:
+            enabled = False
+
+    if enabled:
+        # Get enabled services and kite name
+        services = get_pagekite_services()[0]
+        enabled_services = [service for service in services if
+                            services[service]]
+        if kite_name is None:
+            try:
+                kite_name = get_kite_details()['kite_name']
+            except IndexError:
+                pass
+    else:
+        enabled_services = None
+        kite_name = None
+
+    if initial_registration or (enabled and kite_name):
+        domain_added.send_robust(
+            sender='pagekite', domain_type='pagekite', name=kite_name,
+            description=_('Pagekite'), services=enabled_services)
 
 
 if __name__ == "__main__":

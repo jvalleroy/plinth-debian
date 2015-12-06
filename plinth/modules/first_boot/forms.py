@@ -15,61 +15,34 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from django import forms
-from django.contrib import auth, messages
-from django.core import validators
-from gettext import gettext as _
+"""
+Forms for first boot module.
+"""
+
+from django.contrib import auth
+from django.contrib import messages
+from django.utils.translation import ugettext as _
 
 from plinth import actions
 from plinth.errors import ActionError
-from plinth.modules.config import config
 from plinth.modules.users.forms import GROUP_CHOICES
 
 
-class State0Form(forms.ModelForm):
-    """Firstboot state 0: Set hostname and create a new user"""
-    hostname = forms.CharField(
-        label=_('Name of your FreedomBox'),
-        help_text=_('For convenience, your FreedomBox needs a name.  It \
-should be something short that does not contain spaces or punctuation. \
-"Willard" would be a good name while "Freestyle McFreedomBox!!!" would \
-not. It must be alphanumeric, start with an alphabet and must not be greater \
-than 63 characters in length.'),
-        validators=[
-            validators.RegexValidator(r'^[a-zA-Z][a-zA-Z0-9]{,62}$',
-                                      _('Invalid hostname'))])
-
+class State1Form(auth.forms.UserCreationForm):
+    """Firstboot state 1: create a new user."""
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-        super(State0Form, self).__init__(*args, **kwargs)
-
-    class Meta:
-        model = auth.models.User
-        fields = ('hostname', 'username', 'password')
-        widgets = {
-            'password': forms.PasswordInput,
-        }
-        help_texts = {
-            'username':
-            _('Choose a username and password to access this web interface. '
-              'The password can be changed and other users can be added '
-              'later. An LDAP user with administrative privileges (sudo) is '
-              'also created.'),
-        }
+        super(State1Form, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
-        """Set hostname, create and login the user"""
-        config.set_hostname(self.cleaned_data['hostname'])
-        user = super(State0Form, self).save(commit=False)
-        user.set_password(self.cleaned_data['password'])
+        """Create and log the user in."""
+        user = super(State1Form, self).save(commit=commit)
         if commit:
-            user.save()
-
             try:
                 actions.superuser_run(
                     'ldap',
                     ['create-user', user.get_username()],
-                    input=self.cleaned_data['password'].encode())
+                    input=self.cleaned_data['password1'].encode())
             except ActionError:
                 messages.error(self.request,
                                _('Creating LDAP user failed.'))
@@ -89,15 +62,15 @@ than 63 characters in length.'),
             admin_group = auth.models.Group.objects.get(name='admin')
             admin_group.user_set.add(user)
 
-            self.login_user()
+            self.login_user(self.cleaned_data['username'],
+                            self.cleaned_data['password1'])
 
         return user
 
-    def login_user(self):
+    def login_user(self, username, password):
         """Try to login the user with the credentials provided"""
         try:
-            user = auth.authenticate(username=self.request.POST['username'],
-                                     password=self.request.POST['password'])
+            user = auth.authenticate(username=username, password=password)
             auth.login(self.request, user)
         except Exception:
             pass

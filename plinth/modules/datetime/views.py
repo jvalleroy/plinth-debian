@@ -21,7 +21,7 @@ Plinth module for configuring date and time
 
 from django.contrib import messages
 from django.template.response import TemplateResponse
-from gettext import gettext as _
+from django.utils.translation import ugettext as _
 import logging
 
 from .forms import DateTimeForm
@@ -37,7 +37,7 @@ def on_install():
     datetime.service.notify_enabled(None, True)
 
 
-@package.required(['ntp'])
+@package.required(['ntp'], on_install=on_install)
 def index(request):
     """Serve configuration page."""
     status = get_status()
@@ -90,8 +90,8 @@ def _apply_changes(request, old_status, new_status):
         try:
             actions.superuser_run('timezone-change', [new_status['time_zone']])
         except Exception as exception:
-            messages.error(request, _('Error setting time zone: %s') %
-                           exception)
+            messages.error(request, _('Error setting time zone: {exception}')
+                           .format(exception=exception))
         else:
             messages.success(request, _('Time zone set'))
 

@@ -1,0 +1,2952 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-07 00:38+0530\n"
+"PO-Revision-Date: 2015-12-07 00:40+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: nl_NL\n"
+"X-Source-Language: C\n"
+
+#: plinth/action_utils.py:203
+#, python-brace-format
+msgid "Listening on {kind} port {listen_address}:{port}"
+msgstr "Luistert op {kind} poort {listen_address}:{port}"
+
+#: plinth/action_utils.py:206
+#, python-brace-format
+msgid "Listening on {kind} port {port}"
+msgstr "Luistert op {kind} poort {port}"
+
+#: plinth/action_utils.py:287
+#, python-brace-format
+msgid "Access URL {url} on tcp{kind}"
+msgstr "Gebruik URL {url} op tcp{kind}"
+
+#: plinth/action_utils.py:290
+#, python-brace-format
+msgid "Access URL {url}"
+msgstr "ToegangsURL {url}"
+
+#: plinth/action_utils.py:321
+#, python-brace-format
+msgid "Connect to {host}:{port}"
+msgstr "Verbind met {host}:{port}"
+
+#: plinth/action_utils.py:324
+#, python-brace-format
+msgid "Cannot connect to {host}:{port}"
+msgstr "Kan niet verbinden met {host}:{port}"
+
+#: plinth/modules/apps/apps.py:26
+msgid "Apps"
+msgstr "Apps"
+
+#: plinth/modules/apps/apps.py:32 plinth/templates/base.html:90
+msgid "Applications"
+msgstr "Programma's"
+
+#: plinth/modules/apps/templates/apps.html:25
+msgid "Services and Applications"
+msgstr "Diensten en Programma's"
+
+#: plinth/modules/apps/templates/apps.html:28
+#, python-format
+msgid ""
+"You can install and run various services and applications on your "
+"%(box_name)s."
+msgstr ""
+"Er kunnen diverse diensten en programma's worden geinstalleerd en gestart "
+"worden op %(box_name)s."
+
+#: plinth/modules/apps/templates/apps.html:35
+msgid ""
+"This box can be your photo sharing site, your instant messaging site, your "
+"social networking site, your news site.  Remember web portals?  We can be "
+"one of those too.  Many of the services you use on the web could soon be on "
+"site and under your control!"
+msgstr ""
+"Deze box kan je foto-delingssite zijn, je sociale netwerksite, je "
+"nieuwssite, en nog veel meer. Veel van de diensten die je nu nog van anderen "
+"afneemt kunnen nu thuis beheerd worden, en onder eigen controle staan!"
+
+#: plinth/modules/avahi/__init__.py:40 plinth/modules/avahi/__init__.py:45
+#: plinth/modules/avahi/templates/avahi.html:26
+#: plinth/modules/avahi/views.py:53
+msgid "Service Discovery"
+msgstr "Service Discovery"
+
+#: plinth/modules/avahi/forms.py:29
+msgid "Enable service discovery"
+msgstr "Service Discovery Inschakelen"
+
+#: plinth/modules/avahi/templates/avahi.html:29
+msgid ""
+"Service discovery allows other machines on the network to discover your "
+"FreedomBox and services running on it.  It also allows FreedomBox to "
+"discover other machines and services running on your local network.  Service "
+"discovery is not essential and works only on internal networks.  It may be "
+"disabled to improve security especially when connecting to a hostile local "
+"network."
+msgstr ""
+"Service discovery  maakt het mogelijk dat andere machines op het netwerk "
+"deze FreedomBox en de diensten erop herkennen.  Het maakt het ook mogelijk "
+"om andere machines en diensten op dit netwerk te vinden. Service discovery "
+"is optioneel en werkt alleen in het lokale netwerk.  Het kan uitgeschakeld "
+"worden om de veiligheid te verhogen, zeker in een onbekend en mogelijk "
+"vijandig lokaal netwerk."
+
+#: plinth/modules/avahi/templates/avahi.html:40
+#: plinth/modules/datetime/templates/datetime.html:35
+#: plinth/modules/deluge/templates/deluge.html:39
+#: plinth/modules/dynamicdns/dynamicdns.py:38
+#: plinth/modules/firewall/templates/firewall.html:57
+#: plinth/modules/mumble/templates/mumble.html:44
+#: plinth/modules/networks/templates/connection_show.html:261
+#: plinth/modules/openvpn/templates/openvpn.html:81
+#: plinth/modules/privoxy/templates/privoxy.html:48
+#: plinth/modules/tor/templates/tor.html:39
+#: plinth/modules/transmission/templates/transmission.html:42
+#: plinth/modules/xmpp/templates/xmpp.html:58
+msgid "Status"
+msgstr "Status"
+
+#: plinth/modules/avahi/templates/avahi.html:45
+msgid "Service discovery server is running"
+msgstr "Service Discovery draait"
+
+#: plinth/modules/avahi/templates/avahi.html:48
+msgid "Service discovery server is not running"
+msgstr "Service Discovery draait niet"
+
+#: plinth/modules/avahi/templates/avahi.html:52
+#: plinth/modules/datetime/templates/datetime.html:48
+#: plinth/modules/deluge/templates/deluge.html:53
+#: plinth/modules/ikiwiki/templates/ikiwiki.html:35
+#: plinth/modules/mumble/templates/mumble.html:59
+#: plinth/modules/openvpn/templates/openvpn.html:130
+#: plinth/modules/owncloud/templates/owncloud.html:51
+#: plinth/modules/privoxy/templates/privoxy.html:62
+#: plinth/modules/roundcube/templates/roundcube.html:62
+#: plinth/modules/shaarli/templates/shaarli.html:40
+#: plinth/modules/tor/templates/tor.html:74
+#: plinth/modules/transmission/templates/transmission.html:56
+#: plinth/modules/xmpp/templates/xmpp.html:72
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: plinth/modules/avahi/templates/avahi.html:60
+#: plinth/modules/datetime/templates/datetime.html:56
+#: plinth/modules/deluge/templates/deluge.html:61
+#: plinth/modules/dynamicdns/templates/dynamicdns_configure.html:40
+#: plinth/modules/ikiwiki/templates/ikiwiki.html:43
+#: plinth/modules/ikiwiki/templates/ikiwiki_create.html:32
+#: plinth/modules/mumble/templates/mumble.html:67
+#: plinth/modules/openvpn/templates/openvpn.html:138
+#: plinth/modules/privoxy/templates/privoxy.html:70
+#: plinth/modules/restore/templates/restore_index.html:54
+#: plinth/modules/roundcube/templates/roundcube.html:70
+#: plinth/modules/shaarli/templates/shaarli.html:48
+#: plinth/modules/tor/templates/tor.html:82
+#: plinth/modules/transmission/templates/transmission.html:64
+#: plinth/modules/upgrades/templates/upgrades_configure.html:34
+#: plinth/modules/xmpp/templates/xmpp.html:80
+msgid "Update setup"
+msgstr "Instelling bijwerken"
+
+#: plinth/modules/avahi/views.py:73 plinth/modules/datetime/views.py:85
+#: plinth/modules/deluge/views.py:80
+#: plinth/modules/dynamicdns/dynamicdns.py:368
+#: plinth/modules/ikiwiki/views.py:95 plinth/modules/mumble/views.py:80
+#: plinth/modules/openvpn/views.py:142 plinth/modules/privoxy/views.py:83
+#: plinth/modules/restore/views.py:68 plinth/modules/roundcube/views.py:84
+#: plinth/modules/shaarli/views.py:71 plinth/modules/transmission/views.py:105
+#: plinth/modules/xmpp/views.py:100
+msgid "Configuration updated"
+msgstr "Configuratie bijgewerkt"
+
+#: plinth/modules/avahi/views.py:76 plinth/modules/datetime/views.py:99
+#: plinth/modules/deluge/views.py:82 plinth/modules/ikiwiki/views.py:97
+#: plinth/modules/mumble/views.py:82 plinth/modules/openvpn/views.py:144
+#: plinth/modules/owncloud/owncloud.py:93 plinth/modules/privoxy/views.py:85
+#: plinth/modules/restore/views.py:70 plinth/modules/roundcube/views.py:86
+#: plinth/modules/shaarli/views.py:73 plinth/modules/tor/tor.py:250
+#: plinth/modules/transmission/views.py:107
+#: plinth/modules/upgrades/views.py:103 plinth/modules/xmpp/views.py:102
+msgid "Setting unchanged"
+msgstr "Instelling onveranderd"
+
+#: plinth/modules/config/config.py:83 plinth/modules/config/config.py:120
+#: plinth/modules/dynamicdns/dynamicdns.py:145
+msgid "Invalid domain name"
+msgstr "Foute domeinnaam"
+
+#: plinth/modules/config/config.py:94
+msgid "Hostname"
+msgstr "Hostnaam"
+
+#: plinth/modules/config/config.py:96
+msgid ""
+"Hostname is the local name by which other machines on the local network "
+"reach your machine.  It must start and end with an alphabet or a digit and "
+"have as interior characters only alphabets, digits and hyphens.  Total "
+"length must be 63 characters or less."
+msgstr ""
+"De hostnaam is de lokale naam waarmee ander machines in het LAN deze machine "
+"kunnen bereiken. De hostnaam moet beginnen en eindigen met een letter of "
+"cijfer,er tussenin mogen ook koppeltekens. De totale lengte mag niet langer "
+"zijn dan 63 tekens."
+
+#: plinth/modules/config/config.py:104
+msgid "Invalid hostname"
+msgstr "Foutieve hostnaam"
+
+#: plinth/modules/config/config.py:107 plinth/modules/config/config.py:152
+#: plinth/modules/config/config.py:264
+#: plinth/modules/dynamicdns/dynamicdns.py:140
+msgid "Domain Name"
+msgstr "Domeinnaam"
+
+#: plinth/modules/config/config.py:109
+msgid ""
+"Domain name is the global name by which other machines on the Internet can "
+"reach you.  It must consist of labels separated by dots.  Each label must "
+"start and end with an alphabet or a digit and have as interior characters "
+"only alphabets, digits and hyphens.  Length of each label must be 63 "
+"characters or less.  Total length of domain name must be 253 characters or "
+"less."
+msgstr ""
+"Een domeinnaam is de globaal bereikbare naam waarmee andere computers op het "
+"internet deze verbinding kan bereiken. Het moet bestaan uit namen, "
+"gescheiden door punten.  Iedere naam moet beginnen en eindigen met een "
+"letter of cijfer,er tussenin mogen ook koppeltekens. De totale lengte per "
+"naam mag niet langer zijn dan 63 tekens. De totale domeinnaamlengte mag niet "
+"langer zijn dan 253 tekens."
+
+#: plinth/modules/config/config.py:124
+msgid "Language"
+msgstr "Taal"
+
+#: plinth/modules/config/config.py:126
+msgid "Language for this FreedomBox web administration interface"
+msgstr "Taalkeuze voor deze FreedomBox web administratie"
+
+#: plinth/modules/config/config.py:135
+#: plinth/modules/dynamicdns/dynamicdns.py:36
+#: plinth/modules/ikiwiki/views.py:36
+msgid "Configure"
+msgstr "Configureer"
+
+#: plinth/modules/config/config.py:175
+msgid "General Configuration"
+msgstr "Algemene Instellingen"
+
+#: plinth/modules/config/config.py:192
+#, python-brace-format
+msgid "Error setting hostname: {exception}"
+msgstr "Hostnaam instellen mislukt: {exception}"
+
+#: plinth/modules/config/config.py:195
+msgid "Hostname set"
+msgstr "Hostnaam ingesteld"
+
+#: plinth/modules/config/config.py:201
+#, python-brace-format
+msgid "Error setting domain name: {exception}"
+msgstr "Domeinnaam instellen mislukt: {exception}"
+
+#: plinth/modules/config/config.py:204
+msgid "Domain name set"
+msgstr "Domeinnaam ingesteld"
+
+#: plinth/modules/config/config.py:212
+#, python-brace-format
+msgid "Error setting language: {exception}"
+msgstr "Taal instellen mislukt: {exception}"
+
+#: plinth/modules/config/config.py:215
+msgid "Language changed"
+msgstr "Taal aangepast"
+
+#: plinth/modules/config/templates/config.html:32
+msgid "Submit"
+msgstr "Voorleggen"
+
+#: plinth/modules/datetime/__init__.py:39
+#: plinth/modules/datetime/templates/datetime.html:26
+#: plinth/modules/datetime/views.py:58
+msgid "Date & Time"
+msgstr "Datum en Tijd"
+
+#: plinth/modules/datetime/__init__.py:44
+msgid "Network Time Server"
+msgstr "Netwerktijdsserver"
+
+#: plinth/modules/datetime/__init__.py:76
+msgid "NTP client in contact with servers"
+msgstr "NTP client in cotact met servers"
+
+#: plinth/modules/datetime/forms.py:31
+msgid "Enable network time"
+msgstr "Netwerktijd Inschakelen"
+
+#: plinth/modules/datetime/forms.py:35
+msgid "Time Zone"
+msgstr "Tijdzone"
+
+#: plinth/modules/datetime/forms.py:36
+msgid ""
+"Set your time zone to get accurate timestamps. This will set the systemwide "
+"time zone."
+msgstr ""
+"Stel tijdzone in om precieze tijd te gebruiken. Dit stelt de systeemklok in."
+
+#: plinth/modules/datetime/forms.py:47
+msgid "-- no time zone set --"
+msgstr "-- geen tijdzone ingesteld --"
+
+#: plinth/modules/datetime/templates/datetime.html:29
+msgid ""
+"Network time server is a program that maintians the system time in "
+"synchronization with servers on the Internet."
+msgstr ""
+"Netwerk Tijd Server is een programma dat de systeemtijd synchroniseert met "
+"servers op internet."
+
+#: plinth/modules/datetime/templates/datetime.html:40
+msgid "Network time server is running"
+msgstr "Netwerktijdsserver draait"
+
+#: plinth/modules/datetime/templates/datetime.html:43
+msgid "Network time server is not running"
+msgstr "Netwerktijdsserver draait niet"
+
+#: plinth/modules/datetime/views.py:93
+#, python-brace-format
+msgid "Error setting time zone: {exception}"
+msgstr "Fout bij tijdzone instellen: {exception}"
+
+#: plinth/modules/datetime/views.py:96
+msgid "Time zone set"
+msgstr "Tijdzone ingesteld"
+
+#: plinth/modules/deluge/__init__.py:38 plinth/modules/deluge/views.py:56
+msgid "BitTorrent (Deluge)"
+msgstr "BitTorrent (Deluge)"
+
+#: plinth/modules/deluge/__init__.py:43
+msgid "Deluge BitTorrent"
+msgstr "Deluge BitTorrent"
+
+#: plinth/modules/deluge/forms.py:29
+msgid "Enable Deluge"
+msgstr "Deluge Inschakelen"
+
+#: plinth/modules/deluge/templates/deluge.html:26
+msgid "BitTorrent Web Client (Deluge)"
+msgstr "BitTorrent Web Client (Deluge)"
+
+#: plinth/modules/deluge/templates/deluge.html:28
+msgid "Deluge is a BitTorrent client that features a Web UI."
+msgstr "Deluge is een BitTorrent Client met web-bediening."
+
+#: plinth/modules/deluge/templates/deluge.html:31
+msgid ""
+"When enabled, the Deluge web client will be available from <a href=\"/deluge"
+"\">/deluge</a> path on the web server. The default password is 'deluge', but "
+"you should log in and change it immediately after enabling this service."
+msgstr ""
+"Indien ingeschakeld, is de Deluge web-client beschikbaar via het <a href=\"/"
+"deluge\">/deluge</a> pad op de webserver.Het dstandaardwachtwoord is "
+"'deluge', maar dit moet zo snel mogelijk na aktivering gewijzigd worden."
+
+#: plinth/modules/deluge/templates/deluge.html:44
+msgid "deluge-web is running"
+msgstr "deluge-web draait"
+
+#: plinth/modules/deluge/templates/deluge.html:47
+msgid "deluge-web is not running"
+msgstr "deluge-web draait niet"
+
+#: plinth/modules/diagnostics/diagnostics.py:45
+msgid "Diagnostics"
+msgstr "Diagnose"
+
+#: plinth/modules/diagnostics/diagnostics.py:55
+msgid "System Diagnostics"
+msgstr "Systeemdiagnose"
+
+#: plinth/modules/diagnostics/diagnostics.py:78
+msgid "Diagnostic Test"
+msgstr "Diagnostische test"
+
+#: plinth/modules/diagnostics/templates/diagnostics.html:37
+msgid ""
+"The system diagnostic test will run a number of checks on your system to "
+"confirm that applications and services are working as expected."
+msgstr ""
+"De systeemdiagnose zal een aantal tests uitvoeren op dit systeem om te "
+"bevestigen dat de pragramma's en diensten  zoals verwacht functioneren."
+
+#: plinth/modules/diagnostics/templates/diagnostics.html:50
+#: plinth/modules/diagnostics/templates/diagnostics_button.html:27
+msgid "Run Diagnostics"
+msgstr "Voer Diagnostische test uit"
+
+#: plinth/modules/diagnostics/templates/diagnostics.html:53
+msgid "Diagnotics test is currently running"
+msgstr "Diagnosetests worden doorlopen"
+
+#: plinth/modules/diagnostics/templates/diagnostics.html:66
+msgid "Results"
+msgstr "Resultaten"
+
+#: plinth/modules/diagnostics/templates/diagnostics.html:74
+#, python-format
+msgid "Module: %(module)s"
+msgstr "Module: %(module)s"
+
+#: plinth/modules/diagnostics/templates/diagnostics_module.html:25
+msgid "Diagnostic Results"
+msgstr "Resultaten Diagnostische test"
+
+#: plinth/modules/diagnostics/templates/diagnostics_module.html:27
+#, python-format
+msgid "Module: %(module_name)s"
+msgstr "Module: %(module_name)s"
+
+#: plinth/modules/diagnostics/templates/diagnostics_module.html:32
+msgid "This module does not support diagnostics"
+msgstr "Deze module heeft geen diagnosetests"
+
+#: plinth/modules/diagnostics/templates/diagnostics_results.html:27
+msgid "Test"
+msgstr "Test"
+
+#: plinth/modules/diagnostics/templates/diagnostics_results.html:28
+msgid "Result"
+msgstr "Resultaat"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:34 plinth/modules/help/help.py:40
+msgid "About"
+msgstr "Over"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:44
+#: plinth/modules/dynamicdns/dynamicdns.py:53
+msgid "Dynamic DNS"
+msgstr "Dynamic DNS"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:70
+msgid ""
+"The Variables &lt;User&gt;, &lt;Pass&gt;, &lt;Ip&gt;, &lt;Domain&gt; may be "
+"used within the URL. For details see the update URL templates of the example "
+"providers."
+msgstr ""
+"De Variabelen &lt;User&gt;, &lt;Pass&gt;, &lt;Ip&gt;, &lt;Domain&gt; kunnen "
+"worden gebruikt in de URL. Zie voor details de update URL voorbeelden van de "
+"voorbeeld providers."
+
+#: plinth/modules/dynamicdns/dynamicdns.py:74
+msgid ""
+"Please choose an update protocol according to your provider. If your "
+"provider does not support the GnudIP protocol or your provider is not listed "
+"you may use the update URL of your provider."
+msgstr ""
+"Kies een updateprotocol zoals de provider dat aanbiedt. Als de provider geen "
+"GnudIP protocol gebruikt of de provider staat niet in de lijst, gebruik dan "
+"de update URL van de provider."
+
+#: plinth/modules/dynamicdns/dynamicdns.py:79
+msgid ""
+"Please do not enter a URL here (like \"https://example.com/\") but only the "
+"hostname of the GnuDIP server (like \"example.pcom\")."
+msgstr ""
+"Voer hier geen complete URL in (zoals \"https://example.com/\") maar alleen "
+"de hostnaam van de GnuDIP server (zoals \"example.com\")."
+
+#: plinth/modules/dynamicdns/dynamicdns.py:83
+msgid "The public domain name you want use to reach your box."
+msgstr ""
+"De publieke domeinnaam die gebruikt zal worden om deze box aan te spreken."
+
+#: plinth/modules/dynamicdns/dynamicdns.py:85
+msgid "Use this option if your provider uses self signed certificates."
+msgstr ""
+"Gebruik deze functie indien de provider gebruik maakt van self-signed "
+"certificaten."
+
+#: plinth/modules/dynamicdns/dynamicdns.py:88
+msgid ""
+"If this option is selected, your username and password will be used for HTTP "
+"basic authentication."
+msgstr ""
+"Als deze optie is geselecteerd, wordt de gebruikersnaam en wachtwoord "
+"gebruikt voor HTTP basic authentificatie."
+
+#: plinth/modules/dynamicdns/dynamicdns.py:91
+msgid ""
+"Leave this field empty if you want to keep your previous configured password."
+msgstr "Laat dit veld leeg om het vooraf ingestelde wachtwoord te behouden."
+
+#: plinth/modules/dynamicdns/dynamicdns.py:94
+msgid ""
+"Optional Value. If your FreedomBox is not connected directly to the Internet "
+"(i.e. connected to a NAT router) this URL is used to figure out the real "
+"Internet IP. The URL should simply return the IP wherethe client comes from. "
+"Example: http://myip.datasystems24.de"
+msgstr ""
+"Optionele waarde. Als de FreedomBox niet direct is verbonden met het "
+"internet (maar verbonden met een NAT router), wordt deze URL gebruikt om het "
+"echte Internet IP adres te vinden. Deze URL zou gewoon het IP adres van de "
+"gebruiker moeten antwoorden. Voorbeeld: http://myip.datasystems24.de"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:101
+msgid ""
+"You should have been requested to select a username when you created the "
+"account."
+msgstr ""
+"Er zou een keuze voor de gebruikersnaam moeten zijn geweest tijdens het "
+"aanmaken van de account."
+
+#: plinth/modules/dynamicdns/dynamicdns.py:112
+msgid "Enable Dynamic DNS"
+msgstr "Dynamic DNS Inschakelen"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:115
+msgid "Service type"
+msgstr "Dienst type"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:120
+msgid "GnudIP Server Address"
+msgstr "GnudIP Serveradres"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:125
+msgid "Invalid server name"
+msgstr "Foute servernaam"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:128
+msgid "Update URL"
+msgstr "URL bijwerken"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:132
+msgid "accept all SSL certificates"
+msgstr "accepteer alle SSL certificaten"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:136
+msgid "use HTTP basic authentication"
+msgstr "gebruik HTTP basic authentificatie"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:148
+#: plinth/modules/networks/forms.py:91 plinth/modules/transmission/forms.py:39
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:151
+#: plinth/modules/networks/forms.py:92 plinth/modules/transmission/forms.py:43
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:154
+msgid "show password"
+msgstr "toon wachtwoord"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:158
+msgid "IP check URL"
+msgstr "IP test URL"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:184
+msgid "Please provide update URL or a GnuDIP Server"
+msgstr "Voer een update URL of GnuDIP Server in"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:187
+msgid "Please provide GnuDIP username"
+msgstr "Voer een GnuDIP gebruikersnaam in"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:190
+msgid "Please provide GnuDIP domain"
+msgstr "Voer een GnuDIP domein in"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:195
+msgid "Please provide a password"
+msgstr "Voer een wachtwoord in"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:214
+msgid "Configure Dynamic DNS"
+msgstr "Instellen Dynamic DNS"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:236
+msgid "Status of Dynamic DNS"
+msgstr "Status van Dynamic DNS"
+
+#: plinth/modules/dynamicdns/templates/dynamicdns.html:25
+msgid "DynamicDNS client"
+msgstr "DynamicDNS client"
+
+#: plinth/modules/dynamicdns/templates/dynamicdns.html:28
+msgid ""
+"If your internet provider changes your IP address periodic (i.e. every 24h) "
+"it may be hard for others to find you in the WEB. And for this reason nobody "
+"may find the services which are provided by FreedomBox (like your ownCloud)."
+msgstr ""
+"Als de internetprovider het adres regelmatig wisselt, (bijvoorbeeld iedere "
+"24 uur) kan het voor anderen moeilijk zijn om de machine te vinden vanaf "
+"internet. Daardoor is het gebruik van de diensten van deze machine (zoals "
+"ownCloud) vaak onmogelijk."
+
+#: plinth/modules/dynamicdns/templates/dynamicdns.html:37
+msgid ""
+"The solution is to assign a DNS name to your IP address and update the DNS "
+"name every time your IP is changed by your Internet provider. Dynamic DNS "
+"allows you to push your current public IP address to an <a href='http://"
+"gnudip2.sourceforge.net/' target='_blank'> gnudip </a> server. Afterwards "
+"the Server will assign your DNS name with the new IP and if someone from the "
+"internet asks for your DNS name he will get your current IP answered."
+msgstr ""
+"De oplossing is om een DNS naam aan het publieke adres toe te wijzen en de "
+"DNS server iedere keer bij te werken als het IP adres is gewijzigd door de "
+"provider. Dynamic DNS maakt het mogelijk om het huidige publieke IP adres "
+"door te geven aan een <a href='http://gnudip2.sourceforge.net/' "
+"target='_blank'> gnudip </a> server.  Daarna zal deze server de DNS "
+"naamswijziging doorvoeren, en wordt iedere DNS request beantwoord met het "
+"juiste IP adres."
+
+#: plinth/modules/dynamicdns/templates/dynamicdns.html:50
+msgid ""
+"If you are looking for a free dynamic DNS account, you may find a free "
+"GnuDIP service at <a href='http://gnudip.datasystems24.net' "
+"target='_blank'>gnudip.datasystems24.net</a> or you may find free update URL "
+"based services on <a href='http://freedns.afraid.org/' target='_blank'> "
+"freedns.afraid.org</a>"
+msgstr ""
+"Wie op zoek is naar een gratis dynamic DNS account, kan misschien een gratis "
+"GnuDIP service vinden bij <a href='http://gnudip.datasystems24.net' "
+"target='_blank'>gnudip.datasystems24.net</a> of gratis free update URL "
+"gebaseerde diensten van <a href='http://freedns.afraid.org/' "
+"target='_blank'> freedns.afraid.org</a>"
+
+#: plinth/modules/dynamicdns/templates/dynamicdns.html:61
+msgid ""
+"If your freedombox is connected behind some NAT router, don't forget to add "
+"portforwarding (i.e. forward some standard ports like 80 and 443) to your "
+"freedombox device."
+msgstr ""
+"Als deze FreedomBox is verbonden door middel van een vorm van NAT-routing, "
+"Vergeet dan niet om poort-doorleiding (bijvoorbeeld standaardpoorten als 80 "
+"en 443) naar de FreedomBox te leiden."
+
+#: plinth/modules/dynamicdns/templates/dynamicdns_configure.html:30
+msgid ""
+"You have disabled Javascript. Dynamic form mode is disabled and some helper "
+"functions may not work (but the main functionality should work)."
+msgstr ""
+"Javascript schijnt uitgeschakeld te zijn, Dynamische formulieren en sommigge "
+"helpuncties werken niet, maar de basisfunctionaliteit zou moeten werken."
+
+#: plinth/modules/dynamicdns/templates/dynamicdns_status.html:25
+msgid "NAT type"
+msgstr "NAT type"
+
+#: plinth/modules/dynamicdns/templates/dynamicdns_status.html:29
+msgid ""
+"NAT type not detected yet, if you do not provide a \"IP check URL\" we will "
+"not detect a NAT type."
+msgstr ""
+"NAT methode niet gedetecteerd, als er geen \"IP check URL\" wordt ingesteld "
+"is het niet mogelijk om de methode te herkennen."
+
+#: plinth/modules/dynamicdns/templates/dynamicdns_status.html:35
+msgid "Direct connection to the internet."
+msgstr "Directe verbinding met internet."
+
+#: plinth/modules/dynamicdns/templates/dynamicdns_status.html:37
+#, python-format
+msgid ""
+"Behind NAT, this means that dynamic DNS service will poll the \"IP check URL"
+"\" for changes (we need the \"IP check URL\" for this reason - otherwise we "
+"will not detect IP changes). It may take up to %(timer)s minutes until we "
+"update your DNS entry in case of WAN IP change."
+msgstr ""
+"Achter NAT, dit betekent dat de dynamic DNS dienst regelmatig het IP adres "
+"controleert op wijzigingen (hiervoor is de \"IP check URL\" nodig, anders "
+"kunnen veranderingen niet worden ontdekt). Het kan tot %(timer)s minuten "
+"duren tot de DNS wordt bijgewerkt in het geval van een IP wijziging door de "
+"provider."
+
+#: plinth/modules/dynamicdns/templates/dynamicdns_status.html:48
+msgid "Last update"
+msgstr "Laatste bijwerking"
+
+#: plinth/modules/firewall/firewall.py:39
+#: plinth/modules/firewall/firewall.py:49
+#: plinth/modules/firewall/firewall.py:57
+msgid "Firewall"
+msgstr "Firewall"
+
+#: plinth/modules/firewall/templates/firewall.html:28
+#, python-format
+msgid ""
+"Firewall is a network security system that controls the incoming and "
+"outgoing network traffic on your %(box_name)s. Keeping a firewall enabled "
+"and properly configured reduces risk of security threat from the Internet."
+msgstr ""
+"Een Firewall is een netwerk-beveiligingssysteem dat de inkomende en "
+"uitgaande gegevens van %(box_name)s stuurt. Een goed geinstalleerde en "
+"geaktiveerde firewall vermindert het risico van internet besmetting."
+
+#: plinth/modules/firewall/templates/firewall.html:36
+msgid "The following is the current status:"
+msgstr "De huidige status is als volgt:"
+
+#: plinth/modules/firewall/templates/firewall.html:41
+#, python-format
+msgid ""
+"Firewall daemon is not running. Please run it. Firewall comes enabled by "
+"default on %(box_name)s. On any Debian based system (such as %(box_name)s) "
+"you may run it using the command 'service firewalld start' or in case of a "
+"system with systemd 'systemctl start firewalld'"
+msgstr ""
+"Firewall daemon draait niet.De firewall staat standaard aan op %(box_name)s. "
+"Op ieder Debian gebaseerd systeem (zoals %(box_name)s) kan het gstart worden "
+"door middel van het commando 'service firewalld start' of in het geval van "
+"een systeem met systemd 'systemctl start firewalld'"
+
+#: plinth/modules/firewall/templates/firewall.html:56
+msgid "Service/Port"
+msgstr "Dienst/Poort"
+
+#: plinth/modules/firewall/templates/firewall.html:67
+#: plinth/modules/names/templates/names.html:51
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+#: plinth/modules/firewall/templates/firewall.html:70
+#: plinth/modules/names/templates/names.html:53
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: plinth/modules/firewall/templates/firewall.html:81
+msgid "Permitted"
+msgstr "Toegestaan"
+
+#: plinth/modules/firewall/templates/firewall.html:84
+msgid "Permitted (internal only)"
+msgstr "Toegestaan (alleen intern)"
+
+#: plinth/modules/firewall/templates/firewall.html:87
+msgid "Permitted (external only)"
+msgstr "Toegestaan (alleen extern)"
+
+#: plinth/modules/firewall/templates/firewall.html:90
+msgid "Blocked"
+msgstr "Geblokkeerd"
+
+#: plinth/modules/firewall/templates/firewall.html:103
+msgid ""
+"The operation of the firewall is automatic. When you enable a service it is "
+"automatically permitted in the firewall and you disable a service is "
+"automatically disabled in the firewall."
+msgstr ""
+"De firewall wordt automatisch ingesteld. Als een dienst wordt ingeschakeld "
+"wordt deze automatisch toegevoegd aan de firewall, en als een dienst wordt "
+"uitgeschakeld, gebeurt dit ook in de firewall."
+
+#: plinth/modules/first_boot/forms.py:48 plinth/modules/users/forms.py:70
+msgid "Creating LDAP user failed."
+msgstr "LDAP gebruiker aanmaken mislukt."
+
+#: plinth/modules/first_boot/forms.py:56
+msgid "Failed to add new user to admin group."
+msgstr "Toevoegen van gebruiker aan admin groep mislukt."
+
+#: plinth/modules/first_boot/forms.py:78
+msgid "User account created, you are now logged in"
+msgstr "Gebruikersaccount aangemaakt, U ben nu ingelogd"
+
+#: plinth/modules/first_boot/templates/firstboot_state0.html:50
+msgid "Congratulations! Your FreedomBox is up and running!"
+msgstr "Gefeliciteerd, De FreedomBox is gereed!"
+
+#: plinth/modules/first_boot/templates/firstboot_state0.html:54
+msgid ""
+"Please provide the following basic information to complete the setup process."
+msgstr "Beantwoord de volgende vragen om het installatieproces te voltooien."
+
+#: plinth/modules/first_boot/templates/firstboot_state0.html:62
+msgid "Next"
+msgstr "Volgende"
+
+#: plinth/modules/first_boot/templates/firstboot_state1.html:39
+msgid "Administrator Account"
+msgstr "Beheerdersaccount"
+
+#: plinth/modules/first_boot/templates/firstboot_state1.html:42
+msgid ""
+"Choose a username and password to access this web interface. The password "
+"can be changed and other users can be added later. An LDAP user with "
+"administrative privileges (sudo) is also created."
+msgstr ""
+"Kies een gebruikersnaam en wachtwoord om deze website te bereiken. Het "
+"wachtwoord kan worden veranderd en andere gebruikers kunnen later worden "
+"toegevoegd. Een LDAP gebruiker met administratieve rechten wordt heermee ook "
+"aangemaakt."
+
+#: plinth/modules/first_boot/templates/firstboot_state1.html:56
+msgid "Box it up!"
+msgstr "Zet 'm op!"
+
+#: plinth/modules/first_boot/templates/firstboot_state10.html:29
+msgid "Setup Complete!"
+msgstr "Instelling voltooid!"
+
+#: plinth/modules/first_boot/templates/firstboot_state10.html:32
+msgid ""
+"FreedomBox setup is now complete.  However, you should check the network "
+"setup and modify it if necessary.  Do not forget to change the default Wi-Fi "
+"passwords."
+msgstr ""
+"De FreedomBox installatie is nu voltooid. Het is aan te raden de "
+"netwerkinstellingen te controleren, en zo nodig aan te passen. Vergeet niet "
+"de standaard WiFi wachtwoorden te veranderen."
+
+#: plinth/modules/first_boot/templates/firstboot_state10.html:40
+msgid ""
+"To make your FreedomBox functional, you need some applications.  "
+"Applications will be installed the first time you access them."
+msgstr ""
+"Om deze FreedomBox functioneel te maken, zijn een aantal programma's "
+"vereist. Programma's worden bij aktivering eerst geinstalleerd."
+
+#: plinth/modules/first_boot/templates/firstboot_state10.html:47
+msgid "Network Configuration"
+msgstr "Netwerkconfiguratie"
+
+#: plinth/modules/first_boot/templates/firstboot_state10.html:54
+msgid "Go to Networks"
+msgstr "Ga naar Netwerken"
+
+#: plinth/modules/first_boot/templates/firstboot_state10.html:59
+msgid "Go to Apps"
+msgstr "Ga naar Apps"
+
+#: plinth/modules/first_boot/views.py:60
+msgid "Setup Complete"
+msgstr "Instelling voltooid"
+
+#: plinth/modules/help/help.py:34
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: plinth/modules/help/help.py:36
+msgid "Where to Get Help"
+msgstr "Hulp Verkrijgen"
+
+#: plinth/modules/help/help.py:38 plinth/modules/help/help.py:72
+msgid "FreedomBox Manual"
+msgstr "FreedomBox Handleiding"
+
+#: plinth/modules/help/help.py:48
+msgid "Documentation and FAQ"
+msgstr "Documentatie en veelgestelde vragen"
+
+#: plinth/modules/help/help.py:55
+#, python-brace-format
+msgid "About {box_name}"
+msgstr "Over {box_name}"
+
+#: plinth/modules/help/templates/help_about.html:30
+msgid ""
+"FreedomBox is a community project to develop, design and promote personal "
+"servers running free software for private, personal communications.  It is a "
+"networking appliance designed to allow interfacing with the rest of the "
+"Internet under conditions of protected privacy and data security.  It hosts "
+"applications such as blog, wiki, website, social network, email, web proxy "
+"and a Tor relay on a device that can replace your Wi-Fi router so that your "
+"data stays with you."
+msgstr ""
+"FreedomBox is een communityproject om persoonlijke servers met uitsluitend "
+"vrije software te ontwikkelen, ontwerpen en promoten. Het is een netwerk-"
+"apparaat dat is ontworpen om toegang tot de rest van internet mogelijk te "
+"maken met bescherming van privacy en data-beveiliging.  Het biedt diensten "
+"als een blog, wiki,website,sociaal netwerk, email,web-proxy en een Tor relay "
+"op een apparaat dat je (WiFi) router kan vervangen of aanvullen, zodat jouw "
+"data bij jou blijft."
+
+#: plinth/modules/help/templates/help_about.html:43
+msgid ""
+"We live in a world where our use of the network is mediated by those who "
+"often do not have our best interests at heart.  By building software that "
+"does not rely on a central service, we can regain control and privacy.  By "
+"keeping our data in our homes, we gain useful legal protections over it.  By "
+"giving back power to the users over their networks and machines, we are "
+"returning the Internet to its intended peer-to-peer architecture."
+msgstr ""
+"We leven in een wereld waar ons gebruik van het netwerk wordt geleid door "
+"anderen die niet altijd onze doelen voorop stellen.  Door software te bouwen "
+"die niet steunt op centrale diensten kunnen we controle en privacy "
+"terugwinnen.  Door onze data in ons eigen huis te houden, kunnen we "
+"belangrijke rechten erover behouden.  Door controle over hun eigen machines "
+"en netwerk aan de gebruikers terug te geven, wordt Internet terug geleid "
+"naar de peer-to-peer architectuur zoals die oorspronkelijk is ontworpen en "
+"bedoeld."
+
+#: plinth/modules/help/templates/help_about.html:56
+msgid ""
+"There are a number of projects working to realize a future of distributed "
+"services; FreedomBox aims to bring them all together in a convenient package."
+msgstr ""
+"Er zijn een aantal projecten die een toekomst vol gedecentraliseerde "
+"diensten; FreedomBox probeert deze allemaal te verpakken in een enkel pakket."
+
+#: plinth/modules/help/templates/help_about.html:64
+msgid ""
+"For more information about the FreedomBox project, see the <a href=\"https://"
+"wiki.debian.org/FreedomBox\">FreedomBox Wiki</a>."
+msgstr ""
+"Zie voor meer informatie over het FreedomBox project de <a href=\"https://"
+"wiki.debian.org/FreedomBox\">FreedomBox Wiki</a>."
+
+#: plinth/modules/help/templates/help_about.html:72
+msgid "Learn more &raquo;"
+msgstr "Leer meer &raquo;"
+
+#: plinth/modules/help/templates/help_about.html:75
+#, python-format
+msgid "You are running Plinth version %(version)s."
+msgstr "Dit is Plinth versie %(version)s."
+
+#: plinth/modules/help/templates/help_index.html:25
+#: plinth/templates/base.html:98
+msgid "Help"
+msgstr "Hulp"
+
+#: plinth/modules/help/templates/help_index.html:29
+#, python-format
+msgid ""
+"The <a href=\"%(manual_url)s\">FreedomBox Manual</a> is the best place to "
+"start for information regarding %(box_name)s."
+msgstr ""
+"Het <a href=\"%(manual_url)s\">FreedomBox Handboek (Engelstalig)</a> is de "
+"beste manier om meer te weten te komen meer informatie over %(box_name)s."
+
+#: plinth/modules/help/templates/help_index.html:36
+msgid ""
+"<a href=\"http://wiki.debian.org/FreedomBox\" target=\"_blank\"> FreedomBox "
+"project wiki </a> contains further information."
+msgstr ""
+"Zie <a href=\"http://wiki.debian.org/FreedomBox\" target=\"_blank\"> "
+"FreedomBox project wiki </a> voor meer informatie."
+
+#: plinth/modules/help/templates/help_index.html:43
+msgid ""
+"To seek help from FreedomBox community, queries may be posted on the <a href="
+"\"https://lists.alioth.debian.org/mailman/listinfo/freedombox-discuss\"> "
+"mailing list</a>.  The list archives also contain information about problems "
+"faced by other users and possible solutions."
+msgstr ""
+"Om meer informatie te krijgen vanuit de FreedomBox community, kunnen vragen "
+"worden gesteld op de <a href=\"https://lists.alioth.debian.org/mailman/"
+"listinfo/freedombox-discuss\"> mailing lijst (Engelstalig)</a>.  De "
+"archieven van deze lijst bevatten ook veel infoarmatie over problemen die "
+"andere mensen hebben gehad, en mogelijke oplossingen."
+
+#: plinth/modules/help/templates/help_index.html:53
+msgid ""
+"Many FreedomBox contributors and users are also available on the #freedombox "
+"channel of the irc.oftc.net IRC network."
+msgstr ""
+"Veel FreedomBox deelnemers en gebruikers zijn ook te vinden op "
+"het#freedombox kanaal op het irc.oftc.net IRC netwerk."
+
+#: plinth/modules/ikiwiki/__init__.py:38
+msgid "Wiki & Blog (Ikiwiki)"
+msgstr "Wiki & Blog (Ikiwiki)"
+
+#: plinth/modules/ikiwiki/__init__.py:43
+msgid "Ikiwiki wikis and blogs"
+msgstr "Ikiwiki wiki's en blogs"
+
+#: plinth/modules/ikiwiki/forms.py:29
+msgid "Enable Ikiwiki"
+msgstr "Ikiwiki Inschakelen"
+
+#: plinth/modules/ikiwiki/forms.py:36
+#: plinth/modules/networks/templates/connection_show.html:98
+msgid "Type"
+msgstr "Type"
+
+#: plinth/modules/ikiwiki/forms.py:39
+#: plinth/modules/networks/templates/connection_show.html:78
+msgid "Name"
+msgstr "Naam"
+
+#: plinth/modules/ikiwiki/forms.py:41
+msgid "Admin Account Name"
+msgstr "Beheerdersaccount naam"
+
+#: plinth/modules/ikiwiki/forms.py:44
+msgid "Admin Account Password"
+msgstr "Beheerdersaccount wachtwooord"
+
+#: plinth/modules/ikiwiki/templates/ikiwiki.html:27
+msgid ""
+"When enabled, the blogs and wikis will be available from <a href=\"/ikiwiki"
+"\">/ikiwiki</a>."
+msgstr ""
+"Indien ingeschakeld, zijn blogs en wiki's beschikbaar via <a href=\"/ikiwiki"
+"\">/ikiwiki</a>."
+
+#: plinth/modules/ikiwiki/templates/ikiwiki_delete.html:27
+#, python-format
+msgid "Delete Wiki/Blog <em>%(name)s</em>"
+msgstr "Verwijder Wiki/Blog <em>%(name)s</em>"
+
+#: plinth/modules/ikiwiki/templates/ikiwiki_delete.html:33
+msgid ""
+"This action will remove all the posts, pages and comments including revision "
+"history.  Delete this wiki/blog permanently?"
+msgstr ""
+"Deze aktie zal alle bijdragen, pagina's, en commentaar inclusief revisie-"
+"historie. Deze wiki/blog permanent verwijderen?"
+
+#: plinth/modules/ikiwiki/templates/ikiwiki_delete.html:43
+#, python-format
+msgid "Delete %(name)s"
+msgstr "%(name)s verwijderen"
+
+#: plinth/modules/ikiwiki/templates/ikiwiki_delete.html:46
+#: plinth/modules/networks/templates/connections_delete.html:37
+#: plinth/modules/users/templates/users_delete.html:41
+msgid "Cancel"
+msgstr "Annuleer"
+
+#: plinth/modules/ikiwiki/templates/ikiwiki_manage.html:41
+msgid "No wikis or blogs available."
+msgstr "Geen wiki's of blogs beschikbaar."
+
+#: plinth/modules/ikiwiki/templates/ikiwiki_manage.html:45
+msgid "Create a Wiki or Blog"
+msgstr "Maak een Wiki of Blog"
+
+#: plinth/modules/ikiwiki/templates/ikiwiki_manage.html:55
+#, python-format
+msgid "Delete site %(site)s"
+msgstr "Verwijder site %(site)s"
+
+#: plinth/modules/ikiwiki/templates/ikiwiki_manage.html:61
+#, python-format
+msgid "Go to site %(site)s"
+msgstr "Ga naar site %(site)s"
+
+#: plinth/modules/ikiwiki/views.py:38
+msgid "Manage"
+msgstr "Instellen"
+
+#: plinth/modules/ikiwiki/views.py:40
+msgid "Create"
+msgstr "Maak"
+
+#: plinth/modules/ikiwiki/views.py:73
+msgid "Wiki & Blog"
+msgstr "Wiki & Blog"
+
+#: plinth/modules/ikiwiki/views.py:106
+msgid "Manage Wikis and Blogs"
+msgstr "Stel Wiki's en Blog's in"
+
+#: plinth/modules/ikiwiki/views.py:132
+msgid "Create Wiki/Blog"
+msgstr "Nieuwe Wiki/Blog"
+
+#: plinth/modules/ikiwiki/views.py:145
+#, python-brace-format
+msgid "Created wiki {name}."
+msgstr "Wiki {name} gemaakt."
+
+#: plinth/modules/ikiwiki/views.py:147
+#, python-brace-format
+msgid "Could not create wiki: {error}"
+msgstr "Kan wiki niet aanmaken: {error}"
+
+#: plinth/modules/ikiwiki/views.py:159
+#, python-brace-format
+msgid "Created blog {name}."
+msgstr "Blog {name} gemaakt."
+
+#: plinth/modules/ikiwiki/views.py:161
+#, python-brace-format
+msgid "Could not create blog: {error}"
+msgstr "Kan blog niet aanmaken: {error}"
+
+#: plinth/modules/ikiwiki/views.py:174
+#, python-brace-format
+msgid "{name} deleted."
+msgstr "{name} verwijderd."
+
+#: plinth/modules/ikiwiki/views.py:176
+#, python-brace-format
+msgid "Could not delete {name}: {error}"
+msgstr "Verwijderen van {name} mislukt: {error}"
+
+#: plinth/modules/ikiwiki/views.py:182
+msgid "Delete Wiki/Blog"
+msgstr "Verwijder Wiki/Blog"
+
+#: plinth/modules/mumble/__init__.py:38
+#: plinth/modules/mumble/templates/mumble.html:26
+#: plinth/modules/mumble/views.py:58
+msgid "Voice Chat (Mumble)"
+msgstr "Voice Chat (Mumble)"
+
+#: plinth/modules/mumble/__init__.py:43
+msgid "Mumble Voice Chat Server"
+msgstr "Mumble Voice Chat Server"
+
+#: plinth/modules/mumble/forms.py:29
+msgid "Enable Mumble daemon"
+msgstr "Mumble daemon Inschakelen"
+
+#: plinth/modules/mumble/templates/mumble.html:29
+msgid ""
+"Mumble is an open source, low-latency, encrypted, high quality voice chat "
+"software."
+msgstr ""
+"Mumble is een Open Source, snelle, versleutelde, hoge kwaliteits "
+"groepsgespreksserver."
+
+#: plinth/modules/mumble/templates/mumble.html:36
+msgid ""
+"You can connect to your Mumble server on the regular Mumble port 64738. <a "
+"href=\"http://mumble.info\">Clients</a> to connect to Mumble from your "
+"desktop and Android devices are available."
+msgstr ""
+"De Mumble server is beschikbaar via de standaard Mumble poort 64738. Zie <a "
+"href=\"http://mumble.info\">Clients (Engelstalig)</a>  voor informatie over "
+"programma's om mee de Mumble dienst te gebruiken. Er zijn programma's voor "
+"desktop en Android machines."
+
+#: plinth/modules/mumble/templates/mumble.html:49
+msgid "Mumble server is running"
+msgstr "Mumble server draait"
+
+#: plinth/modules/mumble/templates/mumble.html:52
+msgid "Mumble server is not running"
+msgstr "Mumble server draait niet"
+
+#: plinth/modules/names/__init__.py:30
+msgid "HTTP"
+msgstr "HTTP"
+
+#: plinth/modules/names/__init__.py:31
+msgid "HTTPS"
+msgstr "HTTPS"
+
+#: plinth/modules/names/__init__.py:32
+msgid "SSH"
+msgstr "SSH"
+
+#: plinth/modules/names/__init__.py:46 plinth/modules/names/views.py:34
+msgid "Name Services"
+msgstr "Naamdiensten"
+
+#: plinth/modules/names/__init__.py:107
+msgid "Not Available"
+msgstr "Niet Beschikbaar"
+
+#: plinth/modules/networks/__init__.py:108
+#, python-brace-format
+msgid "Using DNSSEC on IPv{kind}"
+msgstr "Gebruikt DNSSEC op IPv{kind}"
+
+#: plinth/modules/networks/forms.py:30
+msgid "-- select --"
+msgstr "-- selecteer --"
+
+#: plinth/modules/networks/forms.py:42
+msgid "Connection Type"
+msgstr "Verbindingssoort"
+
+#: plinth/modules/networks/forms.py:49 plinth/modules/networks/forms.py:79
+#: plinth/modules/networks/forms.py:106
+msgid "Connection Name"
+msgstr "Verbindingsnaam"
+
+#: plinth/modules/networks/forms.py:51 plinth/modules/networks/forms.py:81
+msgid "Physical Interface"
+msgstr "Fysieke Interface"
+
+#: plinth/modules/networks/forms.py:53 plinth/modules/networks/forms.py:83
+#: plinth/modules/networks/forms.py:110
+msgid "The network device that this connection should be bound to."
+msgstr "De netwerkapparatuur waar deze verbinding mee moet worden verbonden."
+
+#: plinth/modules/networks/forms.py:56 plinth/modules/networks/forms.py:86
+#: plinth/modules/networks/forms.py:113
+msgid "Firewall Zone"
+msgstr "Firewall Zone"
+
+#: plinth/modules/networks/forms.py:57 plinth/modules/networks/forms.py:87
+#: plinth/modules/networks/forms.py:114
+msgid ""
+"The firewall zone will control which services are available over this "
+"interfaces. Select Internal only for trusted networks."
+msgstr ""
+"De firewall zone controleert welke machines beschikbaar zijn via deze "
+"verbinding. Selecteer \"Allen Intern\" voor vertrouwde netwerken."
+
+#: plinth/modules/networks/forms.py:61 plinth/modules/networks/forms.py:135
+msgid "IPv4 Addressing Method"
+msgstr "IPv4 Adresseringsmethode"
+
+#: plinth/modules/networks/forms.py:66 plinth/modules/networks/forms.py:143
+msgid "Address"
+msgstr "Adres"
+
+#: plinth/modules/networks/forms.py:94
+msgid "Show password"
+msgstr "Toon wachtwoord"
+
+#: plinth/modules/networks/forms.py:108
+msgid "Physical interface"
+msgstr "Fysieke Interface"
+
+#: plinth/modules/networks/forms.py:118
+#: plinth/modules/networks/templates/connection_show.html:144
+msgid "SSID"
+msgstr "SSID"
+
+#: plinth/modules/networks/forms.py:119
+msgid "The visible name of the network."
+msgstr "De zichtbare netwerknaam."
+
+#: plinth/modules/networks/forms.py:121
+#: plinth/modules/networks/templates/connection_show.html:157
+msgid "Mode"
+msgstr "Modus"
+
+#: plinth/modules/networks/forms.py:126
+msgid "Authentication Mode"
+msgstr "Authentificatiemodus"
+
+#: plinth/modules/networks/forms.py:127
+msgid ""
+"Select WPA if the wireless network is secured and requires clients to have "
+"the password to connect."
+msgstr ""
+"Selecteer WPA indien het netwerk beveiligd is en gebruikerswachtwoorden "
+"gebruikt om te verbinden."
+
+#: plinth/modules/networks/forms.py:131
+msgid "Passphrase"
+msgstr "Wachtwoordzin"
+
+#: plinth/modules/networks/forms.py:139
+msgid ""
+"Select Automatic (DHCP) if you are connecting to an existing wireless "
+"network. Shared mode is useful when running an Access Point."
+msgstr ""
+"Selecteer Automatisch (DHCP) als een verbinding met een bestaand draadloos "
+"netwerk wordt gemaakt. Shared Mode is handig als hiermee een Acces Point "
+"wordt gemaakt."
+
+#: plinth/modules/networks/networks.py:36
+#: plinth/modules/networks/networks.py:56
+msgid "Network Connections"
+msgstr "Netwerkverbindingen"
+
+#: plinth/modules/networks/networks.py:38
+#: plinth/modules/networks/networks.py:255
+msgid "Nearby Wi-Fi Networks"
+msgstr "Wi-Fi Netwerken dichtbij"
+
+#: plinth/modules/networks/networks.py:40
+#: plinth/modules/networks/networks.py:277
+msgid "Add Connection"
+msgstr "Verbinding toevoegen"
+
+#: plinth/modules/networks/networks.py:46
+msgid "Networks"
+msgstr "Netwerken"
+
+#: plinth/modules/networks/networks.py:66
+msgid "Cannot show connection: Connection not found."
+msgstr "Kan verbinding niet weergeven: Verbinding niet gevonden."
+
+#: plinth/modules/networks/networks.py:100
+msgid "Show Connection information"
+msgstr "Laat verbindingsinformatie zien"
+
+#: plinth/modules/networks/networks.py:113
+msgid "Cannot edit connection: Connection not found."
+msgstr "Kan verbinding niet wijzigen: Verbinding niet gevonden."
+
+#: plinth/modules/networks/networks.py:119
+msgid "This type of connection is not yet understood."
+msgstr "Deze verbindingsmethode is (nog) niet bekend."
+
+#: plinth/modules/networks/networks.py:164
+#: plinth/modules/networks/networks.py:211
+#: plinth/modules/networks/templates/connections_edit.html:34
+msgid "Edit Connection"
+msgstr "Wijzig verbinding"
+
+#: plinth/modules/networks/networks.py:222
+#, python-brace-format
+msgid "Activated connection {name}."
+msgstr "Geactiveerde verbinding {name}."
+
+#: plinth/modules/networks/networks.py:225
+msgid "Failed to activate connection: Connection not found."
+msgstr "Kan verbinding niet inschakelen: Verbinding niet gevonden."
+
+#: plinth/modules/networks/networks.py:229
+#, python-brace-format
+msgid "Failed to activate connection {name}: No suitable device is available."
+msgstr "Kan verbinding {name} niet inschakelen: Verbinding niet gevonden."
+
+#: plinth/modules/networks/networks.py:242
+#, python-brace-format
+msgid "Deactivated connection {name}."
+msgstr "Verbinding{name}uitgeschakeld. "
+
+#: plinth/modules/networks/networks.py:245
+msgid "Failed to de-activate connection: Connection not found."
+msgstr "Kan verbinding niet uitschakelen: Verbinding niet gevonden."
+
+#: plinth/modules/networks/networks.py:302
+msgid "Adding New Ethernet Connection"
+msgstr "Toevoegen nieuwe Ethernetverbinding"
+
+#: plinth/modules/networks/networks.py:327
+msgid "Adding New PPPoE Connection"
+msgstr "Toevoegen nieuwe PPPoE verbinding"
+
+#: plinth/modules/networks/networks.py:371
+msgid "Adding New Wi-Fi Connection"
+msgstr "Toevoegen nieuwe W-Fi verbinding"
+
+#: plinth/modules/networks/networks.py:385
+#, python-brace-format
+msgid "Connection {name} deleted."
+msgstr "Verbinding {name} verwijderd."
+
+#: plinth/modules/networks/networks.py:388
+#: plinth/modules/networks/networks.py:397
+msgid "Failed to delete connection: Connection not found."
+msgstr "Kan verbinding niet verwijderen: Verbinding niet gevonden."
+
+#: plinth/modules/networks/networks.py:402
+msgid "Delete Connection"
+msgstr "Verwijder verbinding"
+
+#: plinth/modules/networks/templates/connection_show.html:43
+msgid "Edit connection"
+msgstr "Wijzig verbinding"
+
+#: plinth/modules/networks/templates/connection_show.html:43
+#: plinth/templates/base.html:119
+msgid "Edit"
+msgstr "Wijzig"
+
+#: plinth/modules/networks/templates/connection_show.html:50
+#: plinth/modules/networks/templates/connections_list.html:78
+msgid "Deactivate"
+msgstr "Deactiveer"
+
+#: plinth/modules/networks/templates/connection_show.html:57
+#: plinth/modules/networks/templates/connections_list.html:86
+msgid "Activate"
+msgstr "Activeer"
+
+#: plinth/modules/networks/templates/connection_show.html:63
+msgid "Delete connection"
+msgstr "Verwijder verbinding"
+
+#: plinth/modules/networks/templates/connection_show.html:63
+msgid "Delete"
+msgstr "Verwijder"
+
+#: plinth/modules/networks/templates/connection_show.html:66
+#: plinth/modules/networks/templates/connections_diagram.html:73
+#: plinth/modules/networks/templates/connections_diagram.html:76
+#: plinth/modules/networks/templates/connections_diagram.html:105
+#: plinth/modules/networks/templates/connections_diagram.html:127
+msgid "Connection"
+msgstr "Verbinding"
+
+#: plinth/modules/networks/templates/connection_show.html:71
+msgid "Primary connection"
+msgstr "Primaire Verbinding"
+
+#: plinth/modules/networks/templates/connection_show.html:73
+#: plinth/modules/networks/templates/connection_show.html:217
+#: plinth/modules/networks/templates/connection_show.html:256
+msgid "yes"
+msgstr "ja"
+
+#: plinth/modules/networks/templates/connection_show.html:84
+msgid "Device"
+msgstr "Apparaat"
+
+#: plinth/modules/networks/templates/connection_show.html:88
+msgid "State"
+msgstr "Status"
+
+#: plinth/modules/networks/templates/connection_show.html:93
+msgid "State reason"
+msgstr "Reden van status"
+
+#: plinth/modules/networks/templates/connection_show.html:102
+msgid "MAC address"
+msgstr "MAC adres"
+
+#: plinth/modules/networks/templates/connection_show.html:106
+msgid "Interface"
+msgstr "Interface"
+
+#: plinth/modules/networks/templates/connection_show.html:110
+msgid "Description"
+msgstr "Omschrijving"
+
+#: plinth/modules/networks/templates/connection_show.html:116
+msgid "Physical Link"
+msgstr "Fysieke Verbinding"
+
+#: plinth/modules/networks/templates/connection_show.html:121
+msgid "Link state"
+msgstr "Verbindingsstatus"
+
+#: plinth/modules/networks/templates/connection_show.html:125
+msgid "cable is connected"
+msgstr "kabel is verbonden"
+
+#: plinth/modules/networks/templates/connection_show.html:128
+msgid "please check cable"
+msgstr "controleer kabel"
+
+#: plinth/modules/networks/templates/connection_show.html:133
+#: plinth/modules/networks/templates/connection_show.html:149
+msgid "Speed"
+msgstr "Snelheid"
+
+#: plinth/modules/networks/templates/connection_show.html:135
+#, python-format
+msgid "%(ethernet_speed)s Mbit/s"
+msgstr "%(ethernet_speed)s Mbit/s"
+
+#: plinth/modules/networks/templates/connection_show.html:151
+#, python-format
+msgid "%(wireless_bitrate)s Mbit/s"
+msgstr "%(wireless_bitrate)s Mbit/s"
+
+#: plinth/modules/networks/templates/connection_show.html:163
+msgid "Signal strength"
+msgstr "Signaalsterkte"
+
+#: plinth/modules/networks/templates/connection_show.html:173
+msgid "Channel"
+msgstr "Kanaal"
+
+#: plinth/modules/networks/templates/connection_show.html:181
+msgid "IPv4"
+msgstr "IPv4"
+
+#: plinth/modules/networks/templates/connection_show.html:186
+#: plinth/modules/networks/templates/connection_show.html:227
+msgid "Method"
+msgstr "Methode"
+
+#: plinth/modules/networks/templates/connection_show.html:193
+#: plinth/modules/networks/templates/connection_show.html:234
+msgid "IP address"
+msgstr "IP adres"
+
+#: plinth/modules/networks/templates/connection_show.html:202
+#: plinth/modules/networks/templates/connection_show.html:241
+msgid "Gateway"
+msgstr "Gateway"
+
+#: plinth/modules/networks/templates/connection_show.html:209
+#: plinth/modules/networks/templates/connection_show.html:248
+msgid "DNS server"
+msgstr "DNS server"
+
+#: plinth/modules/networks/templates/connection_show.html:216
+#: plinth/modules/networks/templates/connection_show.html:255
+msgid "Default"
+msgstr "Standaard"
+
+#: plinth/modules/networks/templates/connection_show.html:222
+msgid "IPv6"
+msgstr "IPv6"
+
+#: plinth/modules/networks/templates/connection_show.html:263
+msgid "This connection is not active."
+msgstr "Deze verbinding is niet actief."
+
+#: plinth/modules/networks/templates/connection_show.html:266
+msgid "Security"
+msgstr "Security"
+
+#: plinth/modules/networks/templates/connection_show.html:271
+#: plinth/modules/networks/templates/connection_show.html:291
+#: plinth/modules/networks/templates/connection_show.html:310
+msgid "Firewall zone"
+msgstr "Firewall zone"
+
+#: plinth/modules/networks/templates/connection_show.html:280
+msgid ""
+"This interface should be connected to local network/machine.  If you connect "
+"this interface to a public network, services meant to be available only "
+"internally will become available externally.  This is a security risk."
+msgstr ""
+"Deze verbinding zou met een lokaal netwerk/machine verbonden moeten zijn.  "
+"Als deze verbonden wordt met een publiek netwerk, worden diensten die "
+"bedoeld zijn om intern beschikbaar te zijn van buitenaf bereikbaar. Dat is "
+"een veiligheidsrisico."
+
+#: plinth/modules/networks/templates/connection_show.html:300
+msgid ""
+"This interface should receive your Internet connection. If you connect it "
+"your a local network/machine, many services meant to available only "
+"internally will not be available."
+msgstr ""
+"Deze verbinding hoort de internetverbinding te ontvangen. Als het verbonden "
+"wordt met een lokaal netwerk/machine, zijn veel diensten die alleen lokaal "
+"beschikbaar zijn niet bereikbaar."
+
+#: plinth/modules/networks/templates/connection_show.html:319
+msgid ""
+"This interface is not maintained by FreedomBox.  Its security status is "
+"unknown to FreedomBox.  Many FreedomBox services may not be available on "
+"this interface.  It is recommended that you deactivate/delete this "
+"connection and re-configure it."
+msgstr ""
+"Deze verbinding wordt niet door FreedomBox beheerd. De veiligheid ervan is "
+"onbekend. Veel FreedomBox diensten zullen niet beschikbaar zijn via deze "
+"verbinding. Het wordt aanbevolen om deze verbinding te deactivere/"
+"verwijderen en opnieuw in te stellen."
+
+#: plinth/modules/networks/templates/connections_add.html:34
+#: plinth/modules/networks/templates/connections_type_select.html:34
+msgid "Create..."
+msgstr "Maak..."
+
+#: plinth/modules/networks/templates/connections_create.html:34
+msgid "Create Connection"
+msgstr "Maak Verbinding"
+
+#: plinth/modules/networks/templates/connections_delete.html:26
+#, python-format
+msgid "Delete Connection <em>%(name)s</em>"
+msgstr "Verwijder verbinding <em>%(name)s</em>"
+
+#: plinth/modules/networks/templates/connections_delete.html:28
+msgid "Delete connection permanently?"
+msgstr "Verbinding permanent verwijderen?"
+
+#: plinth/modules/networks/templates/connections_diagram.html:65
+msgid "Internet"
+msgstr "Internet"
+
+#: plinth/modules/networks/templates/connections_diagram.html:70
+#: plinth/modules/networks/templates/connections_diagram.html:102
+msgid "Spacing"
+msgstr "Verbinding"
+
+#: plinth/modules/networks/templates/connections_diagram.html:78
+msgid "External"
+msgstr "Extern"
+
+#: plinth/modules/networks/templates/connections_diagram.html:83
+#: plinth/modules/networks/templates/connections_diagram.html:113
+#: plinth/network.py:37
+msgid "Ethernet"
+msgstr "Ethernet"
+
+#: plinth/modules/networks/templates/connections_diagram.html:86
+#: plinth/modules/networks/templates/connections_diagram.html:116
+#: plinth/network.py:38
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: plinth/modules/networks/templates/connections_diagram.html:89
+#, python-format
+msgid "Show connection %(connection.name)s"
+msgstr "Toon verbinding %(connection.name)s"
+
+#: plinth/modules/networks/templates/connections_diagram.html:107
+msgid "Internal"
+msgstr "Intern"
+
+#: plinth/modules/networks/templates/connections_diagram.html:119
+#, python-format
+msgid "Show connection %(name)s"
+msgstr "Tonen verbinding %(name)s"
+
+#: plinth/modules/networks/templates/connections_diagram.html:131
+msgid "Computer"
+msgstr "Computer"
+
+#: plinth/modules/networks/templates/connections_list.html:67
+#, python-format
+msgid "Delete connection %(name)s"
+msgstr "Verwijder verbinding %(name)s"
+
+#: plinth/modules/networks/templates/connections_list.html:92
+msgid "Active"
+msgstr "Aktief"
+
+#: plinth/modules/networks/templates/connections_list.html:95
+msgid "Inactive"
+msgstr "Inactief"
+
+#: plinth/modules/openvpn/__init__.py:38
+#: plinth/modules/openvpn/templates/openvpn.html:35
+#: plinth/modules/openvpn/views.py:62
+msgid "Virtual Private Network (OpenVPN)"
+msgstr "Virtual Private Network (OpenVPN)"
+
+#: plinth/modules/openvpn/__init__.py:43
+msgid "OpenVPN"
+msgstr "OpenVPN"
+
+#: plinth/modules/openvpn/forms.py:29
+msgid "Enable OpenVPN server"
+msgstr "OpenVPN server Inschakelen"
+
+#: plinth/modules/openvpn/templates/openvpn.html:38
+#, python-format
+msgid ""
+"Virtual Private Network (VPN) is a technique for securely connecting two "
+"machines in order to access resources of a private network.  While you are "
+"away from home, you can connect to your %(box_name)s in order to join your "
+"home network and access private/internal services provided by %(box_name)s. "
+"You can also access the rest of the Internet via %(box_name)s for added "
+"security and anonymity."
+msgstr ""
+"Virtual Private Network (VPN) is een techniek om een beveiligde verbinding "
+"op te zetten tussen twee machines, om zo gebruik te maken van diensten die "
+"beschikbaar zijn op een privenetwerk. Terwijl je niet thuis bent, kun je "
+"verbinden met %(box_name)s om zo in te loggen op je thuisnetwerk, en gebruik "
+"te maken van de interne/privediensten die je %(box_name)s aanbiedt. Het is "
+"ook mogelijk om de rest van het internetgebruik via deze machine te leiden, "
+"voor meer veilighed en anonimiteit."
+
+#: plinth/modules/openvpn/templates/openvpn.html:51
+msgid "Profile"
+msgstr "Profiel"
+
+#: plinth/modules/openvpn/templates/openvpn.html:54
+#, python-format
+msgid ""
+"To connect to %(box_name)s's VPN, you need to download a profile and feed it "
+"to an OpenVPN client on your mobile or desktop machine.  OpenVPN Clients are "
+"available for most platforms.  See <a href=\"https://wiki.debian.org/"
+"FreedomBox/Manual/OpenVPN\" title=\"FreedomBox Manual - OpenVPN"
+"\">documentation</a> on recommended clients and instructions on how to "
+"configure them."
+msgstr ""
+"Om te verbinden met de VPN van %(box_name)s moet een profil worden "
+"gedownload, en ingesteld worden in een OpenVPN client op de mobiele of "
+"desktop computer. Zie deze (Engelstalige) <a href=\"https://wiki.debian.org/"
+"FreedomBox/Manual/OpenVPN\" title=\"FreedomBox Manual - OpenVPN"
+"\">documentatie</a> met aanbevolen clients en gebruiksinstructies."
+
+#: plinth/modules/openvpn/templates/openvpn.html:66
+#, python-format
+msgid "Profile is specific to each user of %(box_name)s.  Keep it a secret."
+msgstr ""
+"Profielen zijn voor iedere gebruiker van %(box_name)s anders. Houd ze geheim."
+
+#: plinth/modules/openvpn/templates/openvpn.html:76
+msgid "Download my profile"
+msgstr "Download mijn profiel"
+
+#: plinth/modules/openvpn/templates/openvpn.html:85
+#, python-format
+msgid ""
+"OpenVPN has not yet been setup.  Performing a secure setup takes a very long "
+"time.  Depending on how fast your %(box_name)s is, it may even take hours.  "
+"If the setup is interrupted, you may start it again."
+msgstr ""
+"OpenVPN is nog niet ingesteld. Een veilige installatie vergt veel tijd. "
+"Afhankelijk van de snelheid van %(box_name)s kan dit zelfs uren duren. Als "
+"de instelling wordt onderbroken, kan het weer opnieuw gestart worden."
+
+#: plinth/modules/openvpn/templates/openvpn.html:97
+msgid "Start setup"
+msgstr "Setup starten"
+
+#: plinth/modules/openvpn/templates/openvpn.html:104
+msgid "OpenVPN setup is running"
+msgstr "OpenVPN setup draait"
+
+#: plinth/modules/openvpn/templates/openvpn.html:108
+#, python-format
+msgid ""
+"To perform a secure setup, this process takes a very long time.  Depending "
+"on how fast your %(box_name)s is, it may even take hours.  If the setup is "
+"interrupted, you may start it again."
+msgstr ""
+"Een veilige installatie vergt veel tijd. Afhankelijk van de snelheid van "
+"%(box_name)s kan dit zelfs uren duren. Als de instelling wordt onderbroken, "
+"kan het weer opnieuw gestart worden."
+
+#: plinth/modules/openvpn/templates/openvpn.html:121
+msgid "OpenVPN server is running"
+msgstr "OpenVPN server draait"
+
+#: plinth/modules/openvpn/templates/openvpn.html:124
+msgid "OpenVPN server is not running"
+msgstr "OpenVPN server draait niet"
+
+#: plinth/modules/openvpn/views.py:124
+msgid "Setup completed."
+msgstr "Instelling voltooid."
+
+#: plinth/modules/openvpn/views.py:126
+msgid "Setup failed."
+msgstr "Instelling mislukt."
+
+#: plinth/modules/owncloud/owncloud.py:38
+msgid "Enable ownCloud"
+msgstr "ownCloud Inschakelen"
+
+#: plinth/modules/owncloud/owncloud.py:44
+#: plinth/modules/owncloud/templates/owncloud.html:26
+msgid "File Hosting (ownCloud)"
+msgstr "Bestandsdeling (ownCloud)"
+
+#: plinth/modules/owncloud/owncloud.py:51
+#: plinth/modules/owncloud/owncloud.py:80
+msgid "ownCloud"
+msgstr "ownCloud"
+
+#: plinth/modules/owncloud/owncloud.py:97
+msgid "ownCloud enabled"
+msgstr "ownCloud ingeschakeld"
+
+#: plinth/modules/owncloud/owncloud.py:100
+msgid "ownCloud disabled"
+msgstr "ownCloud uitgeschakeld"
+
+#: plinth/modules/owncloud/templates/owncloud.html:29
+msgid ""
+"ownCloud gives you universal access to your files through a web interface or "
+"WebDAV. It also provides a platform to easily view & sync your contacts, "
+"calendars and bookmarks across all your devices and enables basic editing "
+"right on the web. Installation has minimal server requirements, doesn't need "
+"special permissions and is quick. ownCloud is extendable via a simple but "
+"powerful API for applications and plugins."
+msgstr ""
+"ownCloud biedt universele toegang tot bestanden door middel van een  web-"
+"interface of WebDAV. Het biedt ook een platform om contacten, kalender en "
+"bookmarks te synchroniseren op al je apparatuur, en maakt wijziging ervan "
+"via het web mogelijk. De installatie heeft minimale vereisten aan de "
+"computer, heeft geen speciale toestemmingen nodig, en is snel. ownCloud is "
+"uit te breiden met een eenvoudige maar krachtige API voor prograama's en "
+"plugins."
+
+#: plinth/modules/owncloud/templates/owncloud.html:41
+msgid ""
+"When enabled, the ownCloud installation will be available from <a href=\"/"
+"owncloud\">/owncloud</a> path on the web server. Visit this URL to set up "
+"the initial administration account for ownCloud."
+msgstr ""
+"Indien ingeschakeld, is ownCloud beschikbaar via de <a href=\"/owncloud\">/"
+"owncloud</a> link. Bezoek deze link om het administratie account voor "
+"ownCloud in te stellen."
+
+#: plinth/modules/owncloud/templates/owncloud.html:59
+msgid "Apply changes"
+msgstr "Verwerk wijzigingen"
+
+#: plinth/modules/pagekite/__init__.py:35 plinth/modules/pagekite/views.py:46
+msgid "Public Visibility (PageKite)"
+msgstr "Publieke zichtbaarheid (PageKite)"
+
+#: plinth/modules/pagekite/forms.py:46
+msgid "Enable PageKite"
+msgstr "PageKite Inschakelen"
+
+#: plinth/modules/pagekite/forms.py:49
+msgid "Server domain"
+msgstr "Serverdomein"
+
+#: plinth/modules/pagekite/forms.py:51
+msgid ""
+"Select your pagekite server. Set \"pagekite.net\" to use the default "
+"pagekite.net server"
+msgstr ""
+"Selecteer een pagekite server. Gebruik \"pagekite.net\" om de standaard "
+"pagekite.net server te gebruiken"
+
+#: plinth/modules/pagekite/forms.py:55
+msgid "Server port"
+msgstr "Serverpoort"
+
+#: plinth/modules/pagekite/forms.py:56
+msgid "Port of your pagekite server (default: 80)"
+msgstr "Poort voor de pagekite server (default: 80)"
+
+#: plinth/modules/pagekite/forms.py:58
+msgid "Kite name"
+msgstr "Kitenaam"
+
+#: plinth/modules/pagekite/forms.py:59
+msgid "Example: mybox.pagekite.me"
+msgstr "Voorbeeld: mybox.pagekite.me"
+
+#: plinth/modules/pagekite/forms.py:62
+msgid "Invalid kite name"
+msgstr "Foute kite-naam"
+
+#: plinth/modules/pagekite/forms.py:65
+msgid "Kite secret"
+msgstr "Kite-geheim"
+
+#: plinth/modules/pagekite/forms.py:67
+msgid ""
+"A secret associated with the kite or the default secret for your account if "
+"no secret is set on the kite"
+msgstr ""
+"Het wachtwoord dat met deze kite is verbonden, en het standaard wachtwoord "
+"voor deze account als deze kite geen eigen wachtwoord heeft"
+
+#: plinth/modules/pagekite/forms.py:83
+msgid "Kite details set"
+msgstr "Kite details ingesteld"
+
+#: plinth/modules/pagekite/forms.py:90
+msgid "Pagekite server set"
+msgstr "PageKite server ingeschakeld"
+
+#: plinth/modules/pagekite/forms.py:96
+msgid "PageKite enabled"
+msgstr "PageKite ingeschakeld"
+
+#: plinth/modules/pagekite/forms.py:99
+msgid "PageKite disabled"
+msgstr "PageKite uitgeschakeld"
+
+#: plinth/modules/pagekite/forms.py:135
+#, python-brace-format
+msgid "Service enabled: {name}"
+msgstr "Dienst ingeschakeld: {name}"
+
+#: plinth/modules/pagekite/forms.py:139
+#, python-brace-format
+msgid "Service disabled: {name}"
+msgstr "Dienst uitgeschakeld: {name}"
+
+#: plinth/modules/pagekite/forms.py:150
+msgid "protocol"
+msgstr "protocol"
+
+#: plinth/modules/pagekite/forms.py:153
+msgid "external (frontend) port"
+msgstr "externe (frontend) poort"
+
+#: plinth/modules/pagekite/forms.py:156
+msgid "internal (freedombox) port"
+msgstr "interne (freedombox) poort"
+
+#: plinth/modules/pagekite/forms.py:158
+msgid "Enable Subdomains"
+msgstr "Subdomeinen Inschakelen"
+
+#: plinth/modules/pagekite/forms.py:191
+msgid "Deleted custom service"
+msgstr "Verwijderde aangepaste dienst"
+
+#: plinth/modules/pagekite/forms.py:225
+msgid ""
+"This service is available as a standard service. Please use the \"Standard "
+"Services\" page to enable it."
+msgstr ""
+"Deze dienst is beschikbaar als een standaarddienst. Gebruik de \"Standaard "
+"Diensten\" pagina."
+
+#: plinth/modules/pagekite/forms.py:234
+msgid "Added custom service"
+msgstr "Aangepaste dienst toevoegen"
+
+#: plinth/modules/pagekite/forms.py:237
+msgid "This service already exists"
+msgstr "Deze dienst bestaat al"
+
+#: plinth/modules/pagekite/templates/pagekite_configure.html:33
+msgid "PageKite Account"
+msgstr "PageKite Account"
+
+#: plinth/modules/pagekite/templates/pagekite_configure.html:41
+msgid "Save settings"
+msgstr "Instellingen opslaan"
+
+#: plinth/modules/pagekite/templates/pagekite_custom_services.html:44
+msgid ""
+"<b>Warning:</b><br>Your PageKite frontend server may not support all the "
+"protocol/port combinations that you are able to define here. For example, "
+"HTTPS on ports other than 443 is known to cause problems."
+msgstr ""
+"<b>Waarschuwing:</b><br>Deze PageKite frontend server zal niet alle protocol/"
+"poortcombinaties die heir gedefinieerd kunnen worden ondersteunen. Het is "
+"bijvoorbeeld bekend dat HTTPS servers die niet op poort 443 worden ingesteld "
+"problemen opleveren."
+
+#: plinth/modules/pagekite/templates/pagekite_custom_services.html:56
+msgid "Create a custom service"
+msgstr "Maak een aangepaste dienst"
+
+#: plinth/modules/pagekite/templates/pagekite_custom_services.html:64
+msgid "Add Service"
+msgstr "Dienst toevoegen"
+
+#: plinth/modules/pagekite/templates/pagekite_custom_services.html:71
+msgid "Existing custom services"
+msgstr "Bestaande aangepaste diensten"
+
+#: plinth/modules/pagekite/templates/pagekite_custom_services.html:74
+msgid "You don't have any Custom Services enabled"
+msgstr "Er zijn geen aangepaste diensten ingeschakeld"
+
+#: plinth/modules/pagekite/templates/pagekite_custom_services.html:89
+#, python-format
+msgid "connected to %(backend_host)s:%(backend_port)s"
+msgstr "verbonden met %(backend_host)s:%(backend_port)s"
+
+#: plinth/modules/pagekite/templates/pagekite_custom_services.html:101
+msgid "Delete this service"
+msgstr "Verwijder deze dienst"
+
+#: plinth/modules/pagekite/templates/pagekite_introduction.html:26
+#, python-format
+msgid ""
+"PageKite is a system for exposing %(box_name)s services when you don't have "
+"a direct connection to the Internet. You only need this if your %(box_name)s "
+"services are unreachable from the rest of the Internet. This includes the "
+"following situations:"
+msgstr ""
+"PageKite is een systeem om de diensten van %(box_name)s van buitenaf "
+"bereikbaar te maken, ook al is er geen directe verbinding met het internet. "
+"Dit is alleen vereist als de diensten op %(box_name)s niet te bereiken zijn "
+"vanaf de rest van internet. Dit is het geval in de volgende situaties:"
+
+#: plinth/modules/pagekite/templates/pagekite_introduction.html:37
+#, python-format
+msgid "%(box_name)s is behind a restricted firewall."
+msgstr "%(box_name)s is achter een beperkende firewall."
+
+#: plinth/modules/pagekite/templates/pagekite_introduction.html:43
+#, python-format
+msgid ""
+"%(box_name)s is connected to a (wireless) router which you don't control."
+msgstr ""
+"%(box_name)s is verbonden met een (wireless) router die niet onder eigen "
+"controle staat."
+
+#: plinth/modules/pagekite/templates/pagekite_introduction.html:50
+msgid ""
+"Your ISP does not provide you an external IP address and instead provides "
+"Internet connection through NAT."
+msgstr ""
+"De internetprovider geeft geen extern IP adres maar maakt gebruik van een "
+"NAT verbinding."
+
+#: plinth/modules/pagekite/templates/pagekite_introduction.html:57
+msgid ""
+"Your ISP does not provide you a static IP address and your IP address "
+"changes evertime you connect to Internet."
+msgstr ""
+"De internetprovider geeft geen statisch IP adres, en het IP adres wijzigt "
+"bij elke verbinding."
+
+#: plinth/modules/pagekite/templates/pagekite_introduction.html:63
+msgid "Your ISP limits incoming connections."
+msgstr "De internetprovider beperkt inkomende verbindingen."
+
+#: plinth/modules/pagekite/templates/pagekite_introduction.html:67
+#, python-format
+msgid ""
+"PageKite works around NAT, firewalls and IP-address limitations by using a "
+"combination of tunnels and reverse proxies. You can use any pagekite service "
+"provider, for example <a href=\"https://pagekite.net\">pagekite.net</a>.  In "
+"future it might be possible to use your buddy's %(box_name)s for this."
+msgstr ""
+"PageKite omzeilt NAT,firewalls en IP adres beperkingen door een combinatie "
+"van tunnels en reverse proxies. Er kan gebruik gemaakt worden van iedere "
+"pagekite service provider, bijvoorbeeld <a href=\"https://pagekite.net"
+"\">pagekite.net</a>.  In de toekomst is het misschien mogelijk om de "
+"%(box_name)s van een van je vrienden te gebruiken."
+
+#: plinth/modules/pagekite/templates/pagekite_introduction.html:78
+#: plinth/modules/pagekite/views.py:36
+msgid "Configure PageKite"
+msgstr "Instellen PageKite"
+
+#: plinth/modules/pagekite/templates/pagekite_standard_services.html:40
+msgid "<b>Warning:</b><br/>"
+msgstr "<b>Waarschuwing:</b><br/>"
+
+#: plinth/modules/pagekite/templates/pagekite_standard_services.html:43
+msgid ""
+"Published services are accessible and attackable from the evil internet."
+msgstr ""
+"Gepubliceerde diensten zijn beschikbaar en aanvalbaar via het "
+"verschikkelijke internet."
+
+#: plinth/modules/pagekite/templates/pagekite_standard_services.html:50
+msgid "Exposing SSH with the default password for 'fbx' is a VERY BAD idea."
+msgstr ""
+"SSH van buitenaf bereikbaar maken met het standaardwachtwoord voor \"fbx\" "
+"is een HEEL SLECHT idee."
+
+#: plinth/modules/pagekite/templates/pagekite_standard_services.html:65
+msgid "Save Services"
+msgstr "Diensten opslaan"
+
+#: plinth/modules/pagekite/utils.py:53
+msgid "Web Server (HTTP)"
+msgstr "Webserver (HTTP)"
+
+#: plinth/modules/pagekite/utils.py:54
+#, python-brace-format
+msgid "Site will be available at <a href=\"http://{0}\">http://{0}</a>"
+msgstr ""
+"De website zal beschikbaar zijn op <a href=\"http://{0}\">http://{0}</a>"
+
+#: plinth/modules/pagekite/utils.py:63
+msgid "Web Server (HTTPS)"
+msgstr "Webserver (HTTPS)"
+
+#: plinth/modules/pagekite/utils.py:64
+#, python-brace-format
+msgid "Site will be available at <a href=\"https://{0}\">https://{0}</a>"
+msgstr ""
+"De website zal beschikbaar zijn op <a href=\"https://{0}\">https://{0}</a>"
+
+#: plinth/modules/pagekite/utils.py:73
+msgid "Secure Shell (SSH)"
+msgstr "Secure Shell (SSH)"
+
+#: plinth/modules/pagekite/utils.py:74
+msgid ""
+"See SSH client setup <a href=\"https://pagekite.net/wiki/Howto/"
+"SshOverPageKite/\">instructions</a>"
+msgstr ""
+"Zie de SSH client setup <a href=\"https://pagekite.net/wiki/Howto/"
+"SshOverPageKite/\">instructies (Engelstalig)</a>"
+
+#: plinth/modules/pagekite/utils.py:276
+msgid "Pagekite"
+msgstr "PageKite"
+
+#: plinth/modules/pagekite/views.py:34
+msgid "About PageKite"
+msgstr "Over PageKite"
+
+#: plinth/modules/pagekite/views.py:38
+msgid "Standard Services"
+msgstr "Standaard Diensten"
+
+#: plinth/modules/pagekite/views.py:40
+msgid "Custom Services"
+msgstr "Aangepaste Diensten"
+
+#: plinth/modules/power/__init__.py:32 plinth/modules/power/views.py:33
+#: plinth/modules/power/views.py:47 plinth/modules/power/views.py:62
+msgid "Power"
+msgstr "Power"
+
+#: plinth/modules/power/templates/power.html:29
+msgid "Restart or shut down the system."
+msgstr "Herstarten of Uitschakelen."
+
+#: plinth/modules/power/templates/power.html:34
+msgid "Restart &raquo;"
+msgstr "Herstart &raquo;"
+
+#: plinth/modules/power/templates/power.html:37
+msgid "Shut Down &raquo;"
+msgstr "Uitschakelen &raquo;"
+
+#: plinth/modules/power/templates/power_restart.html:29
+msgid ""
+"Are you sure you want to restart? You will not be able to access this web "
+"interface for a few minutes until the system is restarted."
+msgstr ""
+"Daadwerkelijk herstarten? Het is niet mogelijk deze website te gebruiken tot "
+"het systeem is herstart. Dit kan enkele minuten duren."
+
+#: plinth/modules/power/templates/power_restart.html:42
+msgid "Restart Now"
+msgstr "Nu Herstarten"
+
+#: plinth/modules/power/templates/power_shutdown.html:29
+msgid ""
+"Are you sure you want to shut down?  You will not be able to access this web "
+"interface after shut down."
+msgstr ""
+"Daadwerkelijk Uitschakelen? Het is niet mogelijk deze website te gebruiken "
+"als het systeem is uitgeschakeld."
+
+#: plinth/modules/power/templates/power_shutdown.html:41
+msgid "Shut Down Now"
+msgstr "Nu Uitschakelen"
+
+#: plinth/modules/privoxy/__init__.py:39
+#: plinth/modules/privoxy/templates/privoxy.html:26
+#: plinth/modules/privoxy/views.py:59
+msgid "Web Proxy (Privoxy)"
+msgstr "Web Proxy (Privoxy)"
+
+#: plinth/modules/privoxy/__init__.py:44
+msgid "Privoxy Web Proxy"
+msgstr "Privoxy Web Proxy"
+
+#: plinth/modules/privoxy/__init__.py:86
+#, python-brace-format
+msgid "Access {url} with proxy {proxy} on tcp{kind}"
+msgstr "Gebruik {url} via proxy {proxy} op tcp{kind}"
+
+#: plinth/modules/privoxy/forms.py:29
+msgid "Enable Privoxy"
+msgstr "Privoxy Inschakelen"
+
+#: plinth/modules/privoxy/templates/privoxy.html:29
+msgid ""
+"Privoxy is a non-caching web proxy with advanced filtering capabilities for "
+"enhancing privacy, modifying web page data and HTTP headers, controlling "
+"access, and removing ads and other obnoxious Internet junk."
+msgstr ""
+"Privoxy is een niet cachende web proxy met geavanceerde filtermogelijkheden "
+"om privacy te verhogen, webpagina data en HTTP headers te wijzigen, toegang "
+"te controleren, en advertenties en andere rommel te weren."
+
+#: plinth/modules/privoxy/templates/privoxy.html:38
+#, python-format
+msgid ""
+"You can use Privoxy by modifying your browser proxy settings to your "
+"%(box_name)s hostname (or IP address) with port 8118. While using Privoxy, "
+"you can see its configuration details and documentation at <a href=\"http://"
+"config.privoxy.org\">http://config.privoxy.org/</a> or <a href=\"http://p.p"
+"\">http://p.p</a>"
+msgstr ""
+"Privoxy kan gebruikt worden door de proxy insteelingen van je browser te "
+"wijzigen naar %(box_name)s hostname (of IP adres) met poort 8118. Zodra je "
+"Privoxy gebruikt, kan de configuratie en documentatie worden bereikt op <a "
+"href=\"http://config.privoxy.org\">http://config.privoxy.org/</a> of <a href="
+"\"http://p.p\">http://p.p</a>"
+
+#: plinth/modules/privoxy/templates/privoxy.html:53
+msgid "Privoxy is running"
+msgstr "Privoxy draait"
+
+#: plinth/modules/privoxy/templates/privoxy.html:56
+msgid "Privoxy is not running"
+msgstr "Privoxy draait niet"
+
+#: plinth/modules/restore/__init__.py:36
+#: plinth/modules/restore/templates/restore_index.html:26
+#: plinth/modules/restore/views.py:46
+msgid "Unhosted Storage (reStore)"
+msgstr "Unhosted dataopslag (reStore)"
+
+#: plinth/modules/restore/__init__.py:41
+msgid "reStore"
+msgstr "reStore"
+
+#: plinth/modules/restore/forms.py:29
+msgid "Enable reStore"
+msgstr "reStore Inschakelen"
+
+#: plinth/modules/restore/templates/restore_index.html:29
+#, python-format
+msgid ""
+"reStore is a server for <a href='https://unhosted.org/'>unhosted</a> web "
+"applications.  The idea is to uncouple web applications from data.  No "
+"matter where a web application is served from, the data can be stored on an "
+"unhosted storage server of user's choice.  With reStore, your "
+"%(cfg.box_name)s becomes your unhosted storage server."
+msgstr ""
+"reStore is een server voor <a href='https://unhosted.org/'>unhosted</a> web "
+"applicaties.  Het idee is om webapplicaties en data te scheiden. Het maakt "
+"niet uit waar de webdienst vandaan komt, de data kan worden bewaard een "
+"unhosted storage server naar keuze van de gebruiker worden geplaatst. Met "
+"reStore kan %(cfg.box_name)s een unhosted sorage server worden."
+
+#: plinth/modules/restore/templates/restore_index.html:40
+msgid ""
+"You can create and edit accounts in the <a href='/restore/'>reStore web-"
+"interface</a>."
+msgstr ""
+"Gebruikers accounts kunnen worden aangemaakt en bewerkt met de <a href='/"
+"restore/'>reStore web-interface</a>."
+
+#: plinth/modules/roundcube/__init__.py:36
+#: plinth/modules/roundcube/templates/roundcube.html:26
+#: plinth/modules/roundcube/views.py:64
+msgid "Email Client (Roundcube)"
+msgstr "Email Client (Roundcube)"
+
+#: plinth/modules/roundcube/forms.py:29
+msgid "Enable Roundcube"
+msgstr "Roundcube Inschakelen"
+
+#: plinth/modules/roundcube/templates/roundcube.html:29
+msgid ""
+"Roundcube webmail is a browser-based multilingual IMAP client with an "
+"application-like user interface. It provides full functionality you expect "
+"from an email client, including MIME support, address book, folder "
+"manipulation, message searching and spell checking."
+msgstr ""
+"RoundCube webmail is een browser gebaseerde, multilinguale IMAP client met "
+"een programma-achtige gebruikersinterface. Het bevat alle functionaliteit "
+"die je  van een email client verwacht, inclusief MIME ondersteuning, "
+"adresboek, mappen behher, berichtenzoekfuncties en spellingscontrole."
+
+#: plinth/modules/roundcube/templates/roundcube.html:39
+msgid ""
+"You can access Roundcube from <a href=\"/roundcube\">/roundcube</a>. Provide "
+"the username and password of the email account you wish to access followed "
+"by the domain name of the IMAP server for your email provider, like "
+"<code>imap.example.com</code>.  For IMAP over SSL (recommended), fill the "
+"server field like <code>imaps://imap.example.com</code>."
+msgstr ""
+"RoundCube kan worden gebruikt vanaf <a href=\"/roundcube\">/roundcube</a>. "
+"Gebruik de usernaam en wachtwoord van het email account dat je wilt "
+"gebruiken, gevolgd door de domeinnaam van de IMAP server van de "
+"emailprovider, zoals<code>imap.example.com</code>.  Voor IMAP over SSL "
+"(aanbevolen), vul dan het serverveld in, bijvoorbeeld als  <code>imaps://"
+"imap.example.com</code>."
+
+#: plinth/modules/roundcube/templates/roundcube.html:50
+msgid ""
+"For Gmail, username will be your Gmail address, password will be your Google "
+"account password and server will be <code>imaps://imap.gmail.com</code>.  "
+"Note that you will also need to enable \"Less secure apps\" in your Google "
+"account settings (<a href=\"https://www.google.com/settings/security/"
+"lesssecureapps\" >https://www.google.com/settings/security/lesssecureapps</"
+"a>)."
+msgstr ""
+"Om gmail te gebruiken zal het gmail adres de gebruikersnaam zijn, en de "
+"server wordt <code>imaps://imap.gmail.com</code>.  Let erop dat eerst binnen "
+"het Google account de functie \"Less secure apps\" ingeschakeld moet worden. "
+"(<a href=\"https://www.google.com/settings/security/lesssecureapps\" "
+">https://www.google.com/settings/security/lesssecureapps</a>)."
+
+#: plinth/modules/shaarli/__init__.py:37
+#: plinth/modules/shaarli/templates/shaarli.html:26
+#: plinth/modules/shaarli/views.py:49
+msgid "Bookmarks (Shaarli)"
+msgstr "Bladwijzers (Shaarli)"
+
+#: plinth/modules/shaarli/__init__.py:42
+msgid "Shaarli"
+msgstr "Shaarli"
+
+#: plinth/modules/shaarli/forms.py:29
+msgid "Enable Shaarli"
+msgstr "Shaarli Inschakelen"
+
+#: plinth/modules/shaarli/templates/shaarli.html:28
+msgid "Shaarli allows you to save and share bookmarks."
+msgstr "Met Shaarli is het mogelijk bookmarks te bewaren en delen."
+
+#: plinth/modules/shaarli/templates/shaarli.html:31
+msgid ""
+"When enabled, Shaarli will be available from <a href=\"/shaarli\">/shaarli</"
+"a> path on the web server. Note that Shaarli only supports a single user "
+"account, which you will need to setup on the initial visit."
+msgstr ""
+"Indien ingeschakeld, is Shaarli beschikbaar via de <a href=\"/shaarli\">/"
+"shaarli</a> link. Houd er rekening mee dat Shaarli maar een gebruiker "
+"ondersteunt, die moet worden ingesteld bij het eerste gebruik."
+
+#: plinth/modules/system/system.py:26
+msgid "System"
+msgstr "Systeem"
+
+#: plinth/modules/system/system.py:33
+#: plinth/modules/system/templates/system.html:25
+#: plinth/templates/base.html:105
+msgid "System Configuration"
+msgstr "Systeeminstelling"
+
+#: plinth/modules/system/templates/system.html:28
+#, python-format
+msgid "Here you can administrate the underlying system of your %(box_name)s."
+msgstr "Hier kan het hele systeem van%(box_name)s. worden beheerd."
+
+#: plinth/modules/system/templates/system.html:35
+#, python-format
+msgid ""
+"The options affect the %(box_name)s at its most general level, so be careful!"
+msgstr ""
+"Deze mogelijkheden raken %(box_name)s op diverse manieren, dus wees "
+"gewaarschuwd!"
+
+#: plinth/modules/tor/__init__.py:50
+msgid "Tor relay port available"
+msgstr "Tor relay poort beschikbaar"
+
+#: plinth/modules/tor/__init__.py:58
+msgid "Obfs3 transport registered"
+msgstr "Obfs3 transport geregistreerd"
+
+#: plinth/modules/tor/__init__.py:64
+msgid "Obfs4 transport registered"
+msgstr "Obfs4 transport geregistreerd"
+
+#: plinth/modules/tor/__init__.py:101
+#, python-brace-format
+msgid "Access URL {url} on tcp{kind} via Tor"
+msgstr "Gebruik URL {url} op tcp{kind} via Tor"
+
+#: plinth/modules/tor/__init__.py:112
+#, python-brace-format
+msgid "Confirm Tor usage at {url} on tcp{kind}"
+msgstr "Bevestig Tor gebruik met {url} via tcp{kind}"
+
+#: plinth/modules/tor/templates/tor.html:26 plinth/modules/tor/tor.py:66
+msgid "Anonymity Network (Tor)"
+msgstr "Anonimiteitsnetwerk (TOR)"
+
+#: plinth/modules/tor/templates/tor.html:29
+msgid ""
+"Tor is an anonymous communication system. You can learn more about it from "
+"the <a href=\"https://www.torproject.org/\">Tor Project</a> website. For "
+"best protection when web surfing, the Tor Project recommends that you use "
+"the <a href=\"https://www.torproject.org/download/download-easy.html.en\"> "
+"Tor Browser</a>."
+msgstr ""
+"Tor is een anonimiserend communicatiesysteem. Meer informaite erover is te "
+"vinden op de <a href=\"https://www.torproject.org/\">Tor Project</a> "
+"website. Voor de beste bescherming bij het websurfen raadt het Tor Project "
+"de <a href=\"https://www.torproject.org/download/download-easy.html.en\"> "
+"Tor Browser</a> aan."
+
+#: plinth/modules/tor/templates/tor.html:44
+msgid "Tor is running"
+msgstr "Tor draait"
+
+#: plinth/modules/tor/templates/tor.html:47
+msgid "Tor is not running"
+msgstr "Tor draait niet"
+
+#: plinth/modules/tor/templates/tor.html:59
+msgid "Hidden Service"
+msgstr "Hidden Service"
+
+#: plinth/modules/tor/templates/tor.html:60
+#: plinth/modules/tor/templates/tor.html:102
+msgid "Port"
+msgstr "Poort"
+
+#: plinth/modules/tor/templates/tor.html:85
+msgid "Bridge"
+msgstr "Bridge"
+
+#: plinth/modules/tor/templates/tor.html:88
+#, python-format
+msgid ""
+"Your %(box_name)s is configured as a Tor bridge with obfsproxy, so it can "
+"help circumvent censorship. If your %(box_name)s is behind a router or "
+"firewall, you should make sure the following ports are open, and port-"
+"forwarded, if necessary:"
+msgstr ""
+"%(box_name)s is geconfigureerd als een Tor bridge met obfsproxy, zodat het "
+"kan helpen bij het omzeilen van censuur. Als  %(box_name)s zich achter een "
+"router of firewall bevindt, is het belangrijk te zorgen dat de volgende "
+"poorten open staan en indien nodig worden doorgeleid:"
+
+#: plinth/modules/tor/templates/tor.html:101
+msgid "Service"
+msgstr "Dienst"
+
+#: plinth/modules/tor/templates/tor.html:117
+msgid "SOCKS"
+msgstr "SOCKS"
+
+#: plinth/modules/tor/templates/tor.html:120
+#, python-format
+msgid "A Tor SOCKS port is available on your %(box_name)s on TCP port 9050."
+msgstr "Een Tor SOCKS poort is beschikbaar op %(box_name)s, op TCP poort 9050."
+
+#: plinth/modules/tor/tor.py:46
+msgid "Enable Tor"
+msgstr "Tor Inschakelen"
+
+#: plinth/modules/tor/tor.py:49
+msgid "Enable Tor Hidden Service"
+msgstr "Tor Hidden Service Inschakelen"
+
+#: plinth/modules/tor/tor.py:51
+msgid ""
+"A hidden service will allow FreedomBox to provide selected services (such as "
+"ownCloud or Chat) without revealing its location."
+msgstr ""
+"Een \"hidden service\" zogt ervoor dat Freedombox geselecteerde diensten "
+"(zoals ownCloud of Chat) kan aanbieden zonder de lokatie te onthullen."
+
+#: plinth/modules/tor/tor.py:55
+msgid "Download software packages over Tor"
+msgstr "Download Softwarepakketen via Tor"
+
+#: plinth/modules/tor/tor.py:57
+msgid ""
+"When enabled, software will be downloaded over the Tor network for "
+"installations and upgrades. This adds a degree of privacy and security "
+"during software downloads."
+msgstr ""
+"Indien ingeschakeld, wodt software door middel van het Tor netwerk "
+"binnengehaald. Dit voegt een mate van privacy en veiligheid tijdens software "
+"downloads toe."
+
+#: plinth/modules/tor/tor.py:85 plinth/modules/tor/tor.py:285
+msgid "Tor Hidden Service"
+msgstr "Tor-Hidden Service"
+
+#: plinth/modules/tor/tor.py:115
+msgid "Tor Control Panel"
+msgstr "Tor Controlepaneel"
+
+#: plinth/modules/tor/tor.py:240
+#, python-brace-format
+msgid "Action error: {0} [{1}] [{2}]"
+msgstr "Actiefout: {0} [{1}] [{2}]"
+
+#: plinth/modules/tor/tor.py:256
+msgid "Tor enabled"
+msgstr "Tor ingeschakeld"
+
+#: plinth/modules/tor/tor.py:259
+msgid "Tor disabled"
+msgstr "Tor uitgeschakeld"
+
+#: plinth/modules/tor/tor.py:264
+msgid "Tor hidden service enabled"
+msgstr "Tor hidden service ingeschakeld"
+
+#: plinth/modules/tor/tor.py:267
+msgid "Tor hidden service disabled"
+msgstr "Tor hidden service uitgeschakeld"
+
+#: plinth/modules/tor/tor.py:292
+msgid "Enabled package download over Tor"
+msgstr "Pakket download via Tor Inschakelen"
+
+#: plinth/modules/tor/tor.py:295
+msgid "Disabled package download over Tor"
+msgstr "Pakket download via Tor Uitschakelen"
+
+#: plinth/modules/transmission/__init__.py:38
+#: plinth/modules/transmission/views.py:63
+msgid "BitTorrent (Transmission)"
+msgstr "BitTorrent (Transmission)"
+
+#: plinth/modules/transmission/__init__.py:43
+msgid "Transmission BitTorrent"
+msgstr "Transmission BitTorrent"
+
+#: plinth/modules/transmission/forms.py:29
+msgid "Enable Transmission daemon"
+msgstr "Transmission daemon Inschakelen"
+
+#: plinth/modules/transmission/forms.py:33
+msgid "Download directory"
+msgstr "Opslagmap"
+
+#: plinth/modules/transmission/forms.py:34
+msgid ""
+"Directory where downloads are saved.  If you change the default directory, "
+"ensure that the new directory exists and is writable by \"debian-tramission"
+"\" user"
+msgstr ""
+"Map waar downloads worden bewaard.  Indien de standaardmap wordt gewijzigd, "
+"zorg er dan voor dat de map bestaat en schrijfbaar is voor de \"debian-"
+"tramission\" gebruiker"
+
+#: plinth/modules/transmission/forms.py:40
+msgid "Username to login to the web interface"
+msgstr "Gebruikersnaam om op de web interface in te loggen"
+
+#: plinth/modules/transmission/forms.py:44
+msgid ""
+"Password to login to the web interface.  Current password is shown in a "
+"hashed format.  To set a new password, enter the password in plain text."
+msgstr ""
+"Wachtwoord om op de web-interface in te loggen. Het huidige wachtwoord wordt "
+"getoond in een gehashte weergave.  Om een nieuw wachtwoord in te stellen kan "
+"deze normaal worden ingevoerd."
+
+#: plinth/modules/transmission/templates/transmission.html:26
+msgid "Bittorrent (Transmission)"
+msgstr "BitTorrent (Transmission)"
+
+#: plinth/modules/transmission/templates/transmission.html:29
+msgid ""
+"BitTorrent is a peer-to-peer file sharing protocol. Transmission daemon "
+"handles Bitorrent file sharing.  Note that BitTorrent is not anonymous."
+msgstr ""
+"BitTorrent is een peer-to-peer bestandsdeling protocol. De Transmission "
+"daemon voorziet in Bittorrent bestandsdelingdiensten. Houd in gedachten dat "
+"BitTorrent gebruik niet anoniem is."
+
+#: plinth/modules/transmission/templates/transmission.html:37
+msgid "Access the web interface at <a href=\"/transmission\">/transmission</a>"
+msgstr ""
+"Gebruik de web-interface van <a href=\"/transmission\">/transmission</a>"
+
+#: plinth/modules/transmission/templates/transmission.html:47
+msgid "Transmission daemon is running"
+msgstr "Transmission daemon draait"
+
+#: plinth/modules/transmission/templates/transmission.html:50
+msgid "Transmission daemon is not running"
+msgstr "Transmission daemon draait niet"
+
+#: plinth/modules/upgrades/__init__.py:33
+msgid "Software Upgrades"
+msgstr "Software Upgrades"
+
+#: plinth/modules/upgrades/forms.py:29
+msgid "Enable automatic upgrades"
+msgstr "Automatisch bijwerken inschakelen"
+
+#: plinth/modules/upgrades/forms.py:30
+msgid ""
+"When enabled, the unattended-upgrades program will be run once per day. It "
+"will attempt to perform any package upgrades that are available."
+msgstr ""
+"Indien ingeschakeld, wordt het automatische updateprogramma eens per dag "
+"gedraaid. Het zal proberen alle beschikbare updates bij te werken."
+
+#: plinth/modules/upgrades/templates/upgrades.html:40
+msgid "There was an error while upgrading."
+msgstr "Er was een fout tijdens het bijwerken."
+
+#: plinth/modules/upgrades/templates/upgrades.html:43
+#: plinth/modules/upgrades/templates/upgrades.html:59
+msgid "Output from unattended-upgrades:"
+msgstr "Uitvoer van automatische upgrades:"
+
+#: plinth/modules/upgrades/templates/upgrades.html:50
+msgid "The operating system is up to date now. &nbsp;"
+msgstr "Het besturingssysteem is nu bijgewerkt. &nbsp;"
+
+#: plinth/modules/upgrades/templates/upgrades.html:53
+msgid "Show Details"
+msgstr "Toon Details"
+
+#: plinth/modules/upgrades/templates/upgrades.html:69
+msgid ""
+"This will run unattended-upgrades, which will attempt to upgrade your system "
+"with the latest Debian packages. It may take a few minutes to complete."
+msgstr ""
+"Dit zal het automatische updateprogramma draaien. Het zal proberen het "
+"systeem bij te werken met de nieuwste Debian paketten. Dit kan enige minuten "
+"duren."
+
+#: plinth/modules/upgrades/templates/upgrades.html:80
+msgid "Upgrade now &raquo;"
+msgstr "Nu bijwerken &raquo;"
+
+#: plinth/modules/upgrades/templates/upgrades.html:87
+msgid "System is being upgraded."
+msgstr "Het systeem wordt bijgewerkt."
+
+#: plinth/modules/upgrades/views.py:35 plinth/modules/upgrades/views.py:64
+msgid "Automatic Upgrades"
+msgstr "Automatisch bijwerken"
+
+#: plinth/modules/upgrades/views.py:37
+msgid "Upgrade Packages"
+msgstr "Pakketten Bijwerken"
+
+#: plinth/modules/upgrades/views.py:75
+msgid "Package Upgrades"
+msgstr "Bijwerkbare Pakketten"
+
+#: plinth/modules/upgrades/views.py:116
+#, python-brace-format
+msgid "Error when configuring unattended-upgrades: {error}"
+msgstr "Fout bij het instellen van automatische upgrades: {error}"
+
+#: plinth/modules/upgrades/views.py:121
+msgid "Automatic upgrades enabled"
+msgstr "Automatisch bijwerken ingeschakeld"
+
+#: plinth/modules/upgrades/views.py:123
+msgid "Automatic upgrades disabled"
+msgstr "Automatisch bijwerken uitgeschakeld"
+
+#: plinth/modules/upgrades/views.py:142
+msgid "Upgrade completed."
+msgstr "Bijwerken voltooid."
+
+#: plinth/modules/upgrades/views.py:144
+msgid "Upgrade failed."
+msgstr "Bijwerken mislukt."
+
+#: plinth/modules/users/__init__.py:36
+msgid "Users and Groups"
+msgstr "Gebruikers en Groepen"
+
+#: plinth/modules/users/__init__.py:65
+#, python-brace-format
+msgid "Check LDAP entry \"{search_item}\""
+msgstr "Zoek LDAP item \"{search_item}\""
+
+#: plinth/modules/users/forms.py:28
+msgid "admin"
+msgstr "admin"
+
+#: plinth/modules/users/forms.py:29
+msgid "wiki"
+msgstr "wiki"
+
+#: plinth/modules/users/forms.py:41
+msgid "Groups"
+msgstr "Groepen"
+
+#: plinth/modules/users/forms.py:45
+msgid ""
+"Select which services should be available to the new user. The user will be "
+"able to log in to services that support single sign-on through LDAP, if they "
+"are in the appropriate group.<br /><br />Users in the admin group will be "
+"able to log in to all services. They can also log in to the system through "
+"SSH and have administrative privileges (sudo)."
+msgstr ""
+"Selecteer de diensten die voor de nieuwe gebruiker beschikbaar moeten zijn. "
+"De gebruiker kan inloggen op de diensten die single sign-in met LDAP "
+"ondersteunen, als zij zich in de juiste groep bevinden.<br /><br /"
+">Gebruikers in de admin groep kunnen inloggen bij alle diensten. Zij kunnen "
+"ook op het systeem inloggen met SSH en kunne susteemadministratie doen "
+"(sudo)."
+
+#: plinth/modules/users/forms.py:80
+#, python-brace-format
+msgid "Failed to add new user to {group} group."
+msgstr "Nieuwe gebruiker aan groep {group} toevoegen mislukt."
+
+#: plinth/modules/users/forms.py:126
+msgid "Renaming LDAP user failed."
+msgstr "LDAP gebruiker hernoemen mislukt."
+
+#: plinth/modules/users/forms.py:138
+msgid "Failed to remove user from group."
+msgstr "Gebruiker uit groep verwijderen mislukt."
+
+#: plinth/modules/users/forms.py:149
+msgid "Failed to add user to group."
+msgstr "Gebruiker aan groep toevoegen mislukt."
+
+#: plinth/modules/users/forms.py:174
+msgid "Changing LDAP user password failed."
+msgstr "Wijzigen LDAP gebruikerswachtwoord mislukt."
+
+#: plinth/modules/users/templates/users_change_password.html:27
+#, python-format
+msgid "Change Password for <em>%(username)s</em>"
+msgstr "Wijzig wachtwoord van <em>%(username)s</em>"
+
+#: plinth/modules/users/templates/users_change_password.html:40
+msgid "Save Password"
+msgstr "Wachtwoord Opslaan"
+
+#: plinth/modules/users/templates/users_create.html:42
+#: plinth/modules/users/views.py:36 plinth/modules/users/views.py:56
+msgid "Create User"
+msgstr "Maak gebruiker"
+
+#: plinth/modules/users/templates/users_delete.html:27
+#, python-format
+msgid "Delete User <em>%(username)s</em>"
+msgstr "Verwijder gebruiker <em>%(username)s</em>"
+
+#: plinth/modules/users/templates/users_delete.html:32
+msgid "Delete user permanently?"
+msgstr "Gebruiker permanent verwijderen?"
+
+#: plinth/modules/users/templates/users_delete.html:38
+#, python-format
+msgid "Delete %(username)s"
+msgstr "Verwijder %(username)s"
+
+#: plinth/modules/users/templates/users_list.html:46
+#, python-format
+msgid "Delete user %(username)s"
+msgstr "Verwijder gebruiker %(username)s"
+
+#: plinth/modules/users/templates/users_list.html:53
+#, python-format
+msgid "Edit user %(username)s"
+msgstr "Gebruiker %(username)s wijzigen"
+
+#: plinth/modules/users/templates/users_update.html:35
+#, python-format
+msgid "Edit User <em>%(username)s</em>"
+msgstr "Gebruiker <em>%(username)s</em> wijzigen"
+
+#: plinth/modules/users/templates/users_update.html:43
+#, python-format
+msgid ""
+"Use the <a href='%(change_password_url)s'>change password form </a> to "
+"change the password."
+msgstr ""
+"Gebruik het <a href='%(change_password_url)s'>wachtwoord wijzigingsformulier "
+"</a> om het wachtwoord te veranderen."
+
+#: plinth/modules/users/templates/users_update.html:57
+msgid "Save Changes"
+msgstr "Wijzigingen opslaan"
+
+#: plinth/modules/users/views.py:34 plinth/modules/users/views.py:69
+msgid "Users"
+msgstr "Gebruikers"
+
+#: plinth/modules/users/views.py:54
+#, python-format
+msgid "User %(username)s created."
+msgstr "Gebruiker %(username)s aangemaakt."
+
+#: plinth/modules/users/views.py:78
+#, python-format
+msgid "User %(username)s updated."
+msgstr "Gebruiker %(username)s bijgewerkt."
+
+#: plinth/modules/users/views.py:79
+msgid "Edit User"
+msgstr "Gebruiker wijzigen"
+
+#: plinth/modules/users/views.py:103
+msgid "Delete User"
+msgstr "Gebruiker verwijderen"
+
+#: plinth/modules/users/views.py:113
+#, python-brace-format
+msgid "User {user} deleted."
+msgstr "Gebruiker {user} verwijderd."
+
+#: plinth/modules/users/views.py:120
+msgid "Deleting LDAP user failed."
+msgstr "Verwijderen van LDAP gebruiker mislukt."
+
+#: plinth/modules/users/views.py:129
+msgid "Change Password"
+msgstr "Wijzig wachtwoord"
+
+#: plinth/modules/users/views.py:130
+msgid "Password changed successfully."
+msgstr "Wachtwoord succesvol gewijzigd."
+
+#: plinth/modules/xmpp/__init__.py:41 plinth/modules/xmpp/__init__.py:46
+#: plinth/modules/xmpp/templates/xmpp.html:26 plinth/modules/xmpp/views.py:75
+msgid "Chat Server (XMPP)"
+msgstr "Chat Server (XMPP)"
+
+#: plinth/modules/xmpp/forms.py:29
+msgid "Enable XMPP"
+msgstr "Schakel XMPP in"
+
+#: plinth/modules/xmpp/templates/xmpp.html:29
+msgid ""
+"XMPP is an open and standardized communication protocol. Here you can run "
+"and configure your XMPP server, called ejabberd."
+msgstr ""
+"XMPP is een open en gestandaardiseerd communicatie protocol. Hiermee kan een "
+"XMPP server met de naam ejabberd worden ingesteld."
+
+#: plinth/modules/xmpp/templates/xmpp.html:36
+msgid ""
+"To actually communicate, you can use the <a href='/jwchat'>web client</a> or "
+"any other <a href='http://xmpp.org/xmpp-software/clients/' "
+"target='_blank'>XMPP client</a>."
+msgstr ""
+"Om daadwerkelijk te communiceren, kan de <a href='/jwchat'>web client</a> of "
+"iedere andere <a href='http://xmpp.org/xmpp-software/clients/' "
+"target='_blank'>XMPP client</a> worden gebruikt."
+
+#: plinth/modules/xmpp/templates/xmpp.html:45
+#, python-format
+msgid ""
+"Your XMPP server domain is set to <b>%(domainname)s</b>. User IDs will look "
+"like <i>username@%(domainname)s</i>. You can setup your domain on the system "
+"<a href=\"%(index_url)s\">Configure</a> page."
+msgstr ""
+"Het XMPP domein is ingesteld op <b>%(domainname)s</b>. Gebruikersnamen zien "
+"eruit als  <i>username@%(domainname)s</i>. Het domein kan worden ingesteld "
+"met de <a href=\"%(index_url)s\">Instellingen</a> pagina."
+
+#: plinth/modules/xmpp/templates/xmpp.html:55
+msgid "Launch web client"
+msgstr "Start web client"
+
+#: plinth/modules/xmpp/templates/xmpp.html:63
+msgid "ejabberd is running"
+msgstr "ejabberd draait"
+
+#: plinth/modules/xmpp/templates/xmpp.html:66
+msgid "ejabberd is not running"
+msgstr "ejabberd draait niet"
+
+#: plinth/network.py:39
+msgid "PPPoE"
+msgstr "PPPoE"
+
+#: plinth/package.py:156
+msgid "packages not found"
+msgstr "pakketten niet gevonden"
+
+#: plinth/package.py:263
+msgid "Installed and configured packages successfully"
+msgstr "Installatie en instelling van pakketten geslaagd"
+
+#: plinth/package.py:268
+#, python-brace-format
+msgid "Error installing packages: {string} {details}"
+msgstr "Fout tijdens pakketinstallatie: {string} {details}"
+
+#: plinth/service.py:73
+msgid "Web Server"
+msgstr "Webserver"
+
+#: plinth/service.py:74
+msgid "Web Server over Secure Socket Layer"
+msgstr "Web Server over Secure Socket Layer"
+
+#: plinth/service.py:76
+msgid "Secure Shell (SSH) Server"
+msgstr "Secure Shell (SSH) Server"
+
+#: plinth/service.py:78
+msgid "FreedomBox Web Interface (Plinth)"
+msgstr "FreedomBox Web Interface (Plinth)"
+
+#: plinth/templates/404.html:25
+msgid "404"
+msgstr "404"
+
+#: plinth/templates/404.html:28
+#, python-format
+msgid "Requested page %(request_path)s was not found."
+msgstr "De gevraagde pagina  %(request_path)s is niet gevonden."
+
+#: plinth/templates/404.html:34
+msgid ""
+"If you believe this missing page should exist, please file a bug at the "
+"Plinth project <a href=\"https://github.com/freedombox/Plinth/issues\">issue "
+"tracker</a>."
+msgstr ""
+"Indien deze pagina wel zou moeten bestaan, is dat door te geven aan de "
+"makers van Plinth door middel van de <a href=\"https://github.com/freedombox/"
+"Plinth/issues\">issue tracker (Engelstalig)</a>."
+
+#: plinth/templates/500.html:25
+msgid "500"
+msgstr "500"
+
+#: plinth/templates/500.html:28
+msgid ""
+"This is an internal error and not something you caused or can fix.  Please "
+"report the error on the <a href=\"https://github.com/freedombox/Plinth/issues"
+"\">bug tracker</a> so we can fix it."
+msgstr ""
+"Dit is een interne fout, en niet iets dat een gebruiker heeft veroorzaakt of "
+"kan verhelpen. Fouten zoals deze kunnen worden gemeld op de <a href="
+"\"https://github.com/freedombox/Plinth/issues\">bug tracker (Engelstalig)</"
+"a> zodat we deze kunnen verhelpen."
+
+#: plinth/templates/base.html:49
+msgid "Plinth administrative interface for the FreedomBox"
+msgstr "Plinth Instellingspagina voor deze FreedomBox"
+
+#: plinth/templates/base.html:52 plinth/templates/base.html.py:88
+msgid "FreedomBox"
+msgstr "FreedomBox"
+
+#: plinth/templates/base.html:81
+msgid "Toggle navigation"
+msgstr "Navigatie in/uitschakelen"
+
+#: plinth/templates/base.html:121 plinth/templates/base.html.py:122
+msgid "Change password"
+msgstr "Wijzig wachtwoord"
+
+#: plinth/templates/base.html:125 plinth/templates/base.html.py:126
+#: plinth/templates/base.html:139 plinth/templates/base.html.py:141
+msgid "Log out"
+msgstr "Afmelden"
+
+#: plinth/templates/base.html:131 plinth/templates/base.html.py:133
+msgid "Log in"
+msgstr "Aanmelden"
+
+#: plinth/templates/login.html:35
+msgid "Login"
+msgstr "Aanmelding"
+
+#: plinth/templates/package_install.html:35
+msgid "Installation"
+msgstr "Installatie"
+
+#: plinth/templates/package_install.html:40
+msgid ""
+"This feature requires addtional packages to be installed.  Do you wish to "
+"install them?"
+msgstr ""
+"Deze functie vereist de installatie van extra pakketten. Wilt U deze "
+"installeren?"
+
+#: plinth/templates/package_install.html:49
+msgid "Package"
+msgstr "Pakket"
+
+#: plinth/templates/package_install.html:50
+msgid "Summary"
+msgstr "Samenvatting"
+
+#: plinth/templates/package_install.html:67
+msgid "Install"
+msgstr "Installeer"
+
+#: plinth/templates/package_install.html:74
+#, python-format
+msgid "Installing %(package_names)s: %(status)s"
+msgstr "Installatie %(package_names)s: %(status)s"
+
+#: plinth/templates/package_install.html:84
+#, python-format
+msgid "%(percentage)s%% complete"
+msgstr "%(percentage)s%% voltooid"
+
+#~ msgid "Scramblesuit transport registered"
+#~ msgstr "Scramblesuit transport geregisteerd"
+
+#~ msgid ""
+#~ "Your domain name is the global name by which other machines on the "
+#~ "Internet can reach you. It must consist of alphanumeric words separated "
+#~ "by dots."
+#~ msgstr ""
+#~ "De domeinnaam is de lokale naam waarmee ander machines op het internet "
+#~ "deze machine kunnen bereiken. De hostnaam moet uit  alfanummerieke "
+#~ "woorden bestaan, gescheiden met punten."
+
+#~ msgid "Hostname is unchanged"
+#~ msgstr "Hostnaam is onveranderd"
+
+#~ msgid "Domain name is unchanged"
+#~ msgstr "Domeinnaam is onveranderd"

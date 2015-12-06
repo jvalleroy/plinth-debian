@@ -163,17 +163,6 @@ def configure_django():
     # wrong prefix. Set it here manually to have the correct prefix right away.
     django.core.urlresolvers.set_script_prefix(cfg.server_dir)
 
-    context_processors = [
-        'django.contrib.auth.context_processors.auth',
-        'django.core.context_processors.debug',
-        'django.core.context_processors.i18n',
-        'django.core.context_processors.media',
-        'django.core.context_processors.request',
-        'django.core.context_processors.static',
-        'django.core.context_processors.tz',
-        'django.contrib.messages.context_processors.messages',
-        'plinth.context_processors.common']
-
     logging_configuration = {
         'version': 1,
         'disable_existing_loggers': False,
@@ -200,6 +189,26 @@ def configure_django():
             }
         }
 
+    templates = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.contrib.auth.context_processors.auth',
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.i18n',
+                    'django.template.context_processors.media',
+                    'django.template.context_processors.request',
+                    'django.template.context_processors.static',
+                    'django.template.context_processors.tz',
+                    'django.contrib.messages.context_processors.messages',
+                    'plinth.context_processors.common',
+                ],
+            },
+        },
+    ]
+
     applications = ['bootstrapform',
                     'django.contrib.auth',
                     'django.contrib.contenttypes',
@@ -213,6 +222,17 @@ def configure_django():
     if cfg.secure_proxy_ssl_header:
         secure_proxy_ssl_header = (cfg.secure_proxy_ssl_header, 'https')
 
+    # Read translated languages from the 'locale' directory
+    languages = [('en', 'English')]
+    locale_dir = os.path.join(os.path.dirname(__file__), 'locale')
+    if os.path.isdir(locale_dir):
+        translated_language_codes = next(os.walk(locale_dir))[1]
+        all_languages = dict(django.conf.global_settings.LANGUAGES)
+        for code in translated_language_codes:
+            if code in all_languages:
+                languages.append((code, all_languages[code]))
+        languages = sorted(languages, key=lambda tup: tup[1])
+
     django.conf.settings.configure(
         ALLOWED_HOSTS=['*'],
         CACHES={'default':
@@ -222,6 +242,7 @@ def configure_django():
                     'NAME': cfg.store_file}},
         DEBUG=cfg.debug,
         INSTALLED_APPS=applications,
+        LANGUAGES=languages,
         LOGGING=logging_configuration,
         LOGIN_URL='users:login',
         LOGIN_REDIRECT_URL='apps:index',
@@ -229,6 +250,7 @@ def configure_django():
         MESSAGE_TAGS={message_constants.ERROR: 'danger'},
         MIDDLEWARE_CLASSES=(
             'django.contrib.sessions.middleware.SessionMiddleware',
+            'django.middleware.locale.LocaleMiddleware',
             'django.middleware.common.CommonMiddleware',
             'django.middleware.csrf.CsrfViewMiddleware',
             'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -243,14 +265,16 @@ def configure_django():
         SESSION_FILE_PATH=sessions_directory,
         STATIC_URL='/'.join([cfg.server_dir, 'static/']).replace('//', '/'),
         STRONGHOLD_PUBLIC_NAMED_URLS=('users:login', 'users:logout'),
-        TEMPLATE_CONTEXT_PROCESSORS=context_processors,
+        TEMPLATES=templates,
+        USE_L10N=True,
         USE_X_FORWARDED_HOST=cfg.use_x_forwarded_host)
     django.setup()
 
     logger.info('Configured Django with applications - %s', applications)
 
     logger.info('Creating or adding new tables to data file')
-    django.core.management.call_command('syncdb', interactive=False)
+    django.core.management.call_command('migrate', '--fake-initial',
+                                        interactive=False)
     os.chmod(cfg.store_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP)
 
 
@@ -286,7 +310,7 @@ def main():
 
     configure_django()
 
-    logger.info('Configuration loaded from file - %s', cfg.CONFIG_FILE)
+    logger.info('Configuration loaded from file - %s', cfg.config_file)
     logger.info('Script prefix - %s', cfg.server_dir)
 
     module_loader.load_modules()

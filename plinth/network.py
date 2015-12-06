@@ -20,20 +20,23 @@ Helper functions for working with network manager.
 """
 
 import collections
-from gi.repository import GLib as glib
-from gi.repository import NM as nm
+from django.utils.translation import ugettext_lazy as _
 import logging
 import socket
 import struct
+import subprocess
 import uuid
 
+from plinth.utils import import_from_gi
+glib = import_from_gi('GLib', '2.0')
+nm = import_from_gi('NM', '1.0')
 
 logger = logging.getLogger(__name__)
 
 CONNECTION_TYPE_NAMES = collections.OrderedDict([
-    ('802-3-ethernet', 'Ethernet'),
-    ('802-11-wireless', 'Wi-Fi'),
-    ('pppoe', 'PPPoE')
+    ('802-3-ethernet', _('Ethernet')),
+    ('802-11-wireless', _('Wi-Fi')),
+    ('pppoe', _('PPPoE'))
 ])
 
 
@@ -76,6 +79,128 @@ def get_interface_list(device_type):
     return interfaces
 
 
+def get_status_from_connection(connection):
+    """Return the current status of a connection."""
+    status = collections.defaultdict(dict)
+
+    status['id'] = connection.get_id()
+    status['uuid'] = connection.get_uuid()
+    status['type'] = connection.get_connection_type()
+    status['zone'] = connection.get_setting_connection().get_zone()
+    status['interface_name'] = connection.get_interface_name()
+
+    status['ipv4']['method'] = connection.get_setting_ip4_config().get_method()
+    status['ipv6']['method'] = connection.get_setting_ip6_config().get_method()
+
+    if status['type'] == '802-11-wireless':
+        setting_wireless = connection.get_setting_wireless()
+        status['wireless']['ssid'] = setting_wireless.get_ssid().get_data()
+
+    primary_connection = nm.Client.new(None).get_primary_connection()
+    status['primary'] = (primary_connection.get_uuid() == connection.get_uuid())
+
+    return status
+
+
+def get_status_from_active_connection(connection):
+    """Return the current status of an active connection."""
+    status = collections.defaultdict(dict)
+
+    status['state'] = connection.get_state().value_name
+    status['ip4']['default'] = connection.get_default()
+    status['ip6']['default'] = connection.get_default6()
+
+    return status
+
+
+def get_status_from_device(device):
+    """Return a dictionary with current status of a network device."""
+    if not device:
+        return None
+
+    status = collections.defaultdict(dict)
+
+    ip4_config = device.get_ip4_config()
+    if ip4_config:
+        addresses = ip4_config.get_addresses()
+        status['ip4']['addresses'] = [{'address': address.get_address(),
+                                       'prefix': address.get_prefix()}
+                                      for address in addresses]
+        status['ip4']['gateway'] = ip4_config.get_gateway()
+        status['ip4']['nameservers'] = ip4_config.get_nameservers()
+
+    ip6_config = device.get_ip6_config()
+    if ip6_config:
+        addresses = ip6_config.get_addresses()
+        status['ip6']['addresses'] = [{'address': address.get_address(),
+                                       'prefix': address.get_prefix()}
+                                      for address in addresses]
+        status['ip6']['gateway'] = ip6_config.get_gateway()
+        status['ip6']['nameservers'] = ip6_config.get_nameservers()
+
+    status['type'] = device.get_type_description()
+    status['description'] = device.get_description()
+    status['hw_address'] = device.get_hw_address()
+    status['interface_name'] = device.get_iface()
+    status['state'] = device.get_state().value_nick
+    status['state_reason'] = device.get_state_reason().value_nick
+
+    if device.get_device_type() == nm.DeviceType.WIFI:
+        status['wireless']['bitrate'] = device.get_bitrate() / 1000
+        status['wireless']['mode'] = device.get_mode().value_nick
+
+    if device.get_device_type() == nm.DeviceType.ETHERNET:
+        status['ethernet']['speed'] = device.get_speed()
+        status['ethernet']['carrier'] = device.get_carrier()
+
+    return status
+
+
+def get_status_from_wifi_access_point(device, ssid):
+    """Return the current status of an access point."""
+    status = {}
+
+    if not ssid or not device:
+        return status
+
+    for access_point in device.get_access_points():
+        if access_point.get_ssid().get_data() == ssid:
+            status['strength'] = access_point.get_strength()
+            frequency = access_point.get_frequency()
+            status['channel'] = _get_wifi_channel_from_frequency(frequency)
+            break
+
+    return status
+
+
+def _get_wifi_channel_from_frequency(frequency):
+    """Get the wifi channel form a particular SSID"""
+    # TODO: Hard coded list of wifi frequencys and their corresponding
+    # channel numbers.  Search for a better solution!  Even 5GHz is
+    # not included yet.  Only the plain frequency will show up on 5GHz
+    # AP's.
+    channel_map = {2412: 1, 2417: 2, 2422: 3, 2427: 4, 2432: 5, 2437: 6,
+                   2442: 7, 2447: 8, 2452: 9, 2457: 10, 2462: 11}
+    try:
+        return channel_map[frequency]
+    except KeyError:
+        return str(frequency / 1000) + 'GHz'
+
+
+def get_first_ip_address_from_connection(connection):
+    """Return the first IP address of a connection setting.
+
+    XXX: Work around a bug in NetworkManager/Python GI.  Remove after
+    the bug if fixed.
+    https://bugzilla.gnome.org/show_bug.cgi?id=756380.
+    """
+    command = ['nmcli', '--terse', '--mode', 'tabular', '--fields',
+               'ipv4.addresses', 'connection', 'show', connection.get_uuid()]
+
+    output = subprocess.check_output(command).decode()
+    return output.strip().split(', ')[0].split('/')[0]
+
+
 def get_connection_list():
     """Get a list of active and available connections."""
     active_uuids = []
@@ -87,13 +212,22 @@ def get_connection_list():
     for connection in client.get_connections():
         # Display a friendly type name if known.
         connection_type = connection.get_connection_type()
-        connection_type = CONNECTION_TYPE_NAMES.get(connection_type,
-                                                    connection_type)
+        connection_type_name = CONNECTION_TYPE_NAMES.get(connection_type,
+                                                         connection_type)
+
+        settings_connection = connection.get_setting_connection()
+        zone = settings_connection.get_zone()
+
+        connection.get_interface_name()
+
         connections.append({
             'name': connection.get_id(),
             'uuid': connection.get_uuid(),
+            'interface_name': connection.get_interface_name(),
             'type': connection_type,
+            'type_name': connection_type_name,
             'is_active': connection.get_uuid() in active_uuids,
+            'zone': zone,
         })
     connections.sort(key=lambda connection: connection['is_active'],
                      reverse=True)
@@ -129,8 +263,13 @@ def get_active_connection(connection_uuid):
         raise ConnectionNotFound(connection_uuid)
 
 
-def _update_common_settings(connection, connection_uuid, name, type_, interface,
-                            zone):
+def get_device_by_interface_name(interface_name):
+    """Return a device by interface name."""
+    return nm.Client.new(None).get_device_by_iface(interface_name)
+
+
+def _update_common_settings(connection, connection_uuid, name, type_,
+                            interface, zone):
     """Create/edit basic settings for network manager connections.
 
     Return newly created connection object if connection is None.
@@ -154,10 +293,8 @@ def _update_common_settings(connection, connection_uuid, name, type_, interface,
 
 def _update_ipv4_settings(connection, ipv4_method, ipv4_address):
     """Edit IPv4 settings for network manager connections."""
-    settings = connection.get_setting_ip4_config()
-    if not settings:
-        settings = nm.SettingIP4Config.new()
-        connection.add_setting(settings)
+    settings = nm.SettingIP4Config.new()
+    connection.add_setting(settings)
 
     settings.set_property(nm.SETTING_IP_CONFIG_METHOD, ipv4_method)
     if ipv4_method == nm.SETTING_IP4_CONFIG_METHOD_MANUAL and ipv4_address:
@@ -168,8 +305,6 @@ def _update_ipv4_settings(connection, ipv4_method, ipv4_address):
         settings.add_address(address)
 
         settings.set_property(nm.SETTING_IP_CONFIG_GATEWAY, '0.0.0.0')
-    else:
-        settings.clear_addresses()
 
 
 def _update_ethernet_settings(connection, connection_uuid, name, interface,
@@ -374,6 +509,7 @@ def wifi_scan():
             ssid = access_point.get_ssid()
             ssid_string = ssid.get_data() if ssid else ''
             access_points.append({
+                'interface_name': device.get_iface(),
                 'ssid': ssid_string,
                 'strength': access_point.get_strength()})
 

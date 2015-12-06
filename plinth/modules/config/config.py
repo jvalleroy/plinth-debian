@@ -22,16 +22,25 @@ Plinth module for configuring hostname and domainname.
 from django import forms
 from django.contrib import messages
 from django.core import validators
+from django.core.exceptions import ValidationError
+from django.conf import settings
 from django.template.response import TemplateResponse
-from gettext import gettext as _
+from django.utils import translation
+from django.utils.translation import ugettext as _, ugettext_lazy
 import logging
+import re
 import socket
 
 from plinth import actions
 from plinth import cfg
+from plinth.modules.firewall import firewall
+from plinth.modules.names import SERVICES
 from plinth.signals import pre_hostname_change, post_hostname_change
 from plinth.signals import domainname_change
+from plinth.signals import domain_added, domain_removed
 
+
+HOSTNAME_REGEX = r'^[a-zA-Z0-9]([-a-zA-Z0-9]{,61}[a-zA-Z0-9])?$'
 
 LOGGER = logging.getLogger(__name__)
 
@@ -47,6 +56,17 @@ def get_domainname():
     return '.'.join(fqdn.split('.')[1:])
 
 
+def get_language(request):
+    """Return the current language setting"""
+    # TODO: Store the language per user in kvstore,
+    # taking care of setting language on login, and adapting kvstore when
+    # renaming/deleting users
+
+    # The information from the session is more accurate but not always present
+    return request.session.get(translation.LANGUAGE_SESSION_KEY,
+                               request.LANGUAGE_CODE)
+
+
 class TrimmedCharField(forms.CharField):
     """Trim the contents of a CharField"""
     def clean(self, value):
@@ -56,39 +76,86 @@ class TrimmedCharField(forms.CharField):
 
         return super(TrimmedCharField, self).clean(value)
 
+def domain_label_validator(domainname):
+    """Validate domain name labels."""
+    for label in domainname.split('.'):
+        if not re.match(HOSTNAME_REGEX, label):
+            raise ValidationError(_('Invalid domain name'))
+
 
 class ConfigurationForm(forms.Form):
     """Main system configuration form"""
-    # We're more conservative than RFC 952 and RFC 1123
+    # See:
+    # https://tools.ietf.org/html/rfc952
+    # https://tools.ietf.org/html/rfc1035#section-2.3.1
+    # https://tools.ietf.org/html/rfc1123#section-2
+    # https://tools.ietf.org/html/rfc2181#section-11
     hostname = TrimmedCharField(
-        label=_('Hostname'),
-        help_text=_('Your hostname is the local name by which other machines \
-on your LAN can reach you. It must be alphanumeric, start with an alphabet \
-and must not be greater than 63 characters in length.'),
+        label=ugettext_lazy('Hostname'),
+        help_text=\
+        ugettext_lazy('Hostname is the local name by which other machines on '
+                      'the local network reach your machine.  It must start '
+                      'and end with an alphabet or a digit and have as '
+                      'interior characters only alphabets, digits and '
+                      'hyphens.  Total length must be 63 characters or less.'),
         validators=[
-            validators.RegexValidator(r'^[a-zA-Z][a-zA-Z0-9]{,62}$',
-                                      _('Invalid hostname'))])
+            validators.RegexValidator(
+                HOSTNAME_REGEX,
+                ugettext_lazy('Invalid hostname'))])
 
     domainname = TrimmedCharField(
-        label=_('Domain Name'),
-        help_text=_('Your domain name is the global name by which other \
-machines on the Internet can reach you. It must consist of alphanumeric words \
-separated by dots.'),
+        label=ugettext_lazy('Domain Name'),
+        help_text=\
+        ugettext_lazy('Domain name is the global name by which other machines '
+                      'on the Internet can reach you.  It must consist of '
+                      'labels separated by dots.  Each label must start and '
+                      'end with an alphabet or a digit and have as interior '
+                      'characters only alphabets, digits and hyphens.  Length '
+                      'of each label must be 63 characters or less.  Total '
+                      'length of domain name must be 253 characters or less.'),
         required=False,
         validators=[
-            validators.RegexValidator(r'^[a-zA-Z][a-zA-Z0-9.]*$',
-                                      _('Invalid domain name'))])
+            validators.RegexValidator(
+                r'^[a-zA-Z0-9]([-a-zA-Z0-9.]{,251}[a-zA-Z0-9])?$',
+                ugettext_lazy('Invalid domain name')),
+            domain_label_validator])
+
+    language = forms.ChoiceField(
+        label=ugettext_lazy('Language'),
+        help_text=\
+        ugettext_lazy('Language for this FreedomBox web administration '
+                      'interface'),
+        required=False,
+        choices=settings.LANGUAGES)
 
 
 def init():
     """Initialize the module"""
     menu = cfg.main_menu.get('system:index')
-    menu.add_urlname(_('Configure'), 'glyphicon-cog', 'config:index', 10)
+    menu.add_urlname(ugettext_lazy('Configure'), 'glyphicon-cog',
+                     'config:index', 10)
+
+    # Register domain with Name Services module.
+    domainname = get_domainname()
+    if domainname:
+        try:
+            domainname_services = firewall.get_enabled_services(
+                zone='external')
+        except actions.ActionError:
+            # This happens when firewalld is not installed.
+            # TODO: Are these services actually enabled?
+            domainname_services = [service[0] for service in SERVICES]
+    else:
+        domainname_services = None
+
+    domain_added.send_robust(sender='config', domain_type='domainname',
+                             name=domainname, description=_('Domain Name'),
+                             services=domainname_services)
 
 
 def index(request):
     """Serve the configuration form"""
-    status = get_status()
+    status = get_status(request)
 
     form = None
 
@@ -98,7 +165,7 @@ def index(request):
         # pylint: disable-msg=E1101
         if form.is_valid():
             _apply_changes(request, status, form.cleaned_data)
-            status = get_status()
+            status = get_status(request)
             form = ConfigurationForm(initial=status,
                                      prefix='configuration')
     else:
@@ -109,10 +176,11 @@ def index(request):
                              'form': form})
 
 
-def get_status():
+def get_status(request):
     """Return the current status"""
     return {'hostname': get_hostname(),
-            'domainname': get_domainname()}
+            'domainname': get_domainname(),
+            'language': get_language(request)}
 
 
 def _apply_changes(request, old_status, new_status):
@@ -121,23 +189,30 @@ def _apply_changes(request, old_status, new_status):
         try:
             set_hostname(new_status['hostname'])
         except Exception as exception:
-            messages.error(request, _('Error setting hostname: %s') %
-                           exception)
+            messages.error(request, _('Error setting hostname: {exception}')
+                           .format(exception=exception))
         else:
             messages.success(request, _('Hostname set'))
-    else:
-        messages.info(request, _('Hostname is unchanged'))
 
     if old_status['domainname'] != new_status['domainname']:
         try:
             set_domainname(new_status['domainname'])
         except Exception as exception:
-            messages.error(request, _('Error setting domain name: %s') %
-                           exception)
+            messages.error(request, _('Error setting domain name: {exception}')
+                           .format(exception=exception))
         else:
             messages.success(request, _('Domain name set'))
-    else:
-        messages.info(request, _('Domain name is unchanged'))
+
+    if old_status['language'] != new_status['language']:
+        language = new_status['language']
+        try:
+            translation.activate(language)
+            request.session[translation.LANGUAGE_SESSION_KEY] = language
+        except Exception as exception:
+            messages.error(request, _('Error setting language: {exception}')
+                            .format(exception=exception))
+        else:
+            messages.success(request, _('Language changed'))
 
 
 def set_hostname(hostname):
@@ -173,3 +248,18 @@ def set_domainname(domainname):
     domainname_change.send_robust(sender='config',
                                   old_domainname=old_domainname,
                                   new_domainname=domainname)
+
+    # Update domain registered with Name Services module.
+    domain_removed.send_robust(sender='config', domain_type='domainname')
+    if domainname:
+        try:
+            domainname_services = firewall.get_enabled_services(
+                zone='external')
+        except actions.ActionError:
+            # This happens when firewalld is not installed.
+            # TODO: Are these services actually enabled?
+            domainname_services = [service[0] for service in SERVICES]
+
+        domain_added.send_robust(sender='config', domain_type='domainname',
+                                 name=domainname, description=_('Domain Name'),
+                                 services=domainname_services)

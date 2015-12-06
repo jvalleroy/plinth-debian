@@ -1,4 +1,3 @@
-{% comment %}
 #
 # This file is part of Plinth.
 #
@@ -15,15 +14,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-{% endcomment %}
 
-<div class="sidebar">
+"""
+URLs for the name services module
+"""
 
-  <h3>Getting Help</h3>
+from django.conf.urls import url
 
-  <p>If you have any questions or problems please take a look at the
-    <a target="_blank" href="https://wiki.debian.org/FreedomBox"> FreedomBox
-    Wiki </a> where you will also find links to the mailing list and IRC
-    channels.</p>
+from . import views
 
-</div>
+
+urlpatterns = [
+    url(r'^sys/names/$', views.index, name='index'),
+]

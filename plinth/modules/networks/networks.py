@@ -19,8 +19,8 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
+from django.utils.translation import ugettext as _, ugettext_lazy
 from django.views.decorators.http import require_POST
-from gettext import gettext as _
 from logging import Logger
 
 from .forms import (ConnectionTypeSelectForm, AddEthernetForm, AddPPPoEForm,
@@ -33,17 +33,18 @@ from plinth import package
 logger = Logger(__name__)
 
 subsubmenu = [{'url': reverse_lazy('networks:index'),
-               'text': _('Network Connections')},
+               'text': ugettext_lazy('Network Connections')},
               {'url': reverse_lazy('networks:scan'),
-               'text': _('Nearby Wi-Fi Networks')},
+               'text': ugettext_lazy('Nearby Wi-Fi Networks')},
               {'url': reverse_lazy('networks:add'),
-               'text': _('Add Connection')}]
+               'text': ugettext_lazy('Add Connection')}]
 
 
 def init():
     """Initialize the Networks module."""
     menu = cfg.main_menu.get('system:index')
-    menu.add_urlname(_('Networks'), 'glyphicon-signal', 'networks:index', 18)
+    menu.add_urlname(ugettext_lazy('Networks'), 'glyphicon-signal',
+                     'networks:index', 18)
 
 
 @package.required(['network-manager'])
@@ -55,6 +56,53 @@ def index(request):
                             {'title': _('Network Connections'),
                              'subsubmenu': subsubmenu,
                              'connections': connections})
+
+
+def show(request, uuid):
+    """Serve connection information."""
+    try:
+        connection = network.get_connection(uuid)
+    except network.ConnectionNotFound:
+        messages.error(request, _('Cannot show connection: '
+                                  'Connection not found.'))
+        return redirect(reverse_lazy('networks:index'))
+
+    # Connection status
+    connection_status = network.get_status_from_connection(connection)
+
+    # Active connection status
+    try:
+        active_connection = network.get_active_connection(uuid)
+        active_connection_status = \
+            network.get_status_from_active_connection(active_connection)
+    except network.ConnectionNotFound:
+        active_connection_status = {}
+        active_connection = None
+
+    # Device status
+    device = None
+    if active_connection and active_connection.get_devices():
+        device = active_connection.get_devices()[0]
+    else:
+        interface_name = connection_status['interface_name']
+        if interface_name:
+            device = network.get_device_by_interface_name(interface_name)
+
+    device_status = network.get_status_from_device(device)
+
+    # Access point status
+    access_point_status = None
+    if connection_status['type'] == '802-11-wireless':
+        access_point_status = network.get_status_from_wifi_access_point(
+            device, connection_status['wireless']['ssid'])
+
+    return TemplateResponse(request, 'connection_show.html',
+                            {'title': _('Show Connection information'),
+                             'subsubmenu': subsubmenu,
+                             'connection': connection_status,
+                             'active_connection': active_connection_status,
+                             'device': device_status,
+                             'access_point': access_point_status})
 
 
 def edit(request, uuid):
@@ -127,12 +175,9 @@ def edit(request, uuid):
         if settings_connection.get_connection_type() != 'pppoe':
             settings_ipv4 = connection.get_setting_ip4_config()
             form_data['ipv4_method'] = settings_ipv4.get_method()
-
-            if settings_ipv4.get_num_addresses():
-                # XXX: Plinth crashes here. Possibly because a double free bug
-                # address = settings_ipv4.get_address(0)
-                # form_data['ipv4_address'] = address.get_address()
-                pass
+            address = network.get_first_ip_address_from_connection(connection)
+            if address:
+                form_data['ipv4_address'] = address
 
         if settings_connection.get_connection_type() == '802-11-wireless':
             settings_wireless = connection.get_setting_wireless()
@@ -174,14 +219,16 @@ def activate(request, uuid):
     try:
         connection = network.activate_connection(uuid)
         name = connection.get_id()
-        messages.success(request, _('Activated connection %s.') % name)
+        messages.success(request, _('Activated connection {name}.')
+                         .format(name=name))
     except network.ConnectionNotFound:
         messages.error(request, _('Failed to activate connection: '
                                   'Connection not found.'))
     except network.DeviceNotFound as exception:
         name = exception.args[0].get_id()
-        messages.error(request, _('Failed to activate connection %s: '
-                                  'No suitable device is available.') % name)
+        messages.error(request, _('Failed to activate connection {name}: '
+                                  'No suitable device is available.')
+                       .format(name=name))
 
     return redirect(reverse_lazy('networks:index'))
 
@@ -192,7 +239,8 @@ def deactivate(request, uuid):
     try:
         active_connection = network.deactivate_connection(uuid)
         name = active_connection.get_id()
-        messages.success(request, _('Deactivated connection %s.') % name)
+        messages.success(request, _('Deactivated connection {name}.')
+                         .format(name=name))
     except network.ConnectionNotFound:
         messages.error(request, _('Failed to de-activate connection: '
                                   'Connection not found.'))
@@ -281,13 +329,15 @@ def add_pppoe(request):
                              'form': form})
 
 
-def add_wifi(request, ssid=None):
+def add_wifi(request, ssid=None, interface_name=None):
     """Serve wifi connection create form."""
     form = None
     form_data = None
 
     if ssid:
+        device = network.get_device_by_interface_name(interface_name)
         form_data = {'name': ssid,
+                     'interface': interface_name if device else None,
                      'zone': 'external',
                      'ssid': ssid,
                      'mode': 'infrastructure',
@@ -332,7 +382,8 @@ def delete(request, uuid):
     if request.method == 'POST':
         try:
             name = network.delete_connection(uuid)
-            messages.success(request, _('Connection %s deleted.') % name)
+            messages.success(request, _('Connection {name} deleted.')
+                             .format(name=name))
         except network.ConnectionNotFound:
             messages.error(request, _('Failed to delete connection: '
                                       'Connection not found.'))

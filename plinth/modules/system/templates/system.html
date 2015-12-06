@@ -18,14 +18,24 @@
 #
 {% endcomment %}
 
+{% load i18n %}
+
 {% block content %}
 
-<h2>System</h2>
+  <h2>{% trans "System Configuration" %}</h2>
 
-<p>In this section, you can control the {{ cfg.product_name }}'s
-underlying system, as opposed to its various applications and
-services.  These options affect the {{ cfg.product_name }} at its most
-general level.  This is where you add/remove users, install
-applications, reboot, etc.</p>
+  <p>
+    {% blocktrans trimmed with box_name=cfg.box_name %}
+      Here you can administrate the underlying system of your
+      {{ box_name }}.
+    {% endblocktrans %}
+  </p>
+
+  <p>
+    {% blocktrans trimmed with box_name=cfg.box_name %}
+      The options affect the {{ box_name }} at its most general level,
+      so be careful!
+    {% endblocktrans %}
+  </p>
 
 {% endblock %}

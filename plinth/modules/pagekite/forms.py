@@ -16,13 +16,12 @@
 #
 
 import copy
-from gettext import gettext as _
-import json
-import logging
-
 from django import forms
 from django.contrib import messages
 from django.core import validators
+from django.utils.translation import ugettext as _, ugettext_lazy
+import json
+import logging
 
 from plinth.errors import ActionError
 from . import utils
@@ -43,33 +42,38 @@ class TrimmedCharField(forms.CharField):
 class ConfigurationForm(forms.Form):
     """Configure PageKite credentials and frontend"""
 
-    enabled = forms.BooleanField(label=_('Enable PageKite'), required=False)
+    enabled = forms.BooleanField(
+        label=ugettext_lazy('Enable PageKite'), required=False)
 
-    server = forms.CharField(
-        label=_('Server'), required=False,
-        help_text=_('Select your pagekite.net server. Set "pagekite.net" to '
-                    'use the default pagekite.net server'),
+    server_domain = forms.CharField(
+        label=ugettext_lazy('Server domain'), required=False,
+        help_text=\
+        ugettext_lazy('Select your pagekite server. Set "pagekite.net" to use '
+                      'the default pagekite.net server'),
         widget=forms.TextInput())
-
+    server_port = forms.IntegerField(
+        label=ugettext_lazy('Server port'), required=False,
+        help_text=ugettext_lazy('Port of your pagekite server (default: 80)'))
     kite_name = TrimmedCharField(
-        label=_('Kite name'),
-        help_text=_('Example: mybox.pagekite.me'),
+        label=ugettext_lazy('Kite name'),
+        help_text=ugettext_lazy('Example: mybox.pagekite.me'),
         validators=[
             validators.RegexValidator(r'^[\w-]{1,63}(\.[\w-]{1,63})*$',
-                                      _('Invalid kite name'))])
+                                      ugettext_lazy('Invalid kite name'))])
 
     kite_secret = TrimmedCharField(
-        label=_('Kite secret'),
-        help_text=_('A secret associated with the kite or the default secret \
-for your account if no secret is set on the kite'))
+        label=ugettext_lazy('Kite secret'),
+        help_text=\
+        ugettext_lazy('A secret associated with the kite or the default secret '
+                      'for your account if no secret is set on the kite'))
 
     def save(self, request):
+        """Save the form on submission after validation."""
         old = self.initial
         new = self.cleaned_data
         LOGGER.info('New status is - %s', new)
 
         if old != new:
-
             config_changed = False
 
             if old['kite_name'] != new['kite_name'] or \
@@ -79,8 +83,10 @@ for your account if no secret is set on the kite'))
                 messages.success(request, _('Kite details set'))
                 config_changed = True
 
-            if old['server'] != new['server']:
-                utils.run(['set-frontend', new['server']])
+            if old['server_domain'] != new['server_domain'] or \
+                    old['server_port'] != new['server_port']:
+                server = "%s:%s" % (new['server_domain'], new['server_port'])
+                utils.run(['set-frontend', server])
                 messages.success(request, _('Pagekite server set'))
                 config_changed = True
 
@@ -96,6 +102,10 @@ for your account if no secret is set on the kite'))
             # was running, so changes take effect immediately.
             elif config_changed and new['enabled']:
                 utils.run(['restart'])
+
+            # Update kite name registered with Name Services module.
+            utils.update_names_module(enabled=new['enabled'],
+                                      kite_name=new['kite_name'])
 
 
 class StandardServiceForm(forms.Form):
@@ -129,17 +139,23 @@ class StandardServiceForm(forms.Form):
                     messages.success(request, _('Service disabled: {name}')
                                      .format(name=service_name))
 
+        # Update kite services registered with Name Services module.
+        utils.update_names_module()
+
 
 class BaseCustomServiceForm(forms.Form):
     """Basic form functionality to handle a custom service"""
-    choices = [("http", "http"), ("https", "https"), ("raw", "raw")]
-    protocol = forms.ChoiceField(choices=choices, label="protocol")
-    frontend_port = forms.IntegerField(min_value=0, max_value=65535,
-                                       label="external (frontend) port",
-                                       required=True)
-    backend_port = forms.IntegerField(min_value=0, max_value=65535,
-                                      label="internal (freedombox) port")
-    subdomains = forms.BooleanField(label="Enable Subdomains", required=False)
+    choices = [('http', 'http'), ('https', 'https'), ('raw', 'raw')]
+    protocol = forms.ChoiceField(
+        choices=choices, label=ugettext_lazy('protocol'))
+    frontend_port = forms.IntegerField(
+        min_value=0, max_value=65535,
+        label=ugettext_lazy('external (frontend) port'), required=True)
+    backend_port = forms.IntegerField(
+        min_value=0, max_value=65535,
+        label=ugettext_lazy('internal (freedombox) port'))
+    subdomains = forms.BooleanField(
+        label=ugettext_lazy('Enable Subdomains'), required=False)
 
     def convert_formdata_to_service(self, formdata):
         """Add information to make a service out of the form data"""
@@ -206,8 +222,8 @@ class AddCustomServiceForm(BaseCustomServiceForm):
         except KeyError:
             is_predefined = False
         if is_predefined:
-            msg = _("""This service is available as a standard service. Please
-                    use the 'Standard Services' page to enable it.""")
+            msg = _('This service is available as a standard service. Please '
+                    'use the "Standard Services" page to enable it.')
             raise forms.ValidationError(msg)
         return cleaned_data
 
