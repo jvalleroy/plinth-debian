@@ -17,10 +17,11 @@
 
 from django import forms
 from django.core import validators
-from gettext import gettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from plinth import network
-from gi.repository import NM as nm
+from plinth.utils import import_from_gi
+nm = import_from_gi('NM', '1.0')
 
 
 def _get_interface_choices(device_type):
@@ -28,8 +29,8 @@ def _get_interface_choices(device_type):
     interfaces = network.get_interface_list(device_type)
     choices = [('', _('-- select --'))]
     for interface, mac in interfaces.items():
-        display_string = _('{interface} ({mac})').format(interface=interface,
-                                                         mac=mac)
+        display_string = '{interface} ({mac})'.format(interface=interface,
+                                                      mac=mac)
         choices.append((interface, display_string))
 
     return choices
@@ -83,8 +84,9 @@ class AddPPPoEForm(forms.Form):
                     'to.'))
     zone = forms.ChoiceField(
         label=_('Firewall Zone'),
-        help_text=_('The firewall zone will control which services are \
-available over this interfaces. Select Internal only for trusted networks.'),
+        help_text=_('The firewall zone will control which services are '
+                    'available over this interfaces. Select Internal only '
+                    'for trusted networks.'),
         choices=[('external', 'External'), ('internal', 'Internal')])
     username = forms.CharField(label=_('Username'))
     password = forms.CharField(label=_('Password'),

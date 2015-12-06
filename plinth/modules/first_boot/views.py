@@ -19,28 +19,28 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.views.generic.edit import CreateView
-from gettext import gettext as _
+from django.utils.translation import ugettext as _
+from django.views.generic import CreateView, TemplateView
 
 from plinth import kvstore
-from plinth.modules.config import config
-from .forms import State0Form
+from plinth import network
+from .forms import State1Form
 
 
-class State0View(CreateView):
-    """Setup hostname and create user account"""
+class State0View(TemplateView):
+    """Show the welcome screen."""
     template_name = 'firstboot_state0.html'
-    form_class = State0Form
-    success_url = reverse_lazy('first_boot:state10')
 
-    def get_initial(self):
-        initial = super(State0View, self).get_initial()
-        initial['hostname'] = config.get_hostname()
-        return initial
+
+class State1View(CreateView):
+    """Create user account and log the user in."""
+    template_name = 'firstboot_state1.html'
+    form_class = State1Form
+    success_url = reverse_lazy('first_boot:state10')
 
     def get_form_kwargs(self):
         """Make request available to the form (to insert messages)"""
-        kwargs = super(State0View, self).get_form_kwargs()
+        kwargs = super(State1View, self).get_form_kwargs()
         kwargs['request'] = self.request
         return kwargs
 
@@ -54,6 +54,9 @@ def state10(request):
     if User.objects.all():
         kvstore.set('firstboot_state', 10)
 
+    connections = network.get_connection_list()
+
     return render_to_response('firstboot_state10.html',
-                              {'title': _('Setup Complete')},
+                              {'title': _('Setup Complete'),
+                               'connections': connections},
                               context_instance=RequestContext(request))

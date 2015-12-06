@@ -20,14 +20,15 @@ Framework for installing and updating distribution packages
 """
 
 from django.contrib import messages
+from django.utils.translation import ugettext as _
 import functools
-from gettext import gettext as _
-from gi.repository import GLib as glib
-from gi.repository import PackageKitGlib as packagekit
 import logging
 import threading
 
 import plinth
+from plinth.utils import import_from_gi
+glib = import_from_gi('GLib', '2.0')
+packagekit = import_from_gi('PackageKitGlib', '1.0')
 
 
 logger = logging.getLogger(__name__)
@@ -164,11 +165,11 @@ class Transaction(object):
 
     def _assert_success(self, results):
         """Check that the most recent operation was a success."""
-        # XXX: Untested code
         if results and results.get_error_code() is not None:
             error = results.get_error_code()
             error_code = error.get_code() if error else None
-            error_string = error_code.to_string() if error_code else None
+            error_string = packagekit.ErrorEnum.to_string(error_code) \
+                if error_code else None
             error_details = error.get_details() if error else None
             raise PackageException(error_string, error_details)
 
@@ -262,9 +263,10 @@ def _should_show_install_view(request, package_names):
                          _('Installed and configured packages successfully'))
         return False
     else:
-        messages.error(request, _('Error installing packages: {details}')
-                       .format(details=getattr(exception, 'error_string',
-                                               str(exception))))
+        error_string = getattr(exception, 'error_string', str(exception))
+        error_details = getattr(exception, 'error_details', '')
+        messages.error(request, _('Error installing packages: {string} {details}')
+                       .format(string=error_string, details=error_details))
         return True
 
 

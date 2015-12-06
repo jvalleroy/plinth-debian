@@ -19,12 +19,14 @@
 Plinth module to configure PageKite
 """
 
-from gettext import gettext as _
+from django.utils.translation import ugettext_lazy as _
 from plinth import cfg
+
+from . import utils
 
 __all__ = ['init']
 
-depends = ['plinth.modules.apps']
+depends = ['plinth.modules.apps', 'plinth.modules.names']
 
 
 def init():
@@ -32,3 +34,6 @@ def init():
     menu = cfg.main_menu.get('apps:index')
     menu.add_urlname(_('Public Visibility (PageKite)'),
                      'glyphicon-flag', 'pagekite:index', 800)
+
+    # Register kite name with Name Services module.
+    utils.update_names_module(initial_registration=True)

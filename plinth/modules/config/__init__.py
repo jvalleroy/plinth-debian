@@ -24,4 +24,6 @@ from .config import init
 
 __all__ = ['config', 'init']
 
-depends = ['plinth.modules.system']
+depends = ['plinth.modules.system',
+           'plinth.modules.firewall',
+           'plinth.modules.names']
