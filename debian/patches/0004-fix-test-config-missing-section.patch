@@ -1,7 +1,0 @@
---- a/plinth/tests/data/plinth.config.with_missing_options
-+++ b/plinth/tests/data/plinth.config.with_missing_options
-@@ -6,3 +6,4 @@
- 
- [Network]
- 
-+[Misc]
