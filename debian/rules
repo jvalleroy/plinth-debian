@@ -9,7 +9,7 @@ override_dh_installinit:
 	dh_installinit --onlyscripts
 
 new-upstream:
-	version=0.7; \
+	version=0.7.1; \
 	tgz=../plinth_$$version.orig.tar.gz; \
 	vcstag=v$$version ; \
 	wget -O $$tgz https://github.com/freedombox/Plinth/archive/$$vcstag.tar.gz; \

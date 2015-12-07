@@ -1,12 +1,12 @@
-plinth (0.7-1) UNRELEASED; urgency=low
+plinth (0.7.1-1) UNRELEASED; urgency=low
 
-  * New upstream version 0.7.
+  * New upstream version 0.7.1.
   * Remove patch to fix config test, fixed upstream.
   * Refresh patch.
   * Add gettext as build dependency.
   * Disable restore module, node-restore package not available in Debian yet.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sun, 06 Dec 2015 16:20:42 -0500
+ -- James Valleroy <jvalleroy@mailbox.org>  Mon, 07 Dec 2015 07:25:33 -0500
 
 plinth (0.6-1) unstable; urgency=low
 
