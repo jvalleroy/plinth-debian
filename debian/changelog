@@ -1,10 +1,15 @@
 plinth (0.7.1-1) UNRELEASED; urgency=low
 
+  [ James Valleroy ]
   * New upstream version 0.7.1.
   * Remove patch to fix config test, fixed upstream.
   * Refresh patch.
   * Add gettext as build dependency.
   * Disable restore module, node-restore package not available in Debian yet.
+
+  [ Sunil Mohan Adapa ]
+  * Remove Django HTMLParser workaround as it is no longer need.
+  * Add javascript-common as dependency as we are enabling it during setup.
 
  -- James Valleroy <jvalleroy@mailbox.org>  Mon, 07 Dec 2015 07:25:33 -0500
 
