@@ -1,4 +1,4 @@
-plinth (0.7.1-1) UNRELEASED; urgency=low
+plinth (0.7.1-1) unstable; urgency=low
 
   [ James Valleroy ]
   * New upstream version 0.7.1.
@@ -11,7 +11,9 @@ plinth (0.7.1-1) UNRELEASED; urgency=low
   * Remove Django HTMLParser workaround as it is no longer need.
   * Add javascript-common as dependency as we are enabling it during setup.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Mon, 07 Dec 2015 07:25:33 -0500
+  * Update package description (Closes: #804753)
+
+ -- Federico Ceratto <federico@debian.org>  Sat, 12 Dec 2015 15:12:48 +0000
 
 plinth (0.6-1) unstable; urgency=low
 
