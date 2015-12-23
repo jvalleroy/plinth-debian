@@ -59,11 +59,38 @@ available over this interfaces. Select Internal only for trusted networks.'),
         choices=[('external', 'External'), ('internal', 'Internal')])
     ipv4_method = forms.ChoiceField(
         label=_('IPv4 Addressing Method'),
+        help_text=_('"Shared" method will start a DHCP server and "Automatic" '
+                    'method will acquire configuration from a DHCP server.'),
         choices=[('auto', 'Automatic (DHCP)'),
                  ('shared', 'Shared'),
                  ('manual', 'Manual')])
     ipv4_address = forms.CharField(
         label=_('Address'),
+        validators=[validators.validate_ipv4_address],
+        required=False)
+    ipv4_netmask = forms.CharField(
+        label=_('Netmask'),
+        help_text=_('Optional value. If left blank, a default netmask '
+                    'based on the address will be used.'),
+        validators=[validators.validate_ipv4_address],
+        required=False)
+    ipv4_gateway = forms.CharField(
+        label=_('Gateway'),
+        help_text=_('Optional value.'),
+        validators=[validators.validate_ipv4_address],
+        required=False)
+    ipv4_dns = forms.CharField(
+        label=_('DNS Server'),
+        help_text=_('Optional value. If this value is given and IPv4 '
+                    'addressing method is "Automatic", the DNS Servers '
+                    'provided by a DHCP server will be ignored.'),
+        validators=[validators.validate_ipv4_address],
+        required=False)
+    ipv4_second_dns = forms.CharField(
+        label=_('Second DNS Server'),
+        help_text=_('Optional value. If this value is given and IPv4 '
+                    'Addressing Method is "Automatic", the DNS Servers '
+                    'provided by a DHCP server will be ignored.'),
         validators=[validators.validate_ipv4_address],
         required=False)
 
@@ -105,7 +132,7 @@ class AddWifiForm(forms.Form):
     """Form to create a new Wi-Fi connection."""
     name = forms.CharField(label=_('Connection Name'))
     interface = forms.ChoiceField(
-        label=_('Physical interface'),
+        label=_('Physical Interface'),
         choices=(),
         help_text=_('The network device that this connection should be bound '
                     'to.'))
@@ -141,6 +168,31 @@ existing wireless network. Shared mode is useful when running an Access \
 Point.'))
     ipv4_address = forms.CharField(
         label=_('Address'),
+        validators=[validators.validate_ipv4_address],
+        required=False)
+    ipv4_netmask = forms.CharField(
+        label=_('Netmask'),
+        help_text=_('Optional value. If left blank, a default netmask '
+                    'based on the address will be used.'),
+        validators=[validators.validate_ipv4_address],
+        required=False)
+    ipv4_gateway = forms.CharField(
+        label=_('Gateway'),
+        help_text=_('Optional value.'),
+        validators=[validators.validate_ipv4_address],
+        required=False)
+    ipv4_dns = forms.CharField(
+        label=_('DNS Server'),
+        help_text=_('Optional value. If this value is given and IPv4 '
+                    'addressing method is "Automatic", the DNS Servers '
+                    'provided by a DHCP server will be ignored.'),
+        validators=[validators.validate_ipv4_address],
+        required=False)
+    ipv4_second_dns = forms.CharField(
+        label=_('Second DNS Server'),
+        help_text=_('Optional value. If this value is given and IPv4 '
+                    'Addressing Method is "Automatic", the DNS Servers '
+                    'provided by a DHCP server will be ignored.'),
         validators=[validators.validate_ipv4_address],
         required=False)
 

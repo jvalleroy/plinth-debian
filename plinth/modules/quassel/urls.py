@@ -1,4 +1,3 @@
-#!/bin/sh
 #
 # This file is part of Plinth.
 #
@@ -16,18 +15,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# Enable Apache modules required for Plinth.
+"""
+URLs for the quassel module.
+"""
 
-echo "Configuring Apache for Plinth..."
+from django.conf.urls import url
 
-make-ssl-cert generate-default-snakeoil
-a2enmod headers
-a2enmod proxy
-a2enmod proxy_http
-a2enmod rewrite
-a2enmod ssl
-a2enconf javascript-common
-a2ensite plinth.conf
-a2ensite plinth-ssl.conf
+from . import views
 
-echo "Done configuring Apache for Plinth."
+
+urlpatterns = [
+    url(r'^apps/quassel/$', views.index, name='index'),
+]
