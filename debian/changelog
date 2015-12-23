@@ -1,3 +1,10 @@
+plinth (0.7.2-1) UNRELEASED; urgency=low
+
+  * New upstream version 0.7.2.
+  * Remove patch to enable javascript-common, fixed upstream.
+
+ -- James Valleroy <jvalleroy@mailbox.org>  Wed, 23 Dec 2015 11:13:22 -0500
+
 plinth (0.7.1-1) unstable; urgency=low
 
   [ James Valleroy ]
