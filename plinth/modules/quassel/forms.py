@@ -16,31 +16,15 @@
 #
 
 """
-Plinth module for configuring Transmission.
+Forms for Quassel module.
 """
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 
-class TransmissionForm(forms.Form):  # pylint: disable=W0232
-    """Transmission configuration form"""
+class QuasselForm(forms.Form):
+    """Quassel configuration form."""
     enabled = forms.BooleanField(
-        label=_('Enable Transmission daemon'),
+        label=_('Enable Quassel core service'),
         required=False)
-
-    download_dir = forms.CharField(
-        label=_('Download directory'),
-        help_text=_('Directory where downloads are saved.  If you change the \
-default directory, ensure that the new directory exists and is writable by \
-"debian-transmission" user.'))
-
-    rpc_username = forms.CharField(
-        label=_('Username'),
-        help_text=_('Username to login to the web interface.'))
-
-    rpc_password = forms.CharField(
-        label=_('Password'),
-        help_text=_('Password to login to the web interface.  Current \
-password is shown in a hashed format.  To set a new password, enter the \
-password in plain text.'))

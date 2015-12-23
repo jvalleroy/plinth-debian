@@ -16,23 +16,25 @@
 #
 
 """
-Plinth module to configure Shaarli.
+Views for Quassel module.
 """
 
 from django.contrib import messages
 from django.template.response import TemplateResponse
 from django.utils.translation import ugettext as _
 
-from .forms import ShaarliForm
+from .forms import QuasselForm
 from plinth import actions
 from plinth import package
-from plinth.modules import shaarli
+from plinth.modules import quassel
+
 
 def on_install():
     """Notify that the service is now enabled."""
-    shaarli.service.notify_enabled(None, True)
+    quassel.service.notify_enabled(None, True)
 
-@package.required(['shaarli'], on_install=on_install)
+
+@package.required(['quassel-core'], on_install=on_install)
 def index(request):
     """Serve configuration page."""
     status = get_status()
@@ -40,24 +42,24 @@ def index(request):
     form = None
 
     if request.method == 'POST':
-        form = ShaarliForm(request.POST, prefix='shaarli')
+        form = QuasselForm(request.POST, prefix='quassel')
         if form.is_valid():
             _apply_changes(request, status, form.cleaned_data)
             status = get_status()
-            form = ShaarliForm(initial=status, prefix='shaarli')
+            form = QuasselForm(initial=status, prefix='quassel')
     else:
-        form = ShaarliForm(initial=status, prefix='shaarli')
+        form = QuasselForm(initial=status, prefix='quassel')
 
-    return TemplateResponse(request, 'shaarli.html',
-                            {'title': _('Bookmarks (Shaarli)'),
+    return TemplateResponse(request, 'quassel.html',
+                            {'title': _('IRC Client (Quassel)'),
                              'status': status,
                              'form': form})
 
 
 def get_status():
-    """Get the current settings."""
-    status = {'enabled': shaarli.is_enabled()}
-    return status
+    """Get the current service status."""
+    return {'enabled': quassel.is_enabled(),
+            'is_running': quassel.is_running()}
 
 
 def _apply_changes(request, old_status, new_status):
@@ -66,8 +68,8 @@ def _apply_changes(request, old_status, new_status):
 
     if old_status['enabled'] != new_status['enabled']:
         sub_command = 'enable' if new_status['enabled'] else 'disable'
-        actions.superuser_run('shaarli', [sub_command])
-        shaarli.service.notify_enabled(None, new_status['enabled'])
+        actions.superuser_run('quassel', [sub_command])
+        quassel.service.notify_enabled(None, new_status['enabled'])
         modified = True
 
     if modified:
