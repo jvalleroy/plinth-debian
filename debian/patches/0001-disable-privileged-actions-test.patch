@@ -1,3 +1,5 @@
+Subject: Skip privileged actions test
+
 Index: plinth/plinth/tests/test_actions.py
 ===================================================================
 --- plinth.orig/plinth/tests/test_actions.py

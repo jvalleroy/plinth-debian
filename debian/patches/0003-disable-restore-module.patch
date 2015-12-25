@@ -1,3 +1,5 @@
+Subject: Disable the restore module
+
 --- a/data/etc/plinth/modules-enabled/restore
 +++ b/data/etc/plinth/modules-enabled/restore
 @@ -1 +1 @@
