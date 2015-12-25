@@ -1,5 +1,6 @@
 #!/usr/bin/make -f
 
+export DH_VERBOSE=1
 export PYBUILD_NAME=plinth
 
 %:
@@ -9,4 +10,4 @@ override_dh_installinit:
 	dh_installinit --onlyscripts
 
 new-upstream:
-	gbp import-orig --uscan --verbose
+	gbp import-orig --uscan --verbose --pristine-tar
