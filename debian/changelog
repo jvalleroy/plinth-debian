@@ -1,9 +1,10 @@
-plinth (0.7.2-1) UNRELEASED; urgency=low
+plinth (0.7.2-1) unstable; urgency=low
 
+  [ James Valleroy ]
   * New upstream version 0.7.2.
   * Remove patch to enable javascript-common, fixed upstream.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Wed, 23 Dec 2015 11:13:22 -0500
+ -- Federico Ceratto <federico@debian.org>  Fri, 25 Dec 2015 13:47:03 +0000
 
 plinth (0.7.1-1) unstable; urgency=low
 
