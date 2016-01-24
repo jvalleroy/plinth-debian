@@ -31,8 +31,8 @@ Build-Depends: debhelper (>= 9)
  , xmlto
 Standards-Version: 3.9.6
 Homepage: https://github.com/freedombox/Plinth/
-Vcs-Git: git://anonscm.debian.org/freedombox/plinth.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary
+Vcs-Git: https://anonscm.debian.org/git/freedombox/plinth.git
+Vcs-Browser: https://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary
 
 Package: plinth
 Architecture: all
