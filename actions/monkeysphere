@@ -1,0 +1,120 @@
+#!/usr/bin/python3
+#
+# This file is part of Plinth.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+"""
+Configuration helper for monkeysphere.
+"""
+
+import argparse
+import json
+import os
+import subprocess
+
+
+def parse_arguments():
+    """Return parsed command line arguments as dictionary."""
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(dest='subcommand', help='Sub command')
+
+    host_show_keys = subparsers.add_parser(
+        'host-show-keys', help='Show host key fingerprints')
+    host_show_keys.add_argument(
+        'key_ids', nargs='*', help='Optional list of KEYIDs')
+
+    host_import_ssh_key = subparsers.add_parser(
+        'host-import-ssh-key', help='Import host SSH key')
+    host_import_ssh_key.add_argument(
+        'hostname', help='Fully-qualified hostname')
+
+    host_publish_key = subparsers.add_parser(
+        'host-publish-key', help='Push host key to keyserver')
+    host_publish_key.add_argument(
+        'key_ids', nargs='*', help='Optional list of KEYIDs')
+
+    return parser.parse_args()
+
+
+def subcommand_host_show_keys(arguments):
+    """Show host key fingerprints."""
+    try:
+        output = subprocess.check_output(
+            ['monkeysphere-host', 'show-keys'] + arguments.key_ids)
+    except subprocess.CalledProcessError:
+        # no keys available
+        return
+
+    # parse output
+    keys = [dict()]
+    lines = output.decode().strip().split('\n')
+    for line in lines:
+        if line.startswith('pub'):
+            data = line.lstrip('pub').split()
+            keys[-1]['pub'] = data[0]
+            keys[-1]['date'] = data[1]
+        elif line.startswith('uid'):
+            keys[-1]['uid'] = line.lstrip('uid').strip()
+        elif line.startswith('OpenPGP fingerprint:'):
+            keys[-1]['pgp_fingerprint'] = line.lstrip('Open PGP fingerprint:')
+        elif line.startswith('ssh fingerprint:'):
+            data = line.lstrip('ssh fingerprint:').split()
+            keys[-1]['ssh_key_size'] = data[0]
+            keys[-1]['ssh_fingerprint'] = data[1]
+            keys[-1]['ssh_key_type'] = data[2].strip('()')
+        elif line == '':
+            keys.append(dict())
+
+    print(json.dumps({'keys': keys}))
+
+
+def subcommand_host_import_ssh_key(arguments):
+    """Import host SSH key."""
+    output = subprocess.check_output(
+        ['monkeysphere-host', 'import-key',
+         '/etc/ssh/ssh_host_rsa_key', arguments.hostname])
+    print(output.decode())
+
+
+def subcommand_host_publish_key(arguments):
+    """Push host key to keyserver."""
+    # setting TMPDIR as workaround for Debian bug #656750
+    proc = subprocess.Popen(
+        ['monkeysphere-host', 'publish-keys'] + arguments.key_ids,
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        env=dict(
+            os.environ,
+            TMPDIR='/var/lib/monkeysphere/authentication/tmp/',
+            MONKEYSPHERE_PROMPT='false'))
+    output, error = proc.communicate()
+    output, error = output.decode(), error.decode()
+    if proc.returncode != 0:
+        raise Exception(output, error)
+
+    print(output)
+
+
+def main():
+    """Parse arguments and perform all duties."""
+    arguments = parse_arguments()
+
+    subcommand = arguments.subcommand.replace('-', '_')
+    subcommand_method = globals()['subcommand_' + subcommand]
+    subcommand_method(arguments)
+
+
+if __name__ == '__main__':
+    main()

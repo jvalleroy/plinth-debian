@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% comment %}
+#
+# This file is part of Plinth.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+{% endcomment %}
+
+{% load bootstrap %}
+{% load i18n %}
+
+{% block page_head %}
+
+  {% if running %}
+    <meta http-equiv="refresh" content="3"/>
+  {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+
+  <h2>{% trans "Monkeysphere" %}</h2>
+
+  <p>
+    {% blocktrans trimmed %}
+      With Monkeysphere, a PGP key can be generated for each configured domain
+      serving SSH. The PGP public key can then be uploaded to the PGP
+      keyservers. Users connecting to this machine through SSH can verify that
+      they are connecting to the correct host.  For users to trust the key, at
+      least one person (usually the machine owner) must sign the key using the
+      regular PGP key signing process.  See the
+      <a href="http://web.monkeysphere.info/getting-started-ssh/">
+      Monkeysphere SSH documentation</a> for more details.
+    {% endblocktrans %}
+  </p>
+
+  {% if running %}
+    <p class="running-status-parent">
+      <span class="running-status active"></span>
+      {% trans "Publishing key to keyserver..." %}
+
+      <form class="form" method="post"
+            action="{% url 'monkeysphere:cancel' %}">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-warning btn-sm">
+          {% trans "Cancel" %}</button>
+      </form>
+    </p>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-sm-8">
+      <table class="table table-bordered table-condensed table-striped">
+        <thead>
+          <tr>
+            <th>{% trans "Domain" %}</th>
+            <th>{% trans "GPG Fingerprint" %}</th>
+            <th>{% trans "Actions" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for domain in status.domains %}
+            <tr>
+              <td>{{ domain.name }}</td>
+              <td>
+                {% if domain.key %}
+                  {{ domain.key.pgp_fingerprint }}
+                {% else %}
+                  {% trans "Not Available" %}
+                {% endif %}
+              </td>
+              <td>
+                {% if not domain.key %}
+                  <form class="form" method="post"
+                        action="{% url 'monkeysphere:generate' domain.name %}">
+                    {% csrf_token %}
+
+                    <button type="submit" class="btn btn-primary btn-sm pull-right">
+                      {% trans "Generate PGP Key" %}</button>
+                  </form>
+                {% elif not running %}
+                  <form class="form" method="post"
+                        action="{% url 'monkeysphere:publish' domain.key.pgp_fingerprint %}">
+                    {% csrf_token %}
+
+                    <button type="submit" class="btn btn-warning btn-sm pull-right">
+                      {% trans "Publish Key" %}</button>
+                  </form>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}
