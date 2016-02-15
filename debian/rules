@@ -10,4 +10,4 @@ override_dh_installinit:
 	dh_installinit --onlyscripts
 
 new-upstream:
-	gbp import-orig --uscan --verbose --pristine-tar
+	gbp import-orig --uscan --verbose --pristine-tar --no-filter-pristine-tar
