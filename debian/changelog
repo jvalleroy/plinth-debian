@@ -1,11 +1,11 @@
-plinth (0.8-1) UNRELEASED; urgency=low
+plinth (0.8.1-1) UNRELEASED; urgency=low
 
   * Skip filter-pristine-tar step for new upstream.
-  * New upstream version 0.8.
+  * New upstream version 0.8.1.
   * Add docbook-utils as build dependency.
   * Add packagekit as dependency.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Mon, 15 Feb 2016 12:10:04 -0500
+ -- James Valleroy <jvalleroy@mailbox.org>  Tue, 16 Feb 2016 06:16:41 -0500
 
 plinth (0.7.2-1) unstable; urgency=low
 
