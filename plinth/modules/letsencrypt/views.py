@@ -29,20 +29,20 @@ import json
 import logging
 
 from plinth import actions
-from plinth import package
 from plinth.errors import ActionError
+from plinth.modules import letsencrypt
 from plinth.modules import names
 
 logger = logging.getLogger(__name__)
 
 
-@package.required(['letsencrypt'])
 def index(request):
     """Serve configuration page."""
     status = get_status()
 
     return TemplateResponse(request, 'letsencrypt.html',
-                            {'title': _('Certificates (Let\'s Encrypt)'),
+                            {'title': letsencrypt.title,
+                             'description': letsencrypt.description,
                              'status': status})
 
 
@@ -85,7 +85,11 @@ def get_status():
     status = actions.superuser_run('letsencrypt', ['get-status'])
     status = json.loads(status)
 
-    for domains in names.domains.values():
+    for domain_type, domains in names.domains.items():
+        # XXX: Remove when Let's Encrypt supports .onion addresses
+        if domain_type == 'hiddenservice':
+            continue
+
         for domain in domains:
             status['domains'].setdefault(domain, {})
 
