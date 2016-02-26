@@ -1,9 +1,10 @@
 Source: plinth
 Section: python
 Priority: optional
-Maintainer: Tzafrir Cohen <tzafrir@debian.org>
+Maintainer: FreedomBox packaging team <freedombox-pkg-team@lists.alioth.debian.org>
 Uploaders:
- Piotr Ożarowski <piotr@debian.org>
+ Tzafrir Cohen <tzafrir@debian.org>
+ , Piotr Ożarowski <piotr@debian.org>
  , Bdale Garbee <bdale@gag.com>
  , Petter Reinholdtsen <pere@debian.org>
  , Sunil Mohan Adapa <sunil@medhas.org>
