@@ -1,8 +1,9 @@
-plinth (0.8.2-1) UNRELEASED; urgency=low
+plinth (0.8.2-1) unstable; urgency=low
 
+  [ James Valleroy ]
   * New upstream version 0.8.2.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Thu, 25 Feb 2016 19:00:09 -0500
+ -- Federico Ceratto <federico@debian.org>  Fri, 26 Feb 2016 19:51:37 +0000
 
 plinth (0.8.1-1) unstable; urgency=low
 
