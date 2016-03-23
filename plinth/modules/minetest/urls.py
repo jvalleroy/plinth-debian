@@ -8,23 +8,23 @@
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
 """
-Forms for configuring XMPP service.
+URLs for the minetest module.
 """
 
-from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.conf.urls import url
+
+from plinth.views import ConfigurationView
 
 
-class XmppForm(forms.Form):  # pylint: disable=W0232
-    """XMPP configuration form."""
-    enabled = forms.BooleanField(
-        label=_('Enable XMPP'),
-        required=False)
+urlpatterns = [
+    url(r'^apps/minetest/$', ConfigurationView.as_view(module_name='minetest'),
+        name='index'),
+]

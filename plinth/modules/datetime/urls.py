@@ -21,8 +21,10 @@ URLs for the date and time module
 
 from django.conf.urls import url
 
-from . import views
+from plinth.views import ConfigurationView
+
 
 urlpatterns = [
-    url(r'^sys/datetime/$', views.index, name='index'),
+    url(r'^sys/datetime/$', ConfigurationView.as_view(module_name='datetime'),
+        name='index'),
 ]

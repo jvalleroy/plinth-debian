@@ -47,24 +47,32 @@ def index(request):
 
 
 @require_POST
-def generate(request, domain):
-    """Generate PGP key for SSH service."""
-    valid_domain = any((domain in domains
-                        for domains in names.domains.values()))
-    if valid_domain:
-        try:
-            actions.superuser_run(
-                'monkeysphere', ['host-import-ssh-key', 'ssh://' + domain])
-            messages.success(request, _('Generated PGP key.'))
-        except actions.ActionError as exception:
-            messages.error(request, str(exception))
+def import_key(request, ssh_fingerprint):
+    """Import a key into monkeysphere."""
+    available_domains = [domain
+                         for domains in names.domains.values()
+                         for domain in domains]
+    try:
+        actions.superuser_run(
+            'monkeysphere', ['host-import-key', ssh_fingerprint] +
+            available_domains)
+        messages.success(request, _('Imported key.'))
+    except actions.ActionError as exception:
+        messages.error(request, str(exception))
 
     return redirect(reverse_lazy('monkeysphere:index'))
 
 
+def details(request, fingerprint):
+    """Get details for an OpenPGP key."""
+    return TemplateResponse(request, 'monkeysphere_details.html',
+                            {'title': monkeysphere.title,
+                             'key': get_key(fingerprint)})
+
+
 @require_POST
 def publish(request, fingerprint):
-    """Publish PGP key for SSH service."""
+    """Publish OpenPGP key for SSH service."""
     global publish_process
     if not publish_process:
         publish_process = actions.superuser_run(
@@ -87,21 +95,36 @@ def cancel(request):
 
 def get_status():
     """Get the current status."""
-    output = actions.superuser_run('monkeysphere', ['host-show-keys'])
-    keys = {}
-    for key in json.loads(output)['keys']:
-        key['name'] = key['uid'].replace('ssh://', '')
-        keys[key['name']] = key
+    return {'keys': get_keys()}
 
-    domains = []
-    for domains_of_a_type in names.domains.values():
-        for domain in domains_of_a_type:
-            domains.append({
-                'name': domain,
-                'key': keys.get(domain),
-            })
 
-    return {'domains': domains}
+def get_keys(fingerprint=None):
+    """Get keys."""
+    fingerprint = [fingerprint] if fingerprint else []
+    output = actions.superuser_run('monkeysphere',
+                                   ['host-show-keys'] + fingerprint)
+    keys = json.loads(output)['keys']
+
+    domains = [domain
+               for domains_of_a_type in names.domains.values()
+               for domain in domains_of_a_type]
+    for key in keys.values():
+        if '*' in key['available_domains']:
+            key['available_domains'] = set(domains)
+        else:
+            key['available_domains'] = set(key['available_domains'])
+
+        if 'imported_domains' in key:
+            key['imported_domains'] = set(key['imported_domains']) \
+                .intersection(key['available_domains'])
+
+    return keys
+
+
+def get_key(fingerprint):
+    """Get key by fingerprint."""
+    keys = get_keys(fingerprint)
+    return list(keys.values())[0] if len(keys) else None
 
 
 def _collect_publish_result(request):

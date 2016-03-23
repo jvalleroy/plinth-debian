@@ -21,6 +21,7 @@ Plinth module for service discovery.
 
 from django.utils.translation import ugettext_lazy as _
 
+from plinth import actions
 from plinth import action_utils
 from plinth import cfg
 from plinth import service as service_module
@@ -39,8 +40,8 @@ title = _('Service Discovery')
 description = [
     format_lazy(
         _('Service discovery allows other devices on the network to '
-          'discover your {{ box_name }} and services running on it.  It '
-          'also allows {{ box_name }} to discover other devices and '
+          'discover your {box_name} and services running on it.  It '
+          'also allows {box_name} to discover other devices and '
           'services running on your local network.  Service discovery is '
           'not essential and works only on internal networks.  It may be '
           'disabled to improve security especially when connecting to a '
@@ -65,6 +66,12 @@ def setup(helper, old_version=False):
     helper.install(['avahi-daemon'])
 
 
+def get_status():
+    """Get the current settings from server."""
+    return {'enabled': is_enabled(),
+            'is_running': is_running()}
+
+
 def is_enabled():
     """Return whether the module is enabled."""
     return action_utils.service_is_enabled('avahi-daemon')
@@ -73,3 +80,10 @@ def is_enabled():
 def is_running():
     """Return whether the service is running."""
     return action_utils.service_is_running('avahi-daemon')
+
+
+def enable(should_enable):
+    """Enable/disable the module."""
+    sub_command = 'enable' if should_enable else 'disable'
+    actions.superuser_run('avahi', [sub_command])
+    service.notify_enabled(None, should_enable)

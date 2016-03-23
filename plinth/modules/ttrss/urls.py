@@ -16,15 +16,15 @@
 #
 
 """
-Forms for configuring ownCloud.
+URLs for the Tiny Tiny RSS module.
 """
 
-from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.conf.urls import url
+
+from plinth.views import ConfigurationView
 
 
-class OwnCloudForm(forms.Form):  # pylint: disable-msg=W0232
-    """ownCloud configuration form"""
-    enabled = forms.BooleanField(
-        label=_('Enable ownCloud'),
-        required=False)
+urlpatterns = [
+    url(r'^apps/ttrss/$', ConfigurationView.as_view(module_name='ttrss'),
+        name='index'),
+]
