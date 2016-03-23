@@ -28,3 +28,8 @@ class PlinthError(Exception):
 class ActionError(PlinthError):
     """Use this error for exceptions when executing an action."""
     pass
+
+
+class DomainRegistrationError(PlinthError):
+    """Domain registration failed"""
+    pass

@@ -21,9 +21,11 @@ URLs for the Transmission module.
 
 from django.conf.urls import url
 
-from . import views
+from .views import TransmissionConfigurationView
 
 
 urlpatterns = [
-    url(r'^apps/transmission/$', views.index, name='index'),
+    url(r'^apps/transmission/$',
+        TransmissionConfigurationView.as_view(module_name='transmission'),
+        name='index'),
 ]

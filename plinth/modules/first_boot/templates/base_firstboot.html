@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% comment %}
 #
 # This file is part of Plinth.
 #
@@ -8,23 +10,24 @@
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+{% endcomment %}
 
-"""
-Forms for configuring Shaarli.
-"""
+{% load static %}
 
-from django import forms
-from django.utils.translation import ugettext_lazy as _
+{% block page_head %}
+  <style type="text/css">
+   a.navbar-brand {
+       display: none;
+   }
+  </style>
+{% endblock %}
 
-
-class ShaarliForm(forms.Form):
-    """Shaarli configuration form."""
-    enabled = forms.BooleanField(
-        label=_('Enable Shaarli'),
-        required=False)
+{% block mainmenu_right %}
+  {% include "firstboot_navbar.html" %}
+{% endblock %}
