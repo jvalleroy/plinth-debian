@@ -27,6 +27,7 @@ Build-Depends: debhelper (>= 9)
  , python3-django-stronghold
  , python3-gi
  , python3-psutil
+ , python3-requests
  , python3-setuptools
  , python3-setuptools-git
  , python3-yaml
@@ -62,6 +63,7 @@ Depends: ${python3:Depends}
  , python3-django-stronghold
  , python3-gi
  , python3-psutil
+ , python3-requests
  , python3-yaml
  , sudo
 Description: web front end for administering every aspect of a FreedomBox

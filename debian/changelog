@@ -1,3 +1,10 @@
+plinth (0.9.1-1) UNRELEASED; urgency=low
+
+  * New upstream version 0.9.1.
+  * Add python3-requests as dependency and build-dep.
+
+ -- James Valleroy <jvalleroy@mailbox.org>  Thu, 24 Mar 2016 06:37:28 -0400
+
 plinth (0.8.2-1) unstable; urgency=low
 
   [ James Valleroy ]
