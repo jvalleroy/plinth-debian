@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: FreedomBox UI\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-15 20:46-0400\n"
-"PO-Revision-Date: 2016-03-23 16:45+0000\n"
-"Last-Translator: Philippe Baret <weblate@hyperlecture.net>\n"
+"PO-Revision-Date: 2016-04-10 14:51+0000\n"
+"Last-Translator: Ingrid Yrvin <ingrid.yrvin@gmail.com>\n"
 "Language-Team: Norwegian Bokmål "
 "<https://hosted.weblate.org/projects/freedombox/plinth/nb/>\n"
 "Language: nb\n"
@@ -145,11 +145,11 @@ msgstr "Status"
 
 #: plinth/modules/avahi/templates/avahi.html:31
 msgid "Service discovery server is running"
-msgstr "Serveren til finne tjenesten (tjenesten Discovery) kjører"
+msgstr "Serveren til å finne tjenesten (tjenesten Discovery) kjører"
 
 #: plinth/modules/avahi/templates/avahi.html:34
 msgid "Service discovery server is not running"
-msgstr "Serveren til finne tjenesten (tjenesten Discovery) kjører ikke"
+msgstr "Serveren til å finne tjenesten (tjenesten Discovery) kjører ikke"
 
 #: plinth/modules/avahi/templates/avahi.html:38
 #: plinth/modules/datetime/templates/datetime.html:39
@@ -241,7 +241,7 @@ msgstr "Språk"
 
 #: plinth/modules/config/config.py:130
 msgid "Language for this web administration interface"
-msgstr "Språk i denne nettadministrasjonens brukergrensesnitt."
+msgstr "Språk i denne nettadministrasjonens brukergrensesnitt"
 
 #: plinth/modules/config/config.py:150
 #: plinth/modules/dynamicdns/dynamicdns.py:37
@@ -292,7 +292,9 @@ msgstr "Dato og tid"
 msgid ""
 "Network time server is a program that maintians the system time in "
 "synchronization with servers on the Internet."
-msgstr "Nettverktidstjeneren er et program som synkroniserer systemets klokke med tjenere på Internettet."
+msgstr ""
+"Nettverkstidstjeneren er et program som synkroniserer systemets klokke med "
+"tjenere på Internettet."
 
 #: plinth/modules/datetime/__init__.py:103
 msgid "NTP client in contact with servers"
@@ -300,7 +302,7 @@ msgstr "NTP-klient har kontakt med tjenere"
 
 #: plinth/modules/datetime/forms.py:31
 msgid "Enable network time"
-msgstr "Aktiver nettverktid"
+msgstr "Aktiver nettverkstid"
 
 #: plinth/modules/datetime/forms.py:35
 msgid "Time Zone"
@@ -310,7 +312,9 @@ msgstr "Tidssone"
 msgid ""
 "Set your time zone to get accurate timestamps. This will set the systemwide "
 "time zone."
-msgstr "Still inn tidssonen for å få nøyaktige klokkeslett.  Dette vil sette hele systemets tidssone."
+msgstr ""
+"Still inn tidssonen for å få nøyaktige klokkeslett. Dette vil sette hele "
+"systemets tidssone."
 
 #: plinth/modules/datetime/forms.py:47
 msgid "-- no time zone set --"
@@ -318,11 +322,11 @@ msgstr "–  ingen tidssone satt –"
 
 #: plinth/modules/datetime/templates/datetime.html:31
 msgid "Network time server is running"
-msgstr "Nettverktidstjeneren kjører"
+msgstr "Nettverkstidstjeneren kjører"
 
 #: plinth/modules/datetime/templates/datetime.html:34
 msgid "Network time server is not running"
-msgstr "Nettverktidstjeneren kjører ikke"
+msgstr "Nettverkstidstjeneren kjører ikke"
 
 #: plinth/modules/datetime/views.py:47
 #: plinth/modules/dynamicdns/dynamicdns.py:364
@@ -353,7 +357,11 @@ msgid ""
 "href=\"/deluge\">/deluge</a> path on the web server. The default password is"
 " 'deluge', but you should log in and change it immediately after enabling "
 "this service."
-msgstr "Når den er aktivert, vil Deluge nett-klienten være tilgjengelig fra <a href=\"/deluge\">/deluge</a> på netttjeneren. Standardpassordet er 'deluge', men du bør logge inn og endre det umiddelbart etter at denne tjenesten er aktivert."
+msgstr ""
+"Når den er aktivert, vil Deluge nett-klienten være tilgjengelig fra <a href="
+"\"/deluge\">/deluge</a> på netttjeneren. Standardpassordet er «deluge», men "
+"du bør logge inn og endre det umiddelbart etter at denne tjenesten er "
+"aktivert."
 
 #: plinth/modules/deluge/templates/deluge.html:31
 msgid "deluge-web is running"
@@ -438,11 +446,11 @@ msgid ""
 "someone from the Internet asks for your DNS name, they will get a response "
 "with your current IP address."
 msgstr ""
-"Løsningen er å tildele et DNS-navn til IP-adressen din og oppdatere DNS-"
+"Løsningen er å tildele et DNS-navn til IP-adressen din, og oppdatere DNS-"
 "navnet hver gang internettleverandør endrer din IP. Dynamisk DNS tillater "
-"deg å flytte din nåværende offentlige IP-adressen til en <a href=\""
-"http://gnudip2.sourceforge.net/\"target=\"_blank\"> GnuDIP </a> server. Så "
-"vil serveren tildele DNS-navnet ditt til den nye IP-en. Hvis noen fra "
+"deg å flytte din nåværende offentlige IP-adressen til en <a "
+"href='http://gnudip2.sourceforge.net/' target='_blank'> GnuDIP </a> server. "
+"Så vil serveren tildele DNS-navnet ditt til den nye IP-en. Hvis noen fra "
 "Internett ber om ditt DNS-navn, vil de da få  svar med din gjeldende IP-"
 "adresse."
 
@@ -455,7 +463,10 @@ msgid ""
 "The Variables &lt;User&gt;, &lt;Pass&gt;, &lt;Ip&gt;, &lt;Domain&gt; may be "
 "used within the URL. For details see the update URL templates of the example"
 " providers."
-msgstr "Variablene &lt;User&gt;, &lt;Pass&gt;, &lt;Ip&gt;, &lt;Domain&gt; kan brukes i nettadressen. For detaljer, se de oppdaterte nettadressemalene fra eksempel-leverandørene."
+msgstr ""
+"Variablene &lt;User&gt;, &lt;Pass&gt;, &lt;Ip&gt;, &lt;Domain&gt; kan brukes "
+"i nettadressen. For detaljer, se de oppdaterte nettadressemalene fra "
+"eksempel leverandørene."
 
 #: plinth/modules/dynamicdns/dynamicdns.py:67
 msgid ""
@@ -590,7 +601,10 @@ msgid ""
 "If your %(box_name)s is connected behind a NAT router, don't forget to add "
 "port forwarding for standard ports, including TCP port 80 (HTTP) and TCP "
 "port 443 (HTTPS)."
-msgstr "Hvis din %(box_name)s er tilkoblet bak en NAT-ruter, ikke glem å legge til port for videresending til standard porter, inkludert TPC port 80 (HTTP) og TCP port 443 (HTTPS)."
+msgstr ""
+"Hvis din %(box_name)s er tilkoblet bak en NAT-ruter, ikke glem å legge til "
+"port for videresending til standard porter, inkludert TCP-port 80 (HTTP) og "
+"TCP-port 443 (HTTPS)."
 
 #: plinth/modules/dynamicdns/templates/dynamicdns_configure.html:30
 msgid ""
@@ -652,7 +666,11 @@ msgid ""
 "default on %(box_name)s. On any Debian based system (such as %(box_name)s) "
 "you may run it using the command 'service firewalld start' or in case of a "
 "system with systemd 'systemctl start firewalld'."
-msgstr "Brannmur-bakgrunnsprosessen kjører ikke. Den må kjøre. Brannmuren kommer som standard aktivert på %(box_name)s. På et Debian-basert system  (slik som %(box_name)s), kan du kjøre den med kommandoen «service firewalld start\" eller alternativt  i et system med systemd, «systemctl start firewalld»."
+msgstr ""
+"Brannmur-bakgrunnsprosessen kjører ikke. Den må kjøre. Brannmuren kommer som "
+"standard aktivert på %(box_name)s. På et Debian-basert system (slik som "
+"%(box_name)s), kan du kjøre den med kommandoen «service firewalld start», "
+"eller alternativt i et system med systemd, «systemctl start firewalld»."
 
 #: plinth/modules/firewall/templates/firewall.html:45
 msgid "Service/Port"
@@ -744,7 +762,7 @@ msgstr "Hjelp"
 
 #: plinth/modules/first_boot/templates/firstboot_state0.html:41
 msgid "Start Setup"
-msgstr "Start Setup"
+msgstr "Starte Setup"
 
 #: plinth/modules/first_boot/templates/firstboot_state0.html:45
 #, python-format
@@ -778,7 +796,9 @@ msgid ""
 "%(box_name)s setup is now complete.  To make your %(box_name)s functional, "
 "you need some applications.  They will be installed the first time you "
 "access them."
-msgstr "%(box_name)s-oppsettet er nå fullført. For å få din %(box_name)s funksjonell trenger du noen programmer. De vil bli installert første gang du åpner dem. "
+msgstr ""
+"%(box_name)s-oppsettet er nå fullført. For å få din %(box_name)s funksjonell "
+"trenger du noen programmer. De vil bli installert første gang du åpner dem."
 
 #: plinth/modules/first_boot/templates/firstboot_state10.html:41
 msgid "Go to Apps"
@@ -800,25 +820,31 @@ msgstr "Gå til nettverk"
 
 #: plinth/modules/first_boot/templates/firstboot_state5.html:27
 msgid "Setup a freedombox.me subdomain with your voucher"
-msgstr "Sett opp et freedombox.me underdomene med ditt bilag. "
+msgstr "Sett opp et freedombox.me underdomene med din voucher"
 
 #: plinth/modules/first_boot/templates/firstboot_state5.html:31
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "<a href=\"%(finish_firstboot_url)s\">Skip this step</a> if you do not have a"
 " voucher or want to configure PageKite later with a different domain or "
 "credentials."
-msgstr "<a href=\"%(finish_firstboot_url)s\">Hopp over dette trinnet</a> hvis du ikke har et bilag, eller ønsker å konfigurere PageKite senere med et annet domene eller legitimasjon."
+msgstr ""
+"<a href=\"%(finish_firstboot_url)s\">Hopp over dette trinnet</a> hvis du "
+"ikke har en rabattkupong, eller ønsker å konfigurere PageKite senere med et "
+"annet domene eller legitimasjon."
 
 #: plinth/modules/first_boot/templates/firstboot_state5.html:39
+#, fuzzy
 msgid ""
 "You can use an already redeemed voucher but it will only work with the "
 "initially registered subdomain."
-msgstr "Du kan bruke et allerede innløst bilag, men det vil bare fungere med det opprinnelig registrerte underdomenet."
+msgstr ""
+"Du kan bruke en allerede innløst rabattkupong, men det vil bare fungere med "
+"det opprinnelig registrerte underdomenet."
 
 #: plinth/modules/first_boot/templates/firstboot_state5.html:55
 msgid "Register"
-msgstr "Register"
+msgstr "Registrer"
 
 #: plinth/modules/first_boot/templates/firstboot_state5.html:59
 msgid "Skip Registration"
@@ -831,7 +857,7 @@ msgstr "Oppsett ferdig"
 #: plinth/modules/first_boot/views.py:96
 msgid ""
 "Pagekite setup finished. The HTTP and HTTPS services are activated now."
-msgstr "Pagekite oppsett ferdig. HTTP- og HTTPS-tjenester er nå aktivert. "
+msgstr "Pagekite oppsett ferdig. HTTP- og HTTPS-tjenester er nå aktivert."
 
 #: plinth/modules/help/help.py:33
 msgid "Documentation"
@@ -940,7 +966,11 @@ msgid ""
 "irc.oftc.net IRC network.  Join and request help on the <a "
 "href=\"https://webchat.oftc.net/?randomnick=1&channels=freedombox&prompt=1\">"
 " #freedombox</a> channel using the IRC web interface."
-msgstr "Mange %(box_name)s bidragsytere og brukere er også tilgjengelige i irc.oftc.net IRC-nettverket.  Delta og be om hjelp på <a href=\"https://webchat.oftc.net/?randomnick=1&channels=freedombox&prompt=1\"> #freedombox</a>-kanalen ved å bruke IRC-nettbrukergrensesnittet. "
+msgstr ""
+"Mange %(box_name)s bidragsytere og brukere er også tilgjengelige i "
+"irc.oftc.net IRC-nettverket. Delta og be om hjelp på <a href=\""
+"https://webchat.oftc.net/?randomnick=1&channels=freedombox&prompt=1\"> "
+"#freedombox</a>-kanalen ved å bruke IRC-nettbrukergrensesnittet."
 
 #: plinth/modules/ikiwiki/__init__.py:34
 msgid "Wiki and Blog (ikiwiki)"
@@ -1095,7 +1125,7 @@ msgstr "Sertifikatsstatus"
 
 #: plinth/modules/letsencrypt/templates/letsencrypt.html:45
 msgid "Website Security"
-msgstr "Nettstedssikkerhet "
+msgstr "Nettstedsikkerhet"
 
 #: plinth/modules/letsencrypt/templates/letsencrypt.html:46
 msgid "Actions"
@@ -1143,6 +1173,7 @@ msgid "Failed to obtain certificate for domain {domain}: {error}"
 msgstr "Klarte ikke å oppnå sertifikat til domene {domain}: {error}"
 
 #: plinth/modules/minetest/__init__.py:35
+#, fuzzy
 msgid "Block Sandbox (Minetest)"
 msgstr "Block Sandbox (Minetest)"
 
@@ -1161,11 +1192,12 @@ msgstr "Minetest tjener kjører"
 
 #: plinth/modules/minetest/templates/minetest.html:34
 msgid "Minetest server is not running"
-msgstr "Minetest tjener kjører ikke. "
+msgstr "Minetest tjener kjører ikke"
 
 #: plinth/modules/monkeysphere/__init__.py:30
 #: plinth/modules/monkeysphere/__init__.py:56
 #: plinth/modules/monkeysphere/templates/monkeysphere_details.html:26
+#, fuzzy
 msgid "Monkeysphere"
 msgstr "Monkeysphere"
 
@@ -1194,7 +1226,7 @@ msgstr "Monkeysphere kan også generere en OpenPGP-nøkkel  for hvert Secure Web
 
 #: plinth/modules/monkeysphere/templates/monkeysphere.html:57
 msgid "Publishing key to keyserver..."
-msgstr "Legge ut nøkkel til nøkkeltjenere"
+msgstr "Legge ut nøkkel til nøkkeltjenere..."
 
 #: plinth/modules/monkeysphere/templates/monkeysphere.html:74
 #: plinth/modules/monkeysphere/templates/monkeysphere_details.html:55
@@ -1213,6 +1245,7 @@ msgstr "OpenPGP Fingerprint (fingeravtrykk)"
 
 #: plinth/modules/monkeysphere/templates/monkeysphere.html:85
 #: plinth/modules/monkeysphere/templates/monkeysphere_details.html:58
+#, fuzzy
 msgid "Secure Shell"
 msgstr "Secure Shell"
 
@@ -2224,7 +2257,11 @@ msgid ""
 "Privoxy is a non-caching web proxy with advanced filtering capabilities for "
 "enhancing privacy, modifying web page data and HTTP headers, controlling "
 "access, and removing ads and other obnoxious Internet junk. "
-msgstr "Privoxy er en ikke-caching mellomlagringstjener for Internett med avansert potensiale for filtrering for styrket personvern, modifisering av nettsidedata og HTTP-overskrifter, kontrollere tilgang, og fjerne annonser og annet motbydelig Internett søppel."
+msgstr ""
+"Privoxy er en ikke-lagrende webproxy for Internett med avansert potensiale "
+"for filtrering for styrket personvern, modifisering av nettsidedata og HTTP-"
+"overskrifter, kontrollere tilgang, og fjerne annonser og annet motbydelig "
+"Internett søppel. "
 
 #: plinth/modules/privoxy/__init__.py:46
 #, python-brace-format
@@ -2262,7 +2299,13 @@ msgid ""
 "{box_name} can run the Quassel core service keeping you always online and "
 "one or more Quassel clients from a desktop or a mobile can be used to "
 "connect and disconnect from it."
-msgstr "Quassel er et IRC-program som er delt i to deler, en «kjerne» og en «klient». Dette tillater kjernen å forbli tilkoblet til IRC-servere, og å fortsette å motta meldinger, selv når klienten er frakoblet. {box_name} kan kjøre Quassel kjernetjeneste, og alltid holde deg på nett.  Fra mobilen eller skrivebordet kan en eller flere Quassel-klienter brukes til å koble til og fra,"
+msgstr ""
+"Quassel er et IRC-program som er delt i to deler, en «kjerne» og en «klient»"
+". Dette tillater kjernen å forbli tilkoblet til IRC-servere, og å fortsette "
+"å motta meldinger, selv når klienten er frakoblet. {box_name} kan kjøre "
+"Quassel kjernetjeneste, og alltid holde deg på nett.  Fra mobilen eller "
+"skrivebordet kan en eller flere Quassel-klienter brukes til å koble til og "
+"fra."
 
 #: plinth/modules/quassel/__init__.py:46
 msgid ""
@@ -2297,13 +2340,14 @@ msgstr "Radicale er en CalDAV og CardDAV-tjener. Den tillater synkronisering og 
 
 #: plinth/modules/radicale/templates/radicale.html:31
 msgid "Radicale service is running"
-msgstr "Radicale-tjenesten kjører."
+msgstr "Radicale-tjenesten kjører"
 
 #: plinth/modules/radicale/templates/radicale.html:34
 msgid "Radicale service is not running"
 msgstr "Radicale-tjenesten kjører ikke"
 
 #: plinth/modules/repro/__init__.py:33
+#, fuzzy
 msgid "SIP Server (repro)"
 msgstr "SIP Server (repro)"
 
@@ -2322,7 +2366,11 @@ msgid ""
 " <a href=\"https://jitsi.org/\">Jitsi</a> (for computers) and <a "
 "href=\"https://f-droid.org/repository/browse/?fdid=com.csipsimple\"> "
 "CSipSimple</a> (for Android phones)."
-msgstr " Til SIP-samtaler, trengs et klientprogram. Tilgjengelige klienter omfatter <a href=\"https://jitsi.org/\">Jitsi</a> (for datamaskiner) og <a href=\"https://f-droid.org/repository/browse/?fdid=com.csipsimple\"> CSipSimple</a> (for Android telefoner)."
+msgstr ""
+"Til SIP-samtaler, trengs et klientprogram. Tilgjengelige klienter omfatter <"
+"a href=\"https://jitsi.org/\">Jitsi</a> (for datamaskiner) og <a href=\""
+"https://f-droid.org/repository/browse/?fdid=com.csipsimple\"> CSipSimple</a> "
+"(for Android telefoner)."
 
 #: plinth/modules/repro/__init__.py:48
 msgid ""
@@ -2420,7 +2468,9 @@ msgstr "Her kan du administrere det underliggende systemet til ditt {box_name}."
 #, python-brace-format
 msgid ""
 "The options affect the {box_name} at its most general level, so be careful!"
-msgstr "Valgene som berører {box_name} er oftest på generelt nivå, så vær forsiktig."
+msgstr ""
+"Valgene som berører {box_name} er på de mest generelle nivået, så vær "
+"forsiktig!"
 
 #: plinth/modules/tor/__init__.py:40
 msgid "Anonymity Network (Tor)"
@@ -2436,12 +2486,13 @@ msgid ""
 msgstr "Tor er et anonymt kommunikasjonssystem. Du kan lære mer om det fra nettstedet <a href=\"https://www.torproject.org/\">Tor Project</a>. For best beskyttelse ved nettsurfing, anbefaler Tor Projectet at du bruker <a href=\"https://www.torproject.org/download/download-easy.html.en\">Tor Browser</a>."
 
 #: plinth/modules/tor/__init__.py:66
+#, fuzzy
 msgid "Tor Anonymity Network"
 msgstr "Tor Anonymity Network"
 
 #: plinth/modules/tor/__init__.py:71
 msgid "Tor Bridge Relay"
-msgstr "Tor Bridge Relay"
+msgstr "Tor Bridge Relay \tTor Anonymity Network"
 
 #: plinth/modules/tor/__init__.py:92 plinth/modules/tor/__init__.py:120
 msgid "Tor Hidden Service"
@@ -2497,7 +2548,7 @@ msgstr "Når den er aktivert, vil programvaren lastes ned over Tor-nettverket fo
 
 #: plinth/modules/tor/templates/tor.html:41
 msgid "Tor configuration is being updated"
-msgstr "Tor-konfigureringen blir oppdatert. "
+msgstr "Tor-konfigureringen blir oppdatert"
 
 #: plinth/modules/tor/templates/tor.html:49
 msgid "Tor is running"
@@ -2599,7 +2650,7 @@ msgstr "Transmission kjører ikke i bakgrunnen."
 
 #: plinth/modules/ttrss/__init__.py:34
 msgid "News Feed Reader (Tiny Tiny RSS)"
-msgstr "Nyhetsstrømmer (News Feed Reader  (Tiny Tiny RSS)) "
+msgstr "Nyhetstrømmer (News Feed Reader  (Tiny Tiny RSS))"
 
 #: plinth/modules/ttrss/__init__.py:37
 msgid ""
@@ -2893,7 +2944,7 @@ msgid "Secure Shell (SSH) Server"
 msgstr "Secure Shell (SSH) tjener"
 
 #: plinth/service.py:79
-#, python-brace-format
+#, fuzzy, python-brace-format
 msgid "{box_name} Web Interface (Plinth)"
 msgstr "{box_name} Web Interface (Plinth)"
 
