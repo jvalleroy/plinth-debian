@@ -1,8 +1,10 @@
 plinth (0.9.2-1) UNRELEASED; urgency=medium
 
   * New upstream version 0.9.2.
+  * Add context to build-depends. Temporary workaround for tex-common
+    installation failure.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sat, 14 May 2016 12:43:53 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Sun, 22 May 2016 09:51:38 -0400
 
 plinth (0.9.1-1) unstable; urgency=low
 
