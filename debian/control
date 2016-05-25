@@ -10,8 +10,7 @@ Uploaders:
  , Sunil Mohan Adapa <sunil@medhas.org>
  , Nick Daly <Nick.M.Daly@gmail.com>
  , Federico Ceratto <federico@debian.org>
-Build-Depends: context
- , debhelper (>= 9)
+Build-Depends: debhelper (>= 9)
  , dblatex
  , dh-python
  , dh-systemd
