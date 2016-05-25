@@ -4,7 +4,7 @@ Upstream-Name: Plinth
 
 Files: static/themes/default/FreedomBox-Logo.7z
 Copyright: 2012 Robert Martinez
-License: GPL-3+ or CC-BY-SA
+License: GPL-3+-or-CC-BY-SA
   Some rights reserved.
 
 Files: plinth/tests/coverage/coverage.py
