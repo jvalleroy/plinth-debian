@@ -21,6 +21,7 @@ Plinth module to configure ownCloud
 
 from django.utils.translation import ugettext_lazy as _
 from functools import partial
+import os
 
 from plinth import actions
 from plinth import action_utils
@@ -30,6 +31,9 @@ from plinth import service as service_module
 version = 1
 
 depends = ['apps']
+
+managed_packages = ['postgresql', 'php5-pgsql', 'owncloud', 'php-dropbox',
+                    'php-google-api-php-client']
 
 title = _('File Hosting (ownCloud)')
 
@@ -53,8 +57,13 @@ service = None
 
 def init():
     """Initialize the ownCloud module"""
+    # XXX: ownCloud has been removed from Debian
+    if not os.path.isfile('/etc/owncloud/config.php') and \
+       not os.path.isfile('/etc/owncloud/autoconfig.php'):
+        return
+
     menu = cfg.main_menu.get('apps:index')
-    menu.add_urlname(title, 'glyphicon-picture', 'owncloud:index', 700)
+    menu.add_urlname(title, 'glyphicon-picture', 'owncloud:index')
 
     global service
     service = service_module.Service(
@@ -64,8 +73,7 @@ def init():
 
 def setup(helper, old_version=None):
     """Install and configure the module."""
-    helper.install(['postgresql', 'php5-pgsql', 'owncloud', 'php-dropbox',
-                    'php-google-api-php-client'])
+    helper.install(managed_packages)
     helper.call('post', actions.superuser_run, 'owncloud-setup', ['enable'])
     helper.call('post', service.notify_enabled, None, True)
 
@@ -96,7 +104,7 @@ def diagnose():
     results = []
 
     results.extend(action_utils.diagnose_url_on_all(
-        'https://{host}/owncloud', extra_options=['--no-check-certificate']))
+        'https://{host}/owncloud', check_certificate=False))
 
     return results
 

@@ -31,6 +31,10 @@ version = 1
 
 depends = ['apps']
 
+managed_packages = ['ikiwiki', 'gcc', 'libc6-dev', 'libtimedate-perl',
+                    'libcgi-formbuilder-perl', 'libcgi-session-perl',
+                    'libxml-writer-perl']
+
 service = None
 
 title = _('Wiki and Blog (ikiwiki)')
@@ -44,7 +48,7 @@ description = [
 def init():
     """Initialize the ikiwiki module."""
     menu = cfg.main_menu.get('apps:index')
-    menu.add_urlname(title, 'glyphicon-edit', 'ikiwiki:index', 1100)
+    menu.add_urlname(title, 'glyphicon-edit', 'ikiwiki:index')
 
     global service
     service = service_module.Service(
@@ -54,13 +58,7 @@ def init():
 
 def setup(helper, old_version=None):
     """Install and configure the module."""
-    helper.install(['ikiwiki',
-                    'gcc',
-                    'libc6-dev',
-                    'libtimedate-perl',
-                    'libcgi-formbuilder-perl',
-                    'libcgi-session-perl',
-                    'libxml-writer-perl'])
+    helper.install(managed_packages)
     helper.call('post', actions.superuser_run, 'ikiwiki', ['setup'])
     helper.call('post', service.notify_enabled, None, True)
 
@@ -85,6 +83,6 @@ def diagnose():
     results = []
 
     results.extend(action_utils.diagnose_url_on_all(
-        'https://{host}/ikiwiki', extra_options=['--no-check-certificate']))
+        'https://{host}/ikiwiki', check_certificate=False))
 
     return results

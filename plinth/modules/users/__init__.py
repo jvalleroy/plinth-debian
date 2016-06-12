@@ -24,6 +24,7 @@ import subprocess
 
 from plinth import cfg
 from plinth import action_utils
+from plinth import actions
 
 version = 1
 
@@ -31,13 +32,23 @@ is_essential = True
 
 depends = ['system']
 
+managed_packages = ['ldapscripts', 'ldap-utils', 'libnss-ldapd',
+                    'libpam-ldapd', 'nslcd', 'slapd']
+
 title = _('Users and Groups')
 
 
 def init():
     """Intialize the user module."""
     menu = cfg.main_menu.get('system:index')
-    menu.add_urlname(title, 'glyphicon-user', 'users:index', 15)
+    menu.add_urlname(title, 'glyphicon-user', 'users:index')
+
+
+def setup(helper, old_version=None):
+    """Install and configure the module."""
+    helper.call('pre', actions.superuser_run, 'users', ['pre-install'])
+    helper.install(managed_packages)
+    helper.call('post', actions.superuser_run, 'users', ['setup'])
 
 
 def diagnose():

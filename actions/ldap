@@ -24,13 +24,6 @@ fi
 
 set -e  # Exit on failure
 
-# XXX: ldapscripts has an issue that it can't properly extract
-# built-in templates under certain locales due to grep command
-# recognizing the source file as binary.  Remove using this once the
-# bug is fixed.  Passing '-a' as argument to grep seems to be a
-# solution.
-export LC_ALL=C
-
 
 create_user()
 {
@@ -79,14 +72,7 @@ set_user_password()
     username="$1"
     password=$(slappasswd -s "$2")
 
-    # XXX: Use ldapsetpasswd as soon as ldapscripts can handle
-    # changing passwords with SASL auth EXTERNAL.
-    cat <<EOF | ldapmodify -Y EXTERNAL -H ldapi:/// > /dev/null
-dn: uid=$username,ou=Users,dc=thisbox
-changetype: modify
-replace: userPassword
-userPassword: $password
-EOF
+    ldapsetpasswd "$username" "$password"
 }
 
 
@@ -120,24 +106,6 @@ remove_user_from_group()
     ldapdeleteuserfromgroup $username $groupname > /dev/null
 }
 
-
-setup()
-{
-    # XXX: Password setting on users is disabled as changing passwords
-    # using SASL Auth is not supported.
-    cat <<EOF | augtool --noload --noautoload --transform 'Shellvars incl /etc/ldapscripts/ldapscripts.conf' > /dev/null
-set /files/etc/ldapscripts/ldapscripts.conf/SERVER '"ldapi://"'
-set /files/etc/ldapscripts/ldapscripts.conf/SASLAUTH '"EXTERNAL"'
-set /files/etc/ldapscripts/ldapscripts.conf/SUFFIX '"dc=thisbox"'
-set /files/etc/ldapscripts/ldapscripts.conf/USUFFIX '"ou=Users"'
-set /files/etc/ldapscripts/ldapscripts.conf/GSUFFIX '"ou=Groups"'
-set /files/etc/ldapscripts/ldapscripts.conf/PASSWORDGEN '"true"'
-save
-EOF
-}
-
-
-setup
 
 command=$1
 shift
