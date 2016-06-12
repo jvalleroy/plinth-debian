@@ -36,6 +36,9 @@ version = 1
 
 depends = ['apps', 'names']
 
+managed_packages = ['tor', 'tor-geoipdb', 'torsocks', 'obfs4proxy',
+                    'apt-transport-tor']
+
 title = _('Anonymity Network (Tor)')
 
 description = [
@@ -54,11 +57,11 @@ bridge_service = None
 def init():
     """Initialize the module."""
     menu = cfg.main_menu.get('apps:index')
-    menu.add_urlname(title, 'glyphicon-eye-close', 'tor:index', 100)
+    menu.add_urlname(title, 'glyphicon-eye-close', 'tor:index')
 
     global socks_service
     socks_service = service_module.Service(
-        'tor-socks', _('Tor Anonymity Network'),
+        'tor-socks', _('Tor Anonymity Network'), ports=['tor-socks'],
         is_external=False, is_enabled=utils.is_enabled,
         is_running=utils.is_running)
 
@@ -92,8 +95,7 @@ def init():
 
 def setup(helper, old_version=None):
     """Install and configure the module."""
-    helper.install(['tor', 'tor-geoipdb', 'torsocks', 'obfs4proxy',
-                    'apt-transport-tor'])
+    helper.install(managed_packages)
     helper.call('post', actions.superuser_run, 'tor', ['setup'])
     helper.call('post', actions.superuser_run, 'tor',
                 ['configure', '--apt-transport-tor', 'enable'])
