@@ -6,8 +6,5 @@ export PYBUILD_NAME=plinth
 %:
 	dh $@ --with python3 --with systemd --buildsystem=pybuild
 
-override_dh_installinit:
-	dh_installinit --onlyscripts
-
 new-upstream:
 	gbp import-orig --uscan --verbose --pristine-tar --no-filter-pristine-tar
