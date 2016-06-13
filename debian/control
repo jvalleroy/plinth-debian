@@ -53,7 +53,6 @@ Depends: ${python3:Depends}
  , libjs-jquery
  , libjs-modernizr
  , network-manager
- , packagekit
  , ppp
  , pppoe
  , python3-augeas
