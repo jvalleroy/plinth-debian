@@ -31,16 +31,19 @@ version = 1
 
 depends = ['apps']
 
-managed_packages = ['ikiwiki', 'gcc', 'libc6-dev', 'libtimedate-perl',
-                    'libcgi-formbuilder-perl', 'libcgi-session-perl',
-                    'libxml-writer-perl']
+managed_packages = ['ikiwiki', 'libdigest-sha-perl', 'libxml-writer-perl',
+                    'xapian-omega', 'libsearch-xapian-perl',
+                    'libimage-magick-perl']
 
 service = None
 
 title = _('Wiki and Blog (ikiwiki)')
 
 description = [
-    _('When enabled, the blogs and wikis will be available '
+    _('ikiwiki is a simple wiki and blog application. It supports '
+      'several lightweight markup languages, including Markdown, and '
+      'common blogging functionality such as comments and RSS feeds. '
+      'When enabled, the blogs and wikis will be available '
       'from <a href="/ikiwiki">/ikiwiki</a>.')
 ]
 

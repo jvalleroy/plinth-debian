@@ -36,7 +36,8 @@ logger = logging.getLogger(__name__)
 CONNECTION_TYPE_NAMES = collections.OrderedDict([
     ('802-3-ethernet', _('Ethernet')),
     ('802-11-wireless', _('Wi-Fi')),
-    ('pppoe', _('PPPoE'))
+    ('pppoe', _('PPPoE')),
+    ('generic', _('Generic')),
 ])
 
 
@@ -194,27 +195,6 @@ def _get_wifi_channel_from_frequency(frequency):
         return channel_map[frequency]
     except KeyError:
         return str(frequency / 1000) + 'GHz'
-
-
-def get_first_ip_address_from_connection(connection):
-    """Return the first IP address of a connection setting.
-
-    XXX: Work around a bug in NetworkManager/Python GI.  Remove after
-    the bug if fixed.
-    https://bugzilla.gnome.org/show_bug.cgi?id=756380.
-    """
-    command = ['nmcli', '--terse', '--mode', 'tabular', '--fields',
-               'ipv4.addresses', 'connection', 'show', connection.get_uuid()]
-
-    output = subprocess.check_output(command).decode()
-    first = output.strip().split(', ')[0]
-    if not first:
-        return None, None
-
-    ip_address, prefix = first.split('/')
-
-    netmask = nm.utils_ip4_prefix_to_netmask(int(prefix))
-    return ip_address, ipv4_int_to_string(netmask)
 
 
 def get_connection_list():
@@ -382,6 +362,14 @@ def _update_wireless_settings(connection, wireless):
     ssid_gbytes = glib.Bytes.new(wireless['ssid'].encode())
     settings.set_property(nm.SETTING_WIRELESS_SSID, ssid_gbytes)
     settings.set_property(nm.SETTING_WIRELESS_MODE, wireless['mode'])
+    band = wireless['band'] if wireless['band'] != 'auto' else None
+    settings.set_property(nm.SETTING_WIRELESS_BAND, band)
+    channel = wireless['channel']
+    if wireless['band'] == 'auto' or not wireless['channel']:
+        channel = 0
+
+    settings.set_property(nm.SETTING_WIRELESS_CHANNEL, channel)
+    settings.set_property(nm.SETTING_WIRELESS_BSSID, wireless['bssid'] or None)
 
     # Wireless Security
     if wireless['auth_mode'] == 'wpa' and wireless['passphrase']:

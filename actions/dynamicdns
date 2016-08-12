@@ -41,7 +41,8 @@ EMPTYSTRING="none"
 NOIP="0.0.0.0"
 # how often do we poll for IP changes if we are behind a NAT?
 UPDATEMINUTES=5
-# if we do not have a IP check URL, how often should we do a "blind" update
+# if we do not have a URL to look up public IP, how often should we do
+# a "blind" update
 UPDATEMINUTESUNKNOWN=3600
 TOOLNAME=ez-ipupdate
 UPDATE_TOOL=$(which ${TOOLNAME})
@@ -371,6 +372,12 @@ case ${cmd} in
         # if we know our WAN IP, only update if IP changes
         if [ "${dnsentry}" != "${wanip}" -a "${wanip}" != ${NOIP} ];then
             doUpdate
+        else
+            # If nothing has changed, nothing needs to be done but we
+            # need to write the success status (if no success was
+            # recorded yet because maybe DNS record was up to date
+            # when script is executed for the first time)
+            ${0} success ${wanip}
         fi
         # if we don't know our WAN IP do a blind update once a hour
         if [ "${wanip}" = ${NOIP} ];then
@@ -391,7 +398,7 @@ case ${cmd} in
     ;;
     success)
         date=$(date)
-        echo "last update done (${date})" > ${STATUSFILE}
+        echo "DNS record is up to date (${date})" > ${STATUSFILE}
         date +%s > ${LASTUPDATE}
         # if called from cronjob, the current IP is given as parameter
         if [ $# -eq 1 ];then
@@ -433,7 +440,7 @@ case ${cmd} in
         echo "-u <user>               Account username"
         echo "-P <password>           Account password"
         echo "-p                      Read Account Password from stdin"
-        echo "-I <IP check URL>       A URL which returns the IP of the client who is requesting"
+        echo "-I <URL to look up public IP>       A URL which returns the IP of the client who is requesting"
         echo "-U <update URL>         The update URL (a HTTP GET on this URL will be done)"
         echo "-c <1|0>                disable SSL check on Update URL"
         echo "-b <1|0>                use HTTP basic auth on Update URL"

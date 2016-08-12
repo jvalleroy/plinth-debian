@@ -18,7 +18,7 @@
 from django import forms
 from django.contrib import messages
 from django.core import validators
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext as _, ugettext_lazy
 from django.template.response import TemplateResponse
 import logging
@@ -150,7 +150,7 @@ class ConfigureForm(forms.Form):
                                 required=False)
 
     dynamicdns_ipurl = TrimmedCharField(
-        label=ugettext_lazy('IP Check URL'),
+        label=ugettext_lazy('URL to look up public IP'),
         required=False,
         help_text=help_ip_url,
         validators=[
