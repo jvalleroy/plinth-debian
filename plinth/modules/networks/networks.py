@@ -16,15 +16,15 @@
 #
 
 from django.contrib import messages
-from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext as _, ugettext_lazy
 from django.views.decorators.http import require_POST
 from logging import Logger
 
-from .forms import (ConnectionTypeSelectForm, EthernetForm, PPPoEForm,
-                    WifiForm)
+from .forms import (ConnectionTypeSelectForm, EthernetForm, GenericForm,
+                    PPPoEForm, WifiForm)
 from plinth import network
 
 
@@ -113,7 +113,9 @@ def edit(request, uuid):
     form_data = {'name': connection.get_id()}
 
     if request.method == 'POST':
-        if connection.get_connection_type() == '802-11-wireless':
+        if connection.get_connection_type() == 'generic':
+            form = GenericForm(request.POST)
+        elif connection.get_connection_type() == '802-11-wireless':
             form = WifiForm(request.POST)
         elif connection.get_connection_type() == '802-3-ethernet':
             form = EthernetForm(request.POST)
@@ -140,26 +142,33 @@ def edit(request, uuid):
         if settings_connection.get_connection_type() != 'pppoe':
             settings_ipv4 = connection.get_setting_ip4_config()
             form_data['ipv4_method'] = settings_ipv4.get_method()
-            address, netmask = network.get_first_ip_address_from_connection(
-                connection)
+            if settings_ipv4.get_num_addresses():
+                address = settings_ipv4.get_address(0)
+                form_data['ipv4_address'] = address.get_address()
+                prefix = address.get_prefix()
+                netmask = network.nm.utils_ip4_prefix_to_netmask(prefix)
+                form_data['ipv4_netmask'] = network.ipv4_int_to_string(netmask)
+
             gateway = settings_ipv4.get_gateway()
-            dns = settings_ipv4.get_dns(0)
-            second_dns = settings_ipv4.get_dns(1)
-            if address:
-                form_data['ipv4_address'] = address
-            if netmask:
-                form_data['ipv4_netmask'] = netmask
             if gateway:
                 form_data['ipv4_gateway'] = gateway
-            if dns:
-                form_data['ipv4_dns'] = dns
-            if second_dns:
-                form_data['ipv4_second_dns'] = second_dns
 
-        if settings_connection.get_connection_type() == '802-11-wireless':
+            number_of_dns = settings_ipv4.get_num_dns()
+            if number_of_dns:
+                form_data['ipv4_dns'] = settings_ipv4.get_dns(0)
+
+            if number_of_dns > 1:
+                form_data['ipv4_second_dns'] = settings_ipv4.get_dns(1)
+
+        if settings_connection.get_connection_type() == 'generic':
+            form = GenericForm(form_data)
+        elif settings_connection.get_connection_type() == '802-11-wireless':
             settings_wireless = connection.get_setting_wireless()
             form_data['ssid'] = settings_wireless.get_ssid().get_data()
             form_data['mode'] = settings_wireless.get_mode()
+            form_data['band'] = settings_wireless.get_band() or 'auto'
+            form_data['channel'] = settings_wireless.get_channel()
+            form_data['bssid'] = settings_wireless.get_bssid()
             try:
                 wifi_sec = connection.get_setting_wireless_security()
                 if wifi_sec:
@@ -242,7 +251,9 @@ def add(request):
         form = ConnectionTypeSelectForm(request.POST)
         if form.is_valid():
             connection_type = form.cleaned_data['connection_type']
-            if connection_type == '802-3-ethernet':
+            if connection_type == 'generic':
+                return redirect(reverse_lazy('networks:add_generic'))
+            elif connection_type == '802-3-ethernet':
                 return redirect(reverse_lazy('networks:add_ethernet'))
             elif connection_type == '802-11-wireless':
                 return redirect(reverse_lazy('networks:add_wifi'))
@@ -254,6 +265,24 @@ def add(request):
                                 {'title': _('Add Connection'),
                                  'subsubmenu': subsubmenu,
                                  'form': form})
+
+
+def add_generic(request):
+    """Serve generic connection create form."""
+    form = None
+
+    if request.method == 'POST':
+        form = GenericForm(request.POST)
+        if form.is_valid():
+            network.add_connection(form.get_settings())
+            return redirect(reverse_lazy('networks:index'))
+    else:
+        form = GenericForm()
+
+    return TemplateResponse(request, 'connections_create.html',
+                            {'title': _('Adding New Generic Connection'),
+                             'subsubmenu': subsubmenu,
+                             'form': form})
 
 
 def add_ethernet(request):
@@ -304,6 +333,7 @@ def add_wifi(request, ssid=None, interface_name=None):
                      'zone': 'external',
                      'ssid': ssid,
                      'mode': 'infrastructure',
+                     'band': 'auto',
                      'auth_mode': 'wpa',
                      'ipv4_method': 'auto'}
 

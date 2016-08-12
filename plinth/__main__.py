@@ -53,7 +53,7 @@ def parse_arguments():
         '--debug', action='store_true', default=cfg.debug,
         help='enable debugging and run server *insecurely*')
     parser.add_argument(
-        '--setup', action='store_true', default=False,
+        '--setup', default=False, nargs='*',
         help='run setup tasks on all essential modules and exit')
     parser.add_argument(
         '--diagnose', action='store_true', default=False,
@@ -138,12 +138,6 @@ def setup_server():
 
 def configure_django():
     """Setup Django configuration in the absense of .settings file"""
-
-    # In module_loader.py we reverse URLs for the menu before having a proper
-    # request. In this case, get_script_prefix (used by reverse) returns the
-    # wrong prefix. Set it here manually to have the correct prefix right away.
-    django.core.urlresolvers.set_script_prefix(cfg.server_dir)
-
     logging_configuration = {
         'version': 1,
         'disable_existing_loggers': False,
@@ -203,6 +197,13 @@ def configure_django():
     if cfg.secure_proxy_ssl_header:
         secure_proxy_ssl_header = (cfg.secure_proxy_ssl_header, 'https')
 
+    # XXX: We want use STRONGHOLD_PUBLIC_NAMED_URLS, however, due to a
+    # bug in stronghold, it compares request.path_info with reversed
+    # URLs.  This leads to a mismatch when script_prefix is set.
+    # Remove this hack once the bug is fixed.  See:
+    # https://github.com/mgrouchy/django-stronghold/issues/52
+    public_urls = ('/accounts/login/', '/accounts/logout/')
+
     django.conf.settings.configure(
         ALLOWED_HOSTS=['*'],
         CACHES={'default':
@@ -211,11 +212,11 @@ def configure_django():
                    {'ENGINE': 'django.db.backends.sqlite3',
                     'NAME': cfg.store_file}},
         DEBUG=cfg.debug,
+        FORCE_SCRIPT_NAME=cfg.server_dir,
         INSTALLED_APPS=applications,
         LOGGING=logging_configuration,
         LOGIN_URL='users:login',
         LOGIN_REDIRECT_URL='apps:index',
-        LOGOUT_URL='users:logout',
         MESSAGE_TAGS={message_constants.ERROR: 'danger'},
         MIDDLEWARE_CLASSES=(
             'django.contrib.sessions.middleware.SessionMiddleware',
@@ -234,11 +235,11 @@ def configure_django():
         SESSION_ENGINE='django.contrib.sessions.backends.file',
         SESSION_FILE_PATH=sessions_directory,
         STATIC_URL='/'.join([cfg.server_dir, 'static/']).replace('//', '/'),
-        STRONGHOLD_PUBLIC_NAMED_URLS=('users:login', 'users:logout'),
+        STRONGHOLD_PUBLIC_URLS=public_urls,
         TEMPLATES=templates,
         USE_L10N=True,
         USE_X_FORWARDED_HOST=cfg.use_x_forwarded_host)
-    django.setup()
+    django.setup(set_prefix=True)
 
     logger.info('Configured Django with applications - %s', applications)
 
@@ -248,11 +249,14 @@ def configure_django():
     os.chmod(cfg.store_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP)
 
 
-def run_setup_and_exit():
+def run_setup_and_exit(module_list):
     """Run setup on all essential modules and exit."""
     error_code = 0
     try:
-        setup.setup_all_modules(essential=True)
+        if not module_list:
+            setup.setup_modules(essential=True)
+        else:
+            setup.setup_modules(module_list)
     except Exception as exception:
         logger.error('Error running setup - %s', exception)
         error_code = 1
@@ -296,9 +300,8 @@ def main():
     logger.info('Script prefix - %s', cfg.server_dir)
 
     module_loader.load_modules()
-
-    if arguments.setup:
-        run_setup_and_exit()
+    if arguments.setup is not False:
+        run_setup_and_exit(arguments.setup)
 
     if arguments.diagnose:
         run_diagnostics_and_exit()

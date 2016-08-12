@@ -180,7 +180,7 @@ setuptools.setup(
     setup_requires=['setuptools-git'],
     install_requires=[
         'cherrypy >= 3.0',
-        'django >= 1.7.0',
+        'django >= 1.10.0',
         'django-bootstrap-form',
         'django-stronghold',
         'psutil',
@@ -205,6 +205,8 @@ setuptools.setup(
                  glob.glob('data/etc/apache2/sites-available/*.conf')),
                 ('/etc/ikiwiki',
                  glob.glob('data/etc/ikiwiki/*.setup')),
+                ('/etc/NetworkManager/dispatcher.d/',
+                 ['data/etc/NetworkManager/dispatcher.d/10-freedombox-batman']),
                 ('/etc/sudoers.d', ['data/etc/sudoers.d/plinth']),
                 ('/lib/systemd/system',
                  ['data/lib/systemd/system/plinth.service']),

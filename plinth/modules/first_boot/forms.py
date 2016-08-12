@@ -22,6 +22,7 @@ Forms for first boot module.
 import json
 import logging
 import requests
+import subprocess
 
 from django import forms
 from django.contrib import auth
@@ -33,13 +34,14 @@ from plinth import actions
 from plinth import cfg
 from plinth.errors import ActionError, DomainRegistrationError
 from plinth.modules.pagekite.utils import PREDEFINED_SERVICES, run
-from plinth.modules.users.forms import GROUP_CHOICES
+from plinth.modules.security import set_restricted_access
+from plinth.modules.users.forms import GROUP_CHOICES, ValidNewUsernameCheckMixin
 from plinth.utils import format_lazy
 
 logger = logging.getLogger(__name__)
 
 
-class State1Form(auth.forms.UserCreationForm):
+class State1Form(ValidNewUsernameCheckMixin, auth.forms.UserCreationForm):
     """Firstboot state 1: create a new user."""
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
@@ -75,6 +77,17 @@ class State1Form(auth.forms.UserCreationForm):
 
             self.login_user(self.cleaned_data['username'],
                             self.cleaned_data['password1'])
+
+            # Restrict console login to users in admin or sudo group
+            try:
+                set_restricted_access(True)
+                message = _('Console login access restricted to users in '
+                            '"admin" group. This can be configured in '
+                            'security settings.')
+                messages.success(self.request, message)
+            except Exception:
+                messages.error(self.request,
+                               _('Failed to restrict console access.'))
 
         return user
 
