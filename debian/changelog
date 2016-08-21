@@ -1,9 +1,10 @@
-plinth (0.10.0-1) UNRELEASED; urgency=medium
+plinth (0.10.0-1) unstable; urgency=medium
 
+  [ James Valleroy ]
   * New upstream version 0.10.0.
   * Bump minimum required python3-django to 1.10.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Fri, 12 Aug 2016 19:06:55 -0400
+ -- Federico Ceratto <federico@debian.org>  Sun, 21 Aug 2016 13:07:54 +0100
 
 plinth (0.9.4-2) unstable; urgency=medium
 
