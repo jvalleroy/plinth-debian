@@ -43,6 +43,7 @@ Replaces: freedombox-setup (<< 0.9.2~)
 Architecture: all
 Depends: ${python3:Depends}
  , ${misc:Depends}
+ , ${plinth:Depends}
  , adduser
  , augeas-tools
  , gettext

@@ -1,8 +1,12 @@
 plinth (0.11.0-1) UNRELEASED; urgency=medium
 
+  [ James Valleroy ]
   * New upstream version 0.11.0.
   * Replace python3-yaml dependency with python3-ruamel.yaml.
   * Add python3-apt dependency.
+
+  [ Sunil Mohan Adapa ]
+  * Automatically add essential packages to depends (Closes: #837332).
 
  -- James Valleroy <jvalleroy@mailbox.org>  Wed, 21 Sep 2016 19:22:07 -0400
 
