@@ -27,9 +27,9 @@ Build-Depends: debhelper (>= 9)
  , python3-gi
  , python3-psutil
  , python3-requests
+ , python3-ruamel.yaml
  , python3-setuptools
  , python3-setuptools-git
- , python3-yaml
  , xmlto
 Standards-Version: 3.9.8
 Homepage: https://github.com/freedombox/Plinth/
@@ -63,7 +63,7 @@ Depends: ${python3:Depends}
  , python3-gi
  , python3-psutil
  , python3-requests
- , python3-yaml
+ , python3-ruamel.yaml
  , sudo
 Description: web front end for administering every aspect of a FreedomBox
  The FreedomBox is a net appliance conceived by Eben Moglen.  It
