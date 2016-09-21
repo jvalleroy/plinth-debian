@@ -52,12 +52,15 @@ GROUP_CHOICES = (
 
 class ValidNewUsernameCheckMixin(object):
     """Mixin to check if a username is valid for created new user."""
-    def clean(self):
+    def clean_username(self):
         """Check for username collisions with system users."""
-        if not self.is_valid_new_username():
-            raise ValidationError(_('Username is taken or is reserved'))
+        username = self.cleaned_data['username']
+        if self.instance.username != username and \
+           not self.is_valid_new_username():
+            raise ValidationError(_('Username is taken or is reserved.'),
+                                  code='invalid')
 
-        return super().clean()
+        return username
 
     def is_valid_new_username(self):
         """Check for username collisions with system users."""
@@ -204,9 +207,12 @@ class UserUpdateForm(ValidNewUsernameCheckMixin, forms.ModelForm):
                         messages.error(self.request,
                                        _('Failed to add user to group.'))
 
-            actions.superuser_run(
-                'ssh', ['set-keys', '--username', user.get_username(),
-                        '--keys', self.cleaned_data['ssh_keys'].strip()])
+            try:
+                actions.superuser_run(
+                    'ssh', ['set-keys', '--username', user.get_username(),
+                            '--keys', self.cleaned_data['ssh_keys'].strip()])
+            except ActionError:
+                messages.error(self.request, _('Unable to set SSH keys.'))
 
         return user
 

@@ -20,10 +20,10 @@ Python action utility functions.
 """
 
 from django.utils.translation import ugettext as _
-from distutils import spawn
 import os
 import logging
 import psutil
+import shutil
 import socket
 import subprocess
 import tempfile
@@ -59,7 +59,8 @@ def service_is_running(servicename):
 def service_is_enabled(service_name):
     """Check if service is enabled in systemd."""
     try:
-        subprocess.check_output(['systemctl', 'is-enabled', service_name])
+        subprocess.run(['systemctl', 'is-enabled', service_name], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return True
     except subprocess.CalledProcessError:
         return False
@@ -122,16 +123,16 @@ def service_reload(service_name):
 
 def webserver_is_enabled(name, kind='config'):
     """Return whether a config/module/site is enabled in Apache."""
+    if not shutil.which('a2query'):
+        return False
+
     option_map = {'config': '-c', 'site': '-s', 'module': '-m'}
-    if spawn.find_executable('a2query'):
-        try:
-            # Don't print anything on the terminal
-            subprocess.check_output(['a2query', option_map[kind], name],
-                                    stderr=subprocess.STDOUT)
-            return True
-        except subprocess.CalledProcessError:
-            return False
-    else:
+    try:
+        # Don't print anything on the terminal
+        subprocess.check_output(['a2query', option_map[kind], name],
+                                stderr=subprocess.STDOUT)
+        return True
+    except subprocess.CalledProcessError:
         return False
 
 
