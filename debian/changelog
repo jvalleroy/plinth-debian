@@ -4,6 +4,7 @@ plinth (0.11.0-1) UNRELEASED; urgency=medium
   * New upstream version 0.11.0.
   * Replace python3-yaml dependency with python3-ruamel.yaml.
   * Add python3-apt dependency.
+  * Add patch to fix permissions and use new setup command (Closes: #837206).
 
   [ Sunil Mohan Adapa ]
   * Automatically add essential packages to depends (Closes: #837332).

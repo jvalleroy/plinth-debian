@@ -1,0 +1,15 @@
+Subject: Fix permissions on DB and log file. Use new setup command.
+
+--- a/data/usr/lib/freedombox/setup.d/86_plinth
++++ b/data/usr/lib/freedombox/setup.d/86_plinth
+@@ -37,6 +37,9 @@
+ echo "Running Plinth setup..."
+ 
+ # Run plinth setup to install various necessary program
+-plinth --setup
++plinth --setup-no-install
++
++# Ensure that DB and log file permissions are correct
++chown -R plinth: /var/lib/plinth /var/log/plinth
+ 
+ echo "Done running Plinth setup."

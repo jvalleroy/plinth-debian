@@ -1,3 +1,4 @@
 0001-disable-privileged-actions-test.patch
 0002-skip-copy-doc-dir.patch
 0003-disable-restore-module.patch
+0004-fix-permissions.patch
