@@ -5,6 +5,7 @@ plinth (0.11.0-1) UNRELEASED; urgency=medium
   * Replace python3-yaml dependency with python3-ruamel.yaml.
   * Add python3-apt dependency.
   * Add patch to fix permissions and use new setup command (Closes: #837206).
+  * Add patch to include xmpp module static files in build.
 
   [ Sunil Mohan Adapa ]
   * Automatically add essential packages to depends (Closes: #837332).
