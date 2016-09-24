@@ -1,0 +1,2 @@
+# Temporary override for symlinks included in upstream source.
+plinth source: source-contains-unsafe-symlink plinth/modules/xmpp/static/libjs-jsxc/*
