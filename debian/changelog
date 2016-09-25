@@ -7,11 +7,12 @@ plinth (0.11.0+ds-1) UNRELEASED; urgency=medium
   * Add patch to fix permissions and use new setup command (Closes: #837206).
   * Add patch to include xmpp module static files in build.
   * Add links for jsxc static files. Workaround for #838183.
+  * Remove symlinks from source package.
 
   [ Sunil Mohan Adapa ]
   * Automatically add essential packages to depends (Closes: #837332).
 
- -- James Valleroy <jvalleroy@mailbox.org>  Wed, 21 Sep 2016 19:22:07 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Sun, 25 Sep 2016 10:29:10 -0400
 
 plinth (0.10.0-1) unstable; urgency=medium
 
