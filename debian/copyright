@@ -1,6 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://github.com/freedombox/Plinth
 Upstream-Name: Plinth
+Files-Excluded: plinth/modules/xmpp/static/libjs-jsxc/*
 
 Files: static/themes/default/FreedomBox-Logo.7z
 Copyright: 2012 Robert Martinez
