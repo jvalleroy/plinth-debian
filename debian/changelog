@@ -7,7 +7,6 @@ plinth (0.11.0-1) UNRELEASED; urgency=medium
   * Add patch to fix permissions and use new setup command (Closes: #837206).
   * Add patch to include xmpp module static files in build.
   * Add links for jsxc static files. Workaround for #838183.
-  * Add temporary lintian override for symlinks to installed jsxc files.
 
   [ Sunil Mohan Adapa ]
   * Automatically add essential packages to depends (Closes: #837332).
