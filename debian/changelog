@@ -1,4 +1,4 @@
-plinth (0.11.0+ds-1) UNRELEASED; urgency=medium
+plinth (0.11.0+ds-1) unstable; urgency=medium
 
   [ James Valleroy ]
   * New upstream version 0.11.0.
@@ -12,7 +12,7 @@ plinth (0.11.0+ds-1) UNRELEASED; urgency=medium
   [ Sunil Mohan Adapa ]
   * Automatically add essential packages to depends (Closes: #837332).
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sun, 25 Sep 2016 10:29:10 -0400
+ -- Federico Ceratto <federico@debian.org>  Mon, 26 Sep 2016 14:52:36 +0100
 
 plinth (0.10.0-1) unstable; urgency=medium
 
