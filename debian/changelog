@@ -3,6 +3,7 @@ plinth (0.12.0+ds-1) UNRELEASED; urgency=medium
   * Exclude new symlink in upstream source.
   * New upstream version 0.12.0.
   * Remove patches that have been merged upstream.
+  * Rearrange copyright file with more general license at the top.
 
  -- James Valleroy <jvalleroy@mailbox.org>  Thu, 08 Dec 2016 16:13:00 -0500
 
