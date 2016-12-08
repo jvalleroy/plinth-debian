@@ -31,6 +31,14 @@ depends = ['system', 'names']
 
 managed_packages = ['pagekite']
 
+first_boot_steps = [
+    {
+        'id': 'pagekite_firstboot',
+        'url': 'pagekite:firstboot',
+        'order': 5,
+    },
+]
+
 title = _('Public Visibility (PageKite)')
 
 description = [

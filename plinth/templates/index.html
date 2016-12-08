@@ -20,27 +20,33 @@
 
 {% load i18n %}
 
-{% block content %}
+{% block icons %}
 
   <div class="row">
     {% if shortcuts %}
 
       {% for shortcut in shortcuts %}
-        <div class="col-sm-4">
-          <ul class="nav nav-pills nav-stacked">
-            {% if selected_id == shortcut.id %}
-              <li class="active">
-                <a href="{{ shortcut.url }}" class="active">
-            {% else %}
-              <li>
-                <a href="{{ shortcut.url }}">
-            {% endif %}
-                  <span class="{{ shortcut.icon }} glyphicon"></span>
-                  {{ shortcut.label }}
-                </a>
-              </li>
-          </ul>
-        </div>
+        {% if user.is_authenticated or shortcut.login_required is False %}
+          <div class="col-sm-3">
+            <ul class="nav nav-pills nav-stacked">
+              {% if selected_id == shortcut.id %}
+                <li class="active">
+                  <a href="{{ shortcut.url }}" class="active">
+              {% else %}
+                <li>
+                  <a href="{{ shortcut.url }}">
+              {% endif %}
+                    <center>
+                      <span class="{{ shortcut.icon }} glyphicon"
+                            style="font-size: 300%"></span>
+                      <br>
+                      {{ shortcut.label }}
+                    </center>
+                  </a>
+                </li>
+            </ul>
+          </div>
+        {% endif %}
       {% endfor %}
 
     {% else %}
@@ -68,13 +74,22 @@
           {{ paragraph|safe }}
         </div>
       {% endfor %}
+      <br>
+
+      {% if user.is_authenticated and configure_url %}
+        <a class="btn btn-primary btn-sm"
+           style="margin-left : 10px; margin-bottom : 5px"
+           href="{{ configure_url }}">
+          {% trans "Configure &raquo;" %}</a>
+      {% endif %}
+
     </div>
   {% endif %}
 
 {% endblock %}
 
 
-{% block sidebar %}
+{% block center-info %}
 
   <h4>
     {% blocktrans trimmed %}
