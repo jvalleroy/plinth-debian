@@ -1,5 +1,5 @@
 Source: plinth
-Section: python
+Section: web
 Priority: optional
 Maintainer: FreedomBox packaging team <freedombox-pkg-team@lists.alioth.debian.org>
 Uploaders:
