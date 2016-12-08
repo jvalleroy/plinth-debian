@@ -55,18 +55,25 @@ def init():
     menu.add_urlname(title, 'glyphicon-edit', 'ikiwiki:index')
 
     global service
-    service = service_module.Service(
-        'ikiwiki', title, ports=['http', 'https'], is_external=True,
-        is_enabled=is_enabled, enable=enable, disable=disable)
+    setup_helper = globals()['setup_helper']
+    if setup_helper.get_state() != 'needs-setup':
+        service = service_module.Service(
+            'ikiwiki', title, ports=['http', 'https'], is_external=True,
+            is_enabled=is_enabled, enable=enable, disable=disable)
 
-    if is_enabled():
-        add_shortcuts()
+        if is_enabled():
+            add_shortcuts()
 
 
 def setup(helper, old_version=None):
     """Install and configure the module."""
     helper.install(managed_packages)
     helper.call('post', actions.superuser_run, 'ikiwiki', ['setup'])
+    global service
+    if service is None:
+        service = service_module.Service(
+            'ikiwiki', title, ports=['http', 'https'], is_external=True,
+            is_enabled=is_enabled, enable=enable, disable=disable)
     helper.call('post', service.notify_enabled, None, True)
     helper.call('post', add_shortcuts)
 
@@ -76,7 +83,8 @@ def add_shortcuts():
     sites = [name for name in sites if name != '']
     for site in sites:
         frontpage.add_shortcut(
-            'ikiwiki_' + site, site, '/ikiwiki/' + site, 'glyphicon-edit')
+            'ikiwiki_' + site, site, '/ikiwiki/' + site, 'glyphicon-edit',
+            login_required=False)
 
 
 def is_enabled():
