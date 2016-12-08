@@ -5,6 +5,7 @@ plinth (0.12.0+ds-1) UNRELEASED; urgency=medium
   * Remove patches that have been merged upstream.
   * Rearrange copyright file with more general license at the top.
   * Move plinth into web section.
+  * Update symlinks for jsxc 3.0.0.
 
  -- James Valleroy <jvalleroy@mailbox.org>  Thu, 08 Dec 2016 16:13:00 -0500
 

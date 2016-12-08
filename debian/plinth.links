@@ -1,5 +1,4 @@
-/usr/share/libjs-jsxc/img/ /usr/lib/python3/dist-packages/plinth/modules/xmpp/static/libjs-jsxc/img
-/usr/share/libjs-jsxc/jsxc.css /usr/lib/python3/dist-packages/plinth/modules/xmpp/static/libjs-jsxc/jsxc.css
-/usr/share/libjs-jsxc/jsxc.webrtc.css /usr/lib/python3/dist-packages/plinth/modules/xmpp/static/libjs-jsxc/jsxc.webrtc.css
+/usr/share/libjs-jsxc/img/ /usr/lib/python3/dist-packages/plinth/modules/xmpp/static/img
+/usr/share/libjs-jsxc/css/jsxc.css /usr/lib/python3/dist-packages/plinth/modules/xmpp/static/libjs-jsxc/jsxc.css
 /usr/share/javascript/jsxc/lib /usr/lib/python3/dist-packages/plinth/modules/xmpp/static/libjs-jsxc/lib
 /usr/share/libjs-jsxc/sound/ /usr/lib/python3/dist-packages/plinth/modules/xmpp/static/libjs-jsxc/sound
