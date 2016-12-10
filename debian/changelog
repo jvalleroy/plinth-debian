@@ -1,5 +1,6 @@
-plinth (0.12.0+ds-1) UNRELEASED; urgency=medium
+plinth (0.12.0+ds-1) unstable; urgency=medium
 
+  [ James Valleroy ]
   * Exclude new symlink in upstream source.
   * New upstream version 0.12.0.
   * Remove patches that have been merged upstream.
@@ -7,7 +8,7 @@ plinth (0.12.0+ds-1) UNRELEASED; urgency=medium
   * Move plinth into web section.
   * Update symlinks for jsxc 3.0.0.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Thu, 08 Dec 2016 16:13:00 -0500
+ -- Federico Ceratto <federico@debian.org>  Sat, 10 Dec 2016 18:42:29 +0100
 
 plinth (0.11.0+ds-1) unstable; urgency=medium
 
