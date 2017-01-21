@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://github.com/freedombox/Plinth
 Upstream-Name: Plinth
-Files-Excluded: plinth/modules/xmpp/static/img plinth/modules/xmpp/static/libjs-jsxc/*
+Files-Excluded: plinth/modules/jsxc/static/img plinth/modules/jsxc/static/libjs-jsxc/*
 
 Files: *
 Copyright: 2011-2015 Plinth Developers
