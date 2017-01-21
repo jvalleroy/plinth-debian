@@ -1,9 +1,10 @@
-plinth (0.12.0+ds-2) UNRELEASED; urgency=medium
+plinth (0.13.0+ds-1) UNRELEASED; urgency=medium
 
   * Disable shaarli module, package removed from Debian.
-  * Update Files-Excluded paths for jsxc symlinks.
+  * New upstream version 0.13.0.
+  * Update paths for jsxc symlinks.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Sat, 21 Jan 2017 09:07:46 -0500
+ -- James Valleroy <jvalleroy@mailbox.org>  Sat, 21 Jan 2017 09:13:36 -0500
 
 plinth (0.12.0+ds-1) unstable; urgency=medium
 
