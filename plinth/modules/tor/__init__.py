@@ -32,14 +32,14 @@ from plinth.signals import domain_added, domain_removed
 from . import utils
 
 
-version = 1
+version = 2
 
 depends = ['apps', 'names']
 
 managed_packages = ['tor', 'tor-geoipdb', 'torsocks', 'obfs4proxy',
                     'apt-transport-tor']
 
-title = _('Anonymity Network (Tor)')
+title = ('Anonymity Network \n (Tor)')
 
 description = [
     _('Tor is an anonymous communication system. You can learn more '
