@@ -3,11 +3,11 @@ Subject: Skip copying the doc/ directory
 --- a/setup.py
 +++ b/setup.py
 @@ -44,7 +44,7 @@
- 
- DIRECTORIES_TO_COPY = [
-     ('/usr/share/plinth/static', 'static'),
--    ('/usr/share/doc/plinth', 'doc'),
-+    #('/usr/share/doc/plinth', 'doc'),
  ]
  
- LOCALE_PATHS = [
+ DIRECTORIES_TO_COPY = [
+-    ('/usr/share/doc/plinth', 'doc'),
++    #('/usr/share/doc/plinth', 'doc'),
+     ('/usr/share/plinth/static', 'static'),
+ ]
+ 
