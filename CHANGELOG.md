@@ -1,6 +1,35 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.14.0] - 2017-04-09
+### Added
+- tor: Added option to use upstream bridges.
+- openvpn: Added to front page.
+- openvpn: Non-admin users can download their own profiles.
+- Added Debian badges to README.
+- Added new locales for Hindi (hi) and Gujarati (gu).
+- Added syncthing module for file synchronization.
+- Added Matrix Synapse as chat server with groups, audio and video.
+
+### Removed
+- Removed use of stronghold whitelisting, no longer necessary.
+- Removed unused symlink to doc directory.
+
+### Changed
+- Require admin access for all system configuration pages.
+- Change appearance of topbar and footer.
+- Use common LDAP auth apache configuration in all modules.
+
+### Fixed
+- Added missing shaarli logo.
+- Overwrite existing doc and static folders when installing.
+- Added line break to infinoted title, used by front page shortcut.
+- Fixed URL in INSTALL doc.
+- openvpn: Regenerate user key or certificate if empty.
+- openvpn: Prevent failures when regenerating user certificate.
+- Fixed augeas error in travis build.
+- disks: Workaround issue in parted during resize.
+
 ## [0.13.1] - 2017-01-22
 ### Added
 - Added new locale for Japanese (ja).
@@ -192,6 +221,7 @@ All notable changes to this project will be documented in this file.
 - Fixed issue that could allow someone to start a module setup process
   without being logged in to Plinth.
 
+[0.14.0]: https://github.com/freedombox/Plinth/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/freedombox/Plinth/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/freedombox/Plinth/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/freedombox/Plinth/compare/v0.11.0...v0.12.0
