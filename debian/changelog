@@ -1,3 +1,9 @@
+plinth (0.14.0+ds-2) UNRELEASED; urgency=medium
+
+  * Sort dependency list for essential modules (Closes: #872541).
+
+ -- James Valleroy <jvalleroy@mailbox.org>  Fri, 18 Aug 2017 06:50:24 -0400
+
 plinth (0.14.0+ds-1) unstable; urgency=medium
 
   [ James Valleroy ]
