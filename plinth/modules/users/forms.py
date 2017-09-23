@@ -30,23 +30,7 @@ from plinth.errors import ActionError
 from plinth.modules import first_boot
 from plinth.modules.security import set_restricted_access
 from plinth.utils import is_user_admin
-
-# Usernames used by optional services (that might not be installed yet).
-RESERVED_USERNAMES = [
-    'debian-deluged',
-    'Debian-minetest',
-    'debian-tor',
-    'debian-transmission',
-    'ejabberd',
-    'ez-ipupd',
-    'monkeysphere',
-    'mumble-server',
-    'node-restore',
-    'quasselcore',
-    'radicale',
-    'repro',
-    'privoxy',
-]
+from plinth import module_loader
 
 GROUP_CHOICES = (
     ('admin', _('admin')),
@@ -78,8 +62,10 @@ class ValidNewUsernameCheckMixin(object):
         except subprocess.CalledProcessError:
             pass
 
-        if username in RESERVED_USERNAMES:
-            return False
+        for module_name, module in module_loader.loaded_modules.items():
+            for reserved_username in getattr(module, 'reserved_usernames', []):
+                if username == reserved_username:
+                    return False
 
         return True
 
@@ -171,7 +157,7 @@ class UserUpdateForm(ValidNewUsernameCheckMixin, forms.ModelForm):
 
         super(UserUpdateForm, self).__init__(*args, **kwargs)
 
-        if not is_user_admin(request.user):
+        if not is_user_admin(request):
             self.fields['is_active'].widget = forms.HiddenInput()
             self.fields['groups'].disabled = True
 
@@ -295,10 +281,6 @@ class FirstBootForm(ValidNewUsernameCheckMixin, auth.forms.UserCreationForm):
             # Restrict console login to users in admin or sudo group
             try:
                 set_restricted_access(True)
-                message = _('Console login access restricted to users in '
-                            '"admin" group. This can be configured in '
-                            'security settings.')
-                messages.success(self.request, message)
             except Exception:
                 messages.error(self.request,
                                _('Failed to restrict console access.'))

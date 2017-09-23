@@ -24,14 +24,12 @@ import json
 
 from plinth import actions
 from plinth import action_utils
-from plinth import cfg
 from plinth import frontpage
 from plinth import service as service_module
+from plinth.menu import main_menu
 
 
 version = 1
-
-depends = ['apps']
 
 managed_services = ['transmission-daemon']
 
@@ -46,12 +44,14 @@ description = [
     _('Access the web interface at <a href="/transmission">/transmission</a>.')
 ]
 
+reserved_usernames = ['debian-transmission']
+
 service = None
 
 
 def init():
     """Intialize the Transmission module."""
-    menu = cfg.main_menu.get('apps:index')
+    menu = main_menu.get('apps')
     menu.add_urlname(title, 'glyphicon-save', 'transmission:index')
 
     global service

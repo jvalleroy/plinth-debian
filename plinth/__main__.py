@@ -30,6 +30,7 @@ import sys
 import cherrypy
 
 from plinth import cfg
+from plinth import menu
 from plinth import module_loader
 from plinth import service
 from plinth import setup
@@ -251,9 +252,7 @@ def configure_django():
     os.chmod(cfg.store_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP)
 
 
-def run_setup_and_exit(module_list, allow_install=True):
-    """Run setup on all essential modules and exit."""
-    error_code = 0
+def run_setup(module_list, allow_install=True):
     try:
         if not module_list:
             setup.setup_modules(essential=True, allow_install=allow_install)
@@ -261,8 +260,13 @@ def run_setup_and_exit(module_list, allow_install=True):
             setup.setup_modules(module_list, allow_install=allow_install)
     except Exception as exception:
         logger.error('Error running setup - %s', exception)
-        error_code = 1
+        return 1
+    return 0
 
+
+def run_setup_and_exit(module_list, allow_install=True):
+    """Run setup on all essential modules and exit."""
+    error_code = run_setup(module_list, allow_install)
     sys.exit(error_code)
 
 
@@ -328,9 +332,13 @@ def main():
     logger.info('Configuration loaded from file - %s', cfg.config_file)
     logger.info('Script prefix - %s', cfg.server_dir)
 
+    module_loader.include_urls()
+
+    menu.init()
+
     module_loader.load_modules()
-    if arguments.setup is not False:
-        run_setup_and_exit(arguments.setup)
+
+    run_setup(arguments.setup)
 
     if arguments.setup_no_install is not False:
         run_setup_and_exit(arguments.setup_no_install, allow_install=False)
@@ -348,6 +356,7 @@ def main():
 
     cherrypy.engine.start()
     cherrypy.engine.block()
+
 
 if __name__ == '__main__':
     main()
