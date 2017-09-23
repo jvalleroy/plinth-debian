@@ -1,9 +1,13 @@
-plinth (0.14.0+ds-2) UNRELEASED; urgency=medium
+plinth (0.15.1+ds-1) UNRELEASED; urgency=medium
 
+  [ James Valleroy ]
   * Sort dependency list for essential modules (Closes: #872541).
   * Bump standards version to 4.0.1.
 
- -- James Valleroy <jvalleroy@mailbox.org>  Fri, 18 Aug 2017 07:02:15 -0400
+  [ Federico Ceratto ]
+  * New upstream version 0.15.1
+
+ -- Federico Ceratto <federico@debian.org>  Sat, 23 Sep 2017 11:20:36 +0100
 
 plinth (0.14.0+ds-1) unstable; urgency=medium
 
