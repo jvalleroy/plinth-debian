@@ -1,4 +1,4 @@
-plinth (0.15.1+ds-1) UNRELEASED; urgency=medium
+plinth (0.15.1+ds-1) unstable; urgency=medium
 
   [ James Valleroy ]
   * Sort dependency list for essential modules (Closes: #872541).
@@ -7,7 +7,7 @@ plinth (0.15.1+ds-1) UNRELEASED; urgency=medium
   [ Federico Ceratto ]
   * New upstream version 0.15.1
 
- -- Federico Ceratto <federico@debian.org>  Sat, 23 Sep 2017 11:20:36 +0100
+ -- Federico Ceratto <federico@debian.org>  Sat, 23 Sep 2017 11:35:41 +0100
 
 plinth (0.14.0+ds-1) unstable; urgency=medium
 
