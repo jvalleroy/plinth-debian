@@ -30,19 +30,19 @@
         {% if not shortcut.hidden %}
           {% if user.is_authenticated or not shortcut.login_required %}
             <div class="col-sm-3">
-	      <ul class="nav nav-pills nav-stacked">
-		{% if selected_id == shortcut.id %}
+              <ul class="nav nav-pills nav-stacked">
+                {% if selected_id == shortcut.id %}
                   <li class="active">
                     <a href="{{ shortcut.url }}" class="active">
                 {% else %}
                   <li>
                     <a href="{{ shortcut.url }}">
                 {% endif %}
-		      <center>
-		        <img src="{% static 'theme/icons/' %}{{ shortcut.icon }}.png" style="max-width: 100px; height: 100px" />
-			<br>
-			{{ shortcut.label|linebreaks }}
-		      </center>
+                      <center>
+                        <img src="{% static 'theme/icons/' %}{{ shortcut.icon }}.png" style="max-width: 100px; height: 100px" />
+                        <br>
+                        {{ shortcut.label|linebreaks }}
+                      </center>
                     </a>
                   </li>
               </ul>
@@ -54,7 +54,7 @@
     {% else %}
 
       <h4>
-        {% url 'apps:index' as apps_url %}
+        {% url 'apps' as apps_url %}
         {% blocktrans trimmed %}
           Enable some <a href="{{ apps_url }}">applications</a> to add
           shortcuts to this page.
@@ -158,9 +158,11 @@
     </div>
   </div>
 
-  <p class="license-info">
-    <a href="{% static 'jslicense.html' %}" data-jslicense="1">
-      {% trans "JavaScript license information" %}</a>
-  </p>
+  <div class="license-info">
+    <p>
+      <a href="{% static 'jslicense.html' %}" data-jslicense="1">
+        {% trans "JavaScript license information" %}</a>
+    </p>
+  </div>
 
 {% endblock %}

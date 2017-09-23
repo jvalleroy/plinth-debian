@@ -26,34 +26,34 @@ from plinth import action_utils
 from plinth import cfg
 from plinth import frontpage
 from plinth import service as service_module
+from plinth.menu import main_menu
 from plinth.utils import format_lazy
 
 
 version = 1
 
-depends = ['apps']
-
 managed_services = ['syncthing']
 
 managed_packages = ['syncthing']
 
-title = _('File Synchronization (Syncthing)')
+title = _('File Synchronization \n (Syncthing)')
 
 description = [
-    _('Syncthing is an application that can synchronizes files across '
-      'multiple devices.  Creation, modification and deletion of files on one '
-      'device will automatically be replicated to other devices.'),
+    _('Syncthing is an application to synchronize files across multiple '
+      'devices, e.g. your desktop computer and mobile phone.  Creation, '
+      'modification, or deletion of files on one device will be automatically '
+      'replicated on all other devices that also run Syncthing.'),
     format_lazy(
-        _('Running Synching on {box_name}, provides an extra synchronization '
-          'point for your data that is available most of the time so that '
-          'your devices synchronize more often.  On {box_name}, a single '
-          'instance of Syncthing runs and may be used by many users.  Each '
-          'user\'s set of devices many be synchronized with a distinct set '
-          'of folders.  Web interface is only available for users '
-          'belonging to the "admin" group.'), box_name=_(cfg.box_name)),
-    _('When enabled, Syncthing will be available from <a href="/syncthing/">'
-      '/syncthing</a> web interface. Desktop and mobile clients are also '
-      '<a href="https://syncthing.net/">available.</a>'),
+        _('Running Syncthing on {box_name} provides an extra synchronization '
+          'point for your data that is available most of the time, allowing '
+          'your devices to synchronize more often.  {box_name} runs a single '
+          'instance of Syncthing that may be used by multiple users.  Each '
+          'user\'s set of devices may be synchronized with a distinct set of '
+          'folders.  The web interface on {box_name} is only available for '
+          'users belonging to the "admin" group.'), box_name=_(cfg.box_name)),
+    _('When enabled, Syncthing\'s web interface will be available from '
+      '<a href="/syncthing/">/syncthing</a>.  Desktop and mobile clients are '
+      'also <a href="https://syncthing.net/">available</a>.'),
 ]
 
 service = None
@@ -61,7 +61,7 @@ service = None
 
 def init():
     """Intialize the module."""
-    menu = cfg.main_menu.get('apps:index')
+    menu = main_menu.get('apps')
     menu.add_urlname(title, 'glyphicon-refresh', 'syncthing:index')
 
     global service

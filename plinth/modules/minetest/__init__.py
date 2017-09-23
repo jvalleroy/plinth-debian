@@ -29,12 +29,11 @@ from plinth import action_utils
 from plinth import cfg
 from plinth import frontpage
 from plinth import service as service_module
+from plinth.menu import main_menu
 from plinth.utils import format_lazy
 
 
 version = 2
-
-depends = ['apps']
 
 service = None
 
@@ -57,13 +56,15 @@ description = [
           'is needed.'), box_name=_(cfg.box_name)),
 ]
 
+reserved_usernames = ['Debian-minetest']
+
 CONFIG_FILE = '/etc/minetest/minetest.conf'
 AUG_PATH = '/files' + CONFIG_FILE + '/.anon'
 
 
 def init():
     """Initialize the module."""
-    menu = cfg.main_menu.get('apps:index')
+    menu = main_menu.get('apps')
     menu.add_urlname(title, 'glyphicon-th-large', 'minetest:index')
 
     global service

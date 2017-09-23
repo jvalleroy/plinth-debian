@@ -28,14 +28,11 @@ from ruamel.yaml.util import load_yaml_guess_indent
 
 from plinth import action_utils
 from plinth import actions
-from plinth import cfg
 from plinth import frontpage
 from plinth import service as service_module
-from plinth.modules import names
+from plinth.menu import main_menu
 
 version = 1
-
-depends = ['apps']
 
 managed_services = ['matrix-synapse']
 
@@ -67,7 +64,7 @@ SERVER_NAME_PATH = "/etc/matrix-synapse/conf.d/server_name.yaml"
 
 def init():
     """Initialize the matrix-synapse module."""
-    menu = cfg.main_menu.get('apps:index')
+    menu = main_menu.get('apps')
     menu.add_urlname(title, 'glyphicon-comment', 'matrixsynapse:index')
 
     global service
@@ -136,20 +133,6 @@ def diagnose():
     results.append(action_utils.diagnose_port_listening(8448, 'tcp4'))
     results.extend(action_utils.diagnose_url_on_all(
         'https://{host}/_matrix', check_certificate=False))
-
-    return results
-
-
-def get_domain_names():
-    """Return the domain name(s)."""
-    results = []
-
-    for domain_type, domains in names.domains.items():
-        if domain_type == 'hiddenservice':
-            continue
-
-        for domain in domains:
-            results.append((domain, domain))
 
     return results
 
