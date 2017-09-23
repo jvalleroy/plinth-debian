@@ -13,7 +13,6 @@ Uploaders:
 Build-Depends: debhelper (>= 10~)
  , dblatex
  , dh-python
- , dh-systemd
  , docbook-utils
  , gir1.2-networkmanager-1.0
  , libjs-bootstrap
