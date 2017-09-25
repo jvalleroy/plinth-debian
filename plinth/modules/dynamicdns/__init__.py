@@ -23,14 +23,16 @@ from django.utils.translation import ugettext_lazy as _
 
 from plinth import cfg
 from plinth.menu import main_menu
+from plinth.signals import domain_added
 from plinth.utils import format_lazy
 
+from . import dynamicdns
 
 version = 1
 
 managed_packages = ['ez-ipupdate']
 
-title = _('Dynamic DNS Client')
+name = _('Dynamic DNS Client')
 
 description = [
     format_lazy(
@@ -55,7 +57,15 @@ reserved_usernames = ['ez-ipupd']
 def init():
     """Initialize the module."""
     menu = main_menu.get('system')
-    menu.add_urlname(title, 'glyphicon-refresh', 'dynamicdns:index')
+    menu.add_urlname(name, 'glyphicon-refresh', 'dynamicdns:index')
+    current_status = dynamicdns.get_status()
+    if current_status['enabled']:
+        services = dynamicdns.get_enabled_services(current_status['dynamicdns_domain'])
+        domain_added.send_robust(
+            sender='dynamicdns', domain_type='dynamicdnsservice',
+            name=current_status['dynamicdns_domain'],
+            description=_('Dynamic DNS Service'),
+            services=services)
 
 
 def setup(helper, old_version=None):

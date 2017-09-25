@@ -20,13 +20,13 @@ Module with utilities to generate a auth_pubtkt ticket and
 sign it with the FreedomBox server's private key.
 """
 
-import os
-import time
+import argparse
 import base64
 import datetime
-import argparse
-
 from OpenSSL import crypto
+import os
+
+from plinth import action_utils
 
 KEYS_DIRECTORY = '/etc/apache2/auth-pubtkt-keys'
 
@@ -40,16 +40,24 @@ def parse_arguments():
         'create-key-pair',
         help='create a key pair for the apache server '
         'to sign auth_pubtkt tickets')
-    gen_tkt = subparsers.add_parser('generate-ticket',
-                                     help='generate auth_pubtkt ticket')
+    subparsers.add_parser(
+        'enable-mod', help='enabled the Apache module auth_pubtkt')
+    gen_tkt = subparsers.add_parser(
+        'generate-ticket', help='generate auth_pubtkt ticket')
     gen_tkt.add_argument('--uid', help='username of the user')
-    gen_tkt.add_argument('--private-key-file',
-                         help='path of the private key file of the server')
-    gen_tkt.add_argument('--tokens',
-                         help='tokens, usually containing the user groups')
+    gen_tkt.add_argument(
+        '--private-key-file',
+        help='path of the private key file of the server')
+    gen_tkt.add_argument(
+        '--tokens', help='tokens, usually containing the user groups')
 
     subparsers.required = True
     return parser.parse_args()
+
+
+def subcommand_enable_mod(_):
+    """Safety check to make sure auth_pubtkt is enabled"""
+    action_utils.webserver_enable('auth_pubtkt', kind='module')
 
 
 def subcommand_create_key_pair(_):
@@ -66,8 +74,7 @@ def subcommand_create_key_pair(_):
             for key_file in [public_key_file, private_key_file]
     ]):
         pkey = crypto.PKey()
-        # XXX: Use RSA when available in mod-auth-pubtkt.
-        pkey.generate_key(crypto.TYPE_DSA, 1024)
+        pkey.generate_key(crypto.TYPE_RSA, 4096)
 
         with open(private_key_file, 'w') as priv_key_file:
             priv_key = crypto.dump_privatekey(crypto.FILETYPE_PEM,
@@ -102,8 +109,7 @@ def create_ticket(pkey, uid, validuntil, ip=None, tokens=None,
 
 def sign(pkey, data):
     """Calculates and returns ticket's signature."""
-    # XXX: Use SHA256 when available in mod-auth-pubtkt.
-    sig = crypto.sign(pkey, data, 'sha1')
+    sig = crypto.sign(pkey, data, 'sha512')
     return base64.b64encode(sig).decode()
 
 

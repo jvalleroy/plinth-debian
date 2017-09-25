@@ -21,11 +21,14 @@ Plinth module to configure ejabberd server
 
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
+from plinth.utils import format_lazy
+
 import logging
 import socket
 
 from plinth import actions
 from plinth import action_utils
+from plinth import cfg
 from plinth import frontpage
 from plinth import service as service_module
 from plinth.menu import main_menu
@@ -39,15 +42,21 @@ managed_services = ['ejabberd']
 
 managed_packages = ['ejabberd']
 
-title = _('Chat Server \n (ejabberd)')
+name = _('ejabberd')
+
+short_description = _('Chat Server')
 
 description = [
     _('XMPP is an open and standardized communication protocol. Here '
       'you can run and configure your XMPP server, called ejabberd.'),
 
-    _('To actually communicate, you can use the web client or any other '
-      '<a href=\'http://xmpp.org/xmpp-software/clients/\' target=\'_blank\''
-      '>XMPP client</a>.'),
+    format_lazy(
+        _('To actually communicate, you can use the <a href="/plinth/apps/'
+          'jsxc">web client</a> or any other <a href=\'http://xmpp.org/xmpp-'
+          'software/clients/\' target=\'_blank\'>XMPP client</a>. '
+          'When enabled, ejabberd can be accessed by any <a href="/plinth/sys'
+          '/users">user with a {box_name} login</a>.'),
+        box_name=_(cfg.box_name))
 ]
 
 reserved_usernames = ['ejabberd']
@@ -60,13 +69,13 @@ logger = logging.getLogger(__name__)
 def init():
     """Initialize the ejabberd module"""
     menu = main_menu.get('apps')
-    menu.add_urlname(title, 'glyphicon-comment', 'ejabberd:index')
+    menu.add_urlname(name, 'glyphicon-comment', 'ejabberd:index', short_description)
 
     global service
     setup_helper = globals()['setup_helper']
     if setup_helper.get_state() != 'needs-setup':
         service = service_module.Service(
-            'ejabberd', title,
+            'ejabberd', name,
             ports=['xmpp-client', 'xmpp-server', 'xmpp-bosh'],
             is_external=True, is_enabled=is_enabled, enable=enable,
             disable=disable)
@@ -89,7 +98,7 @@ def setup(helper, old_version=None):
     global service
     if service is None:
         service = service_module.Service(
-            'ejabberd', title,
+            'ejabberd', name,
             ports=['xmpp-client', 'xmpp-server', 'xmpp-bosh'],
             is_external=True, is_enabled=is_enabled, enable=enable,
             disable=disable)
@@ -98,7 +107,8 @@ def setup(helper, old_version=None):
 
 
 def add_shortcut():
-    frontpage.add_shortcut('ejabberd', title,
+    frontpage.add_shortcut('ejabberd', name=name,
+                           short_description=short_description,
                            details=description,
                            configure_url=reverse_lazy('ejabberd:index'),
                            login_required=True)

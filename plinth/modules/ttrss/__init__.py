@@ -20,9 +20,11 @@ Plinth module to configure Tiny Tiny RSS.
 """
 
 from django.utils.translation import ugettext_lazy as _
+from plinth.utils import format_lazy
 
 from plinth import actions
 from plinth import action_utils
+from plinth import cfg
 from plinth import frontpage
 from plinth import service as service_module
 from plinth.menu import main_menu
@@ -34,15 +36,20 @@ managed_services = ['tt-rss']
 
 managed_packages = ['tt-rss', 'postgresql', 'dbconfig-pgsql', 'php-pgsql']
 
-title = _('News Feed Reader \n (Tiny Tiny RSS)')
+name = _('Tiny Tiny RSS')
+
+short_description = _('News Feed Reader')
 
 description = [
     _('Tiny Tiny RSS is a news feed (RSS/Atom) reader and aggregator, '
       'designed to allow reading news from any location, while feeling as '
       'close to a real desktop application as possible.'),
 
-    _('When enabled, Tiny Tiny RSS will be available from <a href="/tt-rss">'
-      '/tt-rss</a> path on the web server.'),
+    format_lazy(
+        _('When enabled, Tiny Tiny RSS will be available from <a href="/tt-'
+          'rss">/tt-rss</a> path on the web server. It can be accessed by '
+          'any <a href="/plinth/sys/users">user with a {box_name} login</a>.'),
+        box_name=_(cfg.box_name))
 ]
 
 service = None
@@ -51,13 +58,13 @@ service = None
 def init():
     """Intialize the module."""
     menu = main_menu.get('apps')
-    menu.add_urlname(title, 'glyphicon-envelope', 'ttrss:index')
+    menu.add_urlname(name, 'glyphicon-envelope', 'ttrss:index', short_description)
 
     global service
     setup_helper = globals()['setup_helper']
     if setup_helper.get_state() != 'needs-setup':
         service = service_module.Service(
-            managed_services[0], title, ports=['http', 'https'],
+            managed_services[0], name, ports=['http', 'https'],
             is_external=True,
             is_enabled=is_enabled, enable=enable, disable=disable)
 
@@ -73,7 +80,7 @@ def setup(helper, old_version=None):
     global service
     if service is None:
         service = service_module.Service(
-            managed_services[0], title, ports=['http', 'https'],
+            managed_services[0], name, ports=['http', 'https'],
             is_external=True,
             is_enabled=is_enabled, enable=enable, disable=disable)
     helper.call('post', service.notify_enabled, None, True)
@@ -81,7 +88,7 @@ def setup(helper, old_version=None):
 
 
 def add_shortcut():
-    frontpage.add_shortcut('ttrss', title, url='/tt-rss',
+    frontpage.add_shortcut('ttrss', name, short_description=short_description, url='/tt-rss',
                            login_required=True)
 
 
