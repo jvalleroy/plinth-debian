@@ -2,6 +2,7 @@ plinth (0.15.2+ds-1) UNRELEASED; urgency=medium
 
   * Cleanup config for removed modules (Closes: #876627).
   * New upstream version 0.15.2 (Closes: #876640).
+  * Add python3-configobj depend.
 
  -- James Valleroy <jvalleroy@mailbox.org>  Sun, 24 Sep 2017 21:02:06 -0400
 
