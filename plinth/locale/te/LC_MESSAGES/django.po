@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FreedomBox UI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-10 09:50-0400\n"
-"PO-Revision-Date: 2017-03-30 17:59+0000\n"
-"Last-Translator: Joseph Nuthalapati <joseph.kiran@evernym.us>\n"
+"POT-Creation-Date: 2017-09-24 11:24-0400\n"
+"PO-Revision-Date: 2017-09-11 04:49+0000\n"
+"Last-Translator: BHARATH <bharath.pulluru@gmail.com>\n"
 "Language-Team: Telugu <https://hosted.weblate.org/projects/freedombox/plinth/"
 "te/>\n"
 "Language: te\n"
@@ -19,39 +19,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.13-dev\n"
+"X-Generator: Weblate 2.17-dev\n"
 
-#: plinth/action_utils.py:254
+#: plinth/action_utils.py:259
 #, python-brace-format
 msgid "Listening on {kind} port {listen_address}:{port}"
 msgstr "పోర్ట్{listen_address}:{port} పై వింటూ {kind}"
 
-#: plinth/action_utils.py:257
+#: plinth/action_utils.py:262
 #, python-brace-format
 msgid "Listening on {kind} port {port}"
 msgstr "పోర్ట్ {port} పై ఆలకించమండి {kind}"
 
-#: plinth/action_utils.py:352
+#: plinth/action_utils.py:357
 #, python-brace-format
 msgid "Access URL {url} on tcp{kind}"
 msgstr "tcp పై  {kind}  URL {url} యాక్సెస్ చేయండి"
 
-#: plinth/action_utils.py:356
+#: plinth/action_utils.py:361
 #, python-brace-format
 msgid "Access URL {url}"
 msgstr "URL {url} ప్రవేశము"
 
-#: plinth/action_utils.py:386
+#: plinth/action_utils.py:391
 #, python-brace-format
 msgid "Connect to {host}:{port}"
 msgstr "అనుసంధానించండి {host}:{port}"
 
-#: plinth/action_utils.py:389
+#: plinth/action_utils.py:394
 #, python-brace-format
 msgid "Cannot connect to {host}:{port}"
 msgstr "అనుసంధానించండం సాధ్యంకాదు {host}:{port}"
 
-#: plinth/context_processors.py:38 plinth/views.py:49
+#: plinth/context_processors.py:38 plinth/views.py:52
 msgid "FreedomBox"
 msgstr "ఫ్రీడమ్‌బాక్స్"
 
@@ -61,9 +61,15 @@ msgstr "అనువర్తనాన్ని చేతనించు"
 
 #: plinth/forms.py:45
 #, fuzzy
-#| msgid "Invalid domain name"
-msgid "Select the domain name to be used for this application"
-msgstr "డొమైన్ పేరు చెల్లదు"
+#| msgid "Select the domain name to be used for this application"
+msgid "Select a domain name to be used with this application"
+msgstr "ఈ అనువర్తనానికి కావలసిన డొమైన్ పేరును ఎంచుకోండి"
+
+#: plinth/forms.py:47
+msgid ""
+"Warning! The application may not work properly if domain name is changed "
+"later."
+msgstr ""
 
 #: plinth/middleware.py:71
 msgid "Application installed."
@@ -99,14 +105,20 @@ msgstr ""
 "పని చేయకుండా చెయ్యచ్చు ముఖ్యంగా మీరు విరుద్ధమైన స్థానిక నెట్‌వర్క్ లో కనెక్ట్ ఆవతున్నప్పుడు."
 
 #: plinth/modules/bind/__init__.py:34
-msgid ""
-"Domain Name Server \n"
-" (BIND)"
+msgid "BIND"
+msgstr ""
+
+#: plinth/modules/bind/__init__.py:36
+#, fuzzy
+#| msgid ""
+#| "Domain Name Server \n"
+#| " (BIND)"
+msgid "Domain Name Server"
 msgstr ""
 "డొమైన్ నేమ్ సర్వర్\n"
 " (బైండ్)"
 
-#: plinth/modules/bind/__init__.py:43
+#: plinth/modules/bind/__init__.py:45
 msgid ""
 "BIND is open source software that enables you to publish your Domain Name "
 "System (DNS) information on the Internet, and to resolve DNS queries for "
@@ -115,17 +127,17 @@ msgstr ""
 "BIND అనే  ఓపెన్ సోర్స్ సాఫ్ట్వేర్ ని మీ ఇంటర్నెట్ లో మీ డొమైన్ నేమ్ సిస్టం (DNS) అనేది సమాచారాన్ని "
 "ప్రచురించడానికి  అనుమతిస్తుంది, మరియు మీ వినియోగదారులు DNS విచారణలను  పరిష్కరించడానికి ."
 
-#: plinth/modules/bind/__init__.py:47
+#: plinth/modules/bind/__init__.py:49
+#, fuzzy
 msgid ""
 "BIND is by far the most widely used DNS software on the Internet, providing "
 "a robust and stable platform on top of which organizations can build "
 "distributed computing systems with the knowledge that those systems are "
 "fully compliant with published DNS standards."
 msgstr ""
-"BIND is by far the most widely used DNS software on the Internet, providing "
-"a robust and stable platform on top of which organizations can build "
-"distributed computing systems with the knowledge that those systems are "
-"fully compliant with published DNS standards."
+"BIND అనేది  ఇంటర్నెట్లో అత్యధికంగా ఉపయోగించబడే DNS సాఫ్ట్వేర్ , సంస్థలకు బలమైన మరియు స్థిరమైన వేదికను "
+"అందించడం వలన సంస్థలు ప్రచురించిన DNS ప్రామాణిక అనుగునంగా పంపిణీ కంప్యూటింగ్ వ్యవస్థను "
+"నిర్మించుకోగలరు"
 
 #: plinth/modules/bind/forms.py:38
 #, fuzzy
@@ -161,17 +173,16 @@ msgid "Enable DNSSEC configuration updated"
 msgstr "ఆకృతీకరణ నవీకరించబడింది"
 
 #: plinth/modules/bind/views.py:74
-#, fuzzy
-#| msgid "Configuration updated"
 msgid "DNS server configuration updated"
-msgstr "ఆకృతీకరణ నవీకరించబడింది"
+msgstr "డి.ఎన్.ఎస్. సేవిక ఆకృతీకరణ నవీకరించబడింది"
 
 #: plinth/modules/bind/views.py:79
+#, fuzzy
 msgid "Enable forwarding to set forwarding DNS servers"
-msgstr ""
+msgstr "ఫొర్వర్దింగ్ డిఎన్ఎస్ సేవికను సరిగా ఏర్పాటు చేయుటకు ఫొర్వర్దింగ్ ను క్రియాశీలీకరించు"
 
 #: plinth/modules/config/config.py:88 plinth/modules/config/config.py:125
-#: plinth/modules/dynamicdns/dynamicdns.py:140
+#: plinth/modules/dynamicdns/dynamicdns.py:148
 msgid "Invalid domain name"
 msgstr "డొమైన్ పేరు చెల్లదు"
 
@@ -197,7 +208,7 @@ msgstr "ఆతిథ్యనామం చెల్లనిది"
 
 #: plinth/modules/config/config.py:112 plinth/modules/config/config.py:169
 #: plinth/modules/config/config.py:285
-#: plinth/modules/dynamicdns/dynamicdns.py:135
+#: plinth/modules/dynamicdns/dynamicdns.py:143
 msgid "Domain Name"
 msgstr "డొమైను పేరు"
 
@@ -226,7 +237,7 @@ msgid "Language for this web administration interface"
 msgstr "జాల నిర్వాహక అంతరవర్తి కోసం భాష"
 
 #: plinth/modules/config/config.py:151
-#: plinth/modules/dynamicdns/dynamicdns.py:37
+#: plinth/modules/dynamicdns/dynamicdns.py:45
 #: plinth/modules/ikiwiki/views.py:37
 #: plinth/modules/tahoe/templates/tahoe-pre-setup.html:39
 msgid "Configure"
@@ -309,23 +320,26 @@ msgid "Error setting time zone: {exception}"
 msgstr "సమయమండలం అమర్పులోపం: {exception}"
 
 #: plinth/modules/datetime/views.py:64
-#, fuzzy
 msgid "Time zone set"
-msgstr "సమయమండలి ఏర్పాటు చేయబడినది"
+msgstr "సమయమండలం ఏర్పాటు చేయబడినది"
 
 #: plinth/modules/deluge/__init__.py:39
 #, fuzzy
+#| msgid "Enable Deluge"
+msgid "Deluge"
+msgstr "ప్రళయనిఅమలుచెయ్యి"
+
+#: plinth/modules/deluge/__init__.py:41
+#, fuzzy
 #| msgid "BitTorrent Web Client (Deluge)"
-msgid ""
-"BitTorrent Web Client \n"
-" (Deluge)"
+msgid "BitTorrent Web Client"
 msgstr "బిట్ టోరెంట్ జాల కక్షిదారు (డీలడ్జ్)"
 
-#: plinth/modules/deluge/__init__.py:42
+#: plinth/modules/deluge/__init__.py:44
 msgid "Deluge is a BitTorrent client that features a Web UI."
 msgstr "డీలడ్జ్ అనేది జాల UI కలిగివున్న ఒక బిట్ టోరెంట్ కక్షిదారు."
 
-#: plinth/modules/deluge/__init__.py:44
+#: plinth/modules/deluge/__init__.py:46
 msgid ""
 "When enabled, the Deluge web client will be available from <a href=\"/deluge"
 "\">/deluge</a> path on the web server. The default password is 'deluge', but "
@@ -391,21 +405,25 @@ msgstr "పరీక్ష"
 msgid "Result"
 msgstr "ఫలితం"
 
-#: plinth/modules/diaspora/__init__.py:61
+#: plinth/modules/diaspora/__init__.py:51
+msgid "diaspora*"
+msgstr ""
+
+#: plinth/modules/diaspora/__init__.py:53
+msgid "Federated Social Network"
+msgstr ""
+
+#: plinth/modules/diaspora/__init__.py:62
+#, fuzzy
 msgid ""
 "diaspora* is a decentralized social network where you can store and control "
 "your own data."
 msgstr ""
+"diaspora* అనే వికేంద్రీకృత సామాజిక నెట్వర్క్ లొ మీరు  మీ యొక్క  సమాచారాన్ని నిల్వ ఉంచుకోవచ్చు మరియు \n"
+"నియంత్రణ పరచుకోవచ్చు"
 
-#: plinth/modules/diaspora/forms.py:30
-#, fuzzy
-#| msgid "Invalid domain name"
-msgid "Select the domain name to be used for diaspora*"
-msgstr "డొమైన్ పేరు చెల్లదు"
-
-#: plinth/modules/diaspora/forms.py:32
-msgid ""
-"Warning! Do not change the FreedomBox domain name after setting up diaspora*"
+#: plinth/modules/diaspora/forms.py:31
+msgid "Enable new user registrations"
 msgstr ""
 
 #: plinth/modules/diaspora/templates/diaspora-post-setup.html:32
@@ -432,7 +450,25 @@ msgstr ""
 msgid "Update setup"
 msgstr "అమరికను నవీకరించు"
 
-#: plinth/modules/disks/__init__.py:33 plinth/modules/disks/views.py:39
+#: plinth/modules/diaspora/views.py:96 plinth/modules/ejabberd/views.py:60
+#: plinth/modules/openvpn/views.py:145 plinth/modules/tor/views.py:134
+#: plinth/views.py:112
+msgid "Setting unchanged"
+msgstr "మారకుండా అమర్చుతోంది"
+
+#: plinth/modules/diaspora/views.py:100
+#, fuzzy
+#| msgid "Application enabled"
+msgid "User registrations enabled"
+msgstr "అనువర్తనం ఆమోదింపబడింది"
+
+#: plinth/modules/diaspora/views.py:104
+#, fuzzy
+#| msgid "Application disabled"
+msgid "User registrations disabled"
+msgstr "అనువర్తనం ఆమోదింపబడలేదు"
+
+#: plinth/modules/disks/__init__.py:33 plinth/modules/disks/views.py:45
 msgid "Disks"
 msgstr "డిస్కులు"
 
@@ -477,7 +513,7 @@ msgstr ""
 #: plinth/modules/disks/templates/disks.html:90
 #: plinth/modules/disks/templates/disks.html:102
 #: plinth/modules/disks/templates/disks_expand.html:45
-#: plinth/modules/disks/views.py:56
+#: plinth/modules/disks/views.py:62
 msgid "Expand Root Partition"
 msgstr "రూట్ విభజనను విస్తరించు"
 
@@ -497,50 +533,52 @@ msgstr ""
 "దయచేసి మీ సమాచారాన్ని బ్యాకప్ (భద్రపరచు కొనుట) చేస్కోండి. ఈ క్రియ తర్వాత %(expandable_root_size)s "
 "అధనపు సామర్ధ్యం మీ రూ విభజనలో అందుబాటులోకి వస్తుంది."
 
-#: plinth/modules/disks/views.py:65
+#: plinth/modules/disks/views.py:71
 #, python-brace-format
 msgid "Error expanding partition: {exception}"
 msgstr "విభజన విస్తరణలో దోషం: {exception}"
 
-#: plinth/modules/disks/views.py:68
+#: plinth/modules/disks/views.py:74
 msgid "Partition expanded successfully."
 msgstr "విభజనను విస్తరించడం విజయవంతమైనది."
 
-#: plinth/modules/disks/views.py:77
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} bytes"
+#: plinth/modules/disks/views.py:93
+#, python-format, python-brace-format
+msgid ""
+"Warning: Low space on system partition ({percent_used}% used, {free_space} "
+"free)."
+msgstr ""
+
+#: plinth/modules/disks/views.py:130
+#, python-brace-format
 msgid "{disk_size:.1f} bytes"
-msgstr "{disk_size} బైట్లు"
+msgstr "{disk_size:.1f} బైట్లు"
 
-#: plinth/modules/disks/views.py:81
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} KiB"
+#: plinth/modules/disks/views.py:134
+#, python-brace-format
 msgid "{disk_size:.1f} KiB"
-msgstr "{disk_size} కిలోబైట్లు"
+msgstr "{disk_size:.1f} కిలోబైట్లు"
 
-#: plinth/modules/disks/views.py:85
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} MiB"
+#: plinth/modules/disks/views.py:138
+#, python-brace-format
 msgid "{disk_size:.1f} MiB"
-msgstr "{disk_size}మెగాబైట్ల"
+msgstr "{disk_size:.1f} మెగాబైట్లు"
 
-#: plinth/modules/disks/views.py:89
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} GiB"
+#: plinth/modules/disks/views.py:142
+#, python-brace-format
 msgid "{disk_size:.1f} GiB"
-msgstr "{disk_size}గిగా బైట్లు"
+msgstr "{disk_size:.1f} గిగాబైట్లు"
 
-#: plinth/modules/disks/views.py:92
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} TiB"
+#: plinth/modules/disks/views.py:145
+#, python-brace-format
 msgid "{disk_size:.1f} TiB"
-msgstr "{disk_size}టెరాబైట్లు"
+msgstr "{disk_size:.1f}  టెరాబైట్లు"
 
-#: plinth/modules/dynamicdns/__init__.py:33
+#: plinth/modules/dynamicdns/__init__.py:35
 msgid "Dynamic DNS Client"
 msgstr "గతిక DNS కక్షిదారు"
 
-#: plinth/modules/dynamicdns/__init__.py:37
+#: plinth/modules/dynamicdns/__init__.py:39
 #, python-brace-format
 msgid ""
 "If your Internet provider changes your IP address periodically (i.e. every "
@@ -551,7 +589,7 @@ msgstr ""
 "అప్పుడు ఇతరులు అంతర్జాలంలో మిమల్ని కనుగొనడానికి కష్టం ఆవతుంది. అప్పుడు వారు ఈ {box_name} "
 "అందించే సేవలను కనుగోనలేరు."
 
-#: plinth/modules/dynamicdns/__init__.py:43
+#: plinth/modules/dynamicdns/__init__.py:45
 msgid ""
 "The solution is to assign a DNS name to your IP address and update the DNS "
 "name every time your IP is changed by your Internet provider. Dynamic DNS "
@@ -567,11 +605,18 @@ msgstr ""
 "అనుమతిస్తుంది. తరువాత, సర్వర్ కొత్త IP మీ DNS పేరు కేటాయిస్తుంది, మరియు ఇంటర్నెట్ నుండి ఎవరైనా మీ "
 "DNS పేరు అడుగుతాడు ఉంటే, వారు మీ ప్రస్తుత ఐ.పీ. చిరునామాతో సమాధానం పొందుతారు."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:35 plinth/modules/help/help.py:40
+#: plinth/modules/dynamicdns/__init__.py:67
+#: plinth/modules/dynamicdns/dynamicdns.py:377
+#, fuzzy
+#| msgid "Dynamic DNS Client"
+msgid "Dynamic DNS Service"
+msgstr "గతిక DNS కక్షిదారు"
+
+#: plinth/modules/dynamicdns/dynamicdns.py:43 plinth/modules/help/help.py:40
 msgid "About"
 msgstr "గురించి"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:39
+#: plinth/modules/dynamicdns/dynamicdns.py:47
 #: plinth/modules/firewall/templates/firewall.html:47
 #: plinth/modules/networks/templates/connection_show.html:261
 #: plinth/modules/openvpn/templates/openvpn.html:67
@@ -580,7 +625,7 @@ msgstr "గురించి"
 msgid "Status"
 msgstr "స్థితి"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:63
+#: plinth/modules/dynamicdns/dynamicdns.py:71
 msgid ""
 "The Variables &lt;User&gt;, &lt;Pass&gt;, &lt;Ip&gt;, &lt;Domain&gt; may be "
 "used within the URL. For details see the update URL templates of the example "
@@ -589,7 +634,7 @@ msgstr ""
 "&lt;వాడుకరి&gt;, &lt;పాస్&gt;, &lt;ఎల్.పి&gt;, &lt;డోమైన్&gt; అనే వేరియబల్స్ మీ యూ.ఆర్.ఎల్ తో "
 "వాడవచ్చును. వివరాల కోసం మీ యూ.ఆర్.ఎల్ నవీనికరణ టెంప్లేట్ ను చూడండి."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:67
+#: plinth/modules/dynamicdns/dynamicdns.py:75
 msgid ""
 "Please choose an update protocol according to your provider. If your "
 "provider does not support the GnuDIP protocol or your provider is not listed "
@@ -598,7 +643,7 @@ msgstr ""
 "దయ చేసి మీ నవీకరణ ప్రోటొకాల్ ను ఎంచుకోండి. మీ ప్రదాత గ్నూడిప్ ప్రోటొకాల్ కు సహకరించకపోయిన లేదా మీ ప్రదాత "
 "కింద జాబితా లో లేకపోయినా మీ ప్రదాత యొక్క నవీకరణ యూ.ఆర్.ఎల్ ను వాడగలరు."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:72
+#: plinth/modules/dynamicdns/dynamicdns.py:80
 msgid ""
 "Please do not enter a URL here (like \"https://example.com/\") but only the "
 "hostname of the GnuDIP server (like \"example.com\")."
@@ -606,16 +651,16 @@ msgstr ""
 "దయ చేసి యూ.ఆర్.ఎల్ (ఉ.దా \"ఏచ్.టి.టి.పి.ఎస్://ఎగ్స్యాంపల్.కామ్\") ను తెలుపవద్దు కానీ కేవలం అతిధ్య "
 "పేరును (ఉ.దా \"ఎగ్స్యాంపల్.కామ్\") మాత్రమే తెలుపండి."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:76
+#: plinth/modules/dynamicdns/dynamicdns.py:84
 #, python-brace-format
 msgid "The public domain name you want to use to reach your {box_name}."
 msgstr "మీ {box_name} ను చేరుకోవడానికి మీరు ఉపయోగించాలని కోరుకుంటున్న మీ  పబ్లిక్ డొమైన్ పేరు."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:79
+#: plinth/modules/dynamicdns/dynamicdns.py:87
 msgid "Use this option if your provider uses self signed certificates."
 msgstr "మీ అంతర్జాల సేవ ప్రదాత ఒకవేళ స్వీయ సంతక సర్టిఫికేట్లు ఉపయోగిస్తుంటే ఈ ఎంపికను ఉపయోగించండి."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:82
+#: plinth/modules/dynamicdns/dynamicdns.py:90
 msgid ""
 "If this option is selected, your username and password will be used for HTTP "
 "basic authentication."
@@ -623,11 +668,11 @@ msgstr ""
 "ఈ ఎంపికను ఎంపిక చేస్తే, మీ వాడుకరి పేరు మరియు పాస్‌వర్డ్ హెచ్.టి.టి.పి ప్రాథమిక ప్రమాణీకరణ కోసం "
 "ఉపయోగించబడుతుంది."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:85
+#: plinth/modules/dynamicdns/dynamicdns.py:93
 msgid "Leave this field empty if you want to keep your current password."
 msgstr "మీరు మీ ప్రస్తుత పాస్‌వర్డ్ ను ఉంచుకోవాలనుకుంటే ఈ ఫీల్డ్ ఖాళీగా వదిలివేయండి."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:88
+#: plinth/modules/dynamicdns/dynamicdns.py:96
 #, python-brace-format
 msgid ""
 "Optional Value. If your {box_name} is not connected directly to the Internet "
@@ -640,82 +685,82 @@ msgstr ""
 "ఎక్కడ నుండి వస్తుంది అనే ఐపీ మాత్రమే  ఈ  యూ.ఆర్.ఎల్  తిరిగివ్వాలి (ఉ.దా: ఏచ్.టి.టి.పి.://మైఐపి."
 "డాటాసిస్టమ్స్24.దే)."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:96
+#: plinth/modules/dynamicdns/dynamicdns.py:104
 msgid "The username that was used when the account was created."
 msgstr "మీరు మీ ఖాతాను సృష్టించినప్పుడు వాడిన వాడుకరి పేరు ."
 
-#: plinth/modules/dynamicdns/dynamicdns.py:107
+#: plinth/modules/dynamicdns/dynamicdns.py:115
 msgid "Enable Dynamic DNS"
 msgstr "చురుకైన DNS అమలుచెయ్యి"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:110
+#: plinth/modules/dynamicdns/dynamicdns.py:118
 msgid "Service Type"
 msgstr "సేవా రకం"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:115
+#: plinth/modules/dynamicdns/dynamicdns.py:123
 msgid "GnuDIP Server Address"
 msgstr "GnudIP సేవకం చిరునామా"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:120
+#: plinth/modules/dynamicdns/dynamicdns.py:128
 msgid "Invalid server name"
 msgstr "సేవిక పేరు చెలదు"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:123
+#: plinth/modules/dynamicdns/dynamicdns.py:131
 msgid "Update URL"
 msgstr "URL నవీకరణ"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:127
+#: plinth/modules/dynamicdns/dynamicdns.py:135
 msgid "Accept all SSL certificates"
 msgstr "అన్ని ఎస్.ఎస్.ఎల్ సర్టిఫికెట్లు అంగీకరించు"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:131
+#: plinth/modules/dynamicdns/dynamicdns.py:139
 msgid "Use HTTP basic authentication"
 msgstr "HTTP ప్రాథమిక ప్రమాణీకరణ ఉపయోగించు"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:143
-#: plinth/modules/networks/forms.py:227 plinth/modules/transmission/forms.py:37
+#: plinth/modules/dynamicdns/dynamicdns.py:151
+#: plinth/modules/networks/forms.py:228 plinth/modules/transmission/forms.py:37
 msgid "Username"
 msgstr "వినియోగి పేరు"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:146
-#: plinth/modules/networks/forms.py:228 plinth/modules/transmission/forms.py:41
+#: plinth/modules/dynamicdns/dynamicdns.py:154
+#: plinth/modules/networks/forms.py:229 plinth/modules/transmission/forms.py:41
 msgid "Password"
 msgstr "రహస్యపదం"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:149
-#: plinth/modules/networks/forms.py:230
+#: plinth/modules/dynamicdns/dynamicdns.py:157
+#: plinth/modules/networks/forms.py:231
 msgid "Show password"
 msgstr "రహస్యపదం కనబర్చు"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:153
+#: plinth/modules/dynamicdns/dynamicdns.py:161
 msgid "URL to look up public IP"
 msgstr "పబ్లిక్ IP చూసేందుకు URL"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:179
+#: plinth/modules/dynamicdns/dynamicdns.py:187
 msgid "Please provide an update URL or a GnuDIP server address"
 msgstr "దయచేసి నవీకరణ యూ.ఆర్.ఎల్ ను లేక ఒక GnuDIP సేవిక ఐ.పీ చిరునామాను  అందించండి"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:184
+#: plinth/modules/dynamicdns/dynamicdns.py:192
 msgid "Please provide a GnuDIP username"
 msgstr "దయచేసి గ్నూ.డిప్ వాడుకరిపేరుని అందించండి"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:188
+#: plinth/modules/dynamicdns/dynamicdns.py:196
 msgid "Please provide a GnuDIP domain name"
 msgstr "గ్నూ.డిప్ డోమైన్ పేరును  దయచేసి అందించండి"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:193
+#: plinth/modules/dynamicdns/dynamicdns.py:201
 msgid "Please provide a password"
 msgstr "ఒక రహస్యపదం అందించండి దయచేసి"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:211
+#: plinth/modules/dynamicdns/dynamicdns.py:219
 msgid "Configure Dynamic DNS"
 msgstr "చురుకైనDNS ఆకృతీకరించు"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:232
+#: plinth/modules/dynamicdns/dynamicdns.py:240
 msgid "Dynamic DNS Status"
 msgstr "చలనశీల డి.ఎన్.ఎస్ స్థితి"
 
-#: plinth/modules/dynamicdns/dynamicdns.py:364
+#: plinth/modules/dynamicdns/dynamicdns.py:381
 #: plinth/modules/openvpn/views.py:143 plinth/modules/transmission/views.py:72
 msgid "Configuration updated"
 msgstr "ఆకృతీకరణ నవీకరించబడింది"
@@ -786,16 +831,18 @@ msgstr ""
 msgid "Last update"
 msgstr "చివరి నవీకరణ"
 
-#: plinth/modules/ejabberd/__init__.py:42
-#, fuzzy
-msgid ""
-"Chat Server \n"
-" (ejabberd)"
-msgstr ""
-"చాట్ సర్వర్\n"
-" (ejabberd)"
-
 #: plinth/modules/ejabberd/__init__.py:45
+msgid "ejabberd"
+msgstr ""
+
+#: plinth/modules/ejabberd/__init__.py:47
+#: plinth/modules/matrixsynapse/__init__.py:43
+#, fuzzy
+#| msgid "Web Server"
+msgid "Chat Server"
+msgstr "జాల సేవకం"
+
+#: plinth/modules/ejabberd/__init__.py:50
 msgid ""
 "XMPP is an open and standardized communication protocol. Here you can run "
 "and configure your XMPP server, called ejabberd."
@@ -803,11 +850,17 @@ msgstr ""
 "XMPP ఓపెన్ మరియు ప్రామాణికమైన కమ్యూనికేషన్ ప్రోటోకాల్. ఇక్కడ మీరు మీ XMPP సర్వర్ ని రూపకరణ మరియు "
 "అమలు చేయగలరు  ejabberd అని ఆకృతీకరించవచ్చు."
 
-#: plinth/modules/ejabberd/__init__.py:48
+#: plinth/modules/ejabberd/__init__.py:54
+#, fuzzy, python-brace-format
+#| msgid ""
+#| "To actually communicate, you can use the web client or any other <a "
+#| "href='http://xmpp.org/xmpp-software/clients/' target='_blank'>XMPP "
+#| "client</a>."
 msgid ""
-"To actually communicate, you can use the web client or any other <a "
-"href='http://xmpp.org/xmpp-software/clients/' target='_blank'>XMPP client</"
-"a>."
+"To actually communicate, you can use the <a href=\"/plinth/apps/jsxc\">web "
+"client</a> or any other <a href='http://xmpp.org/xmpp-software/clients/' "
+"target='_blank'>XMPP client</a>. When enabled, ejabberd can be accessed by "
+"any <a href=\"/plinth/sys/users\">user with a {box_name} login</a>."
 msgstr ""
 "నిజానికి సమాచార మార్పిడి చేయడానికి, మీరు వెబ్ క్లయింట్ లేదా ఏ ఇతర <a href='http://xmpp.org/xmpp-"
 "software/clients/' target='_blank'> XMPP క్లయింట్  </a> ఉపయోగించవచ్చు."
@@ -847,16 +900,11 @@ msgstr "వెబ్ క్లయింట్ ని ప్రారంభిం
 msgid "Configuration"
 msgstr "ఆకృతీకరణ"
 
-#: plinth/modules/ejabberd/views.py:60 plinth/modules/openvpn/views.py:145
-#: plinth/modules/tor/views.py:134 plinth/views.py:103
-msgid "Setting unchanged"
-msgstr "మారకుండా అమర్చుతోంది"
-
-#: plinth/modules/ejabberd/views.py:64 plinth/views.py:107
+#: plinth/modules/ejabberd/views.py:64 plinth/views.py:116
 msgid "Application enabled"
 msgstr "అనువర్తనం ఆమోదింపబడింది"
 
-#: plinth/modules/ejabberd/views.py:67 plinth/views.py:110
+#: plinth/modules/ejabberd/views.py:67 plinth/views.py:119
 msgid "Application disabled"
 msgstr "అనువర్తనం ఆమోదింపబడలేదు"
 
@@ -908,15 +956,15 @@ msgid "Service/Port"
 msgstr "సేవ / పోర్ట్"
 
 #: plinth/modules/firewall/templates/firewall.html:65
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:68
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:94
 #: plinth/modules/names/templates/names.html:49
 msgid "Enabled"
 msgstr "క్రియాశీలీ"
 
 #: plinth/modules/firewall/templates/firewall.html:68
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:70
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:96
 #: plinth/modules/names/templates/names.html:51
-#: plinth/modules/networks/forms.py:62
+#: plinth/modules/networks/forms.py:63
 msgid "Disabled"
 msgstr "నిరుపయోగ"
 
@@ -955,10 +1003,8 @@ msgid "Without any apps, your %(box_name)s cannot do very much."
 msgstr ""
 
 #: plinth/modules/first_boot/templates/firstboot_complete.html:39
-#, fuzzy
-#| msgid "Install"
 msgid "Install Apps"
-msgstr "నిక్షిప్తం చేయు"
+msgstr "అనువర్తనాలను నిక్షిప్తం చేయు"
 
 #: plinth/modules/first_boot/templates/firstboot_complete.html:45
 #, python-format
@@ -996,8 +1042,8 @@ msgstr "పత్రరచన"
 msgid "Where to Get Help"
 msgstr "సహాయం ఎక్కడ పొందగలం"
 
-#: plinth/modules/help/help.py:38 plinth/modules/networks/forms.py:61
-#: plinth/modules/networks/forms.py:101 plinth/templates/index.html:124
+#: plinth/modules/help/help.py:38 plinth/modules/networks/forms.py:62
+#: plinth/modules/networks/forms.py:102 plinth/templates/index.html:124
 msgid "Manual"
 msgstr "కరదీపిక"
 
@@ -1075,10 +1121,8 @@ msgid "You are running %(os_release)s and Plinth version %(version)s."
 msgstr "మీరు ప్లింత్ రూపాంతరం %(version)s ను నడుపుతున్నారు."
 
 #: plinth/modules/help/templates/help_about.html:81
-#, fuzzy
-#| msgid "There is a new version available."
 msgid "There is a new Plinth version available."
-msgstr "కొత్త వెర్షన్ అందుబాటులో ఉంది."
+msgstr "Plinth యొక్క కొత్త వెర్షన్ అందుబాటులో ఉంది."
 
 #: plinth/modules/help/templates/help_about.html:85
 msgid "Plinth is up to date."
@@ -1155,28 +1199,50 @@ msgid "Caution:"
 msgstr "జాగ్రత్త:"
 
 #: plinth/modules/help/templates/statuslog.html:39
-#, fuzzy
 msgid ""
 "Please remove any passwords or other personal information from the log "
 "before submitting the bug report."
 msgstr ""
-"బగ్ (తప్పుల) నివేదిక సమర్పించే ముందు దయచేసి లాగ్ నుండి ఏ పాస్వర్డ్లను లేదా ఇతర వ్యక్తిగత సమాచారాన్ని "
-"తొలగించగలరు"
+"బగ్ (తప్పుల) నివేదిక సమర్పించే ముందు దయచేసి లాగ్ నుండి ఏవైనా రహస్యపదాలను లేదా ఇతర వ్యక్తిగత సమాచారాన్ని "
+"తొలగించగలరు."
 
-#: plinth/modules/ikiwiki/__init__.py:39
-msgid "Wiki and Blog (ikiwiki)"
-msgstr "వికీ & బ్లాగ్ (Ikiwiki)"
+#: plinth/modules/ikiwiki/__init__.py:41
+#, fuzzy
+#| msgid "Enable Ikiwiki"
+msgid "ikiwiki"
+msgstr "Ikiwiki అమలుచెయ్యి"
 
-#: plinth/modules/ikiwiki/__init__.py:42
+#: plinth/modules/ikiwiki/__init__.py:43
+#, fuzzy
+#| msgid "Wiki & Blog"
+msgid "Wiki and Blog"
+msgstr "వికీ & బ్లాగ్"
+
+#: plinth/modules/ikiwiki/__init__.py:46
+#, fuzzy
+#| msgid ""
+#| "ikiwiki is a simple wiki and blog application. It supports several "
+#| "lightweight markup languages, including Markdown, and common blogging "
+#| "functionality such as comments and RSS feeds. When enabled, the blogs and "
+#| "wikis will be available from <a href=\"/ikiwiki\">/ikiwiki</a>."
 msgid ""
 "ikiwiki is a simple wiki and blog application. It supports several "
 "lightweight markup languages, including Markdown, and common blogging "
 "functionality such as comments and RSS feeds. When enabled, the blogs and "
-"wikis will be available from <a href=\"/ikiwiki\">/ikiwiki</a>."
+"wikis will be available at <a href=\"/ikiwiki\">/ikiwiki</a> (once created)."
 msgstr ""
 "ఈకివికి ఒక సాధారణ వికీ మరియు బ్లాగ్ అప్లికేషన్. ఇది అనేక తేలికైన మార్కప్ బాషలకు మరియు వ్యాఖ్యానాలు, ఆర్.ఎస్."
 "ఎస్ ఫీడ్లు వంటి సాధారణ బ్లాగింగ్ కార్యాచరణకు సహకరిస్తుంది. దీన్ని ఆమోదించినప్పుడు మీ బ్లాగులు మరియు "
 "వికిలు <a href=\"/ikiwiki\">/ఈకివికి</a> వద్ద అందుబాటులో ఉంటాయి."
+
+#: plinth/modules/ikiwiki/__init__.py:53
+#, python-brace-format
+msgid ""
+"Only {box_name} users in the <b>admin</b> group can <i>create</i> and "
+"<i>manage</i> blogs and wikis, but any user in the <b>wiki</b> group can "
+"<i>edit</i> existing ones. In the <a href=\"/plinth/sys/users\">User "
+"Configuration</a> you can change these permissions or add new users."
+msgstr ""
 
 #: plinth/modules/ikiwiki/forms.py:34
 #: plinth/modules/networks/templates/connection_show.html:78
@@ -1184,9 +1250,8 @@ msgid "Name"
 msgstr "పేరు"
 
 #: plinth/modules/ikiwiki/forms.py:35
-#, fuzzy
 msgid "Only alphanumeric characters are allowed."
-msgstr "ఆల్ఫాన్యూమరిక్ (అక్షరాలు మరియు అంకెలు) అక్షరాలు మాత్రమే అనుమతించబడతాయి"
+msgstr "ఆల్ఫాన్యూమరిక్ అక్షరాలు (ఆంగ్ల అక్షరాలు మరియు అంకెలు) మాత్రమే అనుమతించబడతాయి."
 
 #: plinth/modules/ikiwiki/forms.py:38
 msgid "Admin Account Name"
@@ -1290,18 +1355,20 @@ msgid "Delete Wiki or Blog"
 msgstr "వికీ లేదా బ్లాగును తొలగించు"
 
 #: plinth/modules/infinoted/__init__.py:43
-#, fuzzy
-#| msgid "Gobby Server (infinoted)"
-msgid ""
-"Gobby Server \n"
-" (infinoted)"
-msgstr "గొబ్బయ్ సర్వర్ (ఇన్ఫినోటెడ్)"
+msgid "infinoted"
+msgstr ""
 
-#: plinth/modules/infinoted/__init__.py:46
+#: plinth/modules/infinoted/__init__.py:45
+#, fuzzy
+#| msgid "Web Server"
+msgid "Gobby Server"
+msgstr "జాల సేవకం"
+
+#: plinth/modules/infinoted/__init__.py:48
 msgid "infinoted is a server for Gobby, a collaborative text editor."
 msgstr "Gobby కోసం ఇన్ఫినోటెడ్ అనేది ఒక సర్వర్,ఒక సహకార టెక్స్ట్ ఎడిటర్."
 
-#: plinth/modules/infinoted/__init__.py:49
+#: plinth/modules/infinoted/__init__.py:51
 #, python-brace-format
 msgid ""
 "To use it, <a href=\"https://gobby.github.io/\">download Gobby</a>, desktop "
@@ -1310,34 +1377,43 @@ msgid ""
 msgstr ""
 
 #: plinth/modules/jsxc/__init__.py:36
+msgid "JSXC"
+msgstr ""
+
+#: plinth/modules/jsxc/__init__.py:38
 #, fuzzy
-msgid ""
-"Chat Client \n"
-" (JSXC)"
+msgid "Chat Client"
 msgstr ""
 "చాట్ క్లయింట్\n"
 " (JSXC)"
 
-#: plinth/modules/jsxc/__init__.py:40
+#: plinth/modules/jsxc/__init__.py:42
 msgid ""
 "JSXC is a web client for XMPP. Typically it is used with an XMPP server "
 "running locally."
 msgstr ""
 "JSXC XMPP కోసం ఒక వెబ్ కక్షిదారి. సాధారణంగా ఇది ఒక XMPP సర్వర్ స్థానికంగా అమలు చేయటానికి ఉపయోగిస్తారు."
 
-#: plinth/modules/jsxc/__init__.py:78
+#: plinth/modules/jsxc/__init__.py:80
 #, fuzzy
 msgid ""
 "Chat Client \n"
 " (jsxc)"
 msgstr "ఐ ర్ సి క్లయింట్ (Quassel)"
 
-#: plinth/modules/letsencrypt/__init__.py:39
-#: plinth/modules/letsencrypt/__init__.py:64
-msgid "Certificates (Let's Encrypt)"
+#: plinth/modules/letsencrypt/__init__.py:40
+#, fuzzy
+#| msgid "Certificates (Let's Encrypt)"
+msgid "Let's Encrypt"
 msgstr "యోగ్యతాపత్రాలు (ఎన్క్రిప్ట్ చేసాద్దాం)"
 
-#: plinth/modules/letsencrypt/__init__.py:43
+#: plinth/modules/letsencrypt/__init__.py:42
+#, fuzzy
+#| msgid "Certificate Status"
+msgid "Certificates"
+msgstr "యోగ్యతాపత్రం స్థితి"
+
+#: plinth/modules/letsencrypt/__init__.py:46
 #, fuzzy, python-brace-format
 msgid ""
 "A digital certificate allows users of a web service to verify the identity "
@@ -1351,7 +1427,7 @@ msgstr ""
 "కొరకు సెటప్ డిజిటల్ సర్టిఫికెట్లు చేయవచ్చు. ఇది ఎన్క్రిప్ట్ తెలపండి ఒక డొమైన్ యొక్క యజమాని, ధృవపత్ర (CA) "
 "ఉన్నట్లు రుజువు చేసుకుంటూ అవుతున్నారు."
 
-#: plinth/modules/letsencrypt/__init__.py:50
+#: plinth/modules/letsencrypt/__init__.py:53
 #, fuzzy
 msgid ""
 "Let's Encrypt is a free, automated, and open certificate authority, run for "
@@ -1380,66 +1456,178 @@ msgstr "వెబ్‌సైటు భద్రత"
 msgid "Actions"
 msgstr "చర్యలు"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:56
-#, python-format
-msgid "Expires on %(expiry_date)s"
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:62
+#, fuzzy, python-format
+#| msgid "Expires on %(expiry_date)s"
+msgid "Valid, expires on %(expiry_date)s"
 msgstr "%(expiry_date)s న కాలం చెల్లుతుంది"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:62
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:69
+msgid "Revoked"
+msgstr "ఉపసంహరించుకొనబడింది"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:73
+#, python-format
+msgid "Expired on %(expiry_date)s"
+msgstr "%(expiry_date)s న కాలం చెల్లినది"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:77
 #, fuzzy
-#| msgid "No certficate"
+msgid "Invalid test certificate"
+msgstr "చెల్లని గాలిపటం పేరు"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:81
+#, python-format
+msgid "Invalid (%(reason)s)"
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:88
 msgid "No certificate"
-msgstr "యోగ్యతాపత్రం లేదు"
+msgstr "ధృవీకరణ పత్రం లేదు"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:79
-msgid "Revoke"
-msgstr "ఉపసంహరించుకొను"
-
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:85
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:105
 msgid "Re-obtain"
 msgstr "తిరిగి-పొందు"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:92
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:111
+#: plinth/modules/networks/templates/connection_show.html:63
+#: plinth/modules/snapshot/templates/snapshot.html:34
+msgid "Delete"
+msgstr "తొలగించు"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:118
+msgid "Revoke"
+msgstr "ఉపసంహరించుకొను"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:126
 msgid "Obtain"
 msgstr "పొందు"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:105
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:149
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:156
+#, fuzzy
+#| msgid "Update"
+msgid "Update config"
+msgstr "నవీకరణ యూ.ఆర్.ఎల్"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:161
+#, python-format
+msgid ""
+"\n"
+"                Let Plinth manage certificate renewal of\n"
+"                <b>%(current_domain)s</b> (recommended)\n"
+"              "
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:166
+msgid ""
+"\n"
+"                Let Plinth manage certificate renewal of the current domain "
+"(recommended)\n"
+"              "
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:175
+#, python-format
+msgid ""
+"If %(box_name)s manages the certificate renewal for the current domain, it "
+"will ensure that all apps that use the certificate can use it, as soon as it "
+"gets renewed."
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:181
+msgid ""
+"<b>No certificate available for the current domain.</b> First obtain a "
+"certificate to enable management of its renewal."
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:186
+#, fuzzy
+msgid ""
+"<b>No current domain is configured.</b> First configure a domain to enable "
+"management of its certificates."
+msgstr "తోబుట్టువుల డొమైన్లు కన్ఫిగర్ చేయబడ్డాయి. వారికి సర్టిఫికేట్లు పొందగలగటం డొమైన్ ఆకృతీకరించుము."
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:195
 #, fuzzy
 msgid ""
 "No domains have been configured. Configure domains to be able to obtain "
 "certificates for them."
 msgstr "తోబుట్టువుల డొమైన్లు కన్ఫిగర్ చేయబడ్డాయి. వారికి సర్టిఫికేట్లు పొందగలగటం డొమైన్ ఆకృతీకరించుము."
 
-#: plinth/modules/letsencrypt/views.py:55
-#, python-brace-format
-msgid "Certificate successfully revoked for domain {domain}"
+#: plinth/modules/letsencrypt/views.py:57
+#, fuzzy, python-brace-format
+#| msgid "Certificate successfully revoked for domain {domain}"
+msgid ""
+"Certificate successfully revoked for domain {domain}.This may take a few "
+"moments to take effect."
 msgstr "{domain} డోమైన్ కొరకు సర్టిఫికేట్ ఉప్సంహరుంచుకొనబడింది"
 
-#: plinth/modules/letsencrypt/views.py:60
+#: plinth/modules/letsencrypt/views.py:63
 #, python-brace-format
 msgid "Failed to revoke certificate for domain {domain}: {error}"
 msgstr "{domain} డోమైన్ కొరకు సర్టిఫికేట్ ఉప్సంహరుంచుకొనడంలో విఫలం: {error}"
 
-#: plinth/modules/letsencrypt/views.py:72
+#: plinth/modules/letsencrypt/views.py:75
 #, python-brace-format
 msgid "Certificate successfully obtained for domain {domain}"
 msgstr "{domain} డోమైన్ కొరకు సర్టిఫికేట్ సంపాదింపబడింది"
 
-#: plinth/modules/letsencrypt/views.py:77
+#: plinth/modules/letsencrypt/views.py:81
 #, python-brace-format
 msgid "Failed to obtain certificate for domain {domain}: {error}"
 msgstr "{domain} డోమైన్ కొరకు సర్టిఫికేట్ సంపాదించుటలో విఫలం: {error}"
 
+#: plinth/modules/letsencrypt/views.py:90
+#: plinth/modules/letsencrypt/views.py:109
+#, fuzzy, python-brace-format
+#| msgid "Certificate successfully revoked for domain {domain}"
+msgid "Certificate renewal management enabled for {domain}."
+msgstr "{domain} డోమైన్ కొరకు సర్టిఫికేట్ ఉప్సంహరుంచుకొనబడింది"
+
+#: plinth/modules/letsencrypt/views.py:95
+#, fuzzy, python-brace-format
+#| msgid "Failed to delete certificate for domain {domain}: {error}"
+msgid "Failed to enable certificate renewal management for {domain}: {error}"
+msgstr "{domain} డోమైన్ కొరకు ధృవీకరణపత్రం నిర్మూలించడంలో విఫలం: {error}"
+
+#: plinth/modules/letsencrypt/views.py:112
+#, fuzzy, python-brace-format
+#| msgid "Certificate successfully revoked for domain {domain}"
+msgid "Certificate renewal management disabled for {domain}."
+msgstr "{domain} డోమైన్ కొరకు సర్టిఫికేట్ ఉప్సంహరుంచుకొనబడింది"
+
+#: plinth/modules/letsencrypt/views.py:118
+#, fuzzy, python-brace-format
+#| msgid "Failed to obtain certificate for domain {domain}: {error}"
+msgid "Failed to switch certificate renewal management for {domain}: {error}"
+msgstr "{domain} డోమైన్ కొరకు సర్టిఫికేట్ సంపాదించుటలో విఫలం: {error}"
+
+#: plinth/modules/letsencrypt/views.py:134
+#, fuzzy, python-brace-format
+#| msgid "Failed to delete certificate for domain {domain}: {error}"
+msgid "Failed to disable certificate renewal management for {domain}: {error}"
+msgstr "{domain} డోమైన్ కొరకు ధృవీకరణపత్రం నిర్మూలించడంలో విఫలం: {error}"
+
+#: plinth/modules/letsencrypt/views.py:141
+#, fuzzy, python-brace-format
+#| msgid "Certificate successfully revoked for domain {domain}"
+msgid "Certificate successfully deleted for domain {domain}"
+msgstr "{domain} డోమైన్ కొరకు సర్టిఫికేట్ ఉప్సంహరుంచుకొనబడింది"
+
+#: plinth/modules/letsencrypt/views.py:146
+#, python-brace-format
+msgid "Failed to delete certificate for domain {domain}: {error}"
+msgstr "{domain} డోమైన్ కొరకు ధృవీకరణపత్రం నిర్మూలించడంలో విఫలం: {error}"
+
 #: plinth/modules/matrixsynapse/__init__.py:41
 #, fuzzy
-msgid ""
-"Chat Server \n"
-" (Matrix Synapse)"
+msgid "Matrix Synapse"
 msgstr ""
 "చాట్ సర్వర్\n"
 " (ejabberd)"
 
-#: plinth/modules/matrixsynapse/__init__.py:44
+#: plinth/modules/matrixsynapse/__init__.py:46
 msgid ""
 "<a href=\"https://matrix.org/docs/guides/faq.html\">Matrix</a> is an new "
 "ecosystem for open, federated instant messaging and VoIP. Synapse is a "
@@ -1449,18 +1637,12 @@ msgid ""
 "converse with users on all other Matrix servers via federation."
 msgstr ""
 
-#: plinth/modules/matrixsynapse/__init__.py:52
+#: plinth/modules/matrixsynapse/__init__.py:54
 msgid ""
 "To communicate, you can use the <a href=\"https://matrix.org/docs/projects/"
 "\">available clients</a> for mobile, desktop and the web. <a href=\"https://"
 "riot.im/\">Riot</a> client is recommended."
 msgstr ""
-
-#: plinth/modules/matrixsynapse/forms.py:31
-#, fuzzy
-#| msgid "Invalid domain name"
-msgid "Select the domain name"
-msgstr "డొమైన్ పేరు చెల్లదు"
 
 #: plinth/modules/matrixsynapse/templates/matrix-synapse-pre-setup.html:34
 msgid ""
@@ -1493,14 +1675,16 @@ msgid ""
 msgstr ""
 
 #: plinth/modules/minetest/__init__.py:48
+msgid "Minetest"
+msgstr ""
+
+#: plinth/modules/minetest/__init__.py:50
 #, fuzzy
 #| msgid "Block Sandbox (Minetest)"
-msgid ""
-"Block Sandbox \n"
-" (Minetest)"
+msgid "Block Sandbox"
 msgstr "స్యాండ్ బాక్స్ ను అడ్డగించు (మైన్ పరీక్ష)"
 
-#: plinth/modules/minetest/__init__.py:52
+#: plinth/modules/minetest/__init__.py:54
 #, fuzzy, python-brace-format
 msgid ""
 "Minetest is a multiplayer infinite-world block sandbox. This module enables "
@@ -1517,9 +1701,13 @@ msgid "Maximum number of players"
 msgstr "క్రీడాకారులు గరిష్టంగా సంఖ్యలో ఉన్నారు"
 
 #: plinth/modules/minetest/forms.py:35
+#, fuzzy
+#| msgid ""
+#| "You can change the maximum number of players playing                      "
+#| "minetest at a single instance of time"
 msgid ""
-"You can change the maximum number of players playing                      "
-"minetest at a single instance of time"
+"You can change the maximum number of players playing minetest at a single "
+"instance of time."
 msgstr "మీరు  minetest ఆడుతున్న క్రీడాకారులు గరిష్టంగా సంఖ్య మార్చవచ్చు ఒకే సమయం లో"
 
 #: plinth/modules/minetest/forms.py:39
@@ -1529,10 +1717,14 @@ msgid "Enable creative mode"
 msgstr "అనువర్తనాన్ని చేతనించు"
 
 #: plinth/modules/minetest/forms.py:41
+#, fuzzy
+#| msgid ""
+#| "Creative mode changes the rules of the game to make "
+#| "it                      more suitable for creative gameplay, rather "
+#| "than                      challenging \"survival\" gameplay."
 msgid ""
-"Creative mode changes the rules of the game to make it                      "
-"more suitable for creative gameplay, rather than                      "
-"challenging \"survival\" gameplay."
+"Creative mode changes the rules of the game to make it more suitable for "
+"creative gameplay, rather than challenging \"survival\" gameplay."
 msgstr ""
 "క్రియేటివ్ మోడ్ \"మనుగడ\" గేమ్ప్లే సవాలు కంటే, సృజనాత్మక గేమ్ప్లే అనువుగా ఆట నియమాలు మారుస్తుంది."
 
@@ -1544,9 +1736,7 @@ msgstr "క్రియాశీలీ"
 
 #: plinth/modules/minetest/forms.py:48
 #, fuzzy
-msgid ""
-"Enabling Player Vs Player will allow players to damage                     "
-"other players"
+msgid "Enabling Player Vs Player will allow players to damage other players."
 msgstr "ప్లేయర్ Vs ప్లేయర్ అనే ఆప్షన్ ని అనుమతిస్తే క్రీడాకారులు ఇతర క్రీడాకారులు దెబ్బతినేలా చూస్తుంది"
 
 #: plinth/modules/minetest/forms.py:52
@@ -1555,9 +1745,11 @@ msgid "Enable damage"
 msgstr "PageKite ప్రారంభించు"
 
 #: plinth/modules/minetest/forms.py:54
-msgid ""
-"When disabled, players cannot die or receive damage of                     "
-"any kind"
+#, fuzzy
+#| msgid ""
+#| "When disabled, players cannot die or receive damage "
+#| "of                     any kind"
+msgid "When disabled, players cannot die or receive damage of any kind."
 msgstr "డిసేబుల్ లో ఉన్నప్పుడు, క్రీడాకారులు చనిపోయే లేదా ఏ రకమైన నష్టం అందుకోలేరు"
 
 #: plinth/modules/minetest/views.py:58
@@ -1651,7 +1843,7 @@ msgstr "సెక్యూర్ షెల్"
 
 #: plinth/modules/monkeysphere/templates/monkeysphere.html:87
 #: plinth/modules/monkeysphere/templates/monkeysphere_details.html:60
-#: plinth/service.py:117
+#: plinth/service.py:116
 msgid "Web Server"
 msgstr "జాల సేవకం"
 
@@ -1750,14 +1942,20 @@ msgid "Error occurred while publishing key."
 msgstr "కీని ప్రచురించేటప్పుడు దోషం సంభవించింది."
 
 #: plinth/modules/mumble/__init__.py:35
-#, fuzzy
-#| msgid "Voice Chat (Mumble)"
-msgid ""
-"Voice Chat \n"
-" (Mumble)"
-msgstr "స్వర సంభాషణ (Mumble)"
+msgid "Mumble"
+msgstr ""
 
-#: plinth/modules/mumble/__init__.py:44
+#: plinth/modules/mumble/__init__.py:37
+#, fuzzy
+#| msgid ""
+#| "Voice Chat \n"
+#| " (Mumble)"
+msgid "Voice Chat"
+msgstr ""
+"స్వర సంభాషణ \n"
+" (Mumble)"
+
+#: plinth/modules/mumble/__init__.py:46
 msgid ""
 "Mumble is an open source, low-latency, encrypted, high quality voice chat "
 "software."
@@ -1765,7 +1963,7 @@ msgstr ""
 "మంబుల్ అనేది తక్కువ-జాప్యత, ఎన్క్రిప్టెడ్, అధిక నాణ్యతా వంటి విశిష్టలతో కూడిన ఒక ఓపెన్ సోర్స్ స్వర సంభాషణా "
 "సాఫ్ట్‌వేర్."
 
-#: plinth/modules/mumble/__init__.py:47
+#: plinth/modules/mumble/__init__.py:49
 #, fuzzy
 msgid ""
 "You can connect to your Mumble server on the regular Mumble port 64738. <a "
@@ -1835,21 +2033,21 @@ msgstr ""
 "ఫైర్వాల్ జోన్ ఇది సేవలు ఇంటర్ఫేస్లు అందుబాటులో ఉన్నాయి నియంత్రిస్తాయి. నమ్మదగిన నెట్వర్కులలో మాత్రమే అంతర్గత "
 "ఎంచుకోండి."
 
-#: plinth/modules/networks/forms.py:48
+#: plinth/modules/networks/forms.py:49
 #: plinth/modules/networks/templates/connections_diagram.html:78
 msgid "External"
 msgstr "బహిర్గత"
 
-#: plinth/modules/networks/forms.py:49
+#: plinth/modules/networks/forms.py:50
 #: plinth/modules/networks/templates/connections_diagram.html:107
 msgid "Internal"
 msgstr "అంతర్గత"
 
-#: plinth/modules/networks/forms.py:51
+#: plinth/modules/networks/forms.py:52
 msgid "IPv4 Addressing Method"
 msgstr "IPv4 చిరునామా ఇచ్చు పద్ధతి"
 
-#: plinth/modules/networks/forms.py:54
+#: plinth/modules/networks/forms.py:55
 #, fuzzy, python-brace-format
 msgid ""
 "\"Automatic\" method will make {box_name} acquire configuration from this "
@@ -1860,45 +2058,43 @@ msgstr ""
 "{box_name}. \"భాగస్వామ్యం\" పద్దతి ఈ నెట్వర్క్ ఖాతాదారులతో ఆకృతీకరించుటకు మరియు దాని ఇంటర్నెట్ "
 "కనెక్షన్ భాగస్వామ్యం, ఆపోర్టును చేస్తుంది {box_name} 2 చట్టం"
 
-#: plinth/modules/networks/forms.py:59
+#: plinth/modules/networks/forms.py:60
 msgid "Automatic (DHCP)"
 msgstr "స్వయం చాలకం (DHCP)"
 
-#: plinth/modules/networks/forms.py:60
-#, fuzzy
+#: plinth/modules/networks/forms.py:61
 msgid "Shared"
-msgstr "భాగస్వామ్య"
+msgstr "పంచుకోబడ్డ"
 
-#: plinth/modules/networks/forms.py:64 plinth/modules/networks/forms.py:104
+#: plinth/modules/networks/forms.py:65 plinth/modules/networks/forms.py:105
 msgid "Address"
 msgstr "చిరునామా"
 
-#: plinth/modules/networks/forms.py:68
+#: plinth/modules/networks/forms.py:69
 msgid "Netmask"
 msgstr "నెట్ మాస్క్"
 
-#: plinth/modules/networks/forms.py:69
-#, fuzzy
+#: plinth/modules/networks/forms.py:70
 msgid ""
 "Optional value. If left blank, a default netmask based on the address will "
 "be used."
-msgstr "ఐచ్ఛికము విలువ. ఖాళీగా ఉంటే, చిరునామాపై ఆధారపడి ఒక డిఫాల్ట్ నెట్మాస్క్ ఉపయోగించబడుతుంది."
+msgstr "ఐచ్ఛిక విలువ. ఖాళీగా ఉంటే, చిరునామాపై ఆధారపడి ఒక డిఫాల్ట్ నెట్మాస్క్ ఉపయోగించబడుతుంది."
 
-#: plinth/modules/networks/forms.py:74 plinth/modules/networks/forms.py:114
+#: plinth/modules/networks/forms.py:75 plinth/modules/networks/forms.py:115
 #: plinth/modules/networks/templates/connection_show.html:202
 #: plinth/modules/networks/templates/connection_show.html:241
 msgid "Gateway"
 msgstr "గేట్వే"
 
-#: plinth/modules/networks/forms.py:75 plinth/modules/networks/forms.py:115
+#: plinth/modules/networks/forms.py:76 plinth/modules/networks/forms.py:116
 msgid "Optional value."
 msgstr "ఐచ్ఛిక విలువ."
 
-#: plinth/modules/networks/forms.py:79 plinth/modules/networks/forms.py:119
+#: plinth/modules/networks/forms.py:80 plinth/modules/networks/forms.py:120
 msgid "DNS Server"
 msgstr "DNS సేవకం"
 
-#: plinth/modules/networks/forms.py:80
+#: plinth/modules/networks/forms.py:81
 #, fuzzy
 msgid ""
 "Optional value. If this value is given and IPv4 addressing method is "
@@ -1907,11 +2103,11 @@ msgstr ""
 "ఐచ్ఛికము విలువ. ఈ విలువ ఇచ్చిన మరియు IPv4 ప్రసంగిస్తున్న పద్ధతి \"ఆటోమేటిక్\" కాకపోతే, DHCP సర్వర్ "
 "అందించిన DNS సర్వర్లు విస్మరించబడుతుంది."
 
-#: plinth/modules/networks/forms.py:86 plinth/modules/networks/forms.py:126
+#: plinth/modules/networks/forms.py:87 plinth/modules/networks/forms.py:127
 msgid "Second DNS Server"
 msgstr "ద్వితీయ DNS సేవకం"
 
-#: plinth/modules/networks/forms.py:87
+#: plinth/modules/networks/forms.py:88
 #, fuzzy
 msgid ""
 "Optional value. If this value is given and IPv4 Addressing Method is "
@@ -1920,13 +2116,11 @@ msgstr ""
 "ఐచ్ఛికము విలువ. ఈ విలువ ఇచ్చిన మరియు IPv4 ప్రసంగిస్తూ విధానం \"ఆటోమేటిక్\" కాకపోతే, DHCP సర్వర్ "
 "అందించిన DNS సర్వర్లు విస్మరించబడుతుంది."
 
-#: plinth/modules/networks/forms.py:93
-#, fuzzy
-#| msgid "IPv4 Addressing Method"
+#: plinth/modules/networks/forms.py:94
 msgid "IPv6 Addressing Method"
-msgstr "IPv4 చిరునామా ఇచ్చు పద్ధతి"
+msgstr "IPv6 చిరునామా ఇచ్చు పద్ధతి"
 
-#: plinth/modules/networks/forms.py:96
+#: plinth/modules/networks/forms.py:97
 #, fuzzy, python-brace-format
 msgid ""
 "\"Automatic\" methods will make {box_name} acquire configuration from this "
@@ -1935,31 +2129,31 @@ msgstr ""
 "\"ఆటోమేటిక్\" పద్ధతులు ఒక క్లయింట్ మేకింగ్ ఈ నెట్వర్క్ నుండి {box_name} 1 ఆర్జనకు ఆకృతీకరణ "
 "చేస్తుంది."
 
-#: plinth/modules/networks/forms.py:99 plinth/modules/networks/forms.py:271
+#: plinth/modules/networks/forms.py:100 plinth/modules/networks/forms.py:272
 #, fuzzy
 msgid "Automatic"
 msgstr "స్వయంచాలక"
 
-#: plinth/modules/networks/forms.py:100
+#: plinth/modules/networks/forms.py:101
 #, fuzzy
 #| msgid "Automatic (DHCP)"
 msgid "Automatic, DHCP only"
 msgstr "స్వయం చాలకం (DHCP)"
 
-#: plinth/modules/networks/forms.py:102
+#: plinth/modules/networks/forms.py:103
 msgid "Ignore"
 msgstr "పట్టించుకోకండి"
 
-#: plinth/modules/networks/forms.py:108
+#: plinth/modules/networks/forms.py:109
 #, fuzzy
 msgid "Prefix"
 msgstr "ఉపసర్గ"
 
-#: plinth/modules/networks/forms.py:109
+#: plinth/modules/networks/forms.py:110
 msgid "Value between 1 and 128."
 msgstr "1 మరియు 128 మధ్యగల విలువ."
 
-#: plinth/modules/networks/forms.py:120
+#: plinth/modules/networks/forms.py:121
 #, fuzzy
 msgid ""
 "Optional value. If this value is given and IPv6 addressing method is "
@@ -1968,7 +2162,7 @@ msgstr ""
 "ఐచ్ఛికము విలువ. ఈ విలువ ఇవ్వబడుతుంది ఉంటే మరియు IPv6 ప్రసంగిస్తున్న పద్ధతి \"ఆటోమేటిక్\" ఉంది, "
 "DHCP సర్వర్ అందించిన DNS సర్వర్లు విస్మరించబడుతుంది"
 
-#: plinth/modules/networks/forms.py:127
+#: plinth/modules/networks/forms.py:128
 #, fuzzy
 msgid ""
 "Optional value. If this value is given and IPv6 Addressing Method is "
@@ -1977,56 +2171,56 @@ msgstr ""
 "ఐచ్ఛికము విలువ. ఈ విలువ ఇచ్చిన మరియు IPv6 ప్రసంగిస్తూ విధానం \"ఆటోమేటిక్\" కాకపోతే, DHCP సర్వర్ "
 "అందించిన DNS సర్వర్లు విస్మరించబడుతుంది."
 
-#: plinth/modules/networks/forms.py:137
+#: plinth/modules/networks/forms.py:138
 msgid "-- select --"
 msgstr "--ఎంచుకోండి--"
 
-#: plinth/modules/networks/forms.py:262
+#: plinth/modules/networks/forms.py:263
 #: plinth/modules/networks/templates/connection_show.html:144
 msgid "SSID"
 msgstr "SSID"
 
-#: plinth/modules/networks/forms.py:263
+#: plinth/modules/networks/forms.py:264
 msgid "The visible name of the network."
-msgstr "అల్లిక యొక్క కనిపించే పేరు."
+msgstr "నెట్వర్క్ యొక్క కనిపించే పేరు."
 
-#: plinth/modules/networks/forms.py:265
+#: plinth/modules/networks/forms.py:266
 #: plinth/modules/networks/templates/connection_show.html:157
 msgid "Mode"
 msgstr "విధం"
 
-#: plinth/modules/networks/forms.py:266
+#: plinth/modules/networks/forms.py:267
 msgid "Infrastructure"
 msgstr "ఇన్ఫ్రాస్ట్రక్చర్"
 
-#: plinth/modules/networks/forms.py:267
+#: plinth/modules/networks/forms.py:268
 msgid "Access Point"
 msgstr "ప్రాప్తి సూచి"
 
-#: plinth/modules/networks/forms.py:268
+#: plinth/modules/networks/forms.py:269
 #, fuzzy
 msgid "Ad-hoc"
 msgstr "తదర్థ"
 
-#: plinth/modules/networks/forms.py:270
+#: plinth/modules/networks/forms.py:271
 #, fuzzy
 msgid "Frequency Band"
 msgstr "ఫ్రీక్వెన్సీ బ్యాండ్"
 
-#: plinth/modules/networks/forms.py:272
+#: plinth/modules/networks/forms.py:273
 msgid "A (5 GHz)"
 msgstr "ఎ (5 GHz)"
 
-#: plinth/modules/networks/forms.py:273
+#: plinth/modules/networks/forms.py:274
 msgid "B/G (2.4 GHz)"
 msgstr "బి/జి(2.4GHz)"
 
-#: plinth/modules/networks/forms.py:275
+#: plinth/modules/networks/forms.py:276
 #: plinth/modules/networks/templates/connection_show.html:173
 msgid "Channel"
 msgstr "మార్గం"
 
-#: plinth/modules/networks/forms.py:276
+#: plinth/modules/networks/forms.py:277
 #, fuzzy
 msgid ""
 "Optional value. Wireless channel in the selected frequency band to restrict "
@@ -2035,13 +2229,11 @@ msgstr ""
 "ఐచ్ఛికము విలువ. ఎంపిక ఫ్రీక్వెన్సీ బ్యాండ్ వైర్లెస్ ఇన్ ఛానెల్కు నిరోధించండి. ఖాళీ లేదా 0 విలువ స్వయంచాలక "
 "ఎంపిక అర్థం."
 
-#: plinth/modules/networks/forms.py:283
-#, fuzzy
-#| msgid "SSID"
-msgid "BSSID"
-msgstr "SSID"
-
 #: plinth/modules/networks/forms.py:284
+msgid "BSSID"
+msgstr "BSSID"
+
+#: plinth/modules/networks/forms.py:285
 #, fuzzy
 msgid ""
 "Optional value. Unique identifier for the access point. When connecting to "
@@ -2051,40 +2243,38 @@ msgstr ""
 "ఐచ్ఛికము విలువ. ప్రవేశ బిందువు కోసం ప్రత్యేక ఐడెంటిఫైయర్. ఒక యాక్సెస్ పాయింట్ కనెక్ట్ చేసినప్పుడు, యాక్సెస్ "
 "పాయింట్ BSSID అందించిన మ్యాచ్లు మాత్రమే ఉంటే కనెక్ట్. ఉదాహరణ: 00: 11: 22: aa: BB: సిసి."
 
-#: plinth/modules/networks/forms.py:291
+#: plinth/modules/networks/forms.py:292
 msgid "Authentication Mode"
 msgstr "ప్రామాణీకరణ విధం"
 
-#: plinth/modules/networks/forms.py:292
+#: plinth/modules/networks/forms.py:293
 #, fuzzy
 msgid ""
 "Select WPA if the wireless network is secured and requires clients to have "
 "the password to connect."
 msgstr "వైర్లెస్ నెట్వర్క్ భద్రతతో కనెక్ట్ పాస్వర్డ్ను ఖాతాదారులకు అవసరం ఉంటే WPA ఎంచుకోండి."
 
-#: plinth/modules/networks/forms.py:294
+#: plinth/modules/networks/forms.py:295
 msgid "WPA"
 msgstr "WPA (వైఫై రక్షిత యాక్సెస్)"
 
-#: plinth/modules/networks/forms.py:295
-#, fuzzy
-#| msgid "OpenVPN"
+#: plinth/modules/networks/forms.py:296
 msgid "Open"
-msgstr "తెరచినVPN"
+msgstr "తెరచిన"
 
-#: plinth/modules/networks/forms.py:297
+#: plinth/modules/networks/forms.py:298
 msgid "Passphrase"
-msgstr "రహస్య పదం"
+msgstr "రహస్యపదం"
 
 #: plinth/modules/networks/networks.py:34
 #: plinth/modules/networks/networks.py:46
 msgid "Network Connections"
-msgstr "అల్లిక అనుసంధానాలు"
+msgstr "నెట్వర్క్ అనుసంధానాలు"
 
 #: plinth/modules/networks/networks.py:36
 #: plinth/modules/networks/networks.py:259
 msgid "Nearby Wi-Fi Networks"
-msgstr "సమీప వై-ఫై అల్లికలు"
+msgstr "సమీప వై-ఫై నెట్వర్కులు"
 
 #: plinth/modules/networks/networks.py:38
 #: plinth/modules/networks/networks.py:283
@@ -2093,7 +2283,7 @@ msgstr "అనుసంధానాన్ని జతచేయండి"
 
 #: plinth/modules/networks/networks.py:56
 msgid "Cannot show connection: Connection not found."
-msgstr "అనుసంధానం చూపించడం లేదు: అనుసంధానం దొరకలేదు."
+msgstr "అనుసంధానం చూపించలేము: అనుసంధానం దొరకలేదు."
 
 #: plinth/modules/networks/networks.py:90
 msgid "Connection Information"
@@ -2174,7 +2364,7 @@ msgid "Edit connection"
 msgstr "అనుసంధానాన్ని సవరించు"
 
 #: plinth/modules/networks/templates/connection_show.html:43
-#: plinth/templates/base.html:138
+#: plinth/templates/base.html:140 plinth/templates/base.html:141
 msgid "Edit"
 msgstr "సవరించు"
 
@@ -2191,11 +2381,6 @@ msgstr "క్రియాశీలించు"
 #: plinth/modules/networks/templates/connection_show.html:63
 msgid "Delete connection"
 msgstr "అనుసంధానం తొలగించండి"
-
-#: plinth/modules/networks/templates/connection_show.html:63
-#: plinth/modules/snapshot/templates/snapshot.html:34
-msgid "Delete"
-msgstr "తొలగించు"
 
 #: plinth/modules/networks/templates/connection_show.html:66
 #: plinth/modules/networks/templates/connections_diagram.html:73
@@ -2306,7 +2491,7 @@ msgid "This connection is not active."
 msgstr "ఈ అనుసంధానం చురుకుగాలేదు."
 
 #: plinth/modules/networks/templates/connection_show.html:266
-#: plinth/modules/security/__init__.py:32 plinth/modules/security/views.py:46
+#: plinth/modules/security/__init__.py:32 plinth/modules/security/views.py:48
 msgid "Security"
 msgstr "భద్రత"
 
@@ -2412,13 +2597,17 @@ msgstr "క్రియారహిత"
 
 #: plinth/modules/openvpn/__init__.py:42
 #, fuzzy
+#| msgid "Open"
+msgid "OpenVPN"
+msgstr "తెరచిన"
+
+#: plinth/modules/openvpn/__init__.py:44
+#, fuzzy
 #| msgid "Virtual Private Network (OpenVPN)"
-msgid ""
-"Virtual Private Network \n"
-" (OpenVPN)"
+msgid "Virtual Private Network"
 msgstr "స్వంత్ర అల్లిక వాస్తవప్రతిరూపం (OpenVPN)"
 
-#: plinth/modules/openvpn/__init__.py:46
+#: plinth/modules/openvpn/__init__.py:48
 #, fuzzy, python-brace-format
 msgid ""
 "Virtual Private Network (VPN) is a technique for securely connecting two "
@@ -2434,7 +2623,7 @@ msgstr ""
 "మిగిలిన ఇంటర్నెట్ను యాక్సెస్ చేయవచ్చు మీ {box_name} 1 అనుసంధానించవచ్చు అదనపు భద్రత మరియు "
 "అనామకత్వం కోసం."
 
-#: plinth/modules/openvpn/__init__.py:84
+#: plinth/modules/openvpn/__init__.py:86
 #, python-brace-format
 msgid ""
 "<a class=\"btn btn-primary btn-sm\" href=\"{link}\">Download Profile</a>"
@@ -2520,10 +2709,16 @@ msgstr "అమరక విఫలమైంది."
 
 #: plinth/modules/pagekite/__init__.py:44
 #, fuzzy
-msgid "Public Visibility (PageKite)"
+#| msgid "Pagekite"
+msgid "PageKite"
+msgstr "పేజ్ కైట్"
+
+#: plinth/modules/pagekite/__init__.py:46
+#, fuzzy
+msgid "Public Visibility"
 msgstr "పబ్లిక్ దృష్టి గోచరత (PageKite)"
 
-#: plinth/modules/pagekite/__init__.py:48
+#: plinth/modules/pagekite/__init__.py:50
 #, fuzzy, python-brace-format
 msgid ""
 "PageKite is a system for exposing {box_name} services when you don't have a "
@@ -2535,17 +2730,17 @@ msgstr ""
 "లేనప్పుడు కోసం ఒక వ్యవస్థ. మీ {box_name} 2 సేవలు ఇంటర్నెట్ మిగిలిన నుండి అందుబాటులో ఉంటే మీరు "
 "మాత్రమే ఈ అవసరం. ఈ క్రింది సందర్భాలలో కలిగి:"
 
-#: plinth/modules/pagekite/__init__.py:55
+#: plinth/modules/pagekite/__init__.py:57
 #, fuzzy, python-brace-format
 msgid "{box_name} is behind a restricted firewall."
 msgstr "{Box_name} 1 నిరోధిత ఫైర్వాల్ వెనుక ఉంది."
 
-#: plinth/modules/pagekite/__init__.py:59
+#: plinth/modules/pagekite/__init__.py:61
 #, fuzzy, python-brace-format
 msgid "{box_name} is connected to a (wireless) router which you don't control."
 msgstr "{Box_name} 1 మీరు నియంత్రించే లేని ఒక (వైర్లెస్) రౌటర్ అనుసంధానించబడిన."
 
-#: plinth/modules/pagekite/__init__.py:62
+#: plinth/modules/pagekite/__init__.py:64
 #, fuzzy
 msgid ""
 "Your ISP does not provide you an external IP address and instead provides "
@@ -2554,7 +2749,7 @@ msgstr ""
 "మీ ISP మీరు ఒక బాహ్య IP చిరునామా అందించడం లేదు మరియు బదులుగా NAT ద్వారా ఇంటర్నెట్ కనెక్షన్ "
 "అందిస్తుంది."
 
-#: plinth/modules/pagekite/__init__.py:65
+#: plinth/modules/pagekite/__init__.py:67
 #, fuzzy
 msgid ""
 "Your ISP does not provide you a static IP address and your IP address "
@@ -2563,12 +2758,12 @@ msgstr ""
 "మీ ISP మీరు స్టాటిక్ IP చిరునామా అందించడం లేదు మరియు మీ IP చిరునామా మీరు ఇంటర్నెట్ కు కనెక్ట్ ప్రతి "
 "సమయ మార్పులు."
 
-#: plinth/modules/pagekite/__init__.py:68
+#: plinth/modules/pagekite/__init__.py:70
 #, fuzzy
 msgid "Your ISP limits incoming connections."
 msgstr "మీ ISP ఇన్కమింగ్ కనెక్షన్లను పరిమితం చేస్తుంది."
 
-#: plinth/modules/pagekite/__init__.py:71
+#: plinth/modules/pagekite/__init__.py:73
 #, python-brace-format
 msgid ""
 "PageKite works around NAT, firewalls and IP-address limitations by using a "
@@ -2621,14 +2816,12 @@ msgid "Example: mybox.pagekite.me"
 msgstr "ఉదాహరణ: mybox.pagekite.me"
 
 #: plinth/modules/pagekite/forms.py:85
-#, fuzzy
 msgid "Invalid kite name"
-msgstr "చెల్లని గాలిపటం పేరు"
+msgstr "చెల్లని కైట్ పేరు"
 
 #: plinth/modules/pagekite/forms.py:88
-#, fuzzy
 msgid "Kite secret"
-msgstr "కైట్ రహస్య"
+msgstr "కైట్ రహస్యము"
 
 #: plinth/modules/pagekite/forms.py:90
 #, fuzzy
@@ -2658,14 +2851,14 @@ msgid "PageKite disabled"
 msgstr "PageKite వికలాంగ"
 
 #: plinth/modules/pagekite/forms.py:158
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Service enabled: {name}"
-msgstr "సేవ ప్రారంభించబడింది: {పేరు} 1"
+msgstr "సేవ ప్రారంభించబడింది: {name}"
 
 #: plinth/modules/pagekite/forms.py:162
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Service disabled: {name}"
-msgstr "సేవ నిలిపివేయబడింది: {పేరు} 1"
+msgstr "సేవ నిలిపివేయబడింది: {name}"
 
 #: plinth/modules/pagekite/forms.py:173
 #, fuzzy
@@ -2683,9 +2876,8 @@ msgid "internal (freedombox) port"
 msgstr "అంతర్గత (freedombox) పోర్ట్"
 
 #: plinth/modules/pagekite/forms.py:181
-#, fuzzy
 msgid "Enable Subdomains"
-msgstr "సబ్డొమైన్లు ప్రారంభించు"
+msgstr "సబ్డొమైన్లు క్రియాశీలీకరించు"
 
 #: plinth/modules/pagekite/forms.py:215
 #, fuzzy
@@ -2747,9 +2939,8 @@ msgid "PageKite Account"
 msgstr "PageKite ఖాతా"
 
 #: plinth/modules/pagekite/templates/pagekite_configure.html:41
-#, fuzzy
 msgid "Save settings"
-msgstr "సెట్టింగులను సేవ్"
+msgstr "అమరికలు దాచు"
 
 #: plinth/modules/pagekite/templates/pagekite_custom_services.html:44
 msgid ""
@@ -2766,9 +2957,8 @@ msgid "Create a custom service"
 msgstr "వినియొగధారుది సేవ సృష్టించు"
 
 #: plinth/modules/pagekite/templates/pagekite_custom_services.html:64
-#, fuzzy
 msgid "Add Service"
-msgstr "సర్వీస్ జోడించండి"
+msgstr "సేవ జోడించండి"
 
 #: plinth/modules/pagekite/templates/pagekite_custom_services.html:71
 msgid "Existing custom services"
@@ -2885,20 +3075,26 @@ msgstr "కస్టమ్ సేవలు"
 msgid "Pagekite setup finished. The HTTP and HTTPS services are activated now."
 msgstr "పేజెకైట్ ఏర్పాటు పూర్తి అయినది. ఏచ్.టి.టి.పి మరియు ఏచ్.టి.టి.పి.ఎస్ సేవలు క్రియాశీలకంగా చేయబడ్డాయి."
 
-#: plinth/modules/power/__init__.py:30 plinth/modules/power/views.py:50
-#: plinth/modules/power/views.py:65
+#: plinth/modules/power/__init__.py:28 plinth/modules/power/views.py:51
+#: plinth/modules/power/views.py:67
 msgid "Power"
 msgstr "శక్తి"
 
-#: plinth/modules/power/__init__.py:33
+#: plinth/modules/power/__init__.py:31
 msgid "Restart or shut down the system."
 msgstr "పునఃప్రారంభించండి  లేదా సిస్టమ్ మూసివేయండి."
 
 #: plinth/modules/power/templates/power.html:28
+msgid ""
+"Currently an installation or upgrade is running. Consider waiting until it's "
+"finished before shutting down or restarting."
+msgstr ""
+
+#: plinth/modules/power/templates/power.html:37
 msgid "Restart &raquo;"
 msgstr "&raquo ని పునఃప్రారంభించండి;"
 
-#: plinth/modules/power/templates/power.html:31
+#: plinth/modules/power/templates/power.html:40
 msgid "Shut Down &raquo;"
 msgstr "&raquo ని మూసివేయండి;"
 
@@ -2910,7 +3106,14 @@ msgstr ""
 "మీరు ఖచ్చితంగా మళ్ళీ ప్రారంభించాలని మీరు భావిస్తున్నారా? మీరు సిస్టమ్ ని పునఃప్రారంభిచెంత వరకు కొన్ని "
 "నిమిషాలు ఈ వెబ్ ఇంటర్ఫేస్ ని యాక్సెస్ చేయలేరు."
 
-#: plinth/modules/power/templates/power_restart.html:42
+#: plinth/modules/power/templates/power_restart.html:38
+msgid ""
+"Currently an installation or upgrade is running. Consider waiting until it's "
+"finished before restarting."
+msgstr ""
+
+#: plinth/modules/power/templates/power_restart.html:52
+#: plinth/modules/power/templates/power_restart.html:55
 msgid "Restart Now"
 msgstr "మళ్ళీ పునఃప్రారంభించండి"
 
@@ -2921,25 +3124,34 @@ msgid ""
 msgstr ""
 "మీరు ఖచ్చితంగా మూసివేయాలనుకుంటున్నారా ? మీరు మూసివేసిన తరువాత  ఈ వెబ్ ఇంటర్ఫేస్ ని యాక్సెస్ చేయలేరు."
 
-#: plinth/modules/power/templates/power_shutdown.html:41
+#: plinth/modules/power/templates/power_shutdown.html:37
+msgid ""
+"Currently an installation or upgrade is running. Consider waiting until it's "
+"finished before shutting down."
+msgstr ""
+
+#: plinth/modules/power/templates/power_shutdown.html:51
+#: plinth/modules/power/templates/power_shutdown.html:54
 msgid "Shut Down Now"
 msgstr "ఇపుడు మూసివేయండి"
 
 #: plinth/modules/privoxy/__init__.py:43
+msgid "Privoxy"
+msgstr ""
+
+#: plinth/modules/privoxy/__init__.py:45
 #, fuzzy
-msgid ""
-"Web Proxy \n"
-" (Privoxy)"
+msgid "Web Proxy"
 msgstr "వెబ్ ప్రాక్సీ (Privoxy)"
 
-#: plinth/modules/privoxy/__init__.py:46
+#: plinth/modules/privoxy/__init__.py:48
 msgid ""
 "Privoxy is a non-caching web proxy with advanced filtering capabilities for "
 "enhancing privacy, modifying web page data and HTTP headers, controlling "
 "access, and removing ads and other obnoxious Internet junk. "
 msgstr ""
 
-#: plinth/modules/privoxy/__init__.py:52
+#: plinth/modules/privoxy/__init__.py:54
 #, python-brace-format
 msgid ""
 "You can use Privoxy by modifying your browser proxy settings to your "
@@ -2949,19 +3161,21 @@ msgid ""
 "\">http://p.p</a>."
 msgstr ""
 
-#: plinth/modules/privoxy/__init__.py:144
+#: plinth/modules/privoxy/__init__.py:147
 #, python-brace-format
 msgid "Access {url} with proxy {proxy} on tcp{kind}"
 msgstr "టీసీపీ{kind} పై{proxy} తో యాక్సిస్ {url} చేయండి"
 
 #: plinth/modules/quassel/__init__.py:42
+msgid "Quassel"
+msgstr ""
+
+#: plinth/modules/quassel/__init__.py:44
 #, fuzzy
-msgid ""
-"IRC Client \n"
-" (Quassel)"
+msgid "IRC Client"
 msgstr "ఐ ర్ సి క్లయింట్ (Quassel)"
 
-#: plinth/modules/quassel/__init__.py:46
+#: plinth/modules/quassel/__init__.py:48
 #, python-brace-format
 msgid ""
 "Quassel is an IRC application that is split into two parts, a \"core\" and a "
@@ -2972,7 +3186,7 @@ msgid ""
 "connect and disconnect from it."
 msgstr ""
 
-#: plinth/modules/quassel/__init__.py:54
+#: plinth/modules/quassel/__init__.py:56
 msgid ""
 "You can connect to your Quassel core on the default Quassel port 4242.  "
 "Clients to connect to Quassel from your <a href=\"http://quassel-irc.org/"
@@ -2981,21 +3195,22 @@ msgid ""
 msgstr ""
 
 #: plinth/modules/radicale/__init__.py:43
+msgid "Radicale"
+msgstr ""
+
+#: plinth/modules/radicale/__init__.py:45
 #, fuzzy
 #| msgid "Calendar and Addressbook (Radicale)"
-msgid ""
-"Calendar and Addressbook \n"
-" (Radicale)"
+msgid "Calendar and Addressbook"
 msgstr "క్యాలెండర్ మరియు అడ్రెస్ బుక్ (Radicale)"
 
-#: plinth/modules/radicale/__init__.py:47
+#: plinth/modules/radicale/__init__.py:49
 #, python-brace-format
 msgid ""
 "Radicale is a CalDAV and CardDAV server. It allows synchronization and "
 "sharing of scheduling and contact data. To use Radicale, a <a href=\"http://"
-"radicale.org/user_documentation/#idcaldav-and-carddav-clients\"> supported "
-"client application</a> is needed. Radicale can be accessed by any user with "
-"a {box_name} login."
+"radicale.org/clients/\">supported client application</a> is needed. Radicale "
+"can be accessed by any user with a {box_name} login."
 msgstr ""
 
 #: plinth/modules/radicale/forms.py:28
@@ -3020,14 +3235,16 @@ msgid "Access rights configuration updated"
 msgstr "ఆకృతీకరణ నవీకరించబడింది"
 
 #: plinth/modules/repro/__init__.py:38
-#, fuzzy
-#| msgid "GnudIP Server Address"
-msgid ""
-"SIP Server \n"
-" (repro)"
-msgstr "సేవిక చిరునామా GnudIP"
+msgid "repro"
+msgstr ""
 
-#: plinth/modules/repro/__init__.py:41
+#: plinth/modules/repro/__init__.py:40
+#, fuzzy
+#| msgid "DNS Server"
+msgid "SIP Server"
+msgstr "DNS సేవకం"
+
+#: plinth/modules/repro/__init__.py:43
 msgid ""
 "repro provides various SIP services that a SIP softphone can utilize to "
 "provide audio and video calls as well as presence and instant messaging. "
@@ -3036,7 +3253,7 @@ msgid ""
 "communications to other servers on the Internet similar to email."
 msgstr ""
 
-#: plinth/modules/repro/__init__.py:48
+#: plinth/modules/repro/__init__.py:50
 msgid ""
 "To make SIP calls, a client application is needed. Available clients include "
 "<a href=\"https://jitsi.org/\">Jitsi</a> (for computers) and <a href="
@@ -3044,7 +3261,7 @@ msgid ""
 "a> (for Android phones)."
 msgstr ""
 
-#: plinth/modules/repro/__init__.py:53
+#: plinth/modules/repro/__init__.py:55
 msgid ""
 "<strong>Note:</strong>  Before using repro, domains and users will need to "
 "be configured using the <a href=\"/repro/domains.html\">web-based "
@@ -3054,13 +3271,15 @@ msgid ""
 msgstr ""
 
 #: plinth/modules/restore/__init__.py:36
+msgid "reStore"
+msgstr ""
+
+#: plinth/modules/restore/__init__.py:38
 #, fuzzy
-msgid ""
-"Unhosted Storage \n"
-" (reStore)"
+msgid "Unhosted Storage"
 msgstr "అన్హొస్టెడ్ స్టోరేజ్  ని (పునరుద్ధరించండి)"
 
-#: plinth/modules/restore/__init__.py:40
+#: plinth/modules/restore/__init__.py:42
 #, python-brace-format
 msgid ""
 "reStore is a server for <a href='https://unhosted.org/'>unhosted</a> web "
@@ -3070,7 +3289,7 @@ msgid ""
 "becomes your unhosted storage server."
 msgstr ""
 
-#: plinth/modules/restore/__init__.py:47
+#: plinth/modules/restore/__init__.py:49
 msgid ""
 "You can create and edit accounts in the <a href='/restore/'>reStore web-"
 "interface</a>."
@@ -3079,13 +3298,15 @@ msgstr ""
 "పునరుద్ధరించండి</a>."
 
 #: plinth/modules/roundcube/__init__.py:35
+msgid "Roundcube"
+msgstr ""
+
+#: plinth/modules/roundcube/__init__.py:37
 #, fuzzy
-msgid ""
-"Email Client \n"
-" (Roundcube)"
+msgid "Email Client"
 msgstr "తపాల బంట్రౌతు(Roundcube)"
 
-#: plinth/modules/roundcube/__init__.py:38
+#: plinth/modules/roundcube/__init__.py:40
 msgid ""
 "Roundcube webmail is a browser-based multilingual IMAP client with an "
 "application-like user interface. It provides full functionality you expect "
@@ -3093,7 +3314,7 @@ msgid ""
 "manipulation, message searching and spell checking."
 msgstr ""
 
-#: plinth/modules/roundcube/__init__.py:44
+#: plinth/modules/roundcube/__init__.py:46
 msgid ""
 "You can access Roundcube from <a href=\"/roundcube\">/roundcube</a>. Provide "
 "the username and password of the email account you wish to access followed "
@@ -3102,7 +3323,7 @@ msgid ""
 "server field like <code>imaps://imap.example.com</code>."
 msgstr ""
 
-#: plinth/modules/roundcube/__init__.py:51
+#: plinth/modules/roundcube/__init__.py:53
 msgid ""
 "For Gmail, username will be your Gmail address, password will be your Google "
 "account password and server will be <code>imaps://imap.gmail.com</code>.  "
@@ -3126,32 +3347,45 @@ msgstr ""
 "అవగలరు లేదా ఎస్ ఎస్ అహ్ ద్వారా . కన్సోల్ వాడుకదారులు మరింత అనుమతి లేకుండా కొన్ని సేవలు యాక్సెస్ "
 "చేయవచ్చు."
 
-#: plinth/modules/security/views.py:63
+#: plinth/modules/security/forms.py:35
+msgid "Fail2ban (recommended)"
+msgstr ""
+
+#: plinth/modules/security/forms.py:36
+msgid ""
+"When this option is enabled, fail2ban will limit brute force break-in "
+"attempts to the SSH server and other password protected internet-services "
+"which are enabled."
+msgstr ""
+
+#: plinth/modules/security/views.py:66
 #, fuzzy, python-brace-format
 #| msgid "Error setting time zone: {exception}"
 msgid "Error setting restricted access: {exception}"
 msgstr "సమయమండలం అమర్పులోపం: {exception}"
 
-#: plinth/modules/security/views.py:66
+#: plinth/modules/security/views.py:69
 #, fuzzy
 #| msgid "General Configuration"
 msgid "Updated security configuration"
 msgstr "సాధారణ ఆకృతీకరణ"
 
 #: plinth/modules/shaarli/__init__.py:35
+msgid "Shaarli"
+msgstr ""
+
+#: plinth/modules/shaarli/__init__.py:37
 #, fuzzy
-msgid ""
-"Bookmarks \n"
-" (Shaarli)"
+msgid "Bookmarks"
 msgstr ""
 "గుర్తుంచు\n"
 " (Shaarli)"
 
-#: plinth/modules/shaarli/__init__.py:38
+#: plinth/modules/shaarli/__init__.py:40
 msgid "Shaarli allows you to save and share bookmarks."
 msgstr "రు బుక్మార్క్లు ని సేవ్ మరియు పంచుకొనుటకు షార్లి  అనుమతిస్తుంది."
 
-#: plinth/modules/shaarli/__init__.py:40
+#: plinth/modules/shaarli/__init__.py:42
 msgid ""
 "When enabled, Shaarli will be available from <a href=\"/shaarli\">/shaarli</"
 "a> path on the web server. Note that Shaarli only supports a single user "
@@ -3199,7 +3433,7 @@ msgstr "రోల్బ్యాక్"
 #, fuzzy
 #| msgid "Inactive"
 msgid "active"
-msgstr "క్రియారహిత"
+msgstr "క్రియాశీల"
 
 #: plinth/modules/snapshot/templates/snapshot.html:53
 #, python-format
@@ -3273,6 +3507,18 @@ msgstr "రొల్ల్బచ్క్ ని పూర్తి చేయడ
 msgid "Rollback to Snapshot"
 msgstr "చాయాచిత్రం కు రొల్ల్బచ్క్ చేయండి"
 
+#: plinth/modules/ssh/__init__.py:37
+msgid "Secure Shell (SSH) Server"
+msgstr ""
+
+#: plinth/modules/ssh/__init__.py:40
+msgid ""
+"A Secure Shell server uses the secure shell protocol to accept connections "
+"from remote computers. An authorized remote computer can perform "
+"administration tasks, copy files or run other services using such "
+"connections."
+msgstr ""
+
 #: plinth/modules/sso/__init__.py:30
 msgid "Single Sign On"
 msgstr ""
@@ -3282,12 +3528,14 @@ msgid "Login"
 msgstr "ప్రవేశ ద్వారం"
 
 #: plinth/modules/syncthing/__init__.py:39
-msgid ""
-"File Synchronization \n"
-" (Syncthing)"
+msgid "Syncthing"
 msgstr ""
 
-#: plinth/modules/syncthing/__init__.py:42
+#: plinth/modules/syncthing/__init__.py:41
+msgid "File Synchronization"
+msgstr ""
+
+#: plinth/modules/syncthing/__init__.py:44
 msgid ""
 "Syncthing is an application to synchronize files across multiple devices, e."
 "g. your desktop computer and mobile phone.  Creation, modification, or "
@@ -3295,7 +3543,7 @@ msgid ""
 "other devices that also run Syncthing."
 msgstr ""
 
-#: plinth/modules/syncthing/__init__.py:47
+#: plinth/modules/syncthing/__init__.py:49
 #, python-brace-format
 msgid ""
 "Running Syncthing on {box_name} provides an extra synchronization point for "
@@ -3306,7 +3554,7 @@ msgid ""
 "{box_name} is only available for users belonging to the \"admin\" group."
 msgstr ""
 
-#: plinth/modules/syncthing/__init__.py:54
+#: plinth/modules/syncthing/__init__.py:56
 msgid ""
 "When enabled, Syncthing's web interface will be available from <a href=\"/"
 "syncthing/\">/syncthing</a>.  Desktop and mobile clients are also <a href="
@@ -3314,10 +3562,14 @@ msgid ""
 msgstr ""
 
 #: plinth/modules/tahoe/__init__.py:42
-msgid "Distributed File Storage (Tahoe-LAFS)"
+msgid "Tahoe-LAFS"
 msgstr ""
 
-#: plinth/modules/tahoe/__init__.py:73
+#: plinth/modules/tahoe/__init__.py:44
+msgid "Distributed File Storage"
+msgstr ""
+
+#: plinth/modules/tahoe/__init__.py:75
 msgid ""
 "Tahoe-LAFS is a decentralized secure file storage system. It uses provider "
 "independent security to store files over a distributed network of storage "
@@ -3325,7 +3577,7 @@ msgid ""
 "remaining nodes."
 msgstr ""
 
-#: plinth/modules/tahoe/__init__.py:78
+#: plinth/modules/tahoe/__init__.py:80
 #, python-brace-format
 msgid ""
 "This {box_name} hosts a storage node and an introducer by default. "
@@ -3359,10 +3611,8 @@ msgid "Add new introducer"
 msgstr ""
 
 #: plinth/modules/tahoe/templates/tahoe-post-setup.html:82
-#, fuzzy
-#| msgid "Address"
 msgid "Add"
-msgstr "చిరునామా"
+msgstr "జోడించు"
 
 #: plinth/modules/tahoe/templates/tahoe-post-setup.html:87
 msgid "Connected introducers"
@@ -3372,7 +3622,17 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: plinth/modules/tor/__init__.py:45
+#: plinth/modules/tor/__init__.py:42
+msgid "Tor"
+msgstr ""
+
+#: plinth/modules/tor/__init__.py:44
+#, fuzzy
+#| msgid "Tor Anonymity Network"
+msgid "Anonymity Network"
+msgstr "టోర్ అనామిక నెట్‌వర్క్"
+
+#: plinth/modules/tor/__init__.py:47
 msgid ""
 "Tor is an anonymous communication system. You can learn more about it from "
 "the <a href=\"https://www.torproject.org/\">Tor Project</a> website. For "
@@ -3381,36 +3641,36 @@ msgid ""
 "\">Tor Browser</a>."
 msgstr ""
 
-#: plinth/modules/tor/__init__.py:70 plinth/modules/tor/__init__.py:112
+#: plinth/modules/tor/__init__.py:72 plinth/modules/tor/__init__.py:114
 msgid "Tor Anonymity Network"
 msgstr "టోర్ అనామిక నెట్‌వర్క్"
 
-#: plinth/modules/tor/__init__.py:76 plinth/modules/tor/__init__.py:120
+#: plinth/modules/tor/__init__.py:78 plinth/modules/tor/__init__.py:122
 msgid "Tor Bridge Relay"
 msgstr ""
 
-#: plinth/modules/tor/__init__.py:98 plinth/modules/tor/__init__.py:141
+#: plinth/modules/tor/__init__.py:100 plinth/modules/tor/__init__.py:143
 msgid "Tor Hidden Service"
 msgstr ""
 
-#: plinth/modules/tor/__init__.py:160
+#: plinth/modules/tor/__init__.py:162
 msgid "Tor relay port available"
 msgstr ""
 
-#: plinth/modules/tor/__init__.py:168
+#: plinth/modules/tor/__init__.py:170
 msgid "Obfs3 transport registered"
 msgstr ""
 
-#: plinth/modules/tor/__init__.py:174
+#: plinth/modules/tor/__init__.py:176
 msgid "Obfs4 transport registered"
 msgstr ""
 
-#: plinth/modules/tor/__init__.py:211
+#: plinth/modules/tor/__init__.py:213
 #, python-brace-format
 msgid "Access URL {url} on tcp{kind} via Tor"
 msgstr ""
 
-#: plinth/modules/tor/__init__.py:222
+#: plinth/modules/tor/__init__.py:224
 #, python-brace-format
 msgid "Confirm Tor usage at {url} on tcp{kind}"
 msgstr "టోర్ వాడుకను నిర్ధారించండి{url} టీ సి పి పై{kind}"
@@ -3556,18 +3816,22 @@ msgid "An error occurred during configuration."
 msgstr ""
 
 #: plinth/modules/transmission/__init__.py:38
-msgid ""
-"BitTorrent \n"
-" (Transmission)"
+msgid "Transmission"
 msgstr ""
 
-#: plinth/modules/transmission/__init__.py:41
+#: plinth/modules/transmission/__init__.py:40
+#, fuzzy
+#| msgid "Deluge BitTorrent"
+msgid "BitTorrent"
+msgstr "బిట్ టొర్రెంట్ ప్రళయం"
+
+#: plinth/modules/transmission/__init__.py:43
 msgid ""
 "BitTorrent is a peer-to-peer file sharing protocol. Transmission daemon "
 "handles Bitorrent file sharing.  Note that BitTorrent is not anonymous."
 msgstr ""
 
-#: plinth/modules/transmission/__init__.py:44
+#: plinth/modules/transmission/__init__.py:46
 msgid ""
 "Access the web interface at <a href=\"/transmission\">/transmission</a>."
 msgstr ""
@@ -3593,23 +3857,27 @@ msgid ""
 "hashed format.  To set a new password, enter the password in plain text."
 msgstr ""
 
-#: plinth/modules/ttrss/__init__.py:37
-msgid ""
-"News Feed Reader \n"
-" (Tiny Tiny RSS)"
+#: plinth/modules/ttrss/__init__.py:39
+msgid "Tiny Tiny RSS"
 msgstr ""
 
-#: plinth/modules/ttrss/__init__.py:40
+#: plinth/modules/ttrss/__init__.py:41
+msgid "News Feed Reader"
+msgstr ""
+
+#: plinth/modules/ttrss/__init__.py:44
 msgid ""
 "Tiny Tiny RSS is a news feed (RSS/Atom) reader and aggregator, designed to "
 "allow reading news from any location, while feeling as close to a real "
 "desktop application as possible."
 msgstr ""
 
-#: plinth/modules/ttrss/__init__.py:44
+#: plinth/modules/ttrss/__init__.py:49
+#, python-brace-format
 msgid ""
 "When enabled, Tiny Tiny RSS will be available from <a href=\"/tt-rss\">/tt-"
-"rss</a> path on the web server."
+"rss</a> path on the web server. It can be accessed by any <a href=\"/plinth/"
+"sys/users\">user with a {box_name} login</a>."
 msgstr ""
 
 #: plinth/modules/upgrades/__init__.py:35
@@ -3815,10 +4083,8 @@ msgstr ""
 "మార్చుకోగలరు. ఈ వినియోగడారునికి పరిపాలనా అధికారాలు ఇవ్వబడుతాయి. మిగిలిన వినియోగదారులను తరువాత జోడించగలరు."
 
 #: plinth/modules/users/templates/users_firstboot.html:45
-#, fuzzy
-#| msgid "Create Connection"
 msgid "Create Account"
-msgstr "అనుసంధానం సృష్టించు"
+msgstr "ఖాతా సృష్టించు"
 
 #: plinth/modules/users/templates/users_list.html:47
 #, python-format
@@ -3905,15 +4171,11 @@ msgstr "ప్రసార మాధ్యమం మార్పు"
 msgid "configuration file: {file}"
 msgstr "ఆకృతీకరణ ఫైలు: {file}"
 
-#: plinth/service.py:119
+#: plinth/service.py:118
 msgid "Web Server over Secure Socket Layer"
 msgstr ""
 
-#: plinth/service.py:121
-msgid "Secure Shell (SSH) Server"
-msgstr ""
-
-#: plinth/service.py:123
+#: plinth/service.py:120
 #, python-brace-format
 msgid "{box_name} Web Interface (Plinth)"
 msgstr ""
@@ -3956,11 +4218,11 @@ msgid ""
 "\"%(status_log_url)s\">status log</a> to the bug report."
 msgstr ""
 
-#: plinth/templates/apps.html:25
+#: plinth/templates/apps.html:33
 msgid "Services and Applications"
 msgstr "సేవ మరియు అనువర్తనాలు"
 
-#: plinth/templates/apps.html:28
+#: plinth/templates/apps.html:36
 #, python-format
 msgid ""
 "You can install and run various services and applications on your "
@@ -3970,7 +4232,7 @@ msgstr ""
 "మీరు మీ %(box_name)s లో వివిధ సాఫ్ట్‌వేర్లను ఇన్‌స్టాల్ చేసుకొనగలరు. ఏదన్న సాఫ్ట్‌వేర్ గురించి "
 "తెలుసుకొనుటకు లేదా ఇన్‌స్టాల్ చేస్కోనుటకు మీ ఎడమ వైపున ఉన్న లింక్ మీద నొక్కగలరు."
 
-#: plinth/templates/apps.html:36
+#: plinth/templates/apps.html:44
 msgid ""
 "This box can be your photo sharing site, your instant messaging site, your "
 "social networking site, your news site.  Remember web portals?  We can be "
@@ -3998,20 +4260,30 @@ msgstr ""
 msgid "Apps"
 msgstr "అనువర్తనాలు"
 
-#: plinth/templates/base.html:140 plinth/templates/base.html:141
+#: plinth/templates/base.html:146 plinth/templates/base.html:147
 msgid "Change password"
 msgstr ""
 
-#: plinth/templates/base.html:145 plinth/templates/base.html:159
-#: plinth/templates/base.html:161
+#: plinth/templates/base.html:152 plinth/templates/base.html:153
+#: plinth/templates/base.html:190 plinth/templates/base.html:192
 msgid "Log out"
 msgstr ""
 
-#: plinth/templates/base.html:151 plinth/templates/base.html:153
+#: plinth/templates/base.html:168 plinth/templates/base.html:169
+msgid "Restart"
+msgstr "పునఃప్రారంభించండి"
+
+#: plinth/templates/base.html:174 plinth/templates/base.html:175
+#, fuzzy
+#| msgid "Shut Down Now"
+msgid "Shut down"
+msgstr "ఇపుడు మూసివేయండి"
+
+#: plinth/templates/base.html:182 plinth/templates/base.html:184
 msgid "Log in"
 msgstr "లోనికి ప్రవేశించండి"
 
-#: plinth/templates/base.html:225 plinth/templates/index.html:164
+#: plinth/templates/base.html:256 plinth/templates/index.html:164
 msgid "JavaScript license information"
 msgstr ""
 
@@ -4087,14 +4359,12 @@ msgid "Service <em>%(service_name)s</em> is not running."
 msgstr "సేవ ఆవిష్కరణ సేవికను నడుపటంలేదు"
 
 #: plinth/templates/setup.html:35
-#, fuzzy
 msgid "Installation"
-msgstr "సంస్థాపన"
+msgstr "నిక్షిప్తం"
 
 #: plinth/templates/setup.html:45
-#, fuzzy
 msgid "Install this application?"
-msgstr "ఈ అప్లికేషన్ ను వ్యవస్థాపించాలా?"
+msgstr "ఈ అనువర్తనాన్ని నిక్షిప్తం చేయాలా?"
 
 #: plinth/templates/setup.html:55 plinth/templates/setup.html:79
 msgid ""
@@ -4108,9 +4378,8 @@ msgid "Install"
 msgstr "నిక్షిప్తం చేయు"
 
 #: plinth/templates/setup.html:69
-#, fuzzy
 msgid "This application needs an update. Update now?"
-msgstr "ఈ అప్లికేషన్ ఒక నవీకరణ అవసరం. ఇప్పుడే నవీకరించండి?"
+msgstr "ఈ అనువర్తనానికి నవీకరణ అవసరం. ఇప్పుడే నవీకరిస్తారా?"
 
 #: plinth/templates/setup.html:88
 msgid "Update"
@@ -4134,21 +4403,58 @@ msgstr "సంస్థాపన %(package_names)s%:(status)s"
 msgid "%(percentage)s%% complete"
 msgstr "%(percentage)s %% పూర్తి"
 
-#: plinth/templates/system.html:25
+#: plinth/templates/system.html:33
 msgid "System Configuration"
 msgstr "వ్యవస్థ రూపశిల్పం"
 
-#: plinth/templates/system.html:28
+#: plinth/templates/system.html:36
 #, fuzzy, python-format
 #| msgid "Here you can administrate the underlying system of your {box_name}."
 msgid "Here you can administrate the underlying system of your %(box_name)s."
 msgstr "ఇక్కడ మీరు అంతర్లీన వ్యవస్థ పరిపాలకుడుగా మీ {box_name}."
 
-#: plinth/templates/system.html:34
+#: plinth/templates/system.html:42
 #, python-format
 msgid ""
 "The options affect the %(box_name)s at its most general level, so be careful!"
 msgstr ""
+
+#~ msgid "Select the domain name to be used for diaspora*"
+#~ msgstr "diaspora* కొరకు వాడవలసిన డొమైన్ పేరును ఎంచుకోండి"
+
+#, fuzzy
+#~ msgid ""
+#~ "Warning! Do not change the FreedomBox domain name after setting up "
+#~ "diaspora*"
+#~ msgstr "హెచ్చరిక! diaspora అమర్చిన తరువాత FreedomBox అధికారక్షేత్రం పేరును మార్చరాదు"
+
+#, fuzzy
+#~ msgid ""
+#~ "Chat Server \n"
+#~ " (ejabberd)"
+#~ msgstr ""
+#~ "చాట్ సర్వర్\n"
+#~ " (ejabberd)"
+
+#~ msgid "Wiki and Blog (ikiwiki)"
+#~ msgstr "వికీ & బ్లాగ్ (Ikiwiki)"
+
+#, fuzzy
+#~| msgid "Gobby Server (infinoted)"
+#~ msgid ""
+#~ "Gobby Server \n"
+#~ " (infinoted)"
+#~ msgstr "గొబ్బయ్ సర్వర్ (ఇన్ఫినోటెడ్)"
+
+#~ msgid "Select the domain name"
+#~ msgstr "డొమైన్ పేరు ఎంచుకోండి"
+
+#, fuzzy
+#~| msgid "GnudIP Server Address"
+#~ msgid ""
+#~ "SIP Server \n"
+#~ " (repro)"
+#~ msgstr "సేవిక చిరునామా GnudIP"
 
 #~ msgid "Applications"
 #~ msgstr "అనువర్తనాలు"
@@ -4319,12 +4625,6 @@ msgstr ""
 #~ msgid "BitTorrent (Deluge)"
 #~ msgstr "బిట్ టొర్రెంట్ (ప్రళయం)"
 
-#~ msgid "Deluge BitTorrent"
-#~ msgstr "బిట్ టొర్రెంట్ ప్రళయం"
-
-#~ msgid "Enable Deluge"
-#~ msgstr "ప్రళయనిఅమలుచెయ్యి"
-
 #~ msgid "System Diagnostics"
 #~ msgstr "లక్షణములు వ్యవస్థ"
 
@@ -4335,16 +4635,6 @@ msgstr ""
 #~| msgid "Ikiwiki wikis and blogs"
 #~ msgid "ikiwiki wikis and blogs"
 #~ msgstr "వికీలు మరియు బ్లాగ్ లు Ikiwik"
-
-#, fuzzy
-#~| msgid "Enable Ikiwiki"
-#~ msgid "Enable ikiwiki"
-#~ msgstr "Ikiwiki అమలుచెయ్యి"
-
-#, fuzzy
-#~| msgid "Wiki & Blog"
-#~ msgid "Wiki and Blog"
-#~ msgstr "వికీ & బ్లాగ్"
 
 #~ msgid "Mumble Voice Chat Server"
 #~ msgstr "మంబ్లు సేవిక మాటామంతి గాత్రం"

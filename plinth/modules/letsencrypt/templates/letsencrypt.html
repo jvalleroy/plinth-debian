@@ -49,13 +49,39 @@
           <tbody>
             {% for domain, domain_status in status.domains.items %}
               <tr>
-                <td>{{ domain }}</td>
                 <td>
-                  {% if domain_status.certificate_available %}
+                  {% if domain == status.current_domain.name %}
+                    <b>{{ domain }}</b>
+                  {% else %}
+                    {{ domain }}
+                  {% endif %}
+                </td>
+                <td>
+                  {% if domain_status.certificate_available and domain_status.validity == "valid" %}
                     <span class="label label-success">
                       {% blocktrans trimmed with expiry_date=domain_status.expiry_date %}
-                        Expires on {{ expiry_date }}
+                        Valid, expires on {{ expiry_date }}
                       {% endblocktrans %}
+                    </span>
+                  {% elif domain_status.certificate_available and not domain_status.validity == "valid" %}
+                    <span class="label label-warning">
+                      {% if "revoked" in domain_status.validity %}
+                        {% blocktrans trimmed %}
+                          Revoked
+                        {% endblocktrans %}
+                      {% elif "expired" in domain_status.validity %}
+                        {% blocktrans trimmed with expiry_date=domain_status.expiry_date %}
+                          Expired on {{ expiry_date }}
+                        {% endblocktrans %}
+                      {% elif "test" in domain_status.validity %}
+                        {% blocktrans trimmed %}
+                          Invalid test certificate
+                        {% endblocktrans %}
+                      {% else %}
+                        {% blocktrans trimmed with reason=domain_status.validity %}
+                          Invalid ({{ reason }})
+                        {% endblocktrans %}
+                      {% endif %}
                     </span>
                   {% else %}
                     <span class="label label-warning">
@@ -73,17 +99,25 @@
                 <td>
                   {% if domain_status.certificate_available %}
                     <form class="form form-inline" method="post"
-                          action="{% url 'letsencrypt:revoke' domain %}">
-                      {% csrf_token %}
-                      <button class="btn btn-sm btn-default" type="submit">
-                        {% trans "Revoke" %}</button>
-                    </form>
-                    <form class="form form-inline" method="post"
                           action="{% url 'letsencrypt:obtain' domain %}">
                       {% csrf_token %}
                       <button class="btn btn-sm btn-default" type="submit">
                         {% trans "Re-obtain" %}</button>
                     </form>
+                    <form class="form form-inline" method="post"
+                          action="{% url 'letsencrypt:delete' domain %}">
+                      {% csrf_token %}
+                      <button class="btn btn-sm btn-default" type="submit">
+                        {% trans "Delete" %}</button>
+                    </form>
+                    {% if "revoked" not in domain_status.validity %}
+                      <form class="form form-inline" method="post"
+                            action="{% url 'letsencrypt:revoke' domain %}">
+                        {% csrf_token %}
+                        <button class="btn btn-sm btn-default" type="submit">
+                          {% trans "Revoke" %}</button>
+                      </form>
+                    {% endif %}
                   {% else %}
                     <form class="form form-inline" method="post"
                           action="{% url 'letsencrypt:obtain' domain %}">
@@ -100,6 +134,62 @@
       </div>
     </div>
 
+    <form class="form" method="post"
+          action="{% url 'letsencrypt:toggle_hooks' status.current_domain.name %}">
+      {% csrf_token %}
+      <div class="checkbox">
+        <label>
+          {% if status.current_domain.name and status.current_domain.has_cert %}
+            <input type="checkbox" name="toggle_hooks" id="id_toggle_hooks"
+                   {% if status.current_domain.manage_hooks_enabled %}checked{% endif %}
+                   onchange="this.form.submit();">
+            </input>
+            <noscript>
+              <button class="btn btn-sm btn-default" type="submit">
+                {% trans "Update config" %}</button>
+            </noscript>
+          {% else %}
+            <input type="checkbox" name="toggle_hooks" id="id_toggle_hooks"
+                   class="disabled"></input>
+            <noscript>
+              <button class="btn btn-sm btn-default disabled" type="submit">
+                {% trans "Update config" %}</button>
+            </noscript>
+          {% endif %}
+          <span>
+            {% if status.current_domain.name %}
+              {% blocktrans with current_domain=status.current_domain.name %}
+                Let Plinth manage certificate renewal of
+                <b>{{ current_domain }}</b> (recommended)
+              {% endblocktrans %}
+            {% else %}
+              {% blocktrans with current_domain=status.current_domain.name %}
+                Let Plinth manage certificate renewal of the current domain (recommended)
+              {% endblocktrans %}
+            {% endif %}
+          </span>
+        </label>
+      </div>
+      <p class="help-block">
+        {% if status.current_domain.name and status.current_domain.has_cert %}
+          {% blocktrans trimmed %}
+            If {{ box_name }} manages the certificate renewal for the current domain,
+            it will ensure that all apps that use the certificate can use it, as soon
+            as it gets renewed.
+          {% endblocktrans %}
+        {% elif not status.current_domain.has_cert %}
+          {% blocktrans trimmed %}
+            <b>No certificate available for the current domain.</b>
+            First obtain a certificate to enable management of its renewal.
+          {% endblocktrans %}
+        {% else %}
+          {% blocktrans trimmed %}
+            <b>No current domain is configured.</b>
+            First configure a domain to enable management of its certificates.
+          {% endblocktrans %}
+        {% endif %}
+      </p>
+    </form>
     {% include "diagnostics_button.html" with module="letsencrypt" enabled=True %}
   {% else %}
     {% blocktrans trimmed %}

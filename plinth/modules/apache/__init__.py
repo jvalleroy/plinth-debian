@@ -1,4 +1,3 @@
-#!/bin/sh
 #
 # This file is part of Plinth.
 #
@@ -16,12 +15,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# Exit with an error code on any failure
-set -e
+"""
+Plinth module for Apache server.
+"""
 
-# Enable tracing to see the commands in
-# /var/log/freedombox-first-run.log
-set -x
+from plinth import actions
 
-# Setup LDAP structure
-/usr/share/plinth/actions/users first-run
+version = 1
+
+is_essential = True
+
+managed_packages = ['apache2', 'libapache2-mod-gnutls', 'libapache2-mod-php']
+
+
+def setup(helper, old_version=False):
+    """Configure the module."""
+    helper.install(managed_packages)
+    actions.superuser_run('apache', ['setup'])

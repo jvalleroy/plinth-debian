@@ -20,23 +20,26 @@ Plinth module for using Let's Encrypt.
 """
 
 from django.utils.translation import ugettext_lazy as _
-
+from plinth import actions
 from plinth import action_utils
 from plinth import cfg
 from plinth.menu import main_menu
 from plinth.modules import names
 from plinth.utils import format_lazy
+from plinth.signals import domainname_change
 
 
 version = 1
 
-is_essential = False
+is_essential = True
 
 depends = ['names']
 
 managed_packages = ['certbot']
 
-title = _('Certificates (Let\'s Encrypt)')
+name = _('Let\'s Encrypt')
+
+short_description = _('Certificates')
 
 description = [
     format_lazy(
@@ -61,8 +64,9 @@ service = None
 def init():
     """Intialize the module."""
     menu = main_menu.get('system')
-    menu.add_urlname(_('Certificates (Let\'s Encrypt)'),
-                     'glyphicon-lock', 'letsencrypt:index')
+    menu.add_urlname(name,
+                     'glyphicon-lock', 'letsencrypt:index', short_description)
+    domainname_change.connect(on_domainname_change)
 
 
 def setup(helper, old_version=None):
@@ -82,3 +86,14 @@ def diagnose():
             results.append(action_utils.diagnose_url('https://' + domain))
 
     return results
+
+
+def on_domainname_change(sender, old_domainname, new_domainname, **kwargs):
+    """Disable renewal hook management after a domain name change."""
+    del sender  # Unused
+    del new_domainname  # Unused
+    del kwargs  # Unused
+
+    actions.superuser_run('letsencrypt', ['manage_hooks', 'disable',
+                                          '--domain', old_domainname],
+                          async=True)

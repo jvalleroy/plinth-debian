@@ -26,6 +26,7 @@ import logging
 import os
 import stat
 import sys
+import warnings
 
 import cherrypy
 
@@ -81,6 +82,15 @@ def setup_logging():
 
     cherrypy.log.error_file = cfg.status_log_file
     cherrypy.log.access_file = cfg.access_log_file
+
+    # Capture all Python warnings such as deprecation warnings
+    logging.captureWarnings(True)
+
+    # Log all deprecation warnings when in debug mode
+    if cfg.debug:
+        warnings.filterwarnings('default', '', DeprecationWarning)
+        warnings.filterwarnings('default', '', PendingDeprecationWarning)
+        warnings.filterwarnings('default', '', ImportWarning)
 
 
 def setup_server():
@@ -208,6 +218,23 @@ def configure_django():
 
     django.conf.settings.configure(
         ALLOWED_HOSTS=['*'],
+        AUTH_PASSWORD_VALIDATORS = [
+            {
+                'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+            },
+            {
+                'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+                'OPTIONS': {
+                    'min_length': 8,
+                }
+            },
+            {
+                'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+            },
+            {
+                'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+            },
+        ],
         CACHES={'default':
                 {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}},
         DATABASES={'default':
@@ -338,7 +365,8 @@ def main():
 
     module_loader.load_modules()
 
-    run_setup(arguments.setup)
+    if arguments.setup is not False:
+        run_setup_and_exit(arguments.setup, allow_install=True)
 
     if arguments.setup_no_install is not False:
         run_setup_and_exit(arguments.setup_no_install, allow_install=False)
@@ -351,6 +379,10 @@ def main():
 
     if arguments.diagnose:
         run_diagnostics_and_exit()
+
+    # Run setup steps for essential modules
+    # Installation is not necessary as they are dependencies of Plinth
+    run_setup(None, allow_install=False)
 
     setup_server()
 
