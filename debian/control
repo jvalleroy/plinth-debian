@@ -14,7 +14,7 @@ Build-Depends: debhelper (>= 10~)
  , dblatex
  , dh-python
  , docbook-utils
- , gir1.2-networkmanager-1.0
+ , gir1.2-nm-1.0
  , libjs-bootstrap
  , python3-all
  , python3-apt
@@ -48,7 +48,7 @@ Depends: ${python3:Depends}
  , augeas-tools
  , gettext
  , gir1.2-glib-2.0
- , gir1.2-networkmanager-1.0
+ , gir1.2-nm-1.0
  , javascript-common
  , ldapscripts
  , libjs-bootstrap
