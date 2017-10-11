@@ -38,8 +38,8 @@ Vcs-Git: https://anonscm.debian.org/git/freedombox/plinth.git
 Vcs-Browser: https://anonscm.debian.org/gitweb/?p=freedombox/plinth.git;a=summary
 
 Package: plinth
-Breaks: freedombox-setup (<< 0.9.2~)
-Replaces: freedombox-setup (<< 0.9.2~)
+Breaks: freedombox-setup (<< 0.11~)
+Replaces: freedombox-setup (<< 0.11~)
 Architecture: all
 Depends: ${python3:Depends}
  , ${misc:Depends}
