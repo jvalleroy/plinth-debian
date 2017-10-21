@@ -8,6 +8,7 @@ plinth (0.15.3+ds-1) UNRELEASED; urgency=high
   * Add patch to skip letsencrypt tests that require root privileges.
   * Cleanup disks module (renamed to storage).
   * Add patch with workaround for login issues.
+  * Add myself to uploaders.
 
   [ Sunil Mohan Adapa ]
   * Break older version of freedombox-setup (<< 0.11~)

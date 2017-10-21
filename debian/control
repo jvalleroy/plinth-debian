@@ -10,6 +10,7 @@ Uploaders:
  , Sunil Mohan Adapa <sunil@medhas.org>
  , Nick Daly <Nick.M.Daly@gmail.com>
  , Federico Ceratto <federico@debian.org>
+ , James Valleroy <jvalleroy@mailbox.org>
 Build-Depends: debhelper (>= 10~)
  , dblatex
  , dh-python
