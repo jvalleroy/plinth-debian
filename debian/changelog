@@ -4,7 +4,10 @@ plinth (0.15.3+ds-1) UNRELEASED; urgency=high
   * Switch from gir1.2-networkmanager-1.0 to gir1.2-nm-1.0 (Closes: #862758).
     Thanks to Michael Biebl.
   * Bump standards version to 4.1.1.
-  * New upstream version 0.15.3.
+  * New upstream version 0.15.3 (Closes: #877371).
+  * Add patch to skip letsencrypt tests that require root privileges.
+  * Cleanup disks module (renamed to storage).
+  * Add patch with workaround for login issues.
 
   [ Sunil Mohan Adapa ]
   * Break older version of freedombox-setup (<< 0.11~)
