@@ -1,4 +1,4 @@
-plinth (0.15.3+ds-1) UNRELEASED; urgency=high
+plinth (0.15.3+ds-1) unstable; urgency=high
 
   [ James Valleroy ]
   * Switch from gir1.2-networkmanager-1.0 to gir1.2-nm-1.0 (Closes: #862758).
@@ -17,7 +17,7 @@ plinth (0.15.3+ds-1) UNRELEASED; urgency=high
   [ Joseph Nuthalapati ]
   * Add new dependencies - axes and captcha
 
- -- James Valleroy <jvalleroy@mailbox.org>  Fri, 20 Oct 2017 20:09:59 -0400
+ -- James Valleroy <jvalleroy@mailbox.org>  Sat, 21 Oct 2017 14:14:00 -0400
 
 plinth (0.15.2+ds-1) unstable; urgency=medium
 
