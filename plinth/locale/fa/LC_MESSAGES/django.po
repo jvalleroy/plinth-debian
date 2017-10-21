@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-24 11:24-0400\n"
+"POT-Creation-Date: 2017-10-19 21:13-0400\n"
 "PO-Revision-Date: 2016-08-12 15:51+0000\n"
 "Last-Translator: Masoud Abkenar <ampbox@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/freedombox/"
@@ -86,12 +86,12 @@ msgstr "خطا هنگام نصب برنامه: {string} {details}"
 msgid "Error installing application: {error}"
 msgstr "خطا هنگام نصب برنامه: {error}"
 
-#: plinth/modules/avahi/__init__.py:40
+#: plinth/modules/avahi/__init__.py:41
 #, fuzzy
 msgid "Service Discovery"
 msgstr "شناسایی خدمات شبکه"
 
-#: plinth/modules/avahi/__init__.py:44
+#: plinth/modules/avahi/__init__.py:45
 #, python-brace-format
 msgid ""
 "Service discovery allows other devices on the network to discover your "
@@ -329,21 +329,21 @@ msgstr "خطا در هنگام تنظیم منطقهٔ زمانی: {exception}"
 msgid "Time zone set"
 msgstr "منطقهٔ زمانی تنظیم شد"
 
-#: plinth/modules/deluge/__init__.py:39
+#: plinth/modules/deluge/__init__.py:40
 msgid "Deluge"
 msgstr ""
 
-#: plinth/modules/deluge/__init__.py:41
+#: plinth/modules/deluge/__init__.py:42
 #, fuzzy
 #| msgid "BitTorrent Web Client (Deluge)"
 msgid "BitTorrent Web Client"
 msgstr "برنامهٔ تحت وب بیت‌تورنت (Deluge)"
 
-#: plinth/modules/deluge/__init__.py:44
+#: plinth/modules/deluge/__init__.py:45
 msgid "Deluge is a BitTorrent client that features a Web UI."
 msgstr "دِلوگ (Deluge) یک برنامهٔ بیت‌تورنت با رابط کاربری تحت وب است."
 
-#: plinth/modules/deluge/__init__.py:46
+#: plinth/modules/deluge/__init__.py:47
 msgid ""
 "When enabled, the Deluge web client will be available from <a href=\"/deluge"
 "\">/deluge</a> path on the web server. The default password is 'deluge', but "
@@ -452,6 +452,7 @@ msgid "Update setup"
 msgstr "به‌روزرسانی وضعیت"
 
 #: plinth/modules/diaspora/views.py:96 plinth/modules/ejabberd/views.py:60
+#: plinth/modules/matrixsynapse/views.py:103
 #: plinth/modules/openvpn/views.py:145 plinth/modules/tor/views.py:134
 #: plinth/views.py:112
 msgid "Setting unchanged"
@@ -464,118 +465,6 @@ msgstr ""
 #: plinth/modules/diaspora/views.py:104
 msgid "User registrations disabled"
 msgstr ""
-
-#: plinth/modules/disks/__init__.py:33 plinth/modules/disks/views.py:45
-msgid "Disks"
-msgstr "دیسک‌ها"
-
-#: plinth/modules/disks/templates/disks.html:35
-msgid "The following disks are in use:"
-msgstr "دیسک‌های زیر در حال استفاده هستند:"
-
-#: plinth/modules/disks/templates/disks.html:41
-#: plinth/modules/networks/templates/connection_show.html:84
-msgid "Device"
-msgstr "وسیله"
-
-#: plinth/modules/disks/templates/disks.html:42
-msgid "Mount Point"
-msgstr "نشانی سوارشدن (mount point)"
-
-#: plinth/modules/disks/templates/disks.html:43
-#: plinth/modules/ikiwiki/forms.py:30
-#: plinth/modules/networks/templates/connection_show.html:98
-msgid "Type"
-msgstr "نوع"
-
-#: plinth/modules/disks/templates/disks.html:44
-#, fuzzy
-msgid "Used"
-msgstr "به‌کاربرده"
-
-#: plinth/modules/disks/templates/disks.html:77
-msgid "Partition Expansion"
-msgstr ""
-
-#: plinth/modules/disks/templates/disks.html:80
-#, python-format
-msgid ""
-"There is %(expandable_root_size)s of unallocated space available after your "
-"root partition.  Root partition can be expanded to use this space.  This "
-"will provide you additional free space to store your files."
-msgstr ""
-"در پارتیشن ریشهٔ (root) شما %(expandable_root_size)s فضای به‌کارنرفته هست. "
-"پارتیشن ریشهٔ شما می‌تواند بزرگ شود تا این فضای به‌کارنرفته را به کار ببرد. این "
-"کار فضای بیشتری برای ذخیرهٔ پرونده‌ها به شما خواهد داد."
-
-#: plinth/modules/disks/templates/disks.html:90
-#: plinth/modules/disks/templates/disks.html:102
-#: plinth/modules/disks/templates/disks_expand.html:45
-#: plinth/modules/disks/views.py:62
-msgid "Expand Root Partition"
-msgstr "بزرگ‌کردن پارتیشن ریشه"
-
-#: plinth/modules/disks/templates/disks.html:94
-msgid ""
-"There is no unallocated space after your root partition. There is no need to "
-"expand it."
-msgstr ""
-
-#: plinth/modules/disks/templates/disks_expand.html:35
-#, python-format
-msgid ""
-"Please backup your data before proceeding.  After this operation, "
-"%(expandable_root_size)s of additional free space will be available in your "
-"root partition."
-msgstr ""
-"لطفاً پیش از ادامه از داده‌هایتان پشتیبان بگیرید. پس از این کار، "
-"%(expandable_root_size)s فضای خالی در اختیار پارتیشن ریشهٔ شما قرار خواهد "
-"گرفت."
-
-#: plinth/modules/disks/views.py:71
-#, python-brace-format
-msgid "Error expanding partition: {exception}"
-msgstr "خطا در هنگام بزرگ‌کردن پارتیشن: {exception}"
-
-#: plinth/modules/disks/views.py:74
-msgid "Partition expanded successfully."
-msgstr "پارتیشن با موفقیت بزرگ شد."
-
-#: plinth/modules/disks/views.py:93
-#, python-format, python-brace-format
-msgid ""
-"Warning: Low space on system partition ({percent_used}% used, {free_space} "
-"free)."
-msgstr ""
-
-#: plinth/modules/disks/views.py:130
-#, fuzzy, python-brace-format
-msgid "{disk_size:.1f} bytes"
-msgstr "{disk_size} بایت"
-
-#: plinth/modules/disks/views.py:134
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} KiB"
-msgid "{disk_size:.1f} KiB"
-msgstr "{disk_size} KiB"
-
-#: plinth/modules/disks/views.py:138
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} MiB"
-msgid "{disk_size:.1f} MiB"
-msgstr "{disk_size} MiB"
-
-#: plinth/modules/disks/views.py:142
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} GiB"
-msgid "{disk_size:.1f} GiB"
-msgstr "{disk_size} GiB"
-
-#: plinth/modules/disks/views.py:145
-#, fuzzy, python-brace-format
-#| msgid "{disk_size} TiB"
-msgid "{disk_size:.1f} TiB"
-msgstr "{disk_size} TiB"
 
 #: plinth/modules/dynamicdns/__init__.py:35
 #, fuzzy
@@ -895,6 +784,7 @@ msgid "Launch web client"
 msgstr ""
 
 #: plinth/modules/ejabberd/templates/ejabberd.html:53
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:38
 #: plinth/modules/matrixsynapse/templates/matrix-synapse-pre-setup.html:31
 #: plinth/modules/openvpn/templates/openvpn.html:116
 #: plinth/modules/tahoe/templates/tahoe-post-setup.html:43
@@ -903,11 +793,13 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
-#: plinth/modules/ejabberd/views.py:64 plinth/views.py:116
+#: plinth/modules/ejabberd/views.py:64
+#: plinth/modules/matrixsynapse/views.py:107 plinth/views.py:116
 msgid "Application enabled"
 msgstr ""
 
-#: plinth/modules/ejabberd/views.py:67 plinth/views.py:119
+#: plinth/modules/ejabberd/views.py:67
+#: plinth/modules/matrixsynapse/views.py:110 plinth/views.py:119
 msgid "Application disabled"
 msgstr ""
 
@@ -962,13 +854,13 @@ msgid "Service/Port"
 msgstr "سرویس/پورت"
 
 #: plinth/modules/firewall/templates/firewall.html:65
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:94
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:97
 #: plinth/modules/names/templates/names.html:49
 msgid "Enabled"
 msgstr "فعال"
 
 #: plinth/modules/firewall/templates/firewall.html:68
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:96
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:99
 #: plinth/modules/names/templates/names.html:51
 #: plinth/modules/networks/forms.py:63
 msgid "Disabled"
@@ -1051,7 +943,7 @@ msgid "Where to Get Help"
 msgstr "راه‌های گرفتن کمک"
 
 #: plinth/modules/help/help.py:38 plinth/modules/networks/forms.py:62
-#: plinth/modules/networks/forms.py:102 plinth/templates/index.html:124
+#: plinth/modules/networks/forms.py:102 plinth/templates/index.html:126
 msgid "Manual"
 msgstr "کتاب راهنما"
 
@@ -1253,6 +1145,12 @@ msgid ""
 "Configuration</a> you can change these permissions or add new users."
 msgstr ""
 
+#: plinth/modules/ikiwiki/forms.py:30
+#: plinth/modules/networks/templates/connection_show.html:98
+#: plinth/modules/storage/templates/storage.html:43
+msgid "Type"
+msgstr "نوع"
+
 #: plinth/modules/ikiwiki/forms.py:34
 #: plinth/modules/networks/templates/connection_show.html:78
 msgid "Name"
@@ -1399,25 +1297,19 @@ msgid ""
 "running locally."
 msgstr ""
 
-#: plinth/modules/jsxc/__init__.py:80
-msgid ""
-"Chat Client \n"
-" (jsxc)"
-msgstr ""
-
-#: plinth/modules/letsencrypt/__init__.py:40
+#: plinth/modules/letsencrypt/__init__.py:45
 #, fuzzy
 #| msgid "Certificates (Let's Encrypt)"
 msgid "Let's Encrypt"
 msgstr "گواهی دیجیتال (Let's Encrypt)"
 
-#: plinth/modules/letsencrypt/__init__.py:42
+#: plinth/modules/letsencrypt/__init__.py:47
 #, fuzzy
 #| msgid "Certificate Status"
 msgid "Certificates"
 msgstr "وضعیت گواهی دیجیتال"
 
-#: plinth/modules/letsencrypt/__init__.py:46
+#: plinth/modules/letsencrypt/__init__.py:51
 #, fuzzy, python-brace-format
 #| msgid ""
 #| "A digital certficate allows users of a web service to verify the identity "
@@ -1438,7 +1330,7 @@ msgstr ""
 "برای این کار {box_name} به Let's Encrypt (که یک مرجع صدور گواهی دیجیتال است) "
 "اثبات می‌کند که مالک دامنه است."
 
-#: plinth/modules/letsencrypt/__init__.py:53
+#: plinth/modules/letsencrypt/__init__.py:58
 #, fuzzy
 #| msgid ""
 #| "Let's Encrypt is a free, automated, and open certificate authority, run "
@@ -1458,124 +1350,186 @@ msgstr ""
 "\"https://letsencrypt.org/repository/\">قرارداد اشتراک Let's Encrypt</a> "
 "بخوانید و آن را بپذیرید."
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:43
+#: plinth/modules/letsencrypt/__init__.py:110
+#: plinth/modules/letsencrypt/views.py:92
+#: plinth/modules/letsencrypt/views.py:118
+#, fuzzy, python-brace-format
+#| msgid "Certificate successfully revoked for domain {domain}"
+msgid "Certificate renewal management enabled for {domain}."
+msgstr "گواهی دامنهٔ {domain} با موفقیت باطل شد"
+
+#: plinth/modules/letsencrypt/__init__.py:114
+#: plinth/modules/letsencrypt/views.py:97
+#, fuzzy, python-brace-format
+#| msgid "Failed to revoke certificate for domain {domain}: {error}"
+msgid "Failed to enable certificate renewal management for {domain}: {error}"
+msgstr "باطل‌کردن گواهی دامنهٔ {domain} شکست خورد: {error}"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:46
 msgid "Domain"
 msgstr "دامنه"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:44
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:47
 msgid "Certificate Status"
 msgstr "وضعیت گواهی دیجیتال"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:45
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:48
 msgid "Website Security"
 msgstr "امنیت وبسایت"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:46
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:49
 msgid "Actions"
 msgstr "کنش‌ها"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:62
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:65
 #, fuzzy, python-format
 msgid "Valid, expires on %(expiry_date)s"
 msgstr "انقضا در تاریخ %(expiry_date)s"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:69
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:72
 #, fuzzy
 #| msgid "Revoke"
 msgid "Revoked"
 msgstr "باطل کردن"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:73
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:76
 #, fuzzy, python-format
 msgid "Expired on %(expiry_date)s"
 msgstr "انقضا در تاریخ %(expiry_date)s"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:77
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:80
 #, fuzzy
 #| msgid "No certficate"
 msgid "Invalid test certificate"
 msgstr "بدون گواهی دیجیتال"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:81
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:84
 #, python-format
 msgid "Invalid (%(reason)s)"
 msgstr ""
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:88
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:91
 #, fuzzy
 #| msgid "No certficate"
 msgid "No certificate"
 msgstr "بدون گواهی دیجیتال"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:105
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:108
 msgid "Re-obtain"
 msgstr "بازپس‌گیری"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:111
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:114
 #: plinth/modules/networks/templates/connection_show.html:63
 #: plinth/modules/snapshot/templates/snapshot.html:34
 msgid "Delete"
 msgstr "پاک‌کردن"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:118
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:121
 msgid "Revoke"
 msgstr "باطل کردن"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:126
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:129
 msgid "Obtain"
 msgstr "گرفتن"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:149
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:156
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:142
+#, fuzzy
+#| msgid "Certificate successfully revoked for domain {domain}"
+msgid "Certificate renewal management and use by other modules"
+msgstr "گواهی دامنهٔ {domain} با موفقیت باطل شد"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:144
+#, python-format
+msgid ""
+"If you have a Let's Encrypt certificate for your current domain, you may let "
+"%(box_name)s manage its renewal process. This also enables other apps to use "
+"that certificate, so most users would not prompted with security warnings "
+"when using them."
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:167
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:174
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:214
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:221
 #, fuzzy
 #| msgid "Update URL"
 msgid "Update config"
 msgstr "نشانی به‌روزرسانی"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:161
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:178
 #, python-format
 msgid ""
 "\n"
-"                Let Plinth manage certificate renewal of\n"
-"                <b>%(current_domain)s</b> (recommended)\n"
+"                Let %(box_name)s manage certificate renewal of\n"
+"                <b>%(current_domain)s</b>\n"
 "              "
 msgstr ""
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:166
-msgid ""
-"\n"
-"                Let Plinth manage certificate renewal of the current domain "
-"(recommended)\n"
-"              "
-msgstr ""
-
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:175
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:187
 #, python-format
 msgid ""
-"If %(box_name)s manages the certificate renewal for the current domain, it "
-"will ensure that all apps that use the certificate can use it, as soon as it "
-"gets renewed."
+"If enabled, %(box_name)s can make sure that all apps can use the certificate "
+"as soon as it is renewed."
 msgstr ""
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:181
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:192
 msgid ""
 "<b>No certificate available for the current domain.</b> First obtain a "
-"certificate to enable management of its renewal."
+"certificate to enable its management."
 msgstr ""
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:186
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:226
+#, python-format
+msgid ""
+"\n"
+"                  Use certificate of %(current_domain)s for <b>ejabberd</b>\n"
+"                "
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:230
+msgid ""
+"\n"
+"                  Use certificate of the current domain for <b>ejabberd</b>\n"
+"                "
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:240
+#, python-format
+msgid ""
+"If enabled, the app <a href=\"%(ejabberd_url)s\">ejabberd</a> will also use "
+"the Let's Encrypt certificate. This will reduce warnings about self-signed "
+"certificates in client applications, and enable more wide-spread federation "
+"with other XMPP servers in the Internet."
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:248
+#, python-format
+msgid ""
+"This feature only makes sense if you are using the <a href=\"%(ejabberd_url)s"
+"\">ejabberd</a> chat server app."
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:253
+#, python-format
+msgid ""
+"To use a Let's Encrypt certificate for <a href=\"%(ejabberd_url)s"
+"\">ejabberd</a> chat server app, you must first enable certificate renewal "
+"of the current domain."
+msgstr ""
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:262
 msgid ""
 "<b>No current domain is configured.</b> First configure a domain to enable "
 "management of its certificates."
 msgstr ""
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:195
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:269
 msgid ""
 "No domains have been configured. Configure domains to be able to obtain "
 "certificates for them."
 msgstr ""
 
-#: plinth/modules/letsencrypt/views.py:57
+#: plinth/modules/letsencrypt/views.py:56
 #, fuzzy, python-brace-format
 #| msgid "Certificate successfully revoked for domain {domain}"
 msgid ""
@@ -1583,7 +1537,7 @@ msgid ""
 "moments to take effect."
 msgstr "گواهی دامنهٔ {domain} با موفقیت باطل شد"
 
-#: plinth/modules/letsencrypt/views.py:63
+#: plinth/modules/letsencrypt/views.py:62
 #, python-brace-format
 msgid "Failed to revoke certificate for domain {domain}: {error}"
 msgstr "باطل‌کردن گواهی دامنهٔ {domain} شکست خورد: {error}"
@@ -1598,44 +1552,42 @@ msgstr "گواهی دیجیتال برای دامنهٔ {domain} با موفقی
 msgid "Failed to obtain certificate for domain {domain}: {error}"
 msgstr "گرفتن گواهی برای دامنهٔ {domain} شکست خورد: {error}"
 
-#: plinth/modules/letsencrypt/views.py:90
-#: plinth/modules/letsencrypt/views.py:109
-#, fuzzy, python-brace-format
-#| msgid "Certificate successfully revoked for domain {domain}"
-msgid "Certificate renewal management enabled for {domain}."
-msgstr "گواهی دامنهٔ {domain} با موفقیت باطل شد"
-
-#: plinth/modules/letsencrypt/views.py:95
-#, fuzzy, python-brace-format
-#| msgid "Failed to revoke certificate for domain {domain}: {error}"
-msgid "Failed to enable certificate renewal management for {domain}: {error}"
-msgstr "باطل‌کردن گواهی دامنهٔ {domain} شکست خورد: {error}"
-
-#: plinth/modules/letsencrypt/views.py:112
+#: plinth/modules/letsencrypt/views.py:121
 #, fuzzy, python-brace-format
 #| msgid "Certificate successfully revoked for domain {domain}"
 msgid "Certificate renewal management disabled for {domain}."
 msgstr "گواهی دامنهٔ {domain} با موفقیت باطل شد"
 
-#: plinth/modules/letsencrypt/views.py:118
+#: plinth/modules/letsencrypt/views.py:127
 #, fuzzy, python-brace-format
 #| msgid "Failed to obtain certificate for domain {domain}: {error}"
 msgid "Failed to switch certificate renewal management for {domain}: {error}"
 msgstr "گرفتن گواهی برای دامنهٔ {domain} شکست خورد: {error}"
 
-#: plinth/modules/letsencrypt/views.py:134
+#: plinth/modules/letsencrypt/views.py:157
+#, python-brace-format
+msgid "Switched use of certificate for app {module}"
+msgstr ""
+
+#: plinth/modules/letsencrypt/views.py:162
+#, fuzzy, python-brace-format
+#| msgid "Failed to obtain certificate for domain {domain}: {error}"
+msgid "Failed to switch certificate use for app {module}: {error}"
+msgstr "گرفتن گواهی برای دامنهٔ {domain} شکست خورد: {error}"
+
+#: plinth/modules/letsencrypt/views.py:183
 #, fuzzy, python-brace-format
 #| msgid "Failed to revoke certificate for domain {domain}: {error}"
 msgid "Failed to disable certificate renewal management for {domain}: {error}"
 msgstr "باطل‌کردن گواهی دامنهٔ {domain} شکست خورد: {error}"
 
-#: plinth/modules/letsencrypt/views.py:141
+#: plinth/modules/letsencrypt/views.py:190
 #, fuzzy, python-brace-format
 #| msgid "Certificate successfully revoked for domain {domain}"
 msgid "Certificate successfully deleted for domain {domain}"
 msgstr "گواهی دامنهٔ {domain} با موفقیت باطل شد"
 
-#: plinth/modules/letsencrypt/views.py:146
+#: plinth/modules/letsencrypt/views.py:195
 #, fuzzy, python-brace-format
 #| msgid "Failed to revoke certificate for domain {domain}: {error}"
 msgid "Failed to delete certificate for domain {domain}: {error}"
@@ -1662,6 +1614,18 @@ msgid ""
 "riot.im/\">Riot</a> client is recommended."
 msgstr ""
 
+#: plinth/modules/matrixsynapse/forms.py:29
+#, fuzzy
+msgid "Enable Public Registration"
+msgstr "فعال‌سازی برنامه"
+
+#: plinth/modules/matrixsynapse/forms.py:32
+msgid ""
+"Enabling public registration means that anyone on the Internet can register "
+"a new account on your Matrix server. Disable this if you only want existing "
+"users to be able to use it."
+msgstr ""
+
 #: plinth/modules/matrixsynapse/templates/matrix-synapse-pre-setup.html:34
 msgid ""
 "Matrix service needs to be configured for a domain. Users on other Matrix "
@@ -1684,13 +1648,22 @@ msgid ""
 "least one domain to be able to use Matrix Synapse."
 msgstr ""
 
-#: plinth/modules/matrixsynapse/templates/matrix-synapse.html:30
+#: plinth/modules/matrixsynapse/templates/matrix-synapse.html:29
 #, python-format
 msgid ""
 "The Matrix server domain is set to <em>%(domain_name)s</em>. User IDs will "
 "look like <em>@username:%(domain_name)s</em>. Changing the domain name after "
 "the initial setup is currently not supported."
 msgstr ""
+
+#: plinth/modules/matrixsynapse/views.py:118
+msgid "Public registration enabled"
+msgstr ""
+
+#: plinth/modules/matrixsynapse/views.py:123
+#, fuzzy
+msgid "Public registration disabled"
+msgstr "برنامه نصب شد."
 
 #: plinth/modules/minetest/__init__.py:48
 msgid "Minetest"
@@ -1996,11 +1969,11 @@ msgstr "سرویس نام‌ها"
 msgid "Not Available"
 msgstr "موجود نیست"
 
-#: plinth/modules/networks/__init__.py:37
+#: plinth/modules/networks/__init__.py:38
 msgid "Networks"
 msgstr "شبکه‌ها"
 
-#: plinth/modules/networks/__init__.py:124
+#: plinth/modules/networks/__init__.py:126
 #, python-brace-format
 msgid "Using DNSSEC on IPv{kind}"
 msgstr "در حال استفاده از DNSSEC روی IPv{kind}"
@@ -2406,6 +2379,11 @@ msgstr "اتصال اصلی"
 #: plinth/modules/networks/templates/connection_show.html:256
 msgid "yes"
 msgstr "بله"
+
+#: plinth/modules/networks/templates/connection_show.html:84
+#: plinth/modules/storage/templates/storage.html:41
+msgid "Device"
+msgstr "وسیله"
 
 #: plinth/modules/networks/templates/connection_show.html:88
 msgid "State"
@@ -3323,8 +3301,10 @@ msgid ""
 msgstr ""
 
 #: plinth/modules/snapshot/__init__.py:32
-msgid "Snapshots"
-msgstr ""
+#, fuzzy
+#| msgid "Delete %(name)s"
+msgid "Storage Snapshots"
+msgstr "پاک‌کردن %(name)s"
 
 #: plinth/modules/snapshot/__init__.py:35
 msgid ""
@@ -3450,6 +3430,107 @@ msgstr ""
 
 #: plinth/modules/sso/templates/login.html:35
 msgid "Login"
+msgstr ""
+
+#: plinth/modules/storage/__init__.py:33 plinth/modules/storage/views.py:45
+msgid "Storage"
+msgstr ""
+
+#: plinth/modules/storage/__init__.py:147
+#, fuzzy, python-brace-format
+msgid "{disk_size:.1f} bytes"
+msgstr "{disk_size} بایت"
+
+#: plinth/modules/storage/__init__.py:151
+#, fuzzy, python-brace-format
+#| msgid "{disk_size} KiB"
+msgid "{disk_size:.1f} KiB"
+msgstr "{disk_size} KiB"
+
+#: plinth/modules/storage/__init__.py:155
+#, fuzzy, python-brace-format
+#| msgid "{disk_size} MiB"
+msgid "{disk_size:.1f} MiB"
+msgstr "{disk_size} MiB"
+
+#: plinth/modules/storage/__init__.py:159
+#, fuzzy, python-brace-format
+#| msgid "{disk_size} GiB"
+msgid "{disk_size:.1f} GiB"
+msgstr "{disk_size} GiB"
+
+#: plinth/modules/storage/__init__.py:162
+#, fuzzy, python-brace-format
+#| msgid "{disk_size} TiB"
+msgid "{disk_size:.1f} TiB"
+msgstr "{disk_size} TiB"
+
+#: plinth/modules/storage/templates/storage.html:35
+msgid "The following disks are in use:"
+msgstr "دیسک‌های زیر در حال استفاده هستند:"
+
+#: plinth/modules/storage/templates/storage.html:42
+msgid "Mount Point"
+msgstr "نشانی سوارشدن (mount point)"
+
+#: plinth/modules/storage/templates/storage.html:44
+#, fuzzy
+msgid "Used"
+msgstr "به‌کاربرده"
+
+#: plinth/modules/storage/templates/storage.html:77
+msgid "Partition Expansion"
+msgstr ""
+
+#: plinth/modules/storage/templates/storage.html:80
+#, python-format
+msgid ""
+"There is %(expandable_root_size)s of unallocated space available after your "
+"root partition.  Root partition can be expanded to use this space.  This "
+"will provide you additional free space to store your files."
+msgstr ""
+"در پارتیشن ریشهٔ (root) شما %(expandable_root_size)s فضای به‌کارنرفته هست. "
+"پارتیشن ریشهٔ شما می‌تواند بزرگ شود تا این فضای به‌کارنرفته را به کار ببرد. این "
+"کار فضای بیشتری برای ذخیرهٔ پرونده‌ها به شما خواهد داد."
+
+#: plinth/modules/storage/templates/storage.html:90
+#: plinth/modules/storage/templates/storage.html:102
+#: plinth/modules/storage/templates/storage_expand.html:45
+#: plinth/modules/storage/views.py:62
+msgid "Expand Root Partition"
+msgstr "بزرگ‌کردن پارتیشن ریشه"
+
+#: plinth/modules/storage/templates/storage.html:94
+msgid ""
+"There is no unallocated space after your root partition. There is no need to "
+"expand it."
+msgstr ""
+
+#: plinth/modules/storage/templates/storage_expand.html:35
+#, python-format
+msgid ""
+"Please backup your data before proceeding.  After this operation, "
+"%(expandable_root_size)s of additional free space will be available in your "
+"root partition."
+msgstr ""
+"لطفاً پیش از ادامه از داده‌هایتان پشتیبان بگیرید. پس از این کار، "
+"%(expandable_root_size)s فضای خالی در اختیار پارتیشن ریشهٔ شما قرار خواهد "
+"گرفت."
+
+#: plinth/modules/storage/views.py:71
+#, python-brace-format
+msgid "Error expanding partition: {exception}"
+msgstr "خطا در هنگام بزرگ‌کردن پارتیشن: {exception}"
+
+#: plinth/modules/storage/views.py:74
+msgid "Partition expanded successfully."
+msgstr "پارتیشن با موفقیت بزرگ شد."
+
+#: plinth/modules/storage/views.py:95
+#, no-python-format, python-brace-format
+msgid ""
+"Warning: Low space on system partition ({percent_used}% used, {free_space} "
+"free)."
 msgstr ""
 
 #: plinth/modules/syncthing/__init__.py:39
@@ -3779,27 +3860,33 @@ msgid ""
 "hashed format.  To set a new password, enter the password in plain text."
 msgstr ""
 
-#: plinth/modules/ttrss/__init__.py:39
+#: plinth/modules/ttrss/__init__.py:40
 msgid "Tiny Tiny RSS"
 msgstr ""
 
-#: plinth/modules/ttrss/__init__.py:41
+#: plinth/modules/ttrss/__init__.py:42
 msgid "News Feed Reader"
 msgstr ""
 
-#: plinth/modules/ttrss/__init__.py:44
+#: plinth/modules/ttrss/__init__.py:45
 msgid ""
 "Tiny Tiny RSS is a news feed (RSS/Atom) reader and aggregator, designed to "
 "allow reading news from any location, while feeling as close to a real "
 "desktop application as possible."
 msgstr ""
 
-#: plinth/modules/ttrss/__init__.py:49
+#: plinth/modules/ttrss/__init__.py:50
 #, python-brace-format
 msgid ""
 "When enabled, Tiny Tiny RSS will be available from <a href=\"/tt-rss\">/tt-"
 "rss</a> path on the web server. It can be accessed by any <a href=\"/plinth/"
 "sys/users\">user with a {box_name} login</a>."
+msgstr ""
+
+#: plinth/modules/ttrss/__init__.py:56
+msgid ""
+"When using a mobile or desktop application for Tiny Tiny RSS, use the URL <a "
+"href=\"/tt-rss-app/\">/tt-rss-app</a> for connecting."
 msgstr ""
 
 #: plinth/modules/upgrades/__init__.py:35
@@ -4193,40 +4280,47 @@ msgstr "برنامه‌ها"
 msgid "Change password"
 msgstr ""
 
-#: plinth/templates/base.html:152 plinth/templates/base.html:153
-#: plinth/templates/base.html:190 plinth/templates/base.html:192
-msgid "Log out"
-msgstr ""
-
-#: plinth/templates/base.html:168 plinth/templates/base.html:169
+#: plinth/templates/base.html:154 plinth/templates/base.html:155
 msgid "Restart"
 msgstr ""
 
-#: plinth/templates/base.html:174 plinth/templates/base.html:175
+#: plinth/templates/base.html:160 plinth/templates/base.html:161
 msgid "Shut down"
 msgstr ""
 
-#: plinth/templates/base.html:182 plinth/templates/base.html:184
+#: plinth/templates/base.html:168 plinth/templates/base.html:169
+#: plinth/templates/base.html:184 plinth/templates/base.html:186
+msgid "Log out"
+msgstr ""
+
+#: plinth/templates/base.html:176 plinth/templates/base.html:178
 msgid "Log in"
 msgstr ""
 
-#: plinth/templates/base.html:256 plinth/templates/index.html:164
+#: plinth/templates/base.html:250 plinth/templates/index.html:166
 msgid "JavaScript license information"
 msgstr ""
 
-#: plinth/templates/index.html:58
+#: plinth/templates/first_setup.html:37
+#, python-format
+msgid ""
+"Please wait for %(box_name)s to finish installation. You can start using "
+"your %(box_name)s once it is done."
+msgstr ""
+
+#: plinth/templates/index.html:60
 #, python-format
 msgid ""
 "Enable some <a href=\"%(apps_url)s\">applications</a> to add shortcuts to "
 "this page."
 msgstr ""
 
-#: plinth/templates/index.html:85
+#: plinth/templates/index.html:87
 #, fuzzy
 msgid "Configure &raquo;"
 msgstr "پیکربندی"
 
-#: plinth/templates/index.html:104
+#: plinth/templates/index.html:106
 #, python-format
 msgid ""
 "%(box_name)s, a Debian pure blend, is a 100%% free software self-hosting web "
@@ -4234,7 +4328,7 @@ msgid ""
 "communication tools respecting your privacy and data ownership."
 msgstr ""
 
-#: plinth/templates/index.html:113
+#: plinth/templates/index.html:115
 #, python-format
 msgid ""
 "This portal is a part of Plinth, the %(box_name)s web interface. Plinth is "
@@ -4242,32 +4336,32 @@ msgid ""
 "Version 3 or later."
 msgstr ""
 
-#: plinth/templates/index.html:128
+#: plinth/templates/index.html:130
 msgid "Wiki"
 msgstr ""
 
-#: plinth/templates/index.html:133
+#: plinth/templates/index.html:135
 msgid "Homepage"
 msgstr ""
 
-#: plinth/templates/index.html:136
+#: plinth/templates/index.html:138
 msgid "Source Code"
 msgstr ""
 
-#: plinth/templates/index.html:139
+#: plinth/templates/index.html:141
 msgid "Donate"
 msgstr ""
 
-#: plinth/templates/index.html:143
+#: plinth/templates/index.html:145
 #, fuzzy
 msgid "FreedomBox Foundation"
 msgstr "FreedomBox"
 
-#: plinth/templates/index.html:150
+#: plinth/templates/index.html:152
 msgid "IRC Chatroom"
 msgstr ""
 
-#: plinth/templates/index.html:155
+#: plinth/templates/index.html:157
 msgid "Mailing list"
 msgstr ""
 
@@ -4340,6 +4434,9 @@ msgstr ""
 msgid ""
 "The options affect the %(box_name)s at its most general level, so be careful!"
 msgstr ""
+
+#~ msgid "Disks"
+#~ msgstr "دیسک‌ها"
 
 #, fuzzy
 #~| msgid "Invalid domain name"

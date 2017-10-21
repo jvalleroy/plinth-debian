@@ -1,4 +1,3 @@
-#!/bin/sh
 #
 # This file is part of Plinth.
 #
@@ -15,8 +14,25 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+"""
+Tests for letsencrypt module.
+"""
 
-set -e
+import unittest
 
-# Ensure that DB and log file permissions are correct
-chown -R plinth: /var/lib/plinth /var/log/plinth
+from .. import on_domain_added, on_domain_removed
+
+
+class TestDomainNameChanges(unittest.TestCase):
+    """Test for automatically obtaining and revoking Let's Encrypt certs"""
+
+    def test_add_onion_domain(self):
+        self.assertFalse(
+            on_domain_added('test', 'hiddenservice', 'ddddd.onion'))
+
+    def test_add_valid_domain(self):
+        self.assertTrue(
+            on_domain_added('test', 'domainname', 'subdomain.domain.tld'))
+
+    def test_remove_domain(self):
+        self.assertTrue(on_domain_removed('test', '', 'somedomain.tld'))

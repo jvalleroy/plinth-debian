@@ -10,7 +10,7 @@
     docbook-utils \
     gettext \
     gir1.2-glib-2.0 \
-    gir1.2-networkmanager-1.0 \
+    gir1.2-nm-1.0 \
     ldapscripts \
     libjs-bootstrap \
     libjs-jquery \
@@ -27,6 +27,8 @@
     python3-configobj \
     python3-coverage \
     python3-django \
+    python3-django-axes \
+    python3-django-captcha \
     python3-django-stronghold \
     python3-gi \
     python3-psutil \
@@ -52,11 +54,11 @@
 
 # Note on Django version:
 
-Django 1.10 is required to run Plinth. You can check the version by running:
+Django 1.11 is required to run Plinth. You can check the version by running:
 
     $ django-admin --version
 
-If apt-get provided django<1.10, then follow the steps below:
+If apt-get provided django<1.11, then follow the steps below:
 
 1. Uninstall older django versions:
 
@@ -67,7 +69,7 @@ If apt-get provided django<1.10, then follow the steps below:
 
     $ sudo apt-get install python3-pip
 
-3. Install django1.10 through pip:
+3. Install django1.11 through pip:
 
     $ sudo pip3 install django django-bootstrap-form django-stronghold \
-    --upgrade
+    django-axes django-simple-captcha --upgrade

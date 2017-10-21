@@ -20,6 +20,7 @@ URLs for the Single Sign On module.
 
 from django.conf.urls import url
 
+
 from .views import SSOLoginView, refresh
 from stronghold.decorators import public
 

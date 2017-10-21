@@ -56,6 +56,7 @@ DISABLED_APPS_TO_REMOVE = [
     'owncloud',
     'system',
     'xmpp',
+    'disks',
 ]
 
 LOCALE_PATHS = [
@@ -209,8 +210,9 @@ setuptools.setup(
     install_requires=[
         'cherrypy >= 3.0',
         'configobj',
-        'django >= 1.10.0',
+        'django >= 1.11.0',
         'django-bootstrap-form',
+        'django-simple-captcha',
         'django-stronghold',
         'psutil',
         'python-apt',
@@ -226,16 +228,14 @@ setuptools.setup(
                              'locale/*/LC_MESSAGES/*.[pm]o']},
     data_files=[('/usr/lib/firewalld/services/',
                  glob.glob('data/usr/lib/firewalld/services/*.xml')),
-                ('/usr/lib/freedombox/setup.d/',
-                 ['data/usr/lib/freedombox/setup.d/86_plinth']),
-                ('/usr/lib/freedombox/first-run.d',
-                 glob.glob('data/usr/lib/freedombox/first-run.d/*')),
                 ('/etc/apache2/conf-available',
                  glob.glob('data/etc/apache2/conf-available/*.conf')),
                 ('/etc/apache2/sites-available',
                  glob.glob('data/etc/apache2/sites-available/*.conf')),
                 ('/etc/apache2/includes',
                  glob.glob('data/etc/apache2/includes/*.conf')),
+                ('/etc/avahi/services/',
+                 glob.glob('data/etc/avahi/services/*.service')),
                 ('/etc/ikiwiki',
                  glob.glob('data/etc/ikiwiki/*.setup')),
                 ('/etc/NetworkManager/dispatcher.d/',

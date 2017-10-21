@@ -16,15 +16,19 @@
 #
 
 """
-URLs for the disks module.
+Forms for the Matrix Synapse module.
 """
 
-from django.conf.urls import url
+from django import forms
+from django.utils.translation import ugettext_lazy as _
+from plinth.forms import ServiceForm
 
-from . import views
 
-
-urlpatterns = [
-    url(r'^sys/disks/$', views.index, name='index'),
-    url(r'^sys/disks/expand$', views.expand, name='expand'),
-]
+class MatrixSynapseForm(ServiceForm):
+    enable_public_registration = forms.BooleanField(
+        label=_('Enable Public Registration'),
+        required=False,
+        help_text=_(
+            'Enabling public registration means that anyone on the Internet '
+            'can register a new account on your Matrix server. Disable this '
+            'if you only want existing users to be able to use it.'))

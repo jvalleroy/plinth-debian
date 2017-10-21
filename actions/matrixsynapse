@@ -23,8 +23,9 @@ Configuration helper for Matrix-Synapse server.
 import argparse
 
 from ruamel.yaml import round_trip_dump, round_trip_load
-
+from ruamel.yaml.scalarstring import DoubleQuotedScalarString
 from plinth import action_utils
+from plinth.modules.matrixsynapse import CONFIG_FILE_PATH
 
 
 def parse_arguments():
@@ -35,6 +36,10 @@ def parse_arguments():
     subparsers.add_parser('post-install', help='Perform post install steps')
     subparsers.add_parser('enable', help='Enable matrix-synapse service')
     subparsers.add_parser('disable', help='Disable matrix-synapse service')
+    help_pubreg = 'Enable/Disable/Status public user registration.'
+    pubreg = subparsers.add_parser('public_registration', help=help_pubreg)
+    pubreg.add_argument('command', choices=('enable', 'disable', 'status'),
+                        help=help_pubreg)
     setup = subparsers.add_parser('setup', help='Set domain name for Matrix')
     setup.add_argument(
         '--domain-name',
@@ -46,18 +51,37 @@ def parse_arguments():
 
 def subcommand_post_install(_):
     """Perform post installation configuration."""
-    file_path = '/etc/matrix-synapse/homeserver.yaml'
-    with open(file_path) as config_file:
+    with open(CONFIG_FILE_PATH) as config_file:
         config = round_trip_load(config_file)
 
     config['max_upload_size'] = '100M'
-    config['enable_registration'] = True
+
     for listener in config['listeners']:
         if listener['port'] == 8448:
             listener['bind_address'] = '0.0.0.0'
 
-    with open(file_path, 'w') as config_file:
+    # Setup ldap parameters
+    __ = DoubleQuotedScalarString
+    config['password_providers'] = [{}]
+    config['password_providers'][0]['module'] = __(
+        'ldap_auth_provider.LdapAuthProvider')
+    ldap_config = {
+        'enabled': True,
+        'uri': __('ldap://localhost:389'),
+        'start_tls': False,
+        'base': __('ou=users,dc=thisbox'),
+        'attributes': {
+            'uid': __('uid'),
+            'name': __('uid'),
+            'mail': __('')
+        }
+    }
+    config['password_providers'][0]['config'] = ldap_config
+    with open(CONFIG_FILE_PATH, 'w') as config_file:
         round_trip_dump(config, config_file)
+
+    if action_utils.service_is_running('matrix-synapse'):
+        action_utils.service_restart('matrix-synapse')
 
 
 def subcommand_setup(arguments):
@@ -80,9 +104,32 @@ def subcommand_disable(_):
     action_utils.service_disable('matrix-synapse')
 
 
+def subcommand_public_registration(argument):
+    """Enable/Disable/Status public user registration."""
+    with open(CONFIG_FILE_PATH) as config_file:
+        config = round_trip_load(config_file)
+
+    if argument.command == 'status':
+        if config['enable_registration']:
+            print('enabled')
+            return
+        else:
+            print('disabled')
+            return
+    elif argument.command == 'enable':
+        config['enable_registration'] = True
+    elif argument.command == 'disable':
+        config['enable_registration'] = False
+
+    with open(CONFIG_FILE_PATH, 'w') as config_file:
+        round_trip_dump(config, config_file)
+
+    if action_utils.service_is_running('matrix-synapse'):
+        action_utils.service_restart('matrix-synapse')
+
+
 def main():
     arguments = parse_arguments()
-
     sub_command = arguments.subcommand.replace('-', '_')
     sub_command_method = globals()['subcommand_' + sub_command]
     sub_command_method(arguments)
