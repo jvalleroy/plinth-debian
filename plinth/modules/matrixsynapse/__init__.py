@@ -32,11 +32,11 @@ from plinth import frontpage
 from plinth import service as service_module
 from plinth.menu import main_menu
 
-version = 1
+version = 2
 
 managed_services = ['matrix-synapse']
 
-managed_packages = ['matrix-synapse']
+managed_packages = ['matrix-synapse', 'matrix-synapse-ldap3']
 
 name = _('Matrix Synapse')
 
@@ -48,8 +48,8 @@ description = [
       'server implementing the Matrix protocol. It provides chat groups, '
       'audio/video calls, end-to-end encryption, multiple device '
       'synchronization and does not require phone numbers to work. Users on a '
-      'given Matrix server can converse with users on all other Matrix servers '
-      'via federation.'),
+      'given Matrix server can converse with users on all other Matrix '
+      'servers via federation.'),
 
     _('To communicate, you can use the '
       '<a href="https://matrix.org/docs/projects/">available clients</a> '
@@ -62,12 +62,14 @@ service = None
 logger = logging.getLogger(__name__)
 
 SERVER_NAME_PATH = "/etc/matrix-synapse/conf.d/server_name.yaml"
+CONFIG_FILE_PATH = '/etc/matrix-synapse/homeserver.yaml'
 
 
 def init():
     """Initialize the matrix-synapse module."""
     menu = main_menu.get('apps')
-    menu.add_urlname(name, 'glyphicon-comment', 'matrixsynapse:index', short_description)
+    menu.add_urlname(name, 'glyphicon-comment', 'matrixsynapse:index',
+                     short_description)
 
     global service
     setup_helper = globals()['setup_helper']
@@ -149,3 +151,10 @@ def get_configured_domain_name():
         config, _, _ = load_yaml_guess_indent(config_file)
 
     return config['server_name']
+
+
+def get_public_registration_status():
+    """Return whether public registration is enabled."""
+    output = actions.superuser_run('matrixsynapse', ['public_registration',
+                                                     'status'])
+    return output.strip() == 'enabled'

@@ -155,8 +155,13 @@ def setup_server():
     cherrypy.engine.signal_handler.subscribe()
 
 
+def on_server_stop():
+    """Stop all other threads since web server is trying to exit."""
+    setup.stop()
+
+
 def configure_django():
-    """Setup Django configuration in the absense of .settings file"""
+    """Setup Django configuration in the absence of .settings file"""
     logging_configuration = {
         'version': 1,
         'disable_existing_loggers': False,
@@ -203,12 +208,16 @@ def configure_django():
         },
     ]
 
-    applications = ['bootstrapform',
-                    'django.contrib.auth',
-                    'django.contrib.contenttypes',
-                    'django.contrib.messages',
-                    'stronghold',
-                    'plinth']
+    applications = [
+        'axes',
+        'captcha',
+        'bootstrapform',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.messages',
+        'stronghold',
+        'plinth',
+    ]
     applications += module_loader.get_modules_to_load()
     sessions_directory = os.path.join(cfg.data_dir, 'sessions')
 
@@ -218,7 +227,7 @@ def configure_django():
 
     django.conf.settings.configure(
         ALLOWED_HOSTS=['*'],
-        AUTH_PASSWORD_VALIDATORS = [
+        AUTH_PASSWORD_VALIDATORS=[
             {
                 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
             },
@@ -235,8 +244,13 @@ def configure_django():
                 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
             },
         ],
+        AXES_LOCKOUT_URL='locked',
+        AXES_BEHIND_REVERSE_PROXY=True,
         CACHES={'default':
                 {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}},
+        CAPTCHA_FONT_PATH=['/usr/share/fonts/truetype/ttf-bitstream-vera/Vera.ttf'],
+        CAPTCHA_LENGTH=6,
+        CAPTCHA_FLITE_PATH='/usr/bin/flite',
         DATABASES={'default':
                    {'ENGINE': 'django.db.backends.sqlite3',
                     'NAME': cfg.store_file}},
@@ -257,6 +271,7 @@ def configure_django():
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
             'stronghold.middleware.LoginRequiredMiddleware',
             'plinth.middleware.AdminRequiredMiddleware',
+            'plinth.middleware.FirstSetupMiddleware',
             'plinth.modules.first_boot.middleware.FirstBootMiddleware',
             'plinth.middleware.SetupMiddleware',
         ),
@@ -265,6 +280,9 @@ def configure_django():
         SESSION_ENGINE='django.contrib.sessions.backends.file',
         SESSION_FILE_PATH=sessions_directory,
         STATIC_URL='/'.join([cfg.server_dir, 'static/']).replace('//', '/'),
+        # STRONGHOLD_PUBLIC_URLS=(r'^captcha/', ),
+        STRONGHOLD_PUBLIC_NAMED_URLS=('captcha-image', 'captcha-image-2x',
+                                      'captcha-audio', 'captcha-refresh', ),
         TEMPLATES=templates,
         USE_L10N=True,
         USE_X_FORWARDED_HOST=cfg.use_x_forwarded_host)
@@ -279,21 +297,14 @@ def configure_django():
     os.chmod(cfg.store_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP)
 
 
-def run_setup(module_list, allow_install=True):
-    try:
-        if not module_list:
-            setup.setup_modules(essential=True, allow_install=allow_install)
-        else:
-            setup.setup_modules(module_list, allow_install=allow_install)
-    except Exception as exception:
-        logger.error('Error running setup - %s', exception)
-        return 1
-    return 0
-
-
 def run_setup_and_exit(module_list, allow_install=True):
     """Run setup on all essential modules and exit."""
-    error_code = run_setup(module_list, allow_install)
+    error_code = 0
+    try:
+        setup.run_setup_on_modules(module_list, allow_install)
+    except Exception as exception:
+        error_code = 1
+
     sys.exit(error_code)
 
 
@@ -380,13 +391,11 @@ def main():
     if arguments.diagnose:
         run_diagnostics_and_exit()
 
-    # Run setup steps for essential modules
-    # Installation is not necessary as they are dependencies of Plinth
-    run_setup(None, allow_install=False)
-
+    setup.run_setup_in_background()
     setup_server()
 
     cherrypy.engine.start()
+    cherrypy.engine.subscribe('stop', on_server_stop)
     cherrypy.engine.block()
 
 

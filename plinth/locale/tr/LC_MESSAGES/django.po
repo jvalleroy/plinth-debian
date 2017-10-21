@@ -6,17 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-24 11:24-0400\n"
-"PO-Revision-Date: 2017-07-14 13:54+0000\n"
+"POT-Creation-Date: 2017-10-19 21:13-0400\n"
+"PO-Revision-Date: 2017-10-20 08:00+0000\n"
 "Last-Translator: John Doe <thraex@numericable.fr>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/freedombox/"
-"plinth/tr/>\n"
+"Language-Team: Turkish "
+"<https://hosted.weblate.org/projects/freedombox/plinth/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.16-dev\n"
+"X-Generator: Weblate 2.17\n"
 
 #: plinth/action_utils.py:259
 #, python-brace-format
@@ -57,16 +57,16 @@ msgid "Enable application"
 msgstr "Uygulamayı etkinleştir"
 
 #: plinth/forms.py:45
-#, fuzzy
-#| msgid "Select the domain name to be used for this application"
 msgid "Select a domain name to be used with this application"
-msgstr "Bu uygulama için kullanılacak alan ismini seç"
+msgstr "Bu uygulamayla kullanılacak bir alan ismi seç"
 
 #: plinth/forms.py:47
 msgid ""
 "Warning! The application may not work properly if domain name is changed "
 "later."
 msgstr ""
+"İkaz! Alan adı daha sonra değiştirilirse uygulama beklendiği gibi "
+"çalışmayabilir."
 
 #: plinth/middleware.py:71
 msgid "Application installed."
@@ -82,11 +82,11 @@ msgstr "Uygulamanın kurulmasında hata: {string} {details}"
 msgid "Error installing application: {error}"
 msgstr "Uygulamanın kurulmasında hata: {error}"
 
-#: plinth/modules/avahi/__init__.py:40
+#: plinth/modules/avahi/__init__.py:41
 msgid "Service Discovery"
 msgstr "Servis Keşfi"
 
-#: plinth/modules/avahi/__init__.py:44
+#: plinth/modules/avahi/__init__.py:45
 #, python-brace-format
 msgid ""
 "Service discovery allows other devices on the network to discover your "
@@ -105,17 +105,11 @@ msgstr ""
 
 #: plinth/modules/bind/__init__.py:34
 msgid "BIND"
-msgstr ""
+msgstr "BIND"
 
 #: plinth/modules/bind/__init__.py:36
-#, fuzzy
-#| msgid ""
-#| "Domain Name Server \n"
-#| " (BIND)"
 msgid "Domain Name Server"
-msgstr ""
-"Alan Adı Sunucusu\n"
-" (BIND)"
+msgstr "Alan Adı Sunucusu"
 
 #: plinth/modules/bind/__init__.py:45
 msgid ""
@@ -316,27 +310,19 @@ msgstr "Saat diliminin ayarlanmasında hata: {exception}"
 msgid "Time zone set"
 msgstr "Saat dilimi ayarlandı"
 
-#: plinth/modules/deluge/__init__.py:39
-#, fuzzy
-#| msgid "Enable Deluge"
+#: plinth/modules/deluge/__init__.py:40
 msgid "Deluge"
-msgstr "Deluge'ü Etkinleştir"
+msgstr "Deluge"
 
-#: plinth/modules/deluge/__init__.py:41
-#, fuzzy
-#| msgid ""
-#| "BitTorrent Web Client \n"
-#| " (Deluge)"
+#: plinth/modules/deluge/__init__.py:42
 msgid "BitTorrent Web Client"
-msgstr ""
-"BitTorrent Web İstemcisi \n"
-" (Deluge)"
+msgstr "BitTorrent Web İstemcisi"
 
-#: plinth/modules/deluge/__init__.py:44
+#: plinth/modules/deluge/__init__.py:45
 msgid "Deluge is a BitTorrent client that features a Web UI."
 msgstr "Deluge, ağ arayüzü sunan bir BitTorrent istemcisidir."
 
-#: plinth/modules/deluge/__init__.py:46
+#: plinth/modules/deluge/__init__.py:47
 msgid ""
 "When enabled, the Deluge web client will be available from <a href=\"/deluge"
 "\">/deluge</a> path on the web server. The default password is 'deluge', but "
@@ -405,11 +391,11 @@ msgstr "Sonuç"
 
 #: plinth/modules/diaspora/__init__.py:51
 msgid "diaspora*"
-msgstr ""
+msgstr "diaspora*"
 
 #: plinth/modules/diaspora/__init__.py:53
 msgid "Federated Social Network"
-msgstr ""
+msgstr "Federe Sosyal Ağ"
 
 #: plinth/modules/diaspora/__init__.py:62
 msgid ""
@@ -421,7 +407,7 @@ msgstr ""
 
 #: plinth/modules/diaspora/forms.py:31
 msgid "Enable new user registrations"
-msgstr ""
+msgstr "Yeni kullanıcı kayıtlarını etkinleştir"
 
 #: plinth/modules/diaspora/templates/diaspora-post-setup.html:32
 #, python-format
@@ -454,132 +440,19 @@ msgid "Update setup"
 msgstr "Kurulumu güncelle"
 
 #: plinth/modules/diaspora/views.py:96 plinth/modules/ejabberd/views.py:60
+#: plinth/modules/matrixsynapse/views.py:103
 #: plinth/modules/openvpn/views.py:145 plinth/modules/tor/views.py:134
 #: plinth/views.py:112
 msgid "Setting unchanged"
 msgstr "Ayar değiştirilmedi"
 
 #: plinth/modules/diaspora/views.py:100
-#, fuzzy
-#| msgid "Application enabled"
 msgid "User registrations enabled"
-msgstr "Uygulama etkinleştirildi"
+msgstr "Kullanıcı kayıtları etkinleştirildi"
 
 #: plinth/modules/diaspora/views.py:104
-#, fuzzy
-#| msgid "Application disabled"
 msgid "User registrations disabled"
-msgstr "Uygulama devre dışı bırakıldı"
-
-#: plinth/modules/disks/__init__.py:33 plinth/modules/disks/views.py:45
-msgid "Disks"
-msgstr "Diskler"
-
-#: plinth/modules/disks/templates/disks.html:35
-msgid "The following disks are in use:"
-msgstr "Aşağıdaki diskler kullanımdadır:"
-
-#: plinth/modules/disks/templates/disks.html:41
-#: plinth/modules/networks/templates/connection_show.html:84
-msgid "Device"
-msgstr "Cihaz"
-
-#: plinth/modules/disks/templates/disks.html:42
-msgid "Mount Point"
-msgstr "Bağlama Noktası"
-
-#: plinth/modules/disks/templates/disks.html:43
-#: plinth/modules/ikiwiki/forms.py:30
-#: plinth/modules/networks/templates/connection_show.html:98
-msgid "Type"
-msgstr "Tür"
-
-#: plinth/modules/disks/templates/disks.html:44
-msgid "Used"
-msgstr "Kullanılan"
-
-#: plinth/modules/disks/templates/disks.html:77
-msgid "Partition Expansion"
-msgstr "Bölüm Genişletme"
-
-#: plinth/modules/disks/templates/disks.html:80
-#, python-format
-msgid ""
-"There is %(expandable_root_size)s of unallocated space available after your "
-"root partition.  Root partition can be expanded to use this space.  This "
-"will provide you additional free space to store your files."
-msgstr ""
-"Kök disk bölümünden sonra ayrılmamış kullanılabilir %(expandable_root_size)s "
-"değerinde alan bulunmaktadır. Kök bölümü bu alanı kullanmak için "
-"genişletilebilir. Bu, size dosyalarınızı saklamak için ilave boş alan "
-"sunacaktır."
-
-#: plinth/modules/disks/templates/disks.html:90
-#: plinth/modules/disks/templates/disks.html:102
-#: plinth/modules/disks/templates/disks_expand.html:45
-#: plinth/modules/disks/views.py:62
-msgid "Expand Root Partition"
-msgstr "Kök Bölümünü Genişlet"
-
-#: plinth/modules/disks/templates/disks.html:94
-msgid ""
-"There is no unallocated space after your root partition. There is no need to "
-"expand it."
-msgstr ""
-"Kök bölümünün ardından hiçbir atanmamış alan yoktur. Onu genişletmenize "
-"gerek de yoktur."
-
-#: plinth/modules/disks/templates/disks_expand.html:35
-#, python-format
-msgid ""
-"Please backup your data before proceeding.  After this operation, "
-"%(expandable_root_size)s of additional free space will be available in your "
-"root partition."
-msgstr ""
-"Lütfen devam etmeden önce verilerinizi yedekleyin. Bu işlemden sonra kök "
-"bölümünüzde ilave  %(expandable_root_size)s değerinde boş alan "
-"kullanılabilir olacaktır."
-
-#: plinth/modules/disks/views.py:71
-#, python-brace-format
-msgid "Error expanding partition: {exception}"
-msgstr "Bölümün genişletilmesinde hata: {exception}"
-
-#: plinth/modules/disks/views.py:74
-msgid "Partition expanded successfully."
-msgstr "Bölüm başarılı bir şekilde genişletildi."
-
-#: plinth/modules/disks/views.py:93
-#, python-format, python-brace-format
-msgid ""
-"Warning: Low space on system partition ({percent_used}% used, {free_space} "
-"free)."
-msgstr ""
-
-#: plinth/modules/disks/views.py:130
-#, python-brace-format
-msgid "{disk_size:.1f} bytes"
-msgstr "{disk_size:.1f} bayt"
-
-#: plinth/modules/disks/views.py:134
-#, python-brace-format
-msgid "{disk_size:.1f} KiB"
-msgstr "{disk_size:.1f} KiB"
-
-#: plinth/modules/disks/views.py:138
-#, python-brace-format
-msgid "{disk_size:.1f} MiB"
-msgstr "{disk_size:.1f} MiB"
-
-#: plinth/modules/disks/views.py:142
-#, python-brace-format
-msgid "{disk_size:.1f} GiB"
-msgstr "{disk_size:.1f} GiB"
-
-#: plinth/modules/disks/views.py:145
-#, python-brace-format
-msgid "{disk_size:.1f} TiB"
-msgstr "{disk_size:.1f} TiB"
+msgstr "Kullanıcı kayıtları devre dışı bırakıldı"
 
 #: plinth/modules/dynamicdns/__init__.py:35
 msgid "Dynamic DNS Client"
@@ -616,10 +489,8 @@ msgstr ""
 
 #: plinth/modules/dynamicdns/__init__.py:67
 #: plinth/modules/dynamicdns/dynamicdns.py:377
-#, fuzzy
-#| msgid "Dynamic DNS Client"
 msgid "Dynamic DNS Service"
-msgstr "Dinamik DNS istemcisi"
+msgstr "Dinamik DNS Servisi"
 
 #: plinth/modules/dynamicdns/dynamicdns.py:43 plinth/modules/help/help.py:40
 msgid "About"
@@ -721,7 +592,7 @@ msgstr "Geçersiz sunucu ismi"
 
 #: plinth/modules/dynamicdns/dynamicdns.py:131
 msgid "Update URL"
-msgstr "URL'i Güncelle"
+msgstr "Güncelleme URL'i"
 
 #: plinth/modules/dynamicdns/dynamicdns.py:135
 msgid "Accept all SSL certificates"
@@ -848,14 +719,12 @@ msgstr "Son güncelleme"
 
 #: plinth/modules/ejabberd/__init__.py:45
 msgid "ejabberd"
-msgstr ""
+msgstr "ejabberd"
 
 #: plinth/modules/ejabberd/__init__.py:47
 #: plinth/modules/matrixsynapse/__init__.py:43
-#, fuzzy
-#| msgid "Web Server"
 msgid "Chat Server"
-msgstr "Web Sunucusu"
+msgstr "Sohbet Sunucusu"
 
 #: plinth/modules/ejabberd/__init__.py:50
 msgid ""
@@ -866,20 +735,18 @@ msgstr ""
 "isimli XMPP sunucusunu yapılandırıp çalıştırabilirsiniz."
 
 #: plinth/modules/ejabberd/__init__.py:54
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "To actually communicate, you can use the web client or any other <a "
-#| "href='http://xmpp.org/xmpp-software/clients/' target='_blank'>XMPP "
-#| "client</a>."
+#, python-brace-format
 msgid ""
 "To actually communicate, you can use the <a href=\"/plinth/apps/jsxc\">web "
 "client</a> or any other <a href='http://xmpp.org/xmpp-software/clients/' "
 "target='_blank'>XMPP client</a>. When enabled, ejabberd can be accessed by "
 "any <a href=\"/plinth/sys/users\">user with a {box_name} login</a>."
 msgstr ""
-"İletişim kurmak için ağ istemcisini ya da herhangi bir diğer <a href='http://"
-"xmpp.org/xmpp-software/clients/' target='_blank'>XMPP istemcisini</a> "
-"kullanabilirsiniz."
+"İletişim kurmak için <a href=\"/plinth/apps/jsxc\">ağ istemcisini</a> ya da "
+"herhangi bir diğer <a href='http://xmpp.org/xmpp-software/clients/' "
+"target='_blank'>XMPP istemcisini</a> kullanabilirsiniz. "
+"Etkinleştirildiğinde, ejabberd <a href=\"/plinth/sys/users\">kullanıcıları, "
+"ki {box_name}hesabı olan</a> tarafından kullanılabilir."
 
 #: plinth/modules/ejabberd/forms.py:33
 msgid "Enable Message Archive Management"
@@ -917,6 +784,7 @@ msgid "Launch web client"
 msgstr "Ağ istemcisini başlat"
 
 #: plinth/modules/ejabberd/templates/ejabberd.html:53
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:38
 #: plinth/modules/matrixsynapse/templates/matrix-synapse-pre-setup.html:31
 #: plinth/modules/openvpn/templates/openvpn.html:116
 #: plinth/modules/tahoe/templates/tahoe-post-setup.html:43
@@ -925,11 +793,13 @@ msgstr "Ağ istemcisini başlat"
 msgid "Configuration"
 msgstr "Yapılandırma"
 
-#: plinth/modules/ejabberd/views.py:64 plinth/views.py:116
+#: plinth/modules/ejabberd/views.py:64
+#: plinth/modules/matrixsynapse/views.py:107 plinth/views.py:116
 msgid "Application enabled"
 msgstr "Uygulama etkinleştirildi"
 
-#: plinth/modules/ejabberd/views.py:67 plinth/views.py:119
+#: plinth/modules/ejabberd/views.py:67
+#: plinth/modules/matrixsynapse/views.py:110 plinth/views.py:119
 msgid "Application disabled"
 msgstr "Uygulama devre dışı bırakıldı"
 
@@ -984,13 +854,13 @@ msgid "Service/Port"
 msgstr "Servis/Port"
 
 #: plinth/modules/firewall/templates/firewall.html:65
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:94
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:97
 #: plinth/modules/names/templates/names.html:49
 msgid "Enabled"
 msgstr "Etkin"
 
 #: plinth/modules/firewall/templates/firewall.html:68
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:96
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:99
 #: plinth/modules/names/templates/names.html:51
 #: plinth/modules/networks/forms.py:63
 msgid "Disabled"
@@ -1076,9 +946,9 @@ msgid "Where to Get Help"
 msgstr "Nerede Yardım Bulabilirim"
 
 #: plinth/modules/help/help.py:38 plinth/modules/networks/forms.py:62
-#: plinth/modules/networks/forms.py:102 plinth/templates/index.html:124
+#: plinth/modules/networks/forms.py:102 plinth/templates/index.html:126
 msgid "Manual"
-msgstr "El ile"
+msgstr "Kullanım Kılavuzu"
 
 #: plinth/modules/help/help.py:47
 msgid "Documentation and FAQ"
@@ -1247,22 +1117,14 @@ msgstr ""
 "verileri kaldırınız."
 
 #: plinth/modules/ikiwiki/__init__.py:41
-#, fuzzy
-#| msgid "wiki"
 msgid "ikiwiki"
-msgstr "wiki"
+msgstr "ikiwiki"
 
 #: plinth/modules/ikiwiki/__init__.py:43
 msgid "Wiki and Blog"
 msgstr "Viki ve Blog"
 
 #: plinth/modules/ikiwiki/__init__.py:46
-#, fuzzy
-#| msgid ""
-#| "ikiwiki is a simple wiki and blog application. It supports several "
-#| "lightweight markup languages, including Markdown, and common blogging "
-#| "functionality such as comments and RSS feeds. When enabled, the blogs and "
-#| "wikis will be available from <a href=\"/ikiwiki\">/ikiwiki</a>."
 msgid ""
 "ikiwiki is a simple wiki and blog application. It supports several "
 "lightweight markup languages, including Markdown, and common blogging "
@@ -1272,8 +1134,8 @@ msgstr ""
 "ikiwiki sade bir blog ve viki uygulamasıdır. Birçok hafif işaretleme "
 "dillerini destekler ki buna Markdown dahildir, ayrıca RSS beslemeleri ve "
 "yorumlar gibi olağan günlük işlevleri de desteklenir. Etkinleştirildiğinde, "
-"bloglar ve vikiler <a href=\"/ikiwiki\">/ikiwiki</a> adresinden erişilebilir "
-"olacaktır."
+"bloglar ve vikiler (oluşturulduklarında) <a href=\"/ikiwiki\">/ikiwiki</a> "
+"adresinde erişilebilir olacaklardır."
 
 #: plinth/modules/ikiwiki/__init__.py:53
 #, python-brace-format
@@ -1283,6 +1145,17 @@ msgid ""
 "<i>edit</i> existing ones. In the <a href=\"/plinth/sys/users\">User "
 "Configuration</a> you can change these permissions or add new users."
 msgstr ""
+"Blogları ve vikileri sadece <b>yönetici (admin)</b> grubundaki {box_name} "
+"kullanıcıları <i>oluşturabilir</i> ve <i>yönetebilir</i>, ancak <b>wiki</b> "
+"grubundaki herhangi bir kullanıcı mevcut olanları <i>düzenleyebilir</i>. <a "
+"href=\"/plinth/sys/users\">Kullanıcı Yapılandırması</a> bölümünde bu "
+"izinleri değiştirebilir ya da yeni kullanıcı ekleyebilirsiniz."
+
+#: plinth/modules/ikiwiki/forms.py:30
+#: plinth/modules/networks/templates/connection_show.html:98
+#: plinth/modules/storage/templates/storage.html:43
+msgid "Type"
+msgstr "Tür"
 
 #: plinth/modules/ikiwiki/forms.py:34
 #: plinth/modules/networks/templates/connection_show.html:78
@@ -1397,13 +1270,11 @@ msgstr "Viki ya da Blogu Sil"
 
 #: plinth/modules/infinoted/__init__.py:43
 msgid "infinoted"
-msgstr ""
+msgstr "infinoted"
 
 #: plinth/modules/infinoted/__init__.py:45
-#, fuzzy
-#| msgid "Web Server"
 msgid "Gobby Server"
-msgstr "Web Sunucusu"
+msgstr "Gobby Sunucusu"
 
 #: plinth/modules/infinoted/__init__.py:48
 msgid "infinoted is a server for Gobby, a collaborative text editor."
@@ -1424,17 +1295,11 @@ msgstr ""
 
 #: plinth/modules/jsxc/__init__.py:36
 msgid "JSXC"
-msgstr ""
+msgstr "JSXC"
 
 #: plinth/modules/jsxc/__init__.py:38
-#, fuzzy
-#| msgid ""
-#| "Chat Client \n"
-#| " (JSXC)"
 msgid "Chat Client"
-msgstr ""
-"Sohbet İstemcisi \n"
-" (JSXC)"
+msgstr "Sohbet İstemcisi"
 
 #: plinth/modules/jsxc/__init__.py:42
 msgid ""
@@ -1444,27 +1309,15 @@ msgstr ""
 "JSXC, XMPP için bir web istemcisidir. Tipik olarak yerel şekilde çalışan bir "
 "XMPP sunucusuyla kullanılır."
 
-#: plinth/modules/jsxc/__init__.py:80
-msgid ""
-"Chat Client \n"
-" (jsxc)"
-msgstr ""
-"Sohbet İstemcisi\n"
-" (jsxc)"
-
-#: plinth/modules/letsencrypt/__init__.py:40
-#, fuzzy
-#| msgid "Certificates (Let's Encrypt)"
+#: plinth/modules/letsencrypt/__init__.py:45
 msgid "Let's Encrypt"
-msgstr "Sertifikalar (Let's Encrypt)"
+msgstr "Let's Encrypt"
 
-#: plinth/modules/letsencrypt/__init__.py:42
-#, fuzzy
-#| msgid "Certificate Status"
+#: plinth/modules/letsencrypt/__init__.py:47
 msgid "Certificates"
-msgstr "Sertifika Durumu"
+msgstr "Sertifikalar"
 
-#: plinth/modules/letsencrypt/__init__.py:46
+#: plinth/modules/letsencrypt/__init__.py:51
 #, python-brace-format
 msgid ""
 "A digital certificate allows users of a web service to verify the identity "
@@ -1480,7 +1333,7 @@ msgstr ""
 "bir sertifika otoritesi (Certificate Authority, CA) olan Let's Encrypt'e "
 "ispatlayarak yapar."
 
-#: plinth/modules/letsencrypt/__init__.py:53
+#: plinth/modules/letsencrypt/__init__.py:58
 msgid ""
 "Let's Encrypt is a free, automated, and open certificate authority, run for "
 "the public's benefit by the Internet Security Research Group (ISRG).  Please "
@@ -1493,118 +1346,202 @@ msgstr ""
 "letsencrypt.org/repository/\">Let's Encrypt Abone Sözleşmesini</a> okuyup "
 "kabul edin."
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:43
+#: plinth/modules/letsencrypt/__init__.py:110
+#: plinth/modules/letsencrypt/views.py:92
+#: plinth/modules/letsencrypt/views.py:118
+#, python-brace-format
+msgid "Certificate renewal management enabled for {domain}."
+msgstr "{domain} alanı için sertifika yenilenmesi etkinleştirildi."
+
+#: plinth/modules/letsencrypt/__init__.py:114
+#: plinth/modules/letsencrypt/views.py:97
+#, python-brace-format
+msgid "Failed to enable certificate renewal management for {domain}: {error}"
+msgstr ""
+"Sertifika yenilenmesi yönetiminin {domain} alanı için etkinleştirilmesi "
+"başarısız oldu: {error}"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:46
 msgid "Domain"
 msgstr "Alan"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:44
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:47
 msgid "Certificate Status"
 msgstr "Sertifika Durumu"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:45
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:48
 msgid "Website Security"
 msgstr "Site Güvenliği"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:46
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:49
 msgid "Actions"
 msgstr "Eylemler"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:62
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:65
 #, python-format
 msgid "Valid, expires on %(expiry_date)s"
 msgstr "Geçerli, şu tarihte sona eriyor: %(expiry_date)s"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:69
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:72
 msgid "Revoked"
 msgstr "İptal edilmiş"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:73
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:76
 #, python-format
 msgid "Expired on %(expiry_date)s"
 msgstr "%(expiry_date)s tarihinde süresi dolmuş"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:77
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:80
 msgid "Invalid test certificate"
 msgstr "Geçersiz test sertifikası"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:81
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:84
 #, python-format
 msgid "Invalid (%(reason)s)"
 msgstr "Geçersiz %(reason)s"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:88
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:91
 msgid "No certificate"
 msgstr "Sertifika yok"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:105
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:108
 msgid "Re-obtain"
 msgstr "Tekrar edin"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:111
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:114
 #: plinth/modules/networks/templates/connection_show.html:63
 #: plinth/modules/snapshot/templates/snapshot.html:34
 msgid "Delete"
 msgstr "Sil"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:118
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:121
 msgid "Revoke"
 msgstr "İptal et"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:126
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:129
 msgid "Obtain"
 msgstr "Edin"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:149
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:156
-#, fuzzy
-#| msgid "Update"
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:142
+msgid "Certificate renewal management and use by other modules"
+msgstr "Sertifika yenilenmesi yönetimi ve diğer modüller tarafından kullanımı"
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:144
+#, python-format
+msgid ""
+"If you have a Let's Encrypt certificate for your current domain, you may let "
+"%(box_name)s manage its renewal process. This also enables other apps to use "
+"that certificate, so most users would not prompted with security warnings "
+"when using them."
+msgstr ""
+"Eğer güncel alanınız için bir Let's Encrypt sertifikanız varsa, %(box_name)s "
+"kutusunun onun yenilenmesi işlemini yönetmesini sağlayabilirsiniz. Bu, aynı "
+"zamanda diğer uygulamaların da o sertifikayı kullanmalarını sağlar, bu "
+"nedenle çoğu kullanıcı o uygulamaları kullanırken güvenlik ikazları görmek "
+"zorunda kalmazlar."
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:167
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:174
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:214
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:221
 msgid "Update config"
-msgstr "Güncelle"
+msgstr "Yapılandırmayı güncelle"
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:161
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:178
 #, python-format
 msgid ""
 "\n"
-"                Let Plinth manage certificate renewal of\n"
-"                <b>%(current_domain)s</b> (recommended)\n"
+"                Let %(box_name)s manage certificate renewal of\n"
+"                <b>%(current_domain)s</b>\n"
 "              "
 msgstr ""
-
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:166
-msgid ""
 "\n"
-"                Let Plinth manage certificate renewal of the current domain "
-"(recommended)\n"
+"                %(box_name)s kutusunun <b>%(current_domain)s</b>\n"
+"                için sertifika yenilemesini yönetmesine izin ver\n"
 "              "
-msgstr ""
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:175
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:187
 #, python-format
 msgid ""
-"If %(box_name)s manages the certificate renewal for the current domain, it "
-"will ensure that all apps that use the certificate can use it, as soon as it "
-"gets renewed."
+"If enabled, %(box_name)s can make sure that all apps can use the certificate "
+"as soon as it is renewed."
 msgstr ""
+"Eğer etkinleştirildiyse, %(box_name)s tüm uygulamaların yenilenir yenilenmez "
+"sertifikayı kullanabilmelerini sağlar."
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:181
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:192
 msgid ""
 "<b>No certificate available for the current domain.</b> First obtain a "
-"certificate to enable management of its renewal."
+"certificate to enable its management."
 msgstr ""
+"<b>Güncel alan için hiçbir sertifika mevcut değildir.</b> Yönetilmesini "
+"etkinleştirmek için önce bir sertifika edinin."
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:186
-#, fuzzy
-#| msgid ""
-#| "No domains have been configured. Configure domains to be able to obtain "
-#| "certificates for them."
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:226
+#, python-format
+msgid ""
+"\n"
+"                  Use certificate of %(current_domain)s for <b>ejabberd</b>\n"
+"                "
+msgstr ""
+"\n"
+"                  %(current_domain)s sertifikasını <b>ejabberd</b> için "
+"kullan\n"
+"                "
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:230
+msgid ""
+"\n"
+"                  Use certificate of the current domain for <b>ejabberd</b>\n"
+"                "
+msgstr ""
+"\n"
+"                  Güncel alanın sertifikasını <b>ejabberd</b> için kullan\n"
+"                "
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:240
+#, python-format
+msgid ""
+"If enabled, the app <a href=\"%(ejabberd_url)s\">ejabberd</a> will also use "
+"the Let's Encrypt certificate. This will reduce warnings about self-signed "
+"certificates in client applications, and enable more wide-spread federation "
+"with other XMPP servers in the Internet."
+msgstr ""
+"Eğer etkinleştirildiyse, <a href=\"%(ejabberd_url)s\">ejabberd</a> "
+"uygulaması da Let's Encrypt sertifikasını kullanacaktır. Bu, istemci "
+"uygulamalarda kendinden imzalı sertifikalar hakkındaki ikazları azaltacak ve "
+"İnternet'teki diğer XMPP sunucularla daha geniş çaplı federasyona imkân "
+"sağlayacaktır."
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:248
+#, python-format
+msgid ""
+"This feature only makes sense if you are using the <a href=\"%(ejabberd_url)s"
+"\">ejabberd</a> chat server app."
+msgstr ""
+"Bu özelliğin sadece <a href=\"%(ejabberd_url)s\">ejabberd</a> sohbet "
+"sunucusu uygulamasını kullanıyorsanız bir anlamı olur."
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:253
+#, python-format
+msgid ""
+"To use a Let's Encrypt certificate for <a href=\"%(ejabberd_url)s"
+"\">ejabberd</a> chat server app, you must first enable certificate renewal "
+"of the current domain."
+msgstr ""
+"<a href=\"%(ejabberd_url)s\">ejabberd</a> sohbet sunucusu uygulamasıyla "
+"Let's Encrypt sertifikası kullanmak için önce güncel alanın sertifika "
+"yenilenmesini etkinleştirmeniz gerekir."
+
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:262
 msgid ""
 "<b>No current domain is configured.</b> First configure a domain to enable "
 "management of its certificates."
 msgstr ""
-"Hiçbir alan yapılandırılmamış. Onlardan sertifika edinmek için alan "
-"yapılandırın."
+"<b>Hiçbir güncel alan yapılandırılmamış.</b> Sertifikalarının yönetimini "
+"etkinleştirmek için önce bir alan yapılandırın."
 
-#: plinth/modules/letsencrypt/templates/letsencrypt.html:195
+#: plinth/modules/letsencrypt/templates/letsencrypt.html:269
 msgid ""
 "No domains have been configured. Configure domains to be able to obtain "
 "certificates for them."
@@ -1612,7 +1549,7 @@ msgstr ""
 "Hiçbir alan yapılandırılmamış. Onlardan sertifika edinmek için alan "
 "yapılandırın."
 
-#: plinth/modules/letsencrypt/views.py:57
+#: plinth/modules/letsencrypt/views.py:56
 #, python-brace-format
 msgid ""
 "Certificate successfully revoked for domain {domain}.This may take a few "
@@ -1621,7 +1558,7 @@ msgstr ""
 "{domain} alanı için sertifika başarılı bir şekilde iptal edildi. Bu işlemin "
 "başlaması biraz zaman alabilir."
 
-#: plinth/modules/letsencrypt/views.py:63
+#: plinth/modules/letsencrypt/views.py:62
 #, python-brace-format
 msgid "Failed to revoke certificate for domain {domain}: {error}"
 msgstr ""
@@ -1637,56 +1574,48 @@ msgstr "{domain} alanı için sertifika başarılı bir şekilde edinildi"
 msgid "Failed to obtain certificate for domain {domain}: {error}"
 msgstr "{domain} alanı için sertifika edinilemedi: {error}"
 
-#: plinth/modules/letsencrypt/views.py:90
-#: plinth/modules/letsencrypt/views.py:109
-#, fuzzy, python-brace-format
-#| msgid "Certificate successfully deleted for domain {domain}"
-msgid "Certificate renewal management enabled for {domain}."
-msgstr "{domain} alanı için sertifika başarılı bir şekilde silindi"
-
-#: plinth/modules/letsencrypt/views.py:95
-#, fuzzy, python-brace-format
-#| msgid "Failed to delete certificate for domain {domain}: {error}"
-msgid "Failed to enable certificate renewal management for {domain}: {error}"
-msgstr "{domain} alanı için sertifikanın silinmesi başarısız oldu: {error}"
-
-#: plinth/modules/letsencrypt/views.py:112
-#, fuzzy, python-brace-format
-#| msgid "Certificate successfully deleted for domain {domain}"
+#: plinth/modules/letsencrypt/views.py:121
+#, python-brace-format
 msgid "Certificate renewal management disabled for {domain}."
-msgstr "{domain} alanı için sertifika başarılı bir şekilde silindi"
+msgstr ""
+"{domain} alanı için sertifika yenilenmesi yönetimi devre dışı bırakıldı."
 
-#: plinth/modules/letsencrypt/views.py:118
-#, fuzzy, python-brace-format
-#| msgid "Failed to obtain certificate for domain {domain}: {error}"
+#: plinth/modules/letsencrypt/views.py:127
+#, python-brace-format
 msgid "Failed to switch certificate renewal management for {domain}: {error}"
-msgstr "{domain} alanı için sertifika edinilemedi: {error}"
+msgstr ""
+"{domain} alanı için sertifika yenilenmesi yönetimi değiştirilemedi: {error}"
 
-#: plinth/modules/letsencrypt/views.py:134
-#, fuzzy, python-brace-format
-#| msgid "Failed to delete certificate for domain {domain}: {error}"
+#: plinth/modules/letsencrypt/views.py:157
+#, python-brace-format
+msgid "Switched use of certificate for app {module}"
+msgstr "{module} uygulaması için sertifika kullanımı değiştirildi"
+
+#: plinth/modules/letsencrypt/views.py:162
+#, python-brace-format
+msgid "Failed to switch certificate use for app {module}: {error}"
+msgstr "{module} uygulaması için sertifika kullanımı değiştirilemedi: {error}"
+
+#: plinth/modules/letsencrypt/views.py:183
+#, python-brace-format
 msgid "Failed to disable certificate renewal management for {domain}: {error}"
-msgstr "{domain} alanı için sertifikanın silinmesi başarısız oldu: {error}"
+msgstr ""
+"{domain} alanı için sertifika yenilenmesi yönetiminin devre dışı bırakılması "
+"başarısız oldu: {error}"
 
-#: plinth/modules/letsencrypt/views.py:141
+#: plinth/modules/letsencrypt/views.py:190
 #, python-brace-format
 msgid "Certificate successfully deleted for domain {domain}"
 msgstr "{domain} alanı için sertifika başarılı bir şekilde silindi"
 
-#: plinth/modules/letsencrypt/views.py:146
+#: plinth/modules/letsencrypt/views.py:195
 #, python-brace-format
 msgid "Failed to delete certificate for domain {domain}: {error}"
 msgstr "{domain} alanı için sertifikanın silinmesi başarısız oldu: {error}"
 
 #: plinth/modules/matrixsynapse/__init__.py:41
-#, fuzzy
-#| msgid ""
-#| "Chat Server \n"
-#| " (Matrix Synapse)"
 msgid "Matrix Synapse"
-msgstr ""
-"Sohbet Sunucusu\n"
-" (Matrix Synapse)"
+msgstr "Matrix Synapse"
 
 #: plinth/modules/matrixsynapse/__init__.py:46
 msgid ""
@@ -1714,6 +1643,20 @@ msgstr ""
 "İletişimde bulunmak için, mobil, masaüstü ve web <a href=\"https://matrix."
 "org/docs/projects/\">mevcut istemcilerini</a> kullanabilirsiniz. <a href="
 "\"https://riot.im/\">Riot</a> istemcisi tavsiye edilir."
+
+#: plinth/modules/matrixsynapse/forms.py:29
+msgid "Enable Public Registration"
+msgstr "Herkese Açık Kaydı Etkinleştir"
+
+#: plinth/modules/matrixsynapse/forms.py:32
+msgid ""
+"Enabling public registration means that anyone on the Internet can register "
+"a new account on your Matrix server. Disable this if you only want existing "
+"users to be able to use it."
+msgstr ""
+"Herkese açık kaydı etkinleştirmek, Matrix sunucunuzda İnternet'teki herhangi "
+"birinin yeni bir hesap açabileceği anlamına gelir. Sadece mevcut "
+"kullanıcıların kullanabilmesini istiyorsanız bunu devre dışı bırakın."
 
 #: plinth/modules/matrixsynapse/templates/matrix-synapse-pre-setup.html:34
 msgid ""
@@ -1748,7 +1691,7 @@ msgstr ""
 "Hiçbir alan mevcut değildir. En az bir alan <a href=\"%(config_url)s"
 "\">yapılandırın</a> ki Matrix Synapse kullanılabilsin."
 
-#: plinth/modules/matrixsynapse/templates/matrix-synapse.html:30
+#: plinth/modules/matrixsynapse/templates/matrix-synapse.html:29
 #, python-format
 msgid ""
 "The Matrix server domain is set to <em>%(domain_name)s</em>. User IDs will "
@@ -1759,19 +1702,21 @@ msgstr ""
 "kimlikleri <em>@kullanıcıismi:%(domain_name)s</em> şeklinde olacaktır. Alan "
 "adını ilk yapılandırmadan sonra değiştirmek şimdilik desteklenmemektedir."
 
+#: plinth/modules/matrixsynapse/views.py:118
+msgid "Public registration enabled"
+msgstr "Herkese açık kayıt etkinleştirildi"
+
+#: plinth/modules/matrixsynapse/views.py:123
+msgid "Public registration disabled"
+msgstr "Herkese açık kayıt devre dışı bırakıldı"
+
 #: plinth/modules/minetest/__init__.py:48
 msgid "Minetest"
-msgstr ""
+msgstr "Minetest"
 
 #: plinth/modules/minetest/__init__.py:50
-#, fuzzy
-#| msgid ""
-#| "Block Sandbox \n"
-#| " (Minetest)"
 msgid "Block Sandbox"
-msgstr ""
-"Blok Kum Havuzu\n"
-" (Minetest)"
+msgstr "Blok Kum Havuzu"
 
 #: plinth/modules/minetest/__init__.py:54
 #, python-brace-format
@@ -2015,17 +1960,11 @@ msgstr "Anahtarın yayınlanmasında bir hata meydana geldi."
 
 #: plinth/modules/mumble/__init__.py:35
 msgid "Mumble"
-msgstr ""
+msgstr "Mumble"
 
 #: plinth/modules/mumble/__init__.py:37
-#, fuzzy
-#| msgid ""
-#| "Voice Chat \n"
-#| " (Mumble)"
 msgid "Voice Chat"
-msgstr ""
-"Ses ile Sohbet\n"
-" (Mumble)"
+msgstr "Ses ile Sohbet"
 
 #: plinth/modules/mumble/__init__.py:46
 msgid ""
@@ -2065,11 +2004,11 @@ msgstr "İsim Servisleri"
 msgid "Not Available"
 msgstr "Mevcut değil"
 
-#: plinth/modules/networks/__init__.py:37
+#: plinth/modules/networks/__init__.py:38
 msgid "Networks"
 msgstr "Ağlar"
 
-#: plinth/modules/networks/__init__.py:124
+#: plinth/modules/networks/__init__.py:126
 #, python-brace-format
 msgid "Using DNSSEC on IPv{kind}"
 msgstr "IPv{kind} üzerinde DNSSEC kullanılıyor"
@@ -2466,6 +2405,11 @@ msgstr "Birincil bağlantı"
 msgid "yes"
 msgstr "evet"
 
+#: plinth/modules/networks/templates/connection_show.html:84
+#: plinth/modules/storage/templates/storage.html:41
+msgid "Device"
+msgstr "Cihaz"
+
 #: plinth/modules/networks/templates/connection_show.html:88
 msgid "State"
 msgstr "Durum"
@@ -2663,20 +2607,12 @@ msgid "Inactive"
 msgstr "Devre Dışı"
 
 #: plinth/modules/openvpn/__init__.py:42
-#, fuzzy
-#| msgid "Open"
 msgid "OpenVPN"
-msgstr "Açık"
+msgstr "OpenVPN"
 
 #: plinth/modules/openvpn/__init__.py:44
-#, fuzzy
-#| msgid ""
-#| "Virtual Private Network \n"
-#| " (OpenVPN)"
 msgid "Virtual Private Network"
-msgstr ""
-"Sanal Özel Şebeke\n"
-" (OpenVPN)"
+msgstr "Sanal Özel Şebeke"
 
 #: plinth/modules/openvpn/__init__.py:48
 #, python-brace-format
@@ -2781,19 +2717,15 @@ msgstr "Kurulum tamamlandı."
 
 #: plinth/modules/openvpn/views.py:125
 msgid "Setup failed."
-msgstr "Kurulum başarısı oldu."
+msgstr "Kurulum başarısız oldu."
 
 #: plinth/modules/pagekite/__init__.py:44
-#, fuzzy
-#| msgid "Pagekite"
 msgid "PageKite"
-msgstr "Pagekite"
+msgstr "PageKite"
 
 #: plinth/modules/pagekite/__init__.py:46
-#, fuzzy
-#| msgid "Public Visibility (PageKite)"
 msgid "Public Visibility"
-msgstr "Herkese Açık Görünülürlük (PageKite)"
+msgstr "Herkese Açık Görünülürlük"
 
 #: plinth/modules/pagekite/__init__.py:50
 #, python-brace-format
@@ -3151,16 +3083,12 @@ msgid "Restart or shut down the system."
 msgstr "Sistemi tekrar başlat ya da kapat."
 
 #: plinth/modules/power/templates/power.html:28
-#, fuzzy
-#| msgid ""
-#| "Another installation or upgrade is already running. Please wait for a few "
-#| "moments before trying again."
 msgid ""
 "Currently an installation or upgrade is running. Consider waiting until it's "
 "finished before shutting down or restarting."
 msgstr ""
-"Başka bir kurulum ya da güncelleme zaten çalışmaktadır. Lütfen tekrar "
-"denemeden önce biraz bekleyin."
+"Şu anda bir kurulum ya da yükseltme çalışmaktadır. Kapatmadan ya da yeniden "
+"başlatmadan önce bunun sona ermesini beklemeyi değerlendirin."
 
 #: plinth/modules/power/templates/power.html:37
 msgid "Restart &raquo;"
@@ -3179,16 +3107,12 @@ msgstr ""
 "başlatılına dek birkaç dakika boyunca erişemeyeceksiniz."
 
 #: plinth/modules/power/templates/power_restart.html:38
-#, fuzzy
-#| msgid ""
-#| "Another installation or upgrade is already running. Please wait for a few "
-#| "moments before trying again."
 msgid ""
 "Currently an installation or upgrade is running. Consider waiting until it's "
 "finished before restarting."
 msgstr ""
-"Başka bir kurulum ya da güncelleme zaten çalışmaktadır. Lütfen tekrar "
-"denemeden önce biraz bekleyin."
+"Şu anda bir kurulum ya da yükseltme çalışmaktadır. Yeniden başlatmadan önce "
+"bunun sona ermesini beklemeyi değerlendirin."
 
 #: plinth/modules/power/templates/power_restart.html:52
 #: plinth/modules/power/templates/power_restart.html:55
@@ -3204,16 +3128,12 @@ msgstr ""
 "arayüzüne erişemeyeceksiniz."
 
 #: plinth/modules/power/templates/power_shutdown.html:37
-#, fuzzy
-#| msgid ""
-#| "Another installation or upgrade is already running. Please wait for a few "
-#| "moments before trying again."
 msgid ""
 "Currently an installation or upgrade is running. Consider waiting until it's "
 "finished before shutting down."
 msgstr ""
-"Başka bir kurulum ya da güncelleme zaten çalışmaktadır. Lütfen tekrar "
-"denemeden önce biraz bekleyin."
+"Şu anda bir kurulum ya da yükseltme çalışmaktadır. Kapatmadan önce bunun "
+"sona ermesini beklemeyi değerlendirin."
 
 #: plinth/modules/power/templates/power_shutdown.html:51
 #: plinth/modules/power/templates/power_shutdown.html:54
@@ -3221,16 +3141,12 @@ msgid "Shut Down Now"
 msgstr "Şimdi Kapat"
 
 #: plinth/modules/privoxy/__init__.py:43
-#, fuzzy
-#| msgid "Enable Privoxy"
 msgid "Privoxy"
-msgstr "Privoxy'yi Etkinleştir"
+msgstr "Privoxy"
 
 #: plinth/modules/privoxy/__init__.py:45
-#, fuzzy
-#| msgid "Privoxy Web Proxy"
 msgid "Web Proxy"
-msgstr "Privoxy Ağ Vekil Sunucusu"
+msgstr "Ağ Vekil Sunucusu"
 
 #: plinth/modules/privoxy/__init__.py:48
 msgid ""
@@ -3266,13 +3182,11 @@ msgstr "{url} konumuna {proxy} vekili vasıtasıyla tcp{kind} üzerinden eriş"
 
 #: plinth/modules/quassel/__init__.py:42
 msgid "Quassel"
-msgstr ""
+msgstr "Quassel"
 
 #: plinth/modules/quassel/__init__.py:44
-#, fuzzy
-#| msgid "Quassel IRC Client"
 msgid "IRC Client"
-msgstr "Quassel IRC İstemcisi"
+msgstr "IRC İstemcisi"
 
 #: plinth/modules/quassel/__init__.py:48
 #, python-brace-format
@@ -3305,26 +3219,14 @@ msgstr ""
 
 #: plinth/modules/radicale/__init__.py:43
 msgid "Radicale"
-msgstr ""
+msgstr "Radicale"
 
 #: plinth/modules/radicale/__init__.py:45
-#, fuzzy
-#| msgid ""
-#| "Calendar and Addressbook \n"
-#| " (Radicale)"
 msgid "Calendar and Addressbook"
-msgstr ""
-"Takvim ve Adres Defteri\n"
-" (Radicale)"
+msgstr "Takvim ve Adres Defteri"
 
 #: plinth/modules/radicale/__init__.py:49
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "Radicale is a CalDAV and CardDAV server. It allows synchronization and "
-#| "sharing of scheduling and contact data. To use Radicale, a <a href="
-#| "\"http://radicale.org/user_documentation/#idcaldav-and-carddav-clients\"> "
-#| "supported client application</a> is needed. Radicale can be accessed by "
-#| "any user with a {box_name} login."
+#, python-brace-format
 msgid ""
 "Radicale is a CalDAV and CardDAV server. It allows synchronization and "
 "sharing of scheduling and contact data. To use Radicale, a <a href=\"http://"
@@ -3333,9 +3235,9 @@ msgid ""
 msgstr ""
 "Radicale, bir CalDAV ve CardDAV sunucusudur. İletişim ve randevu verilerinin "
 "paylaşılmasına ve eşleştirilmesine imkân verir. Radicale'i kullanmak için "
-"desteklenen bir <a href=\"http://radicale.org/user_documentation/#idcaldav-"
-"and-carddav-clients\">istemci uygulama</a> gereklidir. Radicale'e erişim "
-"{box_name} girişi olan herhangi bir kullanıcı tarafından yapılabilir."
+"desteklenen bir <a href=\"http://radicale.org/clients\">istemci uygulama</a> "
+"gereklidir. Radicale'e erişim {box_name} girişi olan herhangi bir kullanıcı "
+"tarafından yapılabilir."
 
 #: plinth/modules/radicale/forms.py:28
 msgid "Only the owner of a calendar/addressbook can view or make changes."
@@ -3363,13 +3265,11 @@ msgstr "Erişim izinleri yapılandırması güncellendi"
 
 #: plinth/modules/repro/__init__.py:38
 msgid "repro"
-msgstr ""
+msgstr "repro"
 
 #: plinth/modules/repro/__init__.py:40
-#, fuzzy
-#| msgid "DNS Server"
 msgid "SIP Server"
-msgstr "DNS Sunucusu"
+msgstr "SIP Sunucusu"
 
 #: plinth/modules/repro/__init__.py:43
 msgid ""
@@ -3417,14 +3317,8 @@ msgid "reStore"
 msgstr "reStore"
 
 #: plinth/modules/restore/__init__.py:38
-#, fuzzy
-#| msgid ""
-#| "Unhosted Storage \n"
-#| " (reStore)"
 msgid "Unhosted Storage"
-msgstr ""
-"Barındırılmayan Depolama\n"
-" (reStore)"
+msgstr "Barındırılmayan Depolama"
 
 #: plinth/modules/restore/__init__.py:42
 #, python-brace-format
@@ -3451,20 +3345,12 @@ msgstr ""
 "düzenleyebilirsiniz."
 
 #: plinth/modules/roundcube/__init__.py:35
-#, fuzzy
-#| msgid "Enable Roundcube"
 msgid "Roundcube"
-msgstr "Roundcube'u Etkinleştir"
+msgstr "Roundcube"
 
 #: plinth/modules/roundcube/__init__.py:37
-#, fuzzy
-#| msgid ""
-#| "Email Client \n"
-#| " (Roundcube)"
 msgid "Email Client"
-msgstr ""
-"E-posta İstemcisi\n"
-" (Roundcube)"
+msgstr "E-posta İstemcisi"
 
 #: plinth/modules/roundcube/__init__.py:40
 msgid ""
@@ -3525,7 +3411,7 @@ msgstr ""
 
 #: plinth/modules/security/forms.py:35
 msgid "Fail2ban (recommended)"
-msgstr ""
+msgstr "Fail2ban (tavsiye edilir)"
 
 #: plinth/modules/security/forms.py:36
 msgid ""
@@ -3533,6 +3419,9 @@ msgid ""
 "attempts to the SSH server and other password protected internet-services "
 "which are enabled."
 msgstr ""
+"Bu şık etkinleştirildiğinde, fail2ban SSH sunucusuna ve diğer etkin parola "
+"ile korunmuş İnternet servislerine yapılan kaba kuvvetle parola bulma "
+"saldırı teşebbüslerini sınırlayacaktır."
 
 #: plinth/modules/security/views.py:66
 #, python-brace-format
@@ -3548,14 +3437,8 @@ msgid "Shaarli"
 msgstr "Shaarli"
 
 #: plinth/modules/shaarli/__init__.py:37
-#, fuzzy
-#| msgid ""
-#| "Bookmarks \n"
-#| " (Shaarli)"
 msgid "Bookmarks"
-msgstr ""
-"Yer İmleri\n"
-" (Shaarli)"
+msgstr "Yer İmleri"
 
 #: plinth/modules/shaarli/__init__.py:40
 msgid "Shaarli allows you to save and share bookmarks."
@@ -3573,8 +3456,8 @@ msgstr ""
 "unutmayın."
 
 #: plinth/modules/snapshot/__init__.py:32
-msgid "Snapshots"
-msgstr "Anlıklar"
+msgid "Storage Snapshots"
+msgstr "Depolama Anlıkları"
 
 #: plinth/modules/snapshot/__init__.py:35
 msgid ""
@@ -3702,6 +3585,10 @@ msgid ""
 "administration tasks, copy files or run other services using such "
 "connections."
 msgstr ""
+"Güvenli Kabuk sunucusu uzaktaki bilgisayarlardan bağlantıları kabul etmek "
+"için güvenli kabuk (secure shell) protokolünü kullanır. İzinli uzak bir "
+"bilgisayar bu bağlantıları vasıtasıyla yönetim işlemleri yapabilir, dosya "
+"kopyalayabilir  ve diğer servisleri çalıştırabilir."
 
 #: plinth/modules/sso/__init__.py:30
 msgid "Single Sign On"
@@ -3711,19 +3598,114 @@ msgstr "Tekli Oturum Açma"
 msgid "Login"
 msgstr "Giriş"
 
+#: plinth/modules/storage/__init__.py:33 plinth/modules/storage/views.py:45
+msgid "Storage"
+msgstr "Depolama"
+
+#: plinth/modules/storage/__init__.py:147
+#, python-brace-format
+msgid "{disk_size:.1f} bytes"
+msgstr "{disk_size:.1f} bayt"
+
+#: plinth/modules/storage/__init__.py:151
+#, python-brace-format
+msgid "{disk_size:.1f} KiB"
+msgstr "{disk_size:.1f} KiB"
+
+#: plinth/modules/storage/__init__.py:155
+#, python-brace-format
+msgid "{disk_size:.1f} MiB"
+msgstr "{disk_size:.1f} MiB"
+
+#: plinth/modules/storage/__init__.py:159
+#, python-brace-format
+msgid "{disk_size:.1f} GiB"
+msgstr "{disk_size:.1f} GiB"
+
+#: plinth/modules/storage/__init__.py:162
+#, python-brace-format
+msgid "{disk_size:.1f} TiB"
+msgstr "{disk_size:.1f} TiB"
+
+#: plinth/modules/storage/templates/storage.html:35
+msgid "The following disks are in use:"
+msgstr "Aşağıdaki diskler kullanımdadır:"
+
+#: plinth/modules/storage/templates/storage.html:42
+msgid "Mount Point"
+msgstr "Bağlama Noktası"
+
+#: plinth/modules/storage/templates/storage.html:44
+msgid "Used"
+msgstr "Kullanılan"
+
+#: plinth/modules/storage/templates/storage.html:77
+msgid "Partition Expansion"
+msgstr "Bölüm Genişletme"
+
+#: plinth/modules/storage/templates/storage.html:80
+#, python-format
+msgid ""
+"There is %(expandable_root_size)s of unallocated space available after your "
+"root partition.  Root partition can be expanded to use this space.  This "
+"will provide you additional free space to store your files."
+msgstr ""
+"Kök disk bölümünden sonra ayrılmamış kullanılabilir %(expandable_root_size)s "
+"değerinde alan bulunmaktadır. Kök bölümü bu alanı kullanmak için "
+"genişletilebilir. Bu, size dosyalarınızı saklamak için ilave boş alan "
+"sunacaktır."
+
+#: plinth/modules/storage/templates/storage.html:90
+#: plinth/modules/storage/templates/storage.html:102
+#: plinth/modules/storage/templates/storage_expand.html:45
+#: plinth/modules/storage/views.py:62
+msgid "Expand Root Partition"
+msgstr "Kök Bölümünü Genişlet"
+
+#: plinth/modules/storage/templates/storage.html:94
+msgid ""
+"There is no unallocated space after your root partition. There is no need to "
+"expand it."
+msgstr ""
+"Kök bölümünün ardından hiçbir atanmamış alan yoktur. Onu genişletmenize "
+"gerek de yoktur."
+
+#: plinth/modules/storage/templates/storage_expand.html:35
+#, python-format
+msgid ""
+"Please backup your data before proceeding.  After this operation, "
+"%(expandable_root_size)s of additional free space will be available in your "
+"root partition."
+msgstr ""
+"Lütfen devam etmeden önce verilerinizi yedekleyin. Bu işlemden sonra kök "
+"bölümünüzde ilave  %(expandable_root_size)s değerinde boş alan "
+"kullanılabilir olacaktır."
+
+#: plinth/modules/storage/views.py:71
+#, python-brace-format
+msgid "Error expanding partition: {exception}"
+msgstr "Bölümün genişletilmesinde hata: {exception}"
+
+#: plinth/modules/storage/views.py:74
+msgid "Partition expanded successfully."
+msgstr "Bölüm başarılı bir şekilde genişletildi."
+
+#: plinth/modules/storage/views.py:95
+#, no-python-format, python-brace-format
+msgid ""
+"Warning: Low space on system partition ({percent_used}% used, {free_space} "
+"free)."
+msgstr ""
+"İkaz: sistem disk bölümünde düşük alan (%{percent_used} kullanıldı, "
+"{free_space} boş)."
+
 #: plinth/modules/syncthing/__init__.py:39
 msgid "Syncthing"
-msgstr ""
+msgstr "Syncthing"
 
 #: plinth/modules/syncthing/__init__.py:41
-#, fuzzy
-#| msgid ""
-#| "File Synchronization \n"
-#| " (Syncthing)"
 msgid "File Synchronization"
-msgstr ""
-"Dosya eşleşmesi\n"
-" (Syncthing)"
+msgstr "Dosya eşleşmesi"
 
 #: plinth/modules/syncthing/__init__.py:44
 msgid ""
@@ -3767,13 +3749,11 @@ msgstr ""
 
 #: plinth/modules/tahoe/__init__.py:42
 msgid "Tahoe-LAFS"
-msgstr ""
+msgstr "Tahoe-LAFS"
 
 #: plinth/modules/tahoe/__init__.py:44
-#, fuzzy
-#| msgid "Distributed File Storage (Tahoe-LAFS)"
 msgid "Distributed File Storage"
-msgstr "Dağıtılmış Dosya Depolaması (Tahoe-LAFS)"
+msgstr "Dağıtılmış Dosya Depolaması"
 
 #: plinth/modules/tahoe/__init__.py:75
 msgid ""
@@ -3839,13 +3819,11 @@ msgstr "Kaldır"
 
 #: plinth/modules/tor/__init__.py:42
 msgid "Tor"
-msgstr ""
+msgstr "Tor"
 
 #: plinth/modules/tor/__init__.py:44
-#, fuzzy
-#| msgid "Tor Anonymity Network"
 msgid "Anonymity Network"
-msgstr "Tor Anonimlik Ağı"
+msgstr "Anonimlik Ağı"
 
 #: plinth/modules/tor/__init__.py:47
 msgid ""
@@ -4060,16 +4038,12 @@ msgid "An error occurred during configuration."
 msgstr "Yapılandırma sırasında bir hata meydana geldi."
 
 #: plinth/modules/transmission/__init__.py:38
-#, fuzzy
-#| msgid "Transmission BitTorrent"
 msgid "Transmission"
-msgstr "Transmission BitTorrent"
+msgstr "Transmission"
 
 #: plinth/modules/transmission/__init__.py:40
-#, fuzzy
-#| msgid "Deluge BitTorrent"
 msgid "BitTorrent"
-msgstr "Deluge BitTorrent"
+msgstr "BitTorrent"
 
 #: plinth/modules/transmission/__init__.py:43
 msgid ""
@@ -4114,21 +4088,15 @@ msgstr ""
 "gösterilmektedir. Yeni bir parola ayarlamak için parolayı düz metin olarak "
 "girin."
 
-#: plinth/modules/ttrss/__init__.py:39
+#: plinth/modules/ttrss/__init__.py:40
 msgid "Tiny Tiny RSS"
-msgstr ""
+msgstr "Tiny Tiny RSS"
 
-#: plinth/modules/ttrss/__init__.py:41
-#, fuzzy
-#| msgid ""
-#| "News Feed Reader \n"
-#| " (Tiny Tiny RSS)"
+#: plinth/modules/ttrss/__init__.py:42
 msgid "News Feed Reader"
-msgstr ""
-"Haber Besleme Okuyucusu\n"
-" (Tiny Tiny RSS)"
+msgstr "Haber Besleme Okuyucusu"
 
-#: plinth/modules/ttrss/__init__.py:44
+#: plinth/modules/ttrss/__init__.py:45
 msgid ""
 "Tiny Tiny RSS is a news feed (RSS/Atom) reader and aggregator, designed to "
 "allow reading news from any location, while feeling as close to a real "
@@ -4138,18 +4106,25 @@ msgstr ""
 "ve haber toplamaları herhangi bir yerden okumaya imkân sağlamak için "
 "tasarlanmış bir haber besleme (RSS/Atom) okuyucusu ve toplayıcısıdır."
 
-#: plinth/modules/ttrss/__init__.py:49
-#, fuzzy, python-brace-format
-#| msgid ""
-#| "When enabled, Tiny Tiny RSS will be available from <a href=\"/tt-rss\">/"
-#| "tt-rss</a> path on the web server."
+#: plinth/modules/ttrss/__init__.py:50
+#, python-brace-format
 msgid ""
 "When enabled, Tiny Tiny RSS will be available from <a href=\"/tt-rss\">/tt-"
 "rss</a> path on the web server. It can be accessed by any <a href=\"/plinth/"
 "sys/users\">user with a {box_name} login</a>."
 msgstr ""
 "Etkinleştirildiğinde,Tiny Tiny RSS'e erişim ağ sunucusunda <a href=\"/tt-rss"
-"\">/tt-rss</a> yolundan mümkün olacaktır."
+"\">/tt-rss</a> yolundan mümkün olacaktır. Herhangi bir <a href=\"/plinth/sys/"
+"users\">{box_name} kullanıcısı, ki oturumu olmalıdır</a> tarafından "
+"kullanılabilir."
+
+#: plinth/modules/ttrss/__init__.py:56
+msgid ""
+"When using a mobile or desktop application for Tiny Tiny RSS, use the URL <a "
+"href=\"/tt-rss-app/\">/tt-rss-app</a> for connecting."
+msgstr ""
+"Tiny Tiny RSS ile mobil ya da masaüstü uygulama kullanırken bağlantı için <a "
+"href=\"/tt-rss-app/\">/tt-rss-app</a> URL'ini kullanın."
 
 #: plinth/modules/upgrades/__init__.py:35
 msgid "Software Upgrades"
@@ -4566,28 +4541,37 @@ msgstr "Uygulamalar"
 msgid "Change password"
 msgstr "Parolayı değiştir"
 
-#: plinth/templates/base.html:152 plinth/templates/base.html:153
-#: plinth/templates/base.html:190 plinth/templates/base.html:192
-msgid "Log out"
-msgstr "Çıkış yap"
-
-#: plinth/templates/base.html:168 plinth/templates/base.html:169
+#: plinth/templates/base.html:154 plinth/templates/base.html:155
 msgid "Restart"
 msgstr "Tekrar Başlat"
 
-#: plinth/templates/base.html:174 plinth/templates/base.html:175
+#: plinth/templates/base.html:160 plinth/templates/base.html:161
 msgid "Shut down"
 msgstr "Kapat"
 
-#: plinth/templates/base.html:182 plinth/templates/base.html:184
+#: plinth/templates/base.html:168 plinth/templates/base.html:169
+#: plinth/templates/base.html:184 plinth/templates/base.html:186
+msgid "Log out"
+msgstr "Çıkış yap"
+
+#: plinth/templates/base.html:176 plinth/templates/base.html:178
 msgid "Log in"
 msgstr "Giriş yap"
 
-#: plinth/templates/base.html:256 plinth/templates/index.html:164
+#: plinth/templates/base.html:250 plinth/templates/index.html:166
 msgid "JavaScript license information"
 msgstr "JavaScript lisans bilgileri"
 
-#: plinth/templates/index.html:58
+#: plinth/templates/first_setup.html:37
+#, python-format
+msgid ""
+"Please wait for %(box_name)s to finish installation. You can start using "
+"your %(box_name)s once it is done."
+msgstr ""
+"Lütfen %(box_name)s kutusunun kurulumu bitirmesini bekleyin. Kurulum sona "
+"erdiğinde %(box_name)s kutusunu kullanabileceksiniz."
+
+#: plinth/templates/index.html:60
 #, python-format
 msgid ""
 "Enable some <a href=\"%(apps_url)s\">applications</a> to add shortcuts to "
@@ -4596,11 +4580,11 @@ msgstr ""
 "Bu sayfaya kısayol eklemek için <a href=\"%(apps_url)s\">uygulama</a> "
 "etkinleştiriniz."
 
-#: plinth/templates/index.html:85
+#: plinth/templates/index.html:87
 msgid "Configure &raquo;"
 msgstr "Yapılandır &raquo;"
 
-#: plinth/templates/index.html:104
+#: plinth/templates/index.html:106
 #, python-format
 msgid ""
 "%(box_name)s, a Debian pure blend, is a 100%% free software self-hosting web "
@@ -4612,7 +4596,7 @@ msgstr ""
 "sunucusudur. Veri sahipliğinize ve gizliliğinize saygı gösteren çevrimiçi "
 "iletişim araçları sunar."
 
-#: plinth/templates/index.html:113
+#: plinth/templates/index.html:115
 #, python-format
 msgid ""
 "This portal is a part of Plinth, the %(box_name)s web interface. Plinth is "
@@ -4623,31 +4607,31 @@ msgstr ""
 "Plinth özgür yazılımdır ve GNU Affero Genel Kamu Lisansının 3. ya da daha "
 "sonraki sürümleri kapsamında yayınlanmıştır."
 
-#: plinth/templates/index.html:128
+#: plinth/templates/index.html:130
 msgid "Wiki"
 msgstr "Viki"
 
-#: plinth/templates/index.html:133
+#: plinth/templates/index.html:135
 msgid "Homepage"
 msgstr "Ana sayfa"
 
-#: plinth/templates/index.html:136
+#: plinth/templates/index.html:138
 msgid "Source Code"
 msgstr "Kaynak kod"
 
-#: plinth/templates/index.html:139
+#: plinth/templates/index.html:141
 msgid "Donate"
 msgstr "Bağış"
 
-#: plinth/templates/index.html:143
+#: plinth/templates/index.html:145
 msgid "FreedomBox Foundation"
 msgstr "FreedomBox Vakfı"
 
-#: plinth/templates/index.html:150
+#: plinth/templates/index.html:152
 msgid "IRC Chatroom"
 msgstr "IRC sohbet odası"
 
-#: plinth/templates/index.html:155
+#: plinth/templates/index.html:157
 msgid "Mailing list"
 msgstr "E-posta listesi"
 
@@ -4724,6 +4708,30 @@ msgid ""
 msgstr ""
 "Seçenekler %(box_name)s kutusunu en genel düzeyde etkiler, bu nedenle "
 "dikkatli olun!"
+
+#~ msgid ""
+#~ "Chat Client \n"
+#~ " (jsxc)"
+#~ msgstr ""
+#~ "Sohbet İstemcisi\n"
+#~ " (jsxc)"
+
+#~ msgid ""
+#~ "\n"
+#~ "                Let %(box_name)s manage certificate renewal of the "
+#~ "current domain\n"
+#~ "              "
+#~ msgstr ""
+#~ "\n"
+#~ "                %(box_name)s kutusunun güncel alan için sertifika "
+#~ "yenilenmesini yönetmesine izin ver\n"
+#~ "              "
+
+#~ msgid "Disks"
+#~ msgstr "Diskler"
+
+#~ msgid "Snapshots"
+#~ msgstr "Anlıklar"
 
 #~ msgid "Select the domain name to be used for diaspora*"
 #~ msgstr "diaspora* için kullanılacak alan ismini seç"
